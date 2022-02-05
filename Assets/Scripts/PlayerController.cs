@@ -48,13 +48,20 @@ public class PlayerController : MonoBehaviour
         transform.Rotate( Vector3.up * input.x * sensitivity );
     }
 
+    bool IsGrounded()
+    {
+        Collider collider = GetComponent<Collider>();
+        float distToGround = collider.bounds.extents.y;
+        return Physics.Raycast( transform.position, Vector3.down, distToGround + 0.01f );
+    }
+
     void HandleKeyboardInput()
     {
         Vector3 input = new Vector3( Input.GetAxis( H_AXIS ), 0.0f, Input.GetAxis( V_AXIS ) );
         Vector3 velocity = transform.TransformDirection( input ) * speed;
         m_playerBody.velocity = new Vector3( velocity.x, m_playerBody.velocity.y, velocity.z );
 
-        if ( Input.GetKeyDown( jumpKey ) )
+        if ( Input.GetKeyDown( jumpKey ) && IsGrounded() )
         {
             m_playerBody.AddForce( Vector3.up * jumpForce, ForceMode.Impulse );
         }
