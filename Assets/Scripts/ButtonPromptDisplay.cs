@@ -8,7 +8,7 @@ public class ButtonPromptDisplay : MonoBehaviour
 
     public GameObject promptHolder;
     public Text promptText;
-    public Image buttonImg;
+    public RawImage buttonImg;
 
     public float btnTextSpace;
     public float promptPosY;
