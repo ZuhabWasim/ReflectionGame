@@ -70,3 +70,25 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+Assets/Character.meta
+Assets/Character/Idle.fbx
+Assets/Character/Idle.fbx.meta
+Assets/Character/Jump.fbx
+Assets/Character/Jump.fbx.meta
+Assets/Character/Model.fbx
+Assets/Character/Model.fbx.meta
+Assets/Character/Textures.meta
+Assets/Character/Textures/Ch22_1001_Diffuse.png
+Assets/Character/Textures/Ch22_1001_Diffuse.png.meta
+Assets/Character/Textures/Ch22_1001_Glossiness.png
+Assets/Character/Textures/Ch22_1001_Glossiness.png.meta
+Assets/Character/Textures/Ch22_1001_Normal.png
+Assets/Character/Textures/Ch22_1001_Normal.png.meta
+Assets/Character/Textures/Ch22_1001_Specular.png
+Assets/Character/Textures/Ch22_1001_Specular.png.meta
+Assets/Character/Textures/Ch22_1002_Diffuse.png
+Assets/Character/Textures/Ch22_1002_Diffuse.png.meta
+Assets/Character/Textures/Ch22_1002_Normal.png
+Assets/Character/Textures/Ch22_1002_Normal.png.meta
+Assets/Character/Walk.fbx
+Assets/Character/Walk.fbx.meta
