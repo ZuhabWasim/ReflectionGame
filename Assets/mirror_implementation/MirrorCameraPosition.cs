@@ -15,6 +15,8 @@ public class MirrorCameraPosition : MonoBehaviour
     public Transform mirrorChild;
 
     private Transform _playerCameraTransform;  // World transfrom of the player camera
+    public bool mirrorPosition = false; // Marks whether this mirror is in the other world, and must be transformed carefully
+    public MirrorCameraPosition mirroredCamera; // The associated mirror with this mirror
 
     // Start is called before the first frame update
     void Start()
@@ -30,50 +32,81 @@ public class MirrorCameraPosition : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //edit position and rotation
-        float relativeX = mirrorPlane.position.x - playerBody.position.x;
-        float relativeZ = mirrorPlane.position.z - playerBody.position.z;
+        if (!mirrorPosition)
+        {
+            transform.position = this.ReflectOverMirror(playerBody.position.x, playerBody.position.z);
+            mirroredCamera.SetMirrorCameraPosition(transform.localPosition);
+        }
+        mirrorChild.LookAt(mirrorPlane);
 
-        float YRotation = mirrorPlane.rotation.eulerAngles.y;
-        float a = Mathf.Cos(YRotation * Mathf.Deg2Rad);  // x direction
-        float b = Mathf.Sin(YRotation * Mathf.Deg2Rad);  // z direction
+        MirrorImp1();
+    }
+
+    // Finds reflection of (X1, Z1) in the line with slope m = dZ/dX that goes through point (X2, Z2)
+    private static Vector2 RelfectOverLine(float X1, float Z1, float dX, float dZ, float X2, float Z2)
+    {
+        // Relative positions
+        float relativeX = X2 - X1;
+        float relativeZ = Z2 - Z1;
 
         // Reflected variables in global coordinates
         float reflectedX = 0;
         float reflectedZ = 0;
-        if (Mathf.Abs(a) < 0.0001) // The mirror is parallel to the z axis
+        if (Mathf.Abs(dX) < 0.0001) // The mirror is parallel to the z axis
         {
-            reflectedX = mirrorPlane.position.x + relativeX;
-            reflectedZ = mirrorPlane.position.z - relativeZ;
+            reflectedX = X2 + relativeX;
+            reflectedZ = Z2 - relativeZ;
         }
-        else if (Mathf.Abs(b) < 0.0001) // The mirror is parallel to the x axis
+        else if (Mathf.Abs(dZ) < 0.0001) // The mirror is parallel to the x axis
         {
-            reflectedX = mirrorPlane.position.x - relativeX;
-            reflectedZ = mirrorPlane.position.z + relativeZ;
+            reflectedX = X2 - relativeX;
+            reflectedZ = Z2 + relativeZ;
         }
         else // Reflect the point
         {
-            // y = mx+b of mirror slope
-            float mirrorSlope = -b / a;
-            float mirrorIntercept = -mirrorSlope * mirrorPlane.position.x + mirrorPlane.position.z;
+            // y = mx+b of original slope
+            float originalSlope = -dZ / dX;
+            float originalIntercept = -originalSlope * X2 + Z2;
 
             // y = mx+b of inverse slope going through player (will be perpendicular to the above)
-            float invSlope = a / b;
-            float invIntercept = -invSlope * playerBody.position.x + playerBody.position.z;
+            float invSlope = dX / dZ;
+            float invIntercept = -invSlope * X1 + Z1;
 
             // determine intersection point between the two slopes above
-            float intersectionX = (invIntercept - mirrorIntercept) / (mirrorSlope - invSlope);
+            float intersectionX = (invIntercept - originalIntercept) / (originalSlope - invSlope);
             float intersectionZ = invSlope * intersectionX + invIntercept;
 
             // Using midpoint = (x, y) = ((x1 + x2)/2, (y1 + y2)/2) to find reflected point
-            reflectedX = 2 * intersectionX - playerBody.position.x;
-            reflectedZ = 2 * intersectionZ - playerBody.position.z;
+            reflectedX = 2 * intersectionX - X1;
+            reflectedZ = 2 * intersectionZ - X2;
         }
 
-        transform.position = new Vector3(reflectedX, _playerCameraTransform.position.y, reflectedZ);
-        mirrorChild.LookAt(mirrorPlane);
+        return new Vector2(reflectedX, reflectedZ);
+    }
 
-        MirrorImp1();
+    // Reflects a point across the line formed by the mirror
+    private Vector3 ReflectOverMirror(float inputX, float inputZ)
+    {
+        float YRotation = mirrorPlane.rotation.eulerAngles.y;
+        float a = Mathf.Cos(YRotation * Mathf.Deg2Rad);  // change in x direction
+        float b = Mathf.Sin(YRotation * Mathf.Deg2Rad);  // change in z direction
+
+        Vector2 xz = RelfectOverLine(inputX, inputZ, a, b, mirrorPlane.position.x, mirrorPlane.position.z);
+        return new Vector3(xz.x, _playerCameraTransform.position.y, xz.y);
+    }
+
+    // Sets the camera position based on the associated camera, using relative coordinates
+    public void SetMirrorCameraPosition(Vector3 other)
+    {
+        transform.localPosition = other;
+
+        float YRotation = mirrorPlane.rotation.eulerAngles.y;
+        // This slope needs to be perpendicular to the mirror
+        float a = -Mathf.Sin(YRotation * Mathf.Deg2Rad);  // change in x direction
+        float b = Mathf.Cos(YRotation * Mathf.Deg2Rad);  // change in z direction
+
+        Vector2 xz = RelfectOverLine(transform.position.x, transform.position.z, a, b, mirrorPlane.position.x, mirrorPlane.position.z);
+        transform.position = new Vector3(xz.x, _playerCameraTransform.position.y, xz.y);
     }
 
     void MirrorImp1()
