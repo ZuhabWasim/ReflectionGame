@@ -17,6 +17,7 @@ public class Teleporter : MonoBehaviour
     public UserLocation userLocation;
     public KeyCode interactKey = KeyCode.F;
 
+    private ButtonPromptDisplay bp;
     private bool m_canTeleport = false;
     private bool m_teleporting = false;
     // consts
@@ -27,6 +28,8 @@ public class Teleporter : MonoBehaviour
     void Start()
     {
         GlobalState.AddVar<bool>( "teleporting", false );
+
+        bp = GameObject.Find("UI_Canvas").GetComponent<ButtonPromptDisplay>();
     }
 
     // Update is called once per frame
@@ -69,6 +72,7 @@ public class Teleporter : MonoBehaviour
         {
             Debug.Log( "Can Teleport now" );
             m_canTeleport = true;
+            bp.showPrompt("Interact With Mirror");
         }
     }
 
@@ -78,6 +82,7 @@ public class Teleporter : MonoBehaviour
         {
             Debug.Log( "Left Teleport zone" );
             m_canTeleport = false;
+            bp.hidePrompt();
         }
     }
 }
