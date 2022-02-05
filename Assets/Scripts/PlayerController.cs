@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     private const float PITCH_MIN = -88.0f;
     private const string H_AXIS = "Horizontal";
     private const string V_AXIS = "Vertical";
+    private const string PICKUP_OBJ = "PickupItem";
     // ===== CONSTANTS END ===
     
     // Camera vars
@@ -21,6 +22,12 @@ public class PlayerController : MonoBehaviour
     public float speed = 5;
     public float jumpForce;
     public KeyCode jumpKey = KeyCode.Space;
+
+    // Interaction Keys
+    public KeyCode pickupKey = KeyCode.E;
+    public KeyCode dropKey = KeyCode.G;
+    public float pickupDistance = 2.0f;
+    public float dropDistance = 1.25f;
 
     void Start()
     {
@@ -64,6 +71,39 @@ public class PlayerController : MonoBehaviour
         if ( Input.GetKeyDown( jumpKey ) && IsGrounded() )
         {
             m_playerBody.AddForce( Vector3.up * jumpForce, ForceMode.Impulse );
+        }
+
+        HandlePickupAndDrop();
+    }
+
+    void HandlePickupAndDrop()
+    {
+        if ( Input.GetKeyDown( pickupKey ) )
+        {
+            RaycastHit hitRes;
+            if ( Physics.Raycast( playerCamera.position, playerCamera.forward, out hitRes, pickupDistance ) &&
+                hitRes.collider.gameObject.tag == PICKUP_OBJ )
+            {
+                PickupItem item = hitRes.collider.gameObject.GetComponent<PickupItem>();
+                ItemPickupResult res = Inventory.GetInstance().PickupItem( ref item );
+                if ( res != ItemPickupResult.SUCCESS )
+                {
+                    Debug.Log( "Inventory failed to store item" );
+                }
+            }
+        }
+
+        if ( Input.GetKeyDown( dropKey ) )
+        {
+            if ( !Physics.Raycast( playerCamera.position, playerCamera.forward, dropDistance - 0.1f )
+                && Inventory.GetInstance().DropItem( playerCamera.position + playerCamera.forward * dropDistance ) )
+            {
+                Debug.Log( "Dropped Item" );
+            }
+            else
+            {
+                Debug.Log( "Failed to drop item" );
+            }
         }
     }
 }
