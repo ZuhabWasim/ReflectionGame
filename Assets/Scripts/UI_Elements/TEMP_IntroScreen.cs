@@ -15,8 +15,15 @@ public class TEMP_IntroScreen : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        renderingImg = true;
         currTime = 0.0f;
+        if (introTime == 0f)
+        {
+            renderingImg = false;
+        } else
+        {
+            img.gameObject.SetActive(true);
+            renderingImg = true;
+        }
     }
 
     // Update is called once per frame
