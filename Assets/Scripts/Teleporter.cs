@@ -60,6 +60,8 @@ public class Teleporter : MonoBehaviour
         yield return new WaitForSecondsRealtime( INPUT_LOCK_COOLDOWN );
         GlobalState.SetVar<bool>( "teleporting", false );
 
+        EventManager.Fire("teleport");
+
         // add a small delay so the user doesn't accidentally teleport back
         yield return new WaitForSecondsRealtime( TELEPORTER_COOLDOWN );
         
