@@ -2,13 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ItemPickupResult
-{
-    SUCCESS = 0,
-    FAIL_INVENTORY_FULL,
-    FAIL_ERROR
-}
-
 // Singleton Class, should not be instantiated!! Use Inventory.GetInstance instead
 public class Inventory
 {
