@@ -27,6 +27,8 @@ public class MirrorCameraPosition : MonoBehaviour
         //mirrorRenderer = mirrorPlane.GetComponent<Renderer>();
         mirrorWidth = Mathf.Abs(mirrorPlane.localScale.x) * 10f;
         mirrorHeight = Mathf.Abs(mirrorPlane.localScale.z) * 10f;
+
+        EventManager.Sub("teleport", FlipMirrorPosition);
     }
 
     // Update is called once per frame
@@ -107,6 +109,11 @@ public class MirrorCameraPosition : MonoBehaviour
 
         Vector2 xz = RelfectOverLine(transform.position.x, transform.position.z, a, b, mirrorPlane.position.x, mirrorPlane.position.z);
         transform.position = new Vector3(xz.x, _playerCameraTransform.position.y, xz.y);
+    }
+
+    public void FlipMirrorPosition()
+    {
+        this.mirrorPosition = !this.mirrorPosition;
     }
 
     void MirrorImp1()
