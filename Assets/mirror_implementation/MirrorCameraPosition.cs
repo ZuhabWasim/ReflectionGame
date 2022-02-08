@@ -28,7 +28,7 @@ public class MirrorCameraPosition : MonoBehaviour
         mirrorWidth = Mathf.Abs(mirrorPlane.localScale.x) * 10f;
         mirrorHeight = Mathf.Abs(mirrorPlane.localScale.z) * 10f;
 
-        EventManager.Sub("teleport", FlipMirrorPosition);
+        EventManager.Sub( Globals.Events.TELEPORT, FlipMirrorPosition );
     }
 
     // Update is called once per frame

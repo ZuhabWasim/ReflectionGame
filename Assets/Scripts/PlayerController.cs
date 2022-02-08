@@ -7,9 +7,6 @@ public class PlayerController : MonoBehaviour
     // ===== CONSTANTS =====
     private const float PITCH_MAX = 88.0f;
     private const float PITCH_MIN = -88.0f;
-    private const string H_AXIS = "Horizontal";
-    private const string V_AXIS = "Vertical";
-    private const string PICKUP_OBJ = "PickupItem";
     // ===== CONSTANTS END ===
     
     // Camera vars
@@ -19,6 +16,7 @@ public class PlayerController : MonoBehaviour
     
     // Movement vars
     private Rigidbody m_playerBody;
+    private Collider m_collider;
     public float speed = 5;
     public float jumpForce;
     public KeyCode jumpKey = KeyCode.Space;
@@ -35,6 +33,7 @@ public class PlayerController : MonoBehaviour
         Cursor.visible = false;
 
         m_playerBody = GetComponent<Rigidbody>();
+        m_collider = GetComponent<Collider>();
     }
 
     // Update is called once per frame
@@ -46,7 +45,7 @@ public class PlayerController : MonoBehaviour
 
     void HandleMouseInput()
     {
-        Vector2 input = new Vector2( Input.GetAxis( "Mouse X" ), -Input.GetAxis( "Mouse Y" ) );
+        Vector2 input = new Vector2( Input.GetAxis( Globals.Misc.MOUSE_X ), -Input.GetAxis( Globals.Misc.MOUSE_Y ) );
 
         pitch += input.y * sensitivity;
         pitch = Mathf.Clamp( pitch, PITCH_MIN, PITCH_MAX );
@@ -57,19 +56,19 @@ public class PlayerController : MonoBehaviour
 
     bool IsGrounded()
     {
-        Collider collider = GetComponent<Collider>();
-        float distToGround = collider.bounds.extents.y;
-        return Physics.Raycast( transform.position, Vector3.down, distToGround + 0.01f );
+        float distToGround = m_collider.bounds.extents.y;
+        return Physics.Raycast( transform.position, Vector3.down, distToGround + 0.1f );
     }
 
     void HandleKeyboardInput()
     {
-        Vector3 input = new Vector3( Input.GetAxis( H_AXIS ), 0.0f, Input.GetAxis( V_AXIS ) );
+        Vector3 input = new Vector3( Input.GetAxis( Globals.Misc.H_AXIS ), 0.0f, Input.GetAxis( Globals.Misc.V_AXIS ) );
         Vector3 velocity = transform.TransformDirection( input ) * speed;
         m_playerBody.velocity = new Vector3( velocity.x, m_playerBody.velocity.y, velocity.z );
 
         if ( Input.GetKeyDown( jumpKey ) && IsGrounded() )
         {
+            Debug.Log( "Adding jump force" );
             m_playerBody.AddForce( Vector3.up * jumpForce, ForceMode.Impulse );
         }
 
@@ -82,7 +81,7 @@ public class PlayerController : MonoBehaviour
         {
             RaycastHit hitRes;
             if ( Physics.Raycast( playerCamera.position, playerCamera.forward, out hitRes, pickupDistance ) &&
-                hitRes.collider.gameObject.tag == PICKUP_OBJ )
+                hitRes.collider.gameObject.tag == Globals.Tags.PICKUP_ITEM )
             {
                 PickupItem item = hitRes.collider.gameObject.GetComponent<PickupItem>();
                 ItemPickupResult res = Inventory.GetInstance().PickupItem( ref item );

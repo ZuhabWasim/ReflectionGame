@@ -21,7 +21,6 @@ public class Teleporter : MonoBehaviour
     private bool m_canTeleport = false;
     private bool m_teleporting = false;
     // consts
-    const string PLAYER_TAG = "Player";
     const float TELEPORTER_COOLDOWN = 1.75f;
     const float INPUT_LOCK_COOLDOWN = 0.5f;
 
@@ -44,7 +43,7 @@ public class Teleporter : MonoBehaviour
         if ( m_canTeleport && pressedInteract && !m_teleporting )
         {
             m_teleporting = true;
-            GlobalState.SetVar<bool>( "teleporting", true );
+            GlobalState.SetVar<bool>( Globals.Vars.TELEPORTING, true );
             StartCoroutine( Teleport() );
         }
     }
@@ -58,9 +57,9 @@ public class Teleporter : MonoBehaviour
 
         // don't hold the input for entire duration of teleporter cooldown
         yield return new WaitForSecondsRealtime( INPUT_LOCK_COOLDOWN );
-        GlobalState.SetVar<bool>( "teleporting", false );
+        GlobalState.SetVar<bool>( Globals.Vars.TELEPORTING, false );
 
-        EventManager.Fire("teleport");
+        EventManager.Fire( Globals.Events.TELEPORT );
 
         // add a small delay so the user doesn't accidentally teleport back
         yield return new WaitForSecondsRealtime( TELEPORTER_COOLDOWN );
@@ -70,17 +69,17 @@ public class Teleporter : MonoBehaviour
 
     void OnTriggerEnter( Collider other )
     {
-        if ( other.tag == PLAYER_TAG )
+        if ( other.tag == Globals.Tags.PLAYER )
         {
             Debug.Log( "Can Teleport now" );
             m_canTeleport = true;
-            bp.showPrompt("Interact With Mirror");
+            bp.showPrompt( Globals.UIStrings.INTERACT_MIRROR );
         }
     }
 
     void OnTriggerExit( Collider other )
     {
-        if ( other.tag == PLAYER_TAG )
+        if ( other.tag == Globals.Tags.PLAYER )
         {
             Debug.Log( "Left Teleport zone" );
             m_canTeleport = false;
