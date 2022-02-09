@@ -36,7 +36,12 @@ public class MirrorCameraPosition : MonoBehaviour
     {
         if (!mirrorPosition)
         {
-            mirroredCamera.SetMirrorCameraPosition((mirrorPlane.position - playerBody.position));
+            Vector3 playerToMirror = mirrorPlane.position - playerBody.position;
+            Vector3 displacement = Vector3.Dot(playerToMirror, mirrorPlane.up) * mirroredCamera.transform.up;
+            displacement = displacement + Vector3.Dot(playerToMirror, mirrorPlane.right) * mirroredCamera.transform.right;
+            displacement += Vector3.Dot(playerToMirror, mirrorPlane.forward) * mirroredCamera.transform.forward;
+            mirroredCamera.SetMirrorCameraPosition(displacement);
+
             transform.position = this.ReflectOverMirror(playerBody.position.x, playerBody.position.z);
         }
         mirrorChild.LookAt(mirrorPlane);
@@ -99,9 +104,11 @@ public class MirrorCameraPosition : MonoBehaviour
 
     // Sets the camera position based on the associated camera, using relative coordinates
     public void SetMirrorCameraPosition(Vector3 other)
-    {            
-        transform.position = mirrorPlane.position - other;
-        transform.position = new Vector3(transform.position.x, playerBody.position.y, transform.position.z);
+    {
+        transform.position = other + mirrorPlane.position;
+
+        // Fix the camera y position to the player camere
+        transform.position = new Vector3(transform.position.x, _playerCameraTransform.position.y, transform.position.z);
     }
 
     public void FlipMirrorPosition()
