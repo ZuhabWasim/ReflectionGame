@@ -36,8 +36,8 @@ public class MirrorCameraPosition : MonoBehaviour
     {
         if (!mirrorPosition)
         {
+            mirroredCamera.SetMirrorCameraPosition((mirrorPlane.position - playerBody.position));
             transform.position = this.ReflectOverMirror(playerBody.position.x, playerBody.position.z);
-            mirroredCamera.SetMirrorCameraPosition(transform.localPosition);
         }
         mirrorChild.LookAt(mirrorPlane);
 
@@ -99,16 +99,9 @@ public class MirrorCameraPosition : MonoBehaviour
 
     // Sets the camera position based on the associated camera, using relative coordinates
     public void SetMirrorCameraPosition(Vector3 other)
-    {
-        transform.localPosition = other;
-
-        float YRotation = mirrorPlane.rotation.eulerAngles.y;
-        // This slope needs to be perpendicular to the mirror
-        float a = -Mathf.Sin(YRotation * Mathf.Deg2Rad);  // change in x direction
-        float b = Mathf.Cos(YRotation * Mathf.Deg2Rad);  // change in z direction
-
-        Vector2 xz = RelfectOverLine(transform.position.x, transform.position.z, a, b, mirrorPlane.position.x, mirrorPlane.position.z);
-        transform.position = new Vector3(xz.x, _playerCameraTransform.position.y, xz.y);
+    {            
+        transform.position = mirrorPlane.position - other;
+        transform.position = new Vector3(transform.position.x, playerBody.position.y, transform.position.z);
     }
 
     public void FlipMirrorPosition()
