@@ -57,7 +57,10 @@ public class PlayerController : MonoBehaviour
     bool IsGrounded()
     {
         float distToGround = m_collider.bounds.extents.y;
-        return Physics.Raycast( transform.position, Vector3.down, distToGround + 0.1f );
+        
+        // Determines whether a vector from the player's center pointing down is barely touching the floor.
+        return Physics.Raycast( transform.position + new Vector3(0,distToGround,0), 
+            Vector3.down, distToGround + 0.1f );
     }
 
     void HandleKeyboardInput()
