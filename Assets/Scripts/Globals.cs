@@ -22,6 +22,11 @@ public class Globals
         public static string V_AXIS = "Vertical";
         public static string MOUSE_X = "Mouse X";
         public static string MOUSE_Y = "Mouse Y";
+        
+        // For Animations
+        public static string IS_WALKING = "IsWalking";
+        public static string IS_JUMPING = "IsJumping";
+        public static string IS_INTERACTING = "IsInteracting";
     }
 
     public class UIStrings

@@ -6,13 +6,13 @@ using UnityEngine;
 public class AnimationStateController : MonoBehaviour
 {
     Animator animator;
-
-   private int isWalkingHash;
+    private int isWalkingHash;
+    
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
-        isWalkingHash = Animator.StringToHash("IsWalking");
+        isWalkingHash = Animator.StringToHash(Globals.Misc.IS_WALKING);
     }
 
     // Update is called once per frame
@@ -23,7 +23,6 @@ public class AnimationStateController : MonoBehaviour
         Vector3 input = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
         bool forwardPress = input.magnitude >= 0.1;
         
-        //Debug.Log("isWalking: " + isWalking + "," + "forwardPress: " + forwardPress + ", " + "(!isWalking && forwardPress): " + (!isWalking && forwardPress));
         if (!isWalking && forwardPress)
         {
             animator.SetBool(isWalkingHash, true);
