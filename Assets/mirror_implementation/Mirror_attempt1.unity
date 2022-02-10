@@ -1267,7 +1267,6 @@ MonoBehaviour:
   playerBody: {fileID: 601062562}
   mirrorPlane: {fileID: 2035189419}
   mirrorChild: {fileID: 1084582975}
-  mirroredCamera: {fileID: 1336554580}
 --- !u!1 &402385699
 GameObject:
   m_ObjectHideFlags: 0
@@ -2131,8 +2130,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13f511dd7d1a4714e89b6320118a0e8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  regularMirror: {fileID: 1336554580}
-  pastMirror: {fileID: 385985166}
+  regularMirror: {fileID: 385985166}
+  pastMirror: {fileID: 1336554580}
 --- !u!1 &739987610
 GameObject:
   m_ObjectHideFlags: 0
