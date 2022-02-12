@@ -25,6 +25,7 @@ public class Globals
         
         // For Animations
         public static string IS_WALKING = "IsWalking";
+        public static string IS_BACKING_UP = "IsBackingUp"; 
         public static string IS_JUMPING = "IsJumping";
         public static string IS_INTERACTING = "IsInteracting";
     }
