@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     private float pitch = 0.0f;
     
     // Movement vars
-    private Rigidbody m_playerBody;
+    public Rigidbody m_playerBody;
     private Collider m_collider;
     public float speed = 5;
     public float jumpForce;
@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour
         transform.Rotate( Vector3.up * input.x * sensitivity );
     }
 
-    bool IsGrounded()
+    public bool IsGrounded()
     {
         float distToGround = m_collider.bounds.extents.y;
         
