@@ -21,6 +21,9 @@ public class PlayerController : MonoBehaviour
     public float jumpForce;
     public KeyCode jumpKey = KeyCode.Space;
 
+    // Gameplay vars
+    private bool isPresent = true; // Start in present
+
     // Interaction Keys
     public KeyCode pickupKey = KeyCode.E;
     public KeyCode dropKey = KeyCode.G;
@@ -34,6 +37,9 @@ public class PlayerController : MonoBehaviour
 
         m_playerBody = GetComponent<Rigidbody>();
         m_collider = GetComponent<Collider>();
+
+        GlobalState.AddVar<bool>("isPresent", true);
+        EventManager.Sub(Globals.Events.TELEPORT, FlipPresent);
     }
 
     // Update is called once per frame
@@ -107,5 +113,11 @@ public class PlayerController : MonoBehaviour
                 Debug.Log( "Failed to drop item" );
             }
         }
+    }
+
+    public void FlipPresent()
+    {
+        this.isPresent = !this.isPresent;
+        GlobalState.SetVar<bool>("isPresent", this.isPresent);
     }
 }
