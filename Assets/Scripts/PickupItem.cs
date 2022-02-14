@@ -6,6 +6,8 @@ public class PickupItem : MonoBehaviour
 {
     private static int _id;
     private int m_id;
+    public string itemName;
+    public Texture img;
     void Start()
     {
         m_id = _id++;

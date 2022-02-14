@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     // Interaction Keys
     public KeyCode pickupKey = KeyCode.E;
     public KeyCode dropKey = KeyCode.G;
+    public KeyCode openInventoryKey = KeyCode.LeftShift;
     public float pickupDistance = 2.0f;
     public float dropDistance = 1.25f;
 
@@ -82,6 +83,20 @@ public class PlayerController : MonoBehaviour
         }
 
         HandlePickupAndDrop();
+        HandleOpenInventory();
+    }
+
+    void HandleOpenInventory()
+    {
+        if (Input.GetKey(openInventoryKey)) {
+            Inventory.GetInstance().openInventory();
+            int spin = (int) Input.mouseScrollDelta.y;
+            if (spin != 0) {
+                Inventory.GetInstance().spinInventory(spin);
+            }
+        } else {
+            Inventory.GetInstance().closeInventory();
+        }
     }
 
     void HandlePickupAndDrop()
