@@ -37,7 +37,7 @@ public class InventoryDisplay : MonoBehaviour
     public void spinInventory(int spin)
     {
         Transform background = InventoryBar.transform.GetChild(0);
-        background.Rotate(0, 0, spin * 45);
+        background.Rotate(0, 0, spin * 40);
     }
     public void showItemName(string itemName){
         GameObject text = InventoryBar.transform.GetChild(2).gameObject;

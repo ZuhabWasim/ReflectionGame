@@ -12,8 +12,8 @@ public enum ItemPickupResult
 // Singleton Class, should not be instantiated!! Use Inventory.GetInstance instead
 public class Inventory
 {
-    public int inventorySize = 8;
-    private static PickupItem[] empty = {null, null, null, null, null, null, null, null};
+    public int inventorySize = 9;
+    private static PickupItem[] empty = {null, null, null, null, null, null, null, null, null};
     private List<PickupItem> m_items = new List<PickupItem>(empty);
     private static Inventory m_instance = new Inventory();
     private int cursor = 2;
@@ -29,12 +29,31 @@ public class Inventory
         {
             return ItemPickupResult.FAIL_ERROR;
         }
-
-        for (int i = 0; i < inventorySize; i++){
-            if (m_items[i] == null){
-                m_items[i] = item;
+        if (m_items[cursor] == null) {
+            m_items[cursor] = item;
+            item.OnPickup();
+            inventoryDisplay.addItem(item, cursor);
+            return ItemPickupResult.SUCCESS;
+        }
+        for (int i = 1; i < 5; i ++) {
+            int pos1 = cursor + i;
+            if (pos1 >= inventorySize) {
+                pos1 -= inventorySize;
+            }
+            int pos2 = cursor - i;
+            if (pos2 < 0) {
+                pos2 += inventorySize;
+            }
+            if (m_items[pos2] == null){
+                m_items[pos2] = item;
                 item.OnPickup();
-                inventoryDisplay.addItem(item, i);
+                inventoryDisplay.addItem(item, pos2);
+                return ItemPickupResult.SUCCESS;
+            }
+            if (m_items[pos1] == null){
+                m_items[pos1] = item;
+                item.OnPickup();
+                inventoryDisplay.addItem(item, pos1);
                 return ItemPickupResult.SUCCESS;
             }
         }
