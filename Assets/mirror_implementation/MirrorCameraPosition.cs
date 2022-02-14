@@ -15,8 +15,6 @@ public class MirrorCameraPosition : MonoBehaviour
     public Transform mirrorChild;
 
     private Transform _playerCameraTransform;  // World transfrom of the player camera
-    public bool mirrorPosition = false; // Marks whether this mirror is in the other world, and must be transformed carefully
-    public MirrorCameraPosition mirroredCamera; // The associated mirror with this mirror
 
     // Start is called before the first frame update
     void Start()
@@ -27,18 +25,11 @@ public class MirrorCameraPosition : MonoBehaviour
         //mirrorRenderer = mirrorPlane.GetComponent<Renderer>();
         mirrorWidth = Mathf.Abs(mirrorPlane.localScale.x) * 10f;
         mirrorHeight = Mathf.Abs(mirrorPlane.localScale.z) * 10f;
-
-        EventManager.Sub("teleport", FlipMirrorPosition);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!mirrorPosition)
-        {
-            transform.position = this.ReflectOverMirror(playerBody.position.x, playerBody.position.z);
-            mirroredCamera.SetMirrorCameraPosition(transform.localPosition);
-        }
         mirrorChild.LookAt(mirrorPlane);
 
         MirrorImp1();
@@ -86,34 +77,34 @@ public class MirrorCameraPosition : MonoBehaviour
         return new Vector2(reflectedX, reflectedZ);
     }
 
-    // Reflects a point across the line formed by the mirror
-    private Vector3 ReflectOverMirror(float inputX, float inputZ)
+    // Reflects the camera over its parent mirror plane line
+    public void ReflectOverMirror()
     {
+        float inputX = playerBody.position.x;
+        float inputZ = playerBody.position.z;
+
         float YRotation = mirrorPlane.rotation.eulerAngles.y;
         float a = Mathf.Cos(YRotation * Mathf.Deg2Rad);  // change in x direction
         float b = Mathf.Sin(YRotation * Mathf.Deg2Rad);  // change in z direction
 
         Vector2 xz = RelfectOverLine(inputX, inputZ, a, b, mirrorPlane.position.x, mirrorPlane.position.z);
-        return new Vector3(xz.x, _playerCameraTransform.position.y, xz.y);
-    }
-
-    // Sets the camera position based on the associated camera, using relative coordinates
-    public void SetMirrorCameraPosition(Vector3 other)
-    {
-        transform.localPosition = other;
-
-        float YRotation = mirrorPlane.rotation.eulerAngles.y;
-        // This slope needs to be perpendicular to the mirror
-        float a = -Mathf.Sin(YRotation * Mathf.Deg2Rad);  // change in x direction
-        float b = Mathf.Cos(YRotation * Mathf.Deg2Rad);  // change in z direction
-
-        Vector2 xz = RelfectOverLine(transform.position.x, transform.position.z, a, b, mirrorPlane.position.x, mirrorPlane.position.z);
         transform.position = new Vector3(xz.x, _playerCameraTransform.position.y, xz.y);
     }
 
-    public void FlipMirrorPosition()
+    // Sets the camera position based on the opposite camera. Used for the past/present reflections
+    public void SetOppositeCameraPosition(Transform otherMirrorPlane)
     {
-        this.mirrorPosition = !this.mirrorPosition;
+        Vector3 playerToMirror = otherMirrorPlane.position - playerBody.position;
+
+        // Note: the up/right vectors are in local coordinates
+        Vector3 displacement = Vector3.Dot(playerToMirror, otherMirrorPlane.up) * transform.up;
+        displacement = displacement + Vector3.Dot(playerToMirror, otherMirrorPlane.right) * transform.right;
+        displacement += Vector3.Dot(playerToMirror, otherMirrorPlane.forward) * transform.forward;
+
+        transform.position = displacement + mirrorPlane.position;
+
+        // Fix the camera y position to the player camere
+        transform.position = new Vector3(transform.position.x, _playerCameraTransform.position.y, transform.position.z);
     }
 
     void MirrorImp1()
