@@ -23,4 +23,8 @@ public class PickupItem : MonoBehaviour
         this.gameObject.SetActive( true );
         this.gameObject.transform.position = dropPostion;
     }
+
+    public void OnPlayerLooking()
+    {
+    }
 }
