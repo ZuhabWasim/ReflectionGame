@@ -14,6 +14,8 @@ public class Teleporter : MonoBehaviour
     public GameObject player;
     public GameObject spawnerA;
     public GameObject spawnerB;
+    public GameObject triggerA;
+    public GameObject triggerB;
     public UserLocation userLocation;
     public KeyCode interactKey = KeyCode.F;
 
@@ -26,7 +28,9 @@ public class Teleporter : MonoBehaviour
 
     void Start()
     {
-        GlobalState.AddVar<bool>( "teleporting", false );
+        GlobalState.AddVar<bool>( Globals.Vars.TELEPORTING, false );
+        triggerA.GetComponent<TeleporterTrigger>().SetTeleporter( this );
+        triggerB.GetComponent<TeleporterTrigger>().SetTeleporter( this );
 
         bp = GameObject.Find("UI_Canvas").GetComponent<ButtonPromptDisplay>();
     }
@@ -67,23 +71,17 @@ public class Teleporter : MonoBehaviour
         m_teleporting = false;
     }
 
-    void OnTriggerEnter( Collider other )
+    public void SetCanTeleport( bool canTeleport )
     {
-        if ( other.tag == Globals.Tags.PLAYER )
+        if ( canTeleport )
         {
-            Debug.Log( "Can Teleport now" );
             m_canTeleport = true;
             bp.showPrompt( Globals.UIStrings.INTERACT_MIRROR );
         }
-    }
-
-    void OnTriggerExit( Collider other )
-    {
-        if ( other.tag == Globals.Tags.PLAYER )
+        else
         {
-            Debug.Log( "Left Teleport zone" );
             m_canTeleport = false;
             bp.hidePrompt();
-        }
+        }   
     }
 }
