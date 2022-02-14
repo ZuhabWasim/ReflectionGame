@@ -2268,9 +2268,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 6437057601535432901}
   sensitivity: 2
+  m_playerBody: {fileID: 0}
   speed: 5
-  jumpForce: 0
+  jumpForce: 5
   jumpKey: 32
+  pickupKey: 101
+  dropKey: 103
+  pickupDistance: 2
+  dropDistance: 1.25
 --- !u!114 &6437057603233689076
 MonoBehaviour:
   m_ObjectHideFlags: 0
