@@ -25,9 +25,13 @@ public class PlayerController : MonoBehaviour
     private bool isPresent = true; // Start in present
 
     // Interaction Keys
-    public KeyCode pickupKey = KeyCode.E;
-    public KeyCode dropKey = KeyCode.G;
     public KeyCode openInventoryKey = KeyCode.LeftShift;
+    public KeyCode pickupKey = Globals.Keybinds.PickupKey;
+    public KeyCode dropKey = Globals.Keybinds.DropKey;
+    public KeyCode interactKey = Globals.Keybinds.InteractKey;
+    
+    private bool interactKeyDown = false;
+    
     public float pickupDistance = 2.0f;
     public float dropDistance = 1.25f;
 
@@ -83,7 +87,21 @@ public class PlayerController : MonoBehaviour
         }
 
         HandlePickupAndDrop();
+        HandleInteractKeyPress();
         HandleOpenInventory();
+    }
+
+    void HandleInteractKeyPress()
+    {
+        if ( Input.GetKeyDown( interactKey ) && !interactKeyDown )
+        {
+            EventManager.Fire( Globals.Events.INTERACT_KEY_PRESSED, this.gameObject );
+            interactKeyDown = true;
+        }
+        else if ( Input.GetKeyUp( interactKey ) )
+        {
+            interactKeyDown = false;
+        }
     }
 
     void HandleOpenInventory()

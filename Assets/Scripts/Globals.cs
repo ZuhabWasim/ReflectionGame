@@ -8,6 +8,7 @@ public class Globals
     {
         // All events used by event manager should go here
         public static string TELEPORT = "teleport";
+        public static string INTERACT_KEY_PRESSED = "InteractKeyPress";
     }
 
     public class Tags
@@ -28,6 +29,7 @@ public class Globals
         public static string IS_BACKING_UP = "IsBackingUp"; 
         public static string IS_JUMPING = "IsJumping";
         public static string IS_INTERACTING = "IsInteracting";
+        public static float MAX_INTERACT_DISTANCE = 3.5f;
     }
 
     public class UIStrings
@@ -38,6 +40,13 @@ public class Globals
     public class Vars
     {
         public static string TELEPORTING = "teleporting";
+    }
+
+    public class Keybinds
+    {
+        public static KeyCode InteractKey = KeyCode.F;
+        public static KeyCode PickupKey = KeyCode.E;
+        public static KeyCode DropKey = KeyCode.G;
     }
 }
 
