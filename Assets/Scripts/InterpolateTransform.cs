@@ -23,6 +23,7 @@ public class InterpolateTransform : MonoBehaviour
     public Vector3 endRotation;
     public bool interpolateRotation = false;
     public bool interpolatePosition = true;
+    public bool loop = false;
     [Tooltip( "Duration to interpolate the over (in seconds)" )]
     public float interpDuration;
     private float m_elapsedTime = 0;
@@ -38,6 +39,11 @@ public class InterpolateTransform : MonoBehaviour
 
     void OnUserInteract( GameObject player )
     {
+        if ( this.m_isMoving )
+        {
+            return;
+        }
+        
         Transform camera = player.GetComponent<PlayerController>().playerCamera;
         RaycastHit hit;
         if ( Physics.Raycast( camera.position, camera.forward, out hit, Globals.Misc.MAX_INTERACT_DISTANCE )
@@ -73,7 +79,10 @@ public class InterpolateTransform : MonoBehaviour
             {
                 FinalizeRotation();
             }
-            m_isMoving = false;
+            if ( !loop )
+            {
+                m_isMoving = false;
+            }
             m_elapsedTime = 0;
         }
     }

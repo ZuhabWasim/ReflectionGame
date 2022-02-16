@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class Globals
 {
+    [RuntimeInitializeOnLoadMethod]
+    public static void RegisterGlobalStateVars()
+    {
+        // All global state var should be initialized here
+        GlobalState.AddVar<bool>( Globals.Vars.INTERACTABLES_ENABLED, false );
+        GlobalState.AddVar<bool>( Globals.Vars.IS_PRESENT_WORLD, true );
+        Debug.Log( "Loaded global state vars" );
+    }
+
     public class Events
     {
         // All events used by event manager should go here
@@ -40,6 +49,8 @@ public class Globals
     public class Vars
     {
         public static string TELEPORTING = "teleporting";
+        public static string INTERACTABLES_ENABLED = "interactables_enabled";
+        public static string IS_PRESENT_WORLD = "isPresent";
     }
 
     public class Keybinds
@@ -47,6 +58,7 @@ public class Globals
         public static KeyCode InteractKey = KeyCode.F;
         public static KeyCode PickupKey = KeyCode.E;
         public static KeyCode DropKey = KeyCode.G;
+        public static KeyCode InventoryKey = KeyCode.LeftShift;
     }
 }
 
