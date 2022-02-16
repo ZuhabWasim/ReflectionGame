@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // Note: This should not be initialized
-public class GlobalState : MonoBehaviour
+public class GlobalState
 {
     private static Hashtable m_globalVars = new Hashtable();
 

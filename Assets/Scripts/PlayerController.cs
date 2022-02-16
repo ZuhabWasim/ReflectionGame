@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     private bool isPresent = true; // Start in present
 
     // Interaction Keys
-    public KeyCode openInventoryKey = KeyCode.LeftShift;
+    public KeyCode openInventoryKey = Globals.Keybinds.InventoryKey;
     public KeyCode pickupKey = Globals.Keybinds.PickupKey;
     public KeyCode dropKey = Globals.Keybinds.DropKey;
     public KeyCode interactKey = Globals.Keybinds.InteractKey;
@@ -43,8 +43,7 @@ public class PlayerController : MonoBehaviour
         m_playerBody = GetComponent<Rigidbody>();
         m_collider = GetComponent<Collider>();
 
-        GlobalState.AddVar<bool>("isPresent", true);
-        EventManager.Sub(Globals.Events.TELEPORT, FlipPresent);
+        EventManager.Sub( Globals.Events.TELEPORT, FlipPresent );
     }
 
     // Update is called once per frame
@@ -151,6 +150,6 @@ public class PlayerController : MonoBehaviour
     public void FlipPresent()
     {
         this.isPresent = !this.isPresent;
-        GlobalState.SetVar<bool>("isPresent", this.isPresent);
-    }
+        GlobalState.SetVar<bool>( Globals.Vars.IS_PRESENT_WORLD, this.isPresent );
+    }   
 }

@@ -51,7 +51,7 @@ public class AnimationStateController : MonoBehaviour
         bool sidewaysPress = horizontalMovement > 0;
 
         // Player events
-        bool pickUpPress = Input.GetKeyDown(_playerController.pickupKey);
+        bool pickUpPress = Input.GetKeyDown( _playerController.pickupKey );
         bool jumpAcceleration = _playerController.m_playerBody.velocity.y > JUMP_ANIMATION_THRESHOLD;
 
         // Jumping
