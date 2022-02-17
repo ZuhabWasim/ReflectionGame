@@ -24,6 +24,7 @@ public class Globals
     {
         public static string PICKUP_ITEM = "PickupItem";
         public static string PLAYER = "Player";
+        public static string DIALOGUE_SOURCE = "DialogueSource";
     }
 
     public class Misc
