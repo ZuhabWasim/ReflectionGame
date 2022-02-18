@@ -6,6 +6,9 @@ public class UseHandkerchief : MonoBehaviour
 {
     public string itemName;
     public AudioClip soundEffect;
+    public MirrorPlane dirtyMirror; // TODO(dennis): remove this
+
+
     private AudioSource m_soundSource;
     private Inventory m_inventory;
     
@@ -35,5 +38,10 @@ public class UseHandkerchief : MonoBehaviour
         // We can probably keep the above function as inheritable and do all specific things like changing the dirty texture here
         m_soundSource.clip = soundEffect;
         m_soundSource.Play();
+
+        if (dirtyMirror != null)
+        {
+            dirtyMirror.CleanMirror();
+        }
     }
 }
