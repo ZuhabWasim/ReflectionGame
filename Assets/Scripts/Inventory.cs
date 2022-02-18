@@ -101,4 +101,42 @@ public class Inventory
         Debug.Log( "Tried to drop item from a slot that doesn't have a valid item" );
         return false;
     }
+
+    public string GetSelectedItem()
+    {
+        if (m_items[cursor] != null)
+        {
+            return m_items[cursor].itemName;
+        }
+
+        return "";
+    }
+    public bool HasItem(string itemName)
+    {
+        foreach (PickupItem item in m_items)
+        {
+            if (item.itemName == itemName)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+    
+    public bool DeleteItem(string itemName)
+    {
+        for (int i = 0; i < inventorySize; i++)
+        {
+            if (m_items[i] != null && m_items[i].itemName == itemName)
+            {
+                // Delete item after using it
+                m_items[cursor] = null;
+                inventoryDisplay.dropItem(cursor);
+                return true;
+            } 
+        }
+        // Return false if the deletion of this item was unsuccessful
+        return false;
+    }
 }
