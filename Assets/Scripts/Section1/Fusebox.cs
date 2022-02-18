@@ -15,13 +15,28 @@ public class Fusebox : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        for (int i=0; i < 6; i++)
+        {
+            UpdateLight(i);
+        }
     }
 
     void CheckInput()
     {
-        //TODO
         //Check if code input matches solution
+        bool correct = true;
+        for (int i=0; i < 6; i++)
+        {
+            if (switchPositions[i] != answer[i])
+            {
+                correct = false;
+            }
+        }
+        if (correct)
+        {
+            //Turn on all lights
+            Debug.Log("Code Entered Successfully");
+        }
     }
 
     void UpdateLight(int n)
@@ -41,5 +56,6 @@ public class Fusebox : MonoBehaviour
     {
         switchPositions[n] = !switchPositions[n];
         UpdateLight(n);
+        CheckInput();
     }
 }
