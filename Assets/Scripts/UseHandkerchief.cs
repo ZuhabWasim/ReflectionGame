@@ -24,12 +24,19 @@ public class UseHandkerchief : MonoBehaviour
         Transform camera = player.GetComponent<PlayerController>().playerCamera;
         RaycastHit hit;
         if ( Physics.Raycast( camera.position, camera.forward, out hit, Globals.Misc.MAX_INTERACT_DISTANCE )
-             && hit.collider.gameObject.Equals( this.gameObject ) 
-             && m_inventory.GetSelectedItem().Equals(itemName))
+             && hit.collider.gameObject.Equals( this.gameObject ))
         {
-            Debug.Log( "Using handkerchief" );
-            m_inventory.DeleteItem(itemName);
-            HandleInteract();
+            if (m_inventory.GetSelectedItem().Equals(itemName))
+            {
+                Debug.Log( "Using handkerchief" );
+                m_inventory.DeleteItem(itemName);
+                HandleInteract();
+            }
+            else
+            {
+                PlayerController.PlaySound(Globals.AssetPaths.NON_INTERACTABLE_SOUND);
+            }
+            
         }
     }
 

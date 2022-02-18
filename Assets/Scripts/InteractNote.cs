@@ -21,6 +21,7 @@ public class InteractNote : MonoBehaviour
             && hit.collider.gameObject.Equals( this.gameObject ) )
         {
             Debug.Log( "Playing audio from script" );
+            PlayerController.PlaySound(Globals.AssetPaths.PAPER_UNRAVELING_SOUND);
             HandleInteract();
         }
     }

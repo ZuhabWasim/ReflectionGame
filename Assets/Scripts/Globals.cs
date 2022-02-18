@@ -93,6 +93,10 @@ public class Globals
     public class AssetPaths
     {
         public static string MAIN_DOOR_SOUND = "Assets/Audio/Section 1/main_door.wav";
+        public static string ITEM_OBTAINED_SOUND = "Assets/Audio/object_obtained.wav";
+        public static string NON_INTERACTABLE_SOUND = "Assets/Audio/non_interactable.wav";
+        public static string PAPER_UNRAVELING_SOUND = "Assets/Audio/paper_unravel.wav"; // For notes
+        
     }
 }
 

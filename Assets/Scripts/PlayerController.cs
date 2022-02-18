@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     private const float PITCH_MAX = 88.0f;
     private const float PITCH_MIN = -88.0f;
 
-    private const float FOOT_STEP_INTERVAL = 2.0f;
+    private const float FOOT_STEP_INTERVAL = 2.2f;
     // ===== CONSTANTS END ===
     
     // Camera vars
@@ -54,19 +54,18 @@ public class PlayerController : MonoBehaviour
         bp = GameObject.Find("UI_Canvas").GetComponent<ButtonPromptDisplay>();
 
         m_stepSource = GameObject.Find("FootStepSource").GetComponent<AudioSource>();
-        PlayStartSounds();
+        PlaySound(Globals.AssetPaths.MAIN_DOOR_SOUND);
     }
-
-    void PlayStartSounds()
+    
+    public static void PlaySound(string soundEffectPath)
     {
-        AudioClip mainDoor = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>( Globals.AssetPaths.MAIN_DOOR_SOUND );
+        AudioClip soundEffect = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>( soundEffectPath );
         AudioSource mainSource = GameObject.FindGameObjectWithTag( Globals.Tags.MAIN_SOURCE ).GetComponent<AudioSource>();
         if ( mainSource.isPlaying )
         {
             mainSource.Stop();
         }
-        
-        mainSource.clip = mainDoor;
+        mainSource.clip = soundEffect;
         mainSource.Play();
     }
 
