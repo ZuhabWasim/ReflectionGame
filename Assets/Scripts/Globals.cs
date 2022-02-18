@@ -35,6 +35,8 @@ public class Globals
         // All events used by event manager should go here
         public static string TELEPORT = "teleport";
         public static string INTERACT_KEY_PRESSED = "InteractKeyPress";
+        public static string LIGHTS_TURN_ON = "TurnOnLights";
+        public static string LIGHTS_TURN_OFF = "TurnOffLights";
     }
 
     public class Tags

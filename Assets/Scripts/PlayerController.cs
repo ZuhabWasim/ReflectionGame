@@ -52,6 +52,8 @@ public class PlayerController : MonoBehaviour
         HandleKeyboardInput();
     }
 
+
+
     void HandleMouseInput()
     {
         Vector2 input = new Vector2( Input.GetAxis( Globals.Misc.MOUSE_X ), -Input.GetAxis( Globals.Misc.MOUSE_Y ) );
@@ -86,7 +88,7 @@ public class PlayerController : MonoBehaviour
             m_playerBody.AddForce( Vector3.up * jumpForce, ForceMode.Impulse );
         } else if (!gr)
         {
-            yVelocity -= gravityAccel;
+            yVelocity -= gravityAccel * Time.deltaTime;
         } 
 
         m_playerBody.velocity = new Vector3(velocity.x, yVelocity, velocity.z);

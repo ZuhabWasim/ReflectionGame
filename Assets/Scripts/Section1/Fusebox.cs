@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Fusebox : MonoBehaviour
 {
-
+    private bool solved;
     public bool[] switchPositions;
     public bool[] answer;
 
@@ -15,6 +15,7 @@ public class Fusebox : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        solved = false;
         for (int i=0; i < 6; i++)
         {
             UpdateLight(i);
@@ -35,7 +36,8 @@ public class Fusebox : MonoBehaviour
         if (correct)
         {
             //Turn on all lights
-            Debug.Log("Code Entered Successfully");
+            solved = true;
+            EventManager.Fire(Globals.Events.LIGHTS_TURN_ON, this.gameObject);
         }
     }
 
@@ -54,8 +56,11 @@ public class Fusebox : MonoBehaviour
 
     public void switchLight(int n)
     {
-        switchPositions[n] = !switchPositions[n];
-        UpdateLight(n);
-        CheckInput();
+        if (!solved)
+        {
+            switchPositions[n] = !switchPositions[n];
+            UpdateLight(n);
+            CheckInput();
+        }
     }
 }
