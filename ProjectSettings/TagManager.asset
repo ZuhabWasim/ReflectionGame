@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PickupItem
   - DialogueSource
+  - Interactable
   layers:
   - Default
   - TransparentFX

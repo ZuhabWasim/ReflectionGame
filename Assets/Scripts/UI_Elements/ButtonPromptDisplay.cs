@@ -10,6 +10,10 @@ public class ButtonPromptDisplay : MonoBehaviour
     public Text promptText;
     public RawImage buttonImg;
 
+    public char[] buttonChar;
+    public Texture[] buttonTexture;
+    //public Dictionary<char, Texture> buttonTextures;
+
     public float btnTextSpace;
     public float promptPosY;
 
@@ -18,6 +22,23 @@ public class ButtonPromptDisplay : MonoBehaviour
     {
         promptHolder.SetActive(false);
         updatePromptPos();
+    }
+
+    public void SetButton(char c)
+    {
+        int i;
+        int k = -1;
+        for (i=0; i< buttonChar.Length; i++)
+        {
+            if (buttonChar[i]==c)
+            {
+                k = i;
+                break;
+            }
+        }
+        if (k >= 0) {
+            buttonImg.texture = buttonTexture[k];
+        }
     }
 
     public void showPrompt(string t)

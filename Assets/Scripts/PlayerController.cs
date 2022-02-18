@@ -30,7 +30,9 @@ public class PlayerController : MonoBehaviour
     public KeyCode pickupKey = Globals.Keybinds.PickupKey;
     public KeyCode dropKey = Globals.Keybinds.DropKey;
     public KeyCode interactKey = Globals.Keybinds.InteractKey;
-    
+
+    private Inventory m_inventory;
+    private ButtonPromptDisplay bp;
     private bool interactKeyDown = false;
     
     public float pickupDistance = 2.0f;
@@ -43,6 +45,9 @@ public class PlayerController : MonoBehaviour
 
         m_playerBody = GetComponent<Rigidbody>();
         m_collider = GetComponent<Collider>();
+
+        m_inventory = Inventory.GetInstance();
+        bp = GameObject.Find("UI_Canvas").GetComponent<ButtonPromptDisplay>();
     }
 
     // Update is called once per frame
@@ -63,6 +68,7 @@ public class PlayerController : MonoBehaviour
         playerCamera.localEulerAngles = Vector3.right * pitch;
 
         transform.Rotate( Vector3.up * input.x * sensitivity );
+        DisplayInteractionPrompts();
     }
 
     public bool IsGrounded()
@@ -121,6 +127,36 @@ public class PlayerController : MonoBehaviour
             }
         } else {
             Inventory.GetInstance().closeInventory();
+        }
+    }
+
+    void DisplayInteractionPrompts()
+    {
+        //TODO check pickup/interactable object name to get proper button prompt
+        RaycastHit hitRes;
+        bool hit = Physics.Raycast(playerCamera.position, playerCamera.forward, out hitRes, pickupDistance);
+        bp.hidePrompt();
+        if (hit && hitRes.collider.gameObject.tag == Globals.Tags.PICKUP_ITEM)
+        {
+            bp.SetButton('e');
+            bp.showPrompt(Globals.UIStrings.PICKUP_HANDKERCHIEF);
+        } else if (hit && hitRes.collider.gameObject.tag == Globals.Tags.INTERACTABLE)
+        {
+            bp.SetButton('f');
+            if (hitRes.collider.gameObject.name == "Drawer")
+            {
+                bp.showPrompt(Globals.UIStrings.INTERACT_DRAWER);
+            } else if (hitRes.collider.gameObject.name == "Switch")
+            {
+                bp.showPrompt(Globals.UIStrings.INTERACT_SWITCH);
+            }else if (hitRes.collider.gameObject.name == "IntroNote")
+            {
+                bp.showPrompt(Globals.UIStrings.INTERACT_NOTE);
+            }
+            else if (hitRes.collider.gameObject.name == "Mirror" && m_inventory.GetSelectedItem().Equals("Handkerchief"))
+            {
+                bp.showPrompt(Globals.UIStrings.USE_HANDKERCHIEF);
+            }
         }
     }
 

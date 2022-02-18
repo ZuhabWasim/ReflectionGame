@@ -42,6 +42,7 @@ public class Globals
     public class Tags
     {
         public static string PICKUP_ITEM = "PickupItem";
+        public static string INTERACTABLE = "Interactable";
         public static string PLAYER = "Player";
         public static string DIALOGUE_SOURCE = "DialogueSource";
     }
@@ -63,7 +64,14 @@ public class Globals
 
     public class UIStrings
     {
-        public static string INTERACT_MIRROR = "Interact With Mirror";
+        public static string INTERACT_MIRROR = "Interact with Mirror";
+
+        public static string PICKUP_HANDKERCHIEF = "Pick up Handkerchief";
+        public static string USE_HANDKERCHIEF = "Use Handkerchief";
+
+        public static string INTERACT_DRAWER = "Interact with Drawer";
+        public static string INTERACT_SWITCH = "Interact with Switch";
+        public static string INTERACT_NOTE = "Interact with Note";
     }
 
     public class Vars
