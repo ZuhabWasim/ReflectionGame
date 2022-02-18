@@ -42,8 +42,6 @@ public class PlayerController : MonoBehaviour
 
         m_playerBody = GetComponent<Rigidbody>();
         m_collider = GetComponent<Collider>();
-
-        EventManager.Sub( Globals.Events.TELEPORT, FlipPresent );
     }
 
     // Update is called once per frame
@@ -146,10 +144,4 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-
-    public void FlipPresent()
-    {
-        this.isPresent = !this.isPresent;
-        GlobalState.SetVar<bool>( Globals.Vars.IS_PRESENT_WORLD, this.isPresent );
-    }   
 }
