@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
     // ===== CONSTANTS =====
     private const float PITCH_MAX = 88.0f;
     private const float PITCH_MIN = -88.0f;
+
+    private const float FOOT_STEP_INTERVAL = 2.0f;
     // ===== CONSTANTS END ===
     
     // Camera vars
@@ -37,7 +39,12 @@ public class PlayerController : MonoBehaviour
     
     public float pickupDistance = 2.0f;
     public float dropDistance = 1.25f;
-
+    
+    // Player sounds
+    private AudioSource m_stepSource; // For footsteps and interaction sound effects.
+    private float stepCounter = FOOT_STEP_INTERVAL;
+    private bool stepRightFoot = true;
+    
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -48,6 +55,8 @@ public class PlayerController : MonoBehaviour
 
         m_inventory = Inventory.GetInstance();
         bp = GameObject.Find("UI_Canvas").GetComponent<ButtonPromptDisplay>();
+
+        m_stepSource = GameObject.Find("FootStepSource").GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -55,6 +64,7 @@ public class PlayerController : MonoBehaviour
     {
         HandleMouseInput();
         HandleKeyboardInput();
+        HandleFootSteps();
     }
 
 
@@ -95,13 +105,53 @@ public class PlayerController : MonoBehaviour
         } else if (!gr)
         {
             yVelocity -= gravityAccel * Time.deltaTime;
-        } 
-
+        }
         m_playerBody.velocity = new Vector3(velocity.x, yVelocity, velocity.z);
 
         HandlePickupAndDrop();
         HandleInteractKeyPress();
         HandleOpenInventory();
+    }
+
+    void HandleFootSteps()
+    {
+        Vector3 input = new Vector3( Input.GetAxis( Globals.Misc.H_AXIS ), 0.0f, Input.GetAxis( Globals.Misc.V_AXIS ) );
+        Vector3 velocity = transform.TransformDirection( input ) * speed;
+        
+        bool gr = IsGrounded();
+        
+        // Only do foot steps if the player is grounded.
+        if (gr)
+        {
+            if (stepCounter <= 0)
+            {
+                // Change pitch on right or left footstep
+                if (stepRightFoot)
+                {
+                    m_stepSource.pitch = 1.0f;
+                }
+                else
+                {
+                    m_stepSource.pitch = 0.85f;
+                }
+                m_stepSource.PlayOneShot(m_stepSource.clip);
+                stepCounter = FOOT_STEP_INTERVAL;
+            }
+            else
+            {
+                if (velocity.magnitude < 0.05)
+                {
+                    // The player stopped moving. Reset their foot forward to be right.
+                    stepRightFoot = true;
+                }
+                stepCounter -= Time.deltaTime * velocity.magnitude;
+            }
+        }
+        else
+        {
+            // Reset the counter so they step as soon as they're grounded again.
+            stepCounter = 0;
+        }
     }
 
     void HandleInteractKeyPress()
