@@ -9,13 +9,18 @@ public class ChangeLightState : MonoBehaviour
     public GameObject[] whiteEmissiveTextures;
     public Material whiteEmissiveOn;
     public Material whiteEmissiveOff;
-
+    
+    public AudioClip soundEffect;
+    private AudioSource m_soundSource;
+    
     // Start is called before the first frame update
     void Start()
     {
         EventManager.Sub(Globals.Events.LIGHTS_TURN_ON, TurnLightsOn);
         EventManager.Sub(Globals.Events.LIGHTS_TURN_OFF, TurnLightsOff);
-
+        
+        m_soundSource = GetComponent<AudioSource>();
+        
         TurnLightsOff();
     }
 
@@ -30,6 +35,8 @@ public class ChangeLightState : MonoBehaviour
         {
             lightSources[i].SetActive(true);
         }
+        m_soundSource.clip = soundEffect;
+        m_soundSource.Play();
     }
 
 
