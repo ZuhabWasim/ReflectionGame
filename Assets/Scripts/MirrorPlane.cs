@@ -39,6 +39,7 @@ public class MirrorPlane : MonoBehaviour
         {
             isDirty = false;
             mirrorRenderer.material = mirrorMaterial;
+            // mirrorMaterial.Lerp( dirtyMirrorMaterial, mirrorMaterial, 0 ); TODO: Fix this, doesn't work atm
         }
     }
 }

@@ -24,9 +24,6 @@ public class PlayerController : MonoBehaviour
     public KeyCode jumpKey = KeyCode.Space;
     public float gravityAccel;
 
-    // Gameplay vars
-    private bool isPresent = true; // Start in present
-
     // Interaction Keys
     public KeyCode openInventoryKey = Globals.Keybinds.InventoryKey;
     public KeyCode pickupKey = Globals.Keybinds.PickupKey;
@@ -57,6 +54,20 @@ public class PlayerController : MonoBehaviour
         bp = GameObject.Find("UI_Canvas").GetComponent<ButtonPromptDisplay>();
 
         m_stepSource = GameObject.Find("FootStepSource").GetComponent<AudioSource>();
+        PlayStartSounds();
+    }
+
+    void PlayStartSounds()
+    {
+        AudioClip mainDoor = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>( Globals.AssetPaths.MAIN_DOOR_SOUND );
+        AudioSource mainSource = GameObject.FindGameObjectWithTag( Globals.Tags.MAIN_SOURCE ).GetComponent<AudioSource>();
+        if ( mainSource.isPlaying )
+        {
+            mainSource.Stop();
+        }
+        
+        mainSource.clip = mainDoor;
+        mainSource.Play();
     }
 
     // Update is called once per frame
@@ -66,8 +77,6 @@ public class PlayerController : MonoBehaviour
         HandleKeyboardInput();
         HandleFootSteps();
     }
-
-
 
     void HandleMouseInput()
     {

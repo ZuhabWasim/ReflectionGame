@@ -45,6 +45,7 @@ public class Globals
         public static string INTERACTABLE = "Interactable";
         public static string PLAYER = "Player";
         public static string DIALOGUE_SOURCE = "DialogueSource";
+        public static string MAIN_SOURCE = "MainSource";
     }
 
     public class Misc
@@ -87,6 +88,11 @@ public class Globals
         public static KeyCode PickupKey = KeyCode.E;
         public static KeyCode DropKey = KeyCode.G;
         public static KeyCode InventoryKey = KeyCode.LeftShift;
+    }
+
+    public class AssetPaths
+    {
+        public static string MAIN_DOOR_SOUND = "Assets/Audio/Section 1/main_door.wav";
     }
 }
 
