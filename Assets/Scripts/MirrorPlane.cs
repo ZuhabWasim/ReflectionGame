@@ -8,8 +8,8 @@ public class MirrorPlane : MonoBehaviour
     public bool isDirty = false;
     public Material dirtyMirrorMaterial; // Dirty texture to use for dirty mirrors
 
-    private Material mirrorMaterial; // the original mirror material (i.e. the reflective one)
-    private Renderer mirrorRenderer;
+    public Material mirrorMaterial; // the original mirror material (i.e. the reflective one)
+    private Renderer mirrorRenderer; // TODO(dennis): remove this because i hate it
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +20,10 @@ public class MirrorPlane : MonoBehaviour
         {
             // Change the renderer's material to the texture
             mirrorRenderer.material = dirtyMirrorMaterial;
+        }
+        else
+        {
+            mirrorRenderer.material = mirrorMaterial;
         }
     }
 
@@ -33,7 +37,7 @@ public class MirrorPlane : MonoBehaviour
     {
         if (isDirty)
         {
-            isDirty = true;
+            isDirty = false;
             mirrorRenderer.material = mirrorMaterial;
         }
     }
