@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     public float speed = 5;
     public float jumpForce;
     public KeyCode jumpKey = KeyCode.Space;
+    public float gravityAccel;
 
     // Gameplay vars
     private bool isPresent = true; // Start in present
@@ -64,7 +65,7 @@ public class PlayerController : MonoBehaviour
 
     public bool IsGrounded()
     {
-        float distToGround = m_collider.bounds.extents.y;
+        float distToGround = 1;//m_collider.bounds.extents.y;
         
         // Determines whether a vector from the player's center pointing down is barely touching the floor.
         return Physics.Raycast( transform.position + new Vector3(0,distToGround,0), 
@@ -75,13 +76,20 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 input = new Vector3( Input.GetAxis( Globals.Misc.H_AXIS ), 0.0f, Input.GetAxis( Globals.Misc.V_AXIS ) );
         Vector3 velocity = transform.TransformDirection( input ) * speed;
-        m_playerBody.velocity = new Vector3( velocity.x, m_playerBody.velocity.y, velocity.z );
+        float yVelocity = m_playerBody.velocity.y;
 
-        if ( Input.GetKeyDown( jumpKey ) && IsGrounded() )
+        bool gr = IsGrounded();
+
+        if ( Input.GetKeyDown( jumpKey ) && gr)
         {
-            Debug.Log( "Adding jump force" );
+            //Debug.Log( "Adding jump force" );
             m_playerBody.AddForce( Vector3.up * jumpForce, ForceMode.Impulse );
-        }
+        } else if (!gr)
+        {
+            yVelocity -= gravityAccel;
+        } 
+
+        m_playerBody.velocity = new Vector3(velocity.x, yVelocity, velocity.z);
 
         HandlePickupAndDrop();
         HandleInteractKeyPress();
