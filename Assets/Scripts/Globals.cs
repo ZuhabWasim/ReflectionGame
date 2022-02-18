@@ -13,6 +13,23 @@ public class Globals
         Debug.Log( "Loaded global state vars" );
     }
 
+    [RuntimeInitializeOnLoadMethod]
+    public static void RegisterGlobalEventListeners()
+    {
+        EventManager.Sub( Globals.Events.TELEPORT, UpdateWorldOnTeleport );
+    }
+
+    private static void UpdateWorldOnTeleport()
+    {
+        GlobalState.SetVar<bool>( Globals.Vars.IS_PRESENT_WORLD, !GlobalState.GetVar<bool>( Globals.Vars.IS_PRESENT_WORLD ) );
+        bool isPresent = GlobalState.GetVar<bool>( Globals.Vars.IS_PRESENT_WORLD );
+        // !! This is broken rn
+        // GameObject sun = GameObject.Find( "Sun" );
+        // GameObject moon =  GameObject.Find( "Moon" );
+        // moon.SetActive( isPresent );
+        // sun.SetActive( !isPresent );
+    }   
+
     public class Events
     {
         // All events used by event manager should go here
