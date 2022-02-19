@@ -30,6 +30,32 @@ public class AnimationStateController : MonoBehaviour
         isJumpingHash = Animator.StringToHash(Globals.Misc.IS_JUMPING);
         isBackingUpHash = Animator.StringToHash(Globals.Misc.IS_BACKING_UP);
         isInteractingHash = Animator.StringToHash(Globals.Misc.IS_INTERACTING);
+
+        EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.PICKUP_KEY ),
+            () => {
+                AnimatePickup( true );
+                }
+            );
+        
+        EventManager.Sub( InputManager.GetKeyUpEventName( Keybinds.PICKUP_KEY ),
+            () => {
+                AnimatePickup( false );
+                }
+            );
+    }
+
+    void AnimatePickup( bool pickUpPress )
+    {
+        bool isInteracting = animator.GetBool( isInteractingHash );
+        if ( !isInteracting && pickUpPress )
+        {
+            animator.SetBool( isInteractingHash, true );
+        }
+
+        if ( isInteracting && !pickUpPress )
+        {
+            animator.SetBool( isInteractingHash, false );
+        }
     }
 
     // Update is called once per frame
@@ -39,7 +65,6 @@ public class AnimationStateController : MonoBehaviour
         bool isWalking = animator.GetBool(isWalkingHash);
         bool isJumping = animator.GetBool(isJumpingHash);
         bool isBackingUp = animator.GetBool(isBackingUpHash);
-        bool isInteracting = animator.GetBool(isInteractingHash);
 
         // Player movement
         float verticalMovement = Input.GetAxis("Vertical");
@@ -51,7 +76,7 @@ public class AnimationStateController : MonoBehaviour
         bool sidewaysPress = horizontalMovement > 0;
 
         // Player events
-        bool pickUpPress = Input.GetKeyDown( _playerController.pickupKey );
+        // bool pickUpPress = Input.GetKeyDown( _playerController.pickupKey );
         bool jumpAcceleration = _playerController.m_playerBody.velocity.y > JUMP_ANIMATION_THRESHOLD;
 
         // Jumping
@@ -64,17 +89,7 @@ public class AnimationStateController : MonoBehaviour
         {
             animator.SetBool(isJumpingHash, false);
         }
-
-        // Interaction/Pick up
-        if (!isInteracting && pickUpPress)
-        {
-            animator.SetBool(isInteractingHash, true);
-        }
-
-        if (isInteracting && !pickUpPress)
-        {
-            animator.SetBool(isInteractingHash, false);
-        }
+        
 
         // Only do other movement animations if you're grounded.
         if (_playerController.IsGrounded())

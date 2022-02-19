@@ -6,22 +6,23 @@ public class InteractNote : MonoBehaviour
 {
     public AudioClip voiceline;
     private AudioSource m_dialogueSource;
+    private GameObject m_player;
     void Start()
     {
         m_dialogueSource = GameObject.FindGameObjectWithTag( Globals.Tags.DIALOGUE_SOURCE ).GetComponent<AudioSource>();
-        EventManager.Sub( Globals.Events.INTERACT_KEY_PRESSED, OnUserInteract );
+        m_player = GameObject.FindGameObjectWithTag( Globals.Tags.PLAYER );
+        EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.INTERACT_KEY ), OnUserInteract );
     }
 
-    void OnUserInteract( GameObject player )
+    void OnUserInteract()
     {   
-        Transform camera = player.GetComponent<PlayerController>().playerCamera;
+        Transform camera = m_player.GetComponent<PlayerController>().playerCamera;
         RaycastHit hit;
         // Check if user is interacting with us
         if ( Physics.Raycast( camera.position, camera.forward, out hit, Globals.Misc.MAX_INTERACT_DISTANCE )
             && hit.collider.gameObject.Equals( this.gameObject ) )
         {
-            Debug.Log( "Playing audio from script" );
-            PlayerController.PlaySound(Globals.AssetPaths.PAPER_UNRAVELING_SOUND);
+            PlayerController.PlaySound( "paper_unravel" );
             HandleInteract();
         }
     }

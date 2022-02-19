@@ -8,18 +8,18 @@ public class Switch : MonoBehaviour
     public int switch_index;
 
     private GameObject fb;
+    private GameObject m_player;
 
     void Start()
     {
         fb = transform.parent.gameObject;
-
-        //m_dialogueSource = GameObject.FindGameObjectWithTag(Globals.Tags.DIALOGUE_SOURCE).GetComponent<AudioSource>();
-        EventManager.Sub(Globals.Events.INTERACT_KEY_PRESSED, OnUserInteract);
+        m_player = GameObject.FindGameObjectWithTag( Globals.Tags.PLAYER );
+        EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.INTERACT_KEY ), OnUserInteract );
     }
 
-    void OnUserInteract(GameObject player)
+    void OnUserInteract()
     {
-        Transform camera = player.GetComponent<PlayerController>().playerCamera;
+        Transform camera = m_player.GetComponent<PlayerController>().playerCamera;
         RaycastHit hit;
         // Check if user is interacting with us
         if (Physics.Raycast(camera.position, camera.forward, out hit, Globals.Misc.MAX_INTERACT_DISTANCE)

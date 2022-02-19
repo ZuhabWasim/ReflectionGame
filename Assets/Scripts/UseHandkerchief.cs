@@ -7,21 +7,21 @@ public class UseHandkerchief : MonoBehaviour
     public string itemName;
     public AudioClip soundEffect;
     public MirrorPlane dirtyMirror; // TODO(dennis): remove this
-
-
     private AudioSource m_soundSource;
     private Inventory m_inventory;
+    private GameObject m_player;
     
     void Start()
     {
-        EventManager.Sub( Globals.Events.INTERACT_KEY_PRESSED, OnUserInteract );
+        EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.INTERACT_KEY ), OnUserInteract );
         m_inventory = Inventory.GetInstance();
+        m_player = GameObject.FindGameObjectWithTag( Globals.Tags.PLAYER );
         m_soundSource = GetComponent<AudioSource>();
     }
 
-    void OnUserInteract( GameObject player )
+    void OnUserInteract()
     {   
-        Transform camera = player.GetComponent<PlayerController>().playerCamera;
+        Transform camera = m_player.GetComponent<PlayerController>().playerCamera;
         RaycastHit hit;
         if ( Physics.Raycast( camera.position, camera.forward, out hit, Globals.Misc.MAX_INTERACT_DISTANCE )
              && hit.collider.gameObject.Equals( this.gameObject ))
@@ -34,7 +34,7 @@ public class UseHandkerchief : MonoBehaviour
             }
             else
             {
-                PlayerController.PlaySound(Globals.AssetPaths.NON_INTERACTABLE_SOUND);
+                PlayerController.PlaySound( "non_interactable" );
             }
             
         }

@@ -24,15 +24,8 @@ public class PlayerController : MonoBehaviour
     public KeyCode jumpKey = KeyCode.Space;
     public float gravityAccel;
 
-    // Interaction Keys
-    public KeyCode openInventoryKey = Globals.Keybinds.InventoryKey;
-    public KeyCode pickupKey = Globals.Keybinds.PickupKey;
-    public KeyCode dropKey = Globals.Keybinds.DropKey;
-    public KeyCode interactKey = Globals.Keybinds.InteractKey;
-
     private Inventory m_inventory;
     private ButtonPromptDisplay bp;
-    private bool interactKeyDown = false;
     
     public float pickupDistance = 2.0f;
     public float dropDistance = 1.25f;
@@ -54,12 +47,25 @@ public class PlayerController : MonoBehaviour
         bp = GameObject.Find("UI_Canvas").GetComponent<ButtonPromptDisplay>();
 
         m_stepSource = GameObject.Find("FootStepSource").GetComponent<AudioSource>();
-        PlaySound(Globals.AssetPaths.MAIN_DOOR_SOUND);
+        PlaySound( "main_door" );
+
+        RegisterEventListeners();
+    }
+
+    void RegisterEventListeners()
+    {
+        // keydown events
+        EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.PICKUP_KEY ), HandlePickup );
+        EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.DROP_KEY ), HandleDrop );
+        EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.INVENTORY_KEY ), HandleOpenInventory );
+
+        // keyup events
+        EventManager.Sub( InputManager.GetKeyUpEventName( Keybinds.INVENTORY_KEY ), m_inventory.CloseInventory );
     }
     
     public static void PlaySound(string soundEffectPath)
     {
-        AudioClip soundEffect = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>( soundEffectPath );
+        AudioClip soundEffect = Utilities.AssetLoader.GetSFX( soundEffectPath );
         AudioSource mainSource = GameObject.FindGameObjectWithTag( Globals.Tags.MAIN_SOURCE ).GetComponent<AudioSource>();
         if ( mainSource.isPlaying )
         {
@@ -115,10 +121,6 @@ public class PlayerController : MonoBehaviour
             yVelocity -= gravityAccel * Time.deltaTime;
         }
         m_playerBody.velocity = new Vector3(velocity.x, yVelocity, velocity.z);
-
-        HandlePickupAndDrop();
-        HandleInteractKeyPress();
-        HandleOpenInventory();
     }
 
     void HandleFootSteps()
@@ -162,29 +164,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void HandleInteractKeyPress()
-    {
-        if ( Input.GetKeyDown( interactKey ) && !interactKeyDown )
-        {
-            EventManager.Fire( Globals.Events.INTERACT_KEY_PRESSED, this.gameObject );
-            interactKeyDown = true;
-        }
-        else if ( Input.GetKeyUp( interactKey ) )
-        {
-            interactKeyDown = false;
-        }
-    }
-
     void HandleOpenInventory()
     {
-        if (Input.GetKey(openInventoryKey)) {
-            Inventory.GetInstance().openInventory();
-            int spin = (int) Input.mouseScrollDelta.y;
-            if (spin != 0) {
-                Inventory.GetInstance().spinInventory(spin);
-            }
-        } else {
-            Inventory.GetInstance().closeInventory();
+        m_inventory.openInventory();
+        int spin = (int) Input.mouseScrollDelta.y;
+        if (spin != 0) {
+            m_inventory.SpinInventory(spin);
         }
     }
 
@@ -218,34 +203,31 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void HandlePickupAndDrop()
+    void HandlePickup()
     {
-        if ( Input.GetKeyDown( pickupKey ) )
+        RaycastHit hitRes;
+        if ( Physics.Raycast( playerCamera.position, playerCamera.forward, out hitRes, pickupDistance ) &&
+            hitRes.collider.gameObject.tag == Globals.Tags.PICKUP_ITEM )
         {
-            RaycastHit hitRes;
-            if ( Physics.Raycast( playerCamera.position, playerCamera.forward, out hitRes, pickupDistance ) &&
-                hitRes.collider.gameObject.tag == Globals.Tags.PICKUP_ITEM )
+            PickupItem item = hitRes.collider.gameObject.GetComponent<PickupItem>();
+            ItemPickupResult res = Inventory.GetInstance().PickupItem( ref item );
+            if ( res != ItemPickupResult.SUCCESS )
             {
-                PickupItem item = hitRes.collider.gameObject.GetComponent<PickupItem>();
-                ItemPickupResult res = Inventory.GetInstance().PickupItem( ref item );
-                if ( res != ItemPickupResult.SUCCESS )
-                {
-                    Debug.Log( "Inventory failed to store item" );
-                }
+                Debug.Log( "Inventory failed to store item" );
             }
         }
+    }
 
-        if ( Input.GetKeyDown( dropKey ) )
-        {
-            if ( !Physics.Raycast( playerCamera.position, playerCamera.forward, dropDistance - 0.1f )
+    void HandleDrop()
+    {
+        if ( !Physics.Raycast( playerCamera.position, playerCamera.forward, dropDistance - 0.1f )
                 && Inventory.GetInstance().DropItem( playerCamera.position + playerCamera.forward * dropDistance ) )
-            {
-                Debug.Log( "Dropped Item" );
-            }
-            else
-            {
-                Debug.Log( "Failed to drop item" );
-            }
+        {
+            Debug.Log( "Dropped Item" );
+        }
+        else
+        {
+            Debug.Log( "Failed to drop item" );
         }
     }
 }

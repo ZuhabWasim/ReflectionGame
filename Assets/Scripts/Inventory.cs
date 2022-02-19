@@ -26,7 +26,7 @@ public class Inventory
             m_items[cursor] = item;
             item.OnPickup();
             inventoryDisplay.addItem(item, cursor);
-            PlayerController.PlaySound(Globals.AssetPaths.ITEM_OBTAINED_SOUND);
+            PlayerController.PlaySound( "object_obtained" );
             return ItemPickupResult.SUCCESS;
         }
         for (int i = 1; i < 5; i ++) {
@@ -42,18 +42,18 @@ public class Inventory
                 m_items[pos2] = item;
                 item.OnPickup();
                 inventoryDisplay.addItem(item, pos2);
-                PlayerController.PlaySound(Globals.AssetPaths.ITEM_OBTAINED_SOUND);
+                PlayerController.PlaySound( "object_obtained" );
                 return ItemPickupResult.SUCCESS;
             }
             if (m_items[pos1] == null){
                 m_items[pos1] = item;
                 item.OnPickup();
                 inventoryDisplay.addItem(item, pos1);
-                PlayerController.PlaySound(Globals.AssetPaths.ITEM_OBTAINED_SOUND);
+                PlayerController.PlaySound( "object_obtained" );
                 return ItemPickupResult.SUCCESS;
             }
         }
-        PlayerController.PlaySound(Globals.AssetPaths.NON_INTERACTABLE_SOUND);
+        PlayerController.PlaySound( "non_interactable" );
         return ItemPickupResult.FAIL_INVENTORY_FULL;
     }
 
@@ -78,14 +78,14 @@ public class Inventory
             inventoryDisplay.hideItemName();
         }
     }    
-    public void closeInventory()
+    public void CloseInventory()
     {
-        inventoryDisplay.closeInventory();
+        inventoryDisplay.CloseInventory();
     }
-    public void spinInventory(int spin)
+    public void SpinInventory(int spin)
     {
         MoveCursor( cursor + spin );
-        inventoryDisplay.spinInventory(spin);
+        inventoryDisplay.SpinInventory(spin);
     }
     public int GetCursor()
     {

@@ -31,20 +31,22 @@ public class InterpolateTransform : MonoBehaviour
     private MoveDirection m_moveDir = MoveDirection.END;
     private RotDirection m_rotDir = RotDirection.END;
     private const float INTERP_DELTA = 0.05f;
+    private GameObject m_player;
 
     void Start()
     {
-        EventManager.Sub( Globals.Events.INTERACT_KEY_PRESSED, OnUserInteract );
+        m_player = GameObject.FindGameObjectWithTag( Globals.Tags.PLAYER );
+        EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.INTERACT_KEY ), OnUserInteract );
     }
 
-    void OnUserInteract( GameObject player )
+    void OnUserInteract()
     {
         if ( this.m_isMoving )
         {
             return;
         }
         
-        Transform camera = player.GetComponent<PlayerController>().playerCamera;
+        Transform camera = m_player.GetComponent<PlayerController>().playerCamera;
         RaycastHit hit;
         if ( Physics.Raycast( camera.position, camera.forward, out hit, Globals.Misc.MAX_INTERACT_DISTANCE )
             && hit.collider.gameObject.Equals( this.gameObject ) )

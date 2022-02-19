@@ -34,7 +34,6 @@ public class Globals
     {
         // All events used by event manager should go here
         public static string TELEPORT = "teleport";
-        public static string INTERACT_KEY_PRESSED = "InteractKeyPress";
         public static string LIGHTS_TURN_ON = "TurnOnLights";
         public static string LIGHTS_TURN_OFF = "TurnOffLights";
     }
@@ -81,23 +80,6 @@ public class Globals
         public static string INTERACTABLES_ENABLED = "interactables_enabled";
         public static string IS_PRESENT_WORLD = "isPresent";
     }
-
-    public class Keybinds
-    {
-        public static KeyCode InteractKey = KeyCode.F;
-        public static KeyCode PickupKey = KeyCode.E;
-        public static KeyCode DropKey = KeyCode.G;
-        public static KeyCode InventoryKey = KeyCode.LeftShift;
-    }
-
-    public class AssetPaths
-    {
-        public static string MAIN_DOOR_SOUND = "Assets/Audio/Section 1/main_door.wav";
-        public static string ITEM_OBTAINED_SOUND = "Assets/Audio/object_obtained.wav";
-        public static string NON_INTERACTABLE_SOUND = "Assets/Audio/non_interactable.wav";
-        public static string PAPER_UNRAVELING_SOUND = "Assets/Audio/paper_unravel.wav"; // For notes
-        
-    }
 }
 
 public enum ItemPickupResult
@@ -105,4 +87,12 @@ public enum ItemPickupResult
     SUCCESS = 0,
     FAIL_INVENTORY_FULL,
     FAIL_ERROR
+}
+
+public enum Keybinds
+{
+    INTERACT_KEY = KeyCode.F,
+    PICKUP_KEY = KeyCode.E,
+    DROP_KEY = KeyCode.G,
+    INVENTORY_KEY = KeyCode.LeftShift
 }
