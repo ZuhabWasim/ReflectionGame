@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
     // ===== CONSTANTS =====
     private const float PITCH_MAX = 88.0f;
     private const float PITCH_MIN = -88.0f;
+
+    private const float FOOT_STEP_INTERVAL = 2.2f;
     // ===== CONSTANTS END ===
     
     // Camera vars
@@ -20,21 +22,19 @@ public class PlayerController : MonoBehaviour
     public float speed = 5;
     public float jumpForce;
     public KeyCode jumpKey = KeyCode.Space;
+    public float gravityAccel;
 
-    // Gameplay vars
-    private bool isPresent = true; // Start in present
-
-    // Interaction Keys
-    public KeyCode openInventoryKey = Globals.Keybinds.InventoryKey;
-    public KeyCode pickupKey = Globals.Keybinds.PickupKey;
-    public KeyCode dropKey = Globals.Keybinds.DropKey;
-    public KeyCode interactKey = Globals.Keybinds.InteractKey;
-    
-    private bool interactKeyDown = false;
+    private Inventory m_inventory;
+    private ButtonPromptDisplay bp;
     
     public float pickupDistance = 2.0f;
     public float dropDistance = 1.25f;
-
+    
+    // Player sounds
+    private AudioSource m_stepSource; // For footsteps and interaction sound effects.
+    private float stepCounter = FOOT_STEP_INTERVAL;
+    private bool stepRightFoot = true;
+    
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -43,7 +43,36 @@ public class PlayerController : MonoBehaviour
         m_playerBody = GetComponent<Rigidbody>();
         m_collider = GetComponent<Collider>();
 
-        EventManager.Sub( Globals.Events.TELEPORT, FlipPresent );
+        m_inventory = Inventory.GetInstance();
+        bp = GameObject.Find("UI_Canvas").GetComponent<ButtonPromptDisplay>();
+
+        m_stepSource = GameObject.Find("FootStepSource").GetComponent<AudioSource>();
+        PlaySound( "main_door" );
+
+        RegisterEventListeners();
+    }
+
+    void RegisterEventListeners()
+    {
+        // keydown events
+        EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.PICKUP_KEY ), HandlePickup );
+        EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.DROP_KEY ), HandleDrop );
+        EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.INVENTORY_KEY ), HandleOpenInventory );
+
+        // keyup events
+        EventManager.Sub( InputManager.GetKeyUpEventName( Keybinds.INVENTORY_KEY ), m_inventory.CloseInventory );
+    }
+    
+    public static void PlaySound(string soundEffectPath)
+    {
+        AudioClip soundEffect = Utilities.AssetLoader.GetSFX( soundEffectPath );
+        AudioSource mainSource = GameObject.FindGameObjectWithTag( Globals.Tags.MAIN_SOURCE ).GetComponent<AudioSource>();
+        if ( mainSource.isPlaying )
+        {
+            mainSource.Stop();
+        }
+        mainSource.clip = soundEffect;
+        mainSource.Play();
     }
 
     // Update is called once per frame
@@ -51,6 +80,7 @@ public class PlayerController : MonoBehaviour
     {
         HandleMouseInput();
         HandleKeyboardInput();
+        HandleFootSteps();
     }
 
     void HandleMouseInput()
@@ -62,11 +92,12 @@ public class PlayerController : MonoBehaviour
         playerCamera.localEulerAngles = Vector3.right * pitch;
 
         transform.Rotate( Vector3.up * input.x * sensitivity );
+        DisplayInteractionPrompts();
     }
 
     public bool IsGrounded()
     {
-        float distToGround = m_collider.bounds.extents.y;
+        float distToGround = 1;//m_collider.bounds.extents.y;
         
         // Determines whether a vector from the player's center pointing down is barely touching the floor.
         return Physics.Raycast( transform.position + new Vector3(0,distToGround,0), 
@@ -77,79 +108,126 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 input = new Vector3( Input.GetAxis( Globals.Misc.H_AXIS ), 0.0f, Input.GetAxis( Globals.Misc.V_AXIS ) );
         Vector3 velocity = transform.TransformDirection( input ) * speed;
-        m_playerBody.velocity = new Vector3( velocity.x, m_playerBody.velocity.y, velocity.z );
+        float yVelocity = m_playerBody.velocity.y;
 
-        if ( Input.GetKeyDown( jumpKey ) && IsGrounded() )
+        bool gr = IsGrounded();
+
+        if ( Input.GetKeyDown( jumpKey ) && gr)
         {
-            Debug.Log( "Adding jump force" );
+            //Debug.Log( "Adding jump force" );
             m_playerBody.AddForce( Vector3.up * jumpForce, ForceMode.Impulse );
+        } else if (!gr)
+        {
+            yVelocity -= gravityAccel * Time.deltaTime;
         }
-
-        HandlePickupAndDrop();
-        HandleInteractKeyPress();
-        HandleOpenInventory();
+        m_playerBody.velocity = new Vector3(velocity.x, yVelocity, velocity.z);
     }
 
-    void HandleInteractKeyPress()
+    void HandleFootSteps()
     {
-        if ( Input.GetKeyDown( interactKey ) && !interactKeyDown )
+        Vector3 input = new Vector3( Input.GetAxis( Globals.Misc.H_AXIS ), 0.0f, Input.GetAxis( Globals.Misc.V_AXIS ) );
+        Vector3 velocity = transform.TransformDirection( input ) * speed;
+        
+        bool gr = IsGrounded();
+        
+        // Only do foot steps if the player is grounded.
+        if (gr)
         {
-            EventManager.Fire( Globals.Events.INTERACT_KEY_PRESSED, this.gameObject );
-            interactKeyDown = true;
+            if (stepCounter <= 0)
+            {
+                // Change pitch on right or left footstep
+                if (stepRightFoot)
+                {
+                    m_stepSource.pitch = 1.0f;
+                }
+                else
+                {
+                    m_stepSource.pitch = 0.85f;
+                }
+                m_stepSource.PlayOneShot(m_stepSource.clip);
+                stepCounter = FOOT_STEP_INTERVAL;
+            }
+            else
+            {
+                if (velocity.magnitude < 0.05)
+                {
+                    // The player stopped moving. Reset their foot forward to be right.
+                    stepRightFoot = true;
+                }
+                stepCounter -= Time.deltaTime * velocity.magnitude;
+            }
         }
-        else if ( Input.GetKeyUp( interactKey ) )
+        else
         {
-            interactKeyDown = false;
+            // Reset the counter so they step as soon as they're grounded again.
+            stepCounter = 0;
         }
     }
 
     void HandleOpenInventory()
     {
-        if (Input.GetKey(openInventoryKey)) {
-            Inventory.GetInstance().openInventory();
-            int spin = (int) Input.mouseScrollDelta.y;
-            if (spin != 0) {
-                Inventory.GetInstance().spinInventory(spin);
-            }
-        } else {
-            Inventory.GetInstance().closeInventory();
+        m_inventory.openInventory();
+        int spin = (int) Input.mouseScrollDelta.y;
+        if (spin != 0) {
+            m_inventory.SpinInventory(spin);
         }
     }
 
-    void HandlePickupAndDrop()
+    void DisplayInteractionPrompts()
     {
-        if ( Input.GetKeyDown( pickupKey ) )
+        //TODO check pickup/interactable object name to get proper button prompt
+        RaycastHit hitRes;
+        bool hit = Physics.Raycast(playerCamera.position, playerCamera.forward, out hitRes, pickupDistance);
+        bp.hidePrompt();
+        if (hit && hitRes.collider.gameObject.tag == Globals.Tags.PICKUP_ITEM)
         {
-            RaycastHit hitRes;
-            if ( Physics.Raycast( playerCamera.position, playerCamera.forward, out hitRes, pickupDistance ) &&
-                hitRes.collider.gameObject.tag == Globals.Tags.PICKUP_ITEM )
+            bp.SetButton('e');
+            bp.showPrompt(Globals.UIStrings.PICKUP_HANDKERCHIEF);
+        } else if (hit && hitRes.collider.gameObject.tag == Globals.Tags.INTERACTABLE)
+        {
+            bp.SetButton('f');
+            if (hitRes.collider.gameObject.name == "Drawer")
             {
-                PickupItem item = hitRes.collider.gameObject.GetComponent<PickupItem>();
-                ItemPickupResult res = Inventory.GetInstance().PickupItem( ref item );
-                if ( res != ItemPickupResult.SUCCESS )
-                {
-                    Debug.Log( "Inventory failed to store item" );
-                }
+                bp.showPrompt(Globals.UIStrings.INTERACT_DRAWER);
+            } else if (hitRes.collider.gameObject.name == "Switch")
+            {
+                bp.showPrompt(Globals.UIStrings.INTERACT_SWITCH);
+            }else if (hitRes.collider.gameObject.name == "IntroNote")
+            {
+                bp.showPrompt(Globals.UIStrings.INTERACT_NOTE);
+            }
+            else if (hitRes.collider.gameObject.name == "Mirror" && m_inventory.GetSelectedItem().Equals("Handkerchief"))
+            {
+                bp.showPrompt(Globals.UIStrings.USE_HANDKERCHIEF);
             }
         }
+    }
 
-        if ( Input.GetKeyDown( dropKey ) )
+    void HandlePickup()
+    {
+        RaycastHit hitRes;
+        if ( Physics.Raycast( playerCamera.position, playerCamera.forward, out hitRes, pickupDistance ) &&
+            hitRes.collider.gameObject.tag == Globals.Tags.PICKUP_ITEM )
         {
-            if ( !Physics.Raycast( playerCamera.position, playerCamera.forward, dropDistance - 0.1f )
+            PickupItem item = hitRes.collider.gameObject.GetComponent<PickupItem>();
+            ItemPickupResult res = Inventory.GetInstance().PickupItem( ref item );
+            if ( res != ItemPickupResult.SUCCESS )
+            {
+                Debug.Log( "Inventory failed to store item" );
+            }
+        }
+    }
+
+    void HandleDrop()
+    {
+        if ( !Physics.Raycast( playerCamera.position, playerCamera.forward, dropDistance - 0.1f )
                 && Inventory.GetInstance().DropItem( playerCamera.position + playerCamera.forward * dropDistance ) )
-            {
-                Debug.Log( "Dropped Item" );
-            }
-            else
-            {
-                Debug.Log( "Failed to drop item" );
-            }
+        {
+            Debug.Log( "Dropped Item" );
+        }
+        else
+        {
+            Debug.Log( "Failed to drop item" );
         }
     }
-
-    public void FlipPresent()
-    {
-        this.isPresent = !this.isPresent;
-        GlobalState.SetVar<bool>( Globals.Vars.IS_PRESENT_WORLD, this.isPresent );
-    }   
 }

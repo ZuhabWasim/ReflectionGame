@@ -13,17 +13,38 @@ public class Globals
         Debug.Log( "Loaded global state vars" );
     }
 
+    [RuntimeInitializeOnLoadMethod]
+    public static void RegisterGlobalEventListeners()
+    {
+        EventManager.Sub( Globals.Events.TELEPORT, UpdateWorldOnTeleport );
+    }
+
+    private static void UpdateWorldOnTeleport()
+    {
+        GlobalState.SetVar<bool>( Globals.Vars.IS_PRESENT_WORLD, !GlobalState.GetVar<bool>( Globals.Vars.IS_PRESENT_WORLD ) );
+        bool isPresent = GlobalState.GetVar<bool>( Globals.Vars.IS_PRESENT_WORLD );
+        // !! This is broken rn
+        // GameObject sun = GameObject.Find( "Sun" );
+        // GameObject moon =  GameObject.Find( "Moon" );
+        // moon.SetActive( isPresent );
+        // sun.SetActive( !isPresent );
+    }   
+
     public class Events
     {
         // All events used by event manager should go here
         public static string TELEPORT = "teleport";
-        public static string INTERACT_KEY_PRESSED = "InteractKeyPress";
+        public static string LIGHTS_TURN_ON = "TurnOnLights";
+        public static string LIGHTS_TURN_OFF = "TurnOffLights";
     }
 
     public class Tags
     {
         public static string PICKUP_ITEM = "PickupItem";
+        public static string INTERACTABLE = "Interactable";
         public static string PLAYER = "Player";
+        public static string DIALOGUE_SOURCE = "DialogueSource";
+        public static string MAIN_SOURCE = "MainSource";
     }
 
     public class Misc
@@ -43,7 +64,14 @@ public class Globals
 
     public class UIStrings
     {
-        public static string INTERACT_MIRROR = "Interact With Mirror";
+        public static string INTERACT_MIRROR = "Interact with Mirror";
+
+        public static string PICKUP_HANDKERCHIEF = "Pick up Handkerchief";
+        public static string USE_HANDKERCHIEF = "Use Handkerchief";
+
+        public static string INTERACT_DRAWER = "Interact with Drawer";
+        public static string INTERACT_SWITCH = "Interact with Switch";
+        public static string INTERACT_NOTE = "Interact with Note";
     }
 
     public class Vars
@@ -52,14 +80,6 @@ public class Globals
         public static string INTERACTABLES_ENABLED = "interactables_enabled";
         public static string IS_PRESENT_WORLD = "isPresent";
     }
-
-    public class Keybinds
-    {
-        public static KeyCode InteractKey = KeyCode.F;
-        public static KeyCode PickupKey = KeyCode.E;
-        public static KeyCode DropKey = KeyCode.G;
-        public static KeyCode InventoryKey = KeyCode.LeftShift;
-    }
 }
 
 public enum ItemPickupResult
@@ -67,4 +87,12 @@ public enum ItemPickupResult
     SUCCESS = 0,
     FAIL_INVENTORY_FULL,
     FAIL_ERROR
+}
+
+public enum Keybinds
+{
+    INTERACT_KEY = KeyCode.F,
+    PICKUP_KEY = KeyCode.E,
+    DROP_KEY = KeyCode.G,
+    INVENTORY_KEY = KeyCode.LeftShift
 }

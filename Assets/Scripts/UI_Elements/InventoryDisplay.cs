@@ -17,7 +17,7 @@ public class InventoryDisplay : MonoBehaviour
     {
         InventoryBar.SetActive(true);
     }
-    public void closeInventory()
+    public void CloseInventory()
     {
         InventoryBar.SetActive(false);
     }
@@ -34,7 +34,7 @@ public class InventoryDisplay : MonoBehaviour
         RawImage img = slot.transform.GetChild(0).GetComponent<RawImage>();
         img.enabled = false;
     }
-    public void spinInventory(int spin)
+    public void SpinInventory(int spin)
     {
         Transform background = InventoryBar.transform.GetChild(0);
         background.Rotate(0, 0, spin * 40);

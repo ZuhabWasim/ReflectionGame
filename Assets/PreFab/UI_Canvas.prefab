@@ -196,6 +196,10 @@ MonoBehaviour:
   promptHolder: {fileID: 1584394268821623325}
   promptText: {fileID: 1584394268094323614}
   buttonImg: {fileID: 518234002912254085}
+  buttonChar: 65006600
+  buttonTexture:
+  - {fileID: 2800000, guid: 9a6500a1b0fe64c42a34e16f9fed20d8, type: 3}
+  - {fileID: 2800000, guid: e5d3329015d616249b23a42479eafc7b, type: 3}
   btnTextSpace: 30
   promptPosY: 70
 --- !u!114 &4629964725855071648
@@ -729,7 +733,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 4c49dfa30a2d0a147b249fb3b24475e7, type: 3}
+  m_Texture: {fileID: 2800000, guid: e5d3329015d616249b23a42479eafc7b, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -2033,7 +2037,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 4, y: 4}
+  m_SizeDelta: {x: 8, y: 8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3546884890186707950
 CanvasRenderer:

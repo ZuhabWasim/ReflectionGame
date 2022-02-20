@@ -70,6 +70,7 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+Assets/Scenes/Main/starmap_16k.*
 Assets/Character.meta
 Assets/Character/Idle.fbx
 Assets/Character/Idle.fbx.meta

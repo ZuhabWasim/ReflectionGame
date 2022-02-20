@@ -22,6 +22,13 @@ public class MirrorConnector : MonoBehaviour
 
     private void SetMirrorCameraPositions()
     {
+
+        if (pastMirror == null)
+        {
+            regularMirror.ReflectOverMirror();
+            return;
+        }
+
         if (GlobalState.GetVar<bool>("isPresent"))
         {
             pastMirror.SetOppositeCameraPosition(regularMirror.mirrorPlane);
