@@ -10,25 +10,25 @@ public class MirrorCameraPosition : MonoBehaviour
     private float mirrorWidth;
     private float mirrorHeight;
 
-    public Transform mirrorPlane;
-    public Transform mirrorChild;
-
-    private Transform _playerCameraTransform;  // World transfrom of the player camera
+    private Transform m_mirrorPlaneTransform;
+    private Transform m_mirrorCamTransform;
 
     // Start is called before the first frame update
     void Start()
     {
-        mirrorCam = mirrorChild.GetComponent<Camera>();
+        mirrorCam = GetComponentInChildren<Camera>();
+        m_mirrorCamTransform = mirrorCam.transform;
+        m_mirrorPlaneTransform = transform.parent;
 
         //mirrorRenderer = mirrorPlane.GetComponent<Renderer>();
-        mirrorWidth = Mathf.Abs(mirrorPlane.localScale.x) * 10f;
-        mirrorHeight = Mathf.Abs(mirrorPlane.localScale.z) * 10f;
+        mirrorWidth = Mathf.Abs(m_mirrorPlaneTransform.localScale.x) * 10f;
+        mirrorHeight = Mathf.Abs(m_mirrorPlaneTransform.localScale.z) * 10f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        mirrorChild.LookAt(mirrorPlane);
+        m_mirrorCamTransform.LookAt(m_mirrorPlaneTransform);
 
         MirrorImp1();
     }
@@ -81,11 +81,11 @@ public class MirrorCameraPosition : MonoBehaviour
         float inputX = player.position.x;
         float inputZ = player.position.z;
 
-        float YRotation = mirrorPlane.rotation.eulerAngles.y;
+        float YRotation = m_mirrorPlaneTransform.rotation.eulerAngles.y;
         float a = Mathf.Cos(YRotation * Mathf.Deg2Rad);  // change in x direction
         float b = Mathf.Sin(YRotation * Mathf.Deg2Rad);  // change in z direction
 
-        Vector2 xz = RelfectOverLine(inputX, inputZ, a, b, mirrorPlane.position.x, mirrorPlane.position.z);
+        Vector2 xz = RelfectOverLine(inputX, inputZ, a, b, m_mirrorPlaneTransform.position.x, m_mirrorPlaneTransform.position.z);
         transform.position = new Vector3(xz.x, playerCamera.position.y, xz.y);
     }
 
@@ -99,7 +99,7 @@ public class MirrorCameraPosition : MonoBehaviour
         displacement = displacement + Vector3.Dot(playerToMirror, otherMirrorPlane.right) * transform.right;
         displacement += Vector3.Dot(playerToMirror, otherMirrorPlane.forward) * transform.forward;
 
-        transform.position = displacement + mirrorPlane.position;
+        transform.position = displacement + m_mirrorPlaneTransform.position;
 
         // Fix the camera y position to the player camere
         transform.position = new Vector3(transform.position.x, playerCamera.position.y, transform.position.z);
@@ -111,8 +111,8 @@ public class MirrorCameraPosition : MonoBehaviour
 
         //Using Vertical FOV axis
         //Edit FOV
-        float h = Mathf.Abs(transform.position.z - mirrorPlane.position.z);
-        float dc = Mathf.Abs(transform.position.x - mirrorPlane.position.x);
+        float h = Mathf.Abs(transform.position.z - m_mirrorPlaneTransform.position.z);
+        float dc = Mathf.Abs(transform.position.x - m_mirrorPlaneTransform.position.x);
         float d = Mathf.Sqrt(h * h + dc * dc);
         mirrorCam.fieldOfView = Mathf.Rad2Deg * 2 * Mathf.Atan(mirrorHeight / (2 * d));
     }
@@ -126,8 +126,8 @@ public class MirrorCameraPosition : MonoBehaviour
         //edit FOV
         //Using Vertical FOV axis
         //Edit FOV
-        float h = Mathf.Abs(transform.position.z - mirrorPlane.position.z);
-        float dc = Mathf.Abs(transform.position.x - mirrorPlane.position.x);
+        float h = Mathf.Abs(transform.position.z - m_mirrorPlaneTransform.position.z);
+        float dc = Mathf.Abs(transform.position.x - m_mirrorPlaneTransform.position.x);
         float d = Mathf.Sqrt(h * h + dc * dc);
         mirrorCam.fieldOfView = Mathf.Rad2Deg * 2 * Mathf.Atan(mirrorHeight / (2 * d));
 
@@ -149,8 +149,8 @@ public class MirrorCameraPosition : MonoBehaviour
         
         //Using Horizontal FOV axis
         //edit FOV
-        float h = Mathf.Abs(transform.position.z - mirrorPlane.position.z);
-        float dc = Mathf.Abs(transform.position.x - mirrorPlane.position.x);
+        float h = Mathf.Abs(transform.position.z - m_mirrorPlaneTransform.position.z);
+        float dc = Mathf.Abs(transform.position.x - m_mirrorPlaneTransform.position.x);
         float hyp = Mathf.Sqrt((h * h) + ((mirrorWidth / 2 + dc) * (mirrorWidth / 2 + dc)));
         float h2 = Mathf.Sqrt((h * h) + ((dc - (mirrorWidth / 2)) * (dc - (mirrorWidth / 2))));
         mirrorCam.fieldOfView = Mathf.Rad2Deg * Mathf.Acos(((h2 * h2) + (hyp * hyp) - (mirrorWidth * mirrorWidth)) / (2 * h2 * hyp));
