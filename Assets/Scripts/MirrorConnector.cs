@@ -5,8 +5,8 @@ using UnityEngine;
 // Connector object between two mirrors
 public class MirrorConnector : MonoBehaviour
 {
-    public MirrorCameraPosition regularMirror; // Mirror that is in the regular world
-    public MirrorCameraPosition pastMirror; // Mirror in the past world
+    public MirrorPlane regularMirror; // Mirror that is in the regular world
+    public MirrorPlane pastMirror; // Mirror in the past world
 
     private Transform m_player; // Player transform, programmatically selected and updated
     private Transform m_playerCamera;
@@ -44,12 +44,12 @@ public class MirrorConnector : MonoBehaviour
 
         if (GlobalState.GetVar<bool>("isPresent"))
         {
-            pastMirror.SetOppositeCameraPosition(m_player, m_playerCamera, regularMirror.mirrorPlane);
+            pastMirror.SetOppositeCameraPosition(m_player, m_playerCamera, regularMirror.transform);
             regularMirror.ReflectOverMirror(m_player, m_playerCamera);
         }
         else
         {
-            regularMirror.SetOppositeCameraPosition(m_player, m_playerCamera, pastMirror.mirrorPlane);
+            regularMirror.SetOppositeCameraPosition(m_player, m_playerCamera, pastMirror.transform);
             pastMirror.ReflectOverMirror(m_player, m_playerCamera);
         }
     }

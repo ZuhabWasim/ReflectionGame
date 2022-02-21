@@ -8,22 +8,33 @@ public class MirrorPlane : MonoBehaviour
     public bool isDirty = false;
     public Material dirtyMirrorMaterial; // Dirty texture to use for dirty mirrors
 
+    // TODO: generate this automatically
     public Material mirrorMaterial; // the original mirror material (i.e. the reflective one)
-    private Renderer mirrorRenderer; // TODO(dennis): remove this because i hate it
+
+    private Renderer m_mirrorRenderer;
+
+    // Child components of the mirror
+    private MirrorCameraPosition m_mirrorCameraPosition;
 
     // Start is called before the first frame update
     void Start()
     {
-        mirrorRenderer = GetComponent<Renderer>();
-        mirrorMaterial = mirrorRenderer.material;
+        m_mirrorRenderer = GetComponent<Renderer>();
+        m_mirrorCameraPosition = GetComponentInChildren<MirrorCameraPosition>();
+        if (m_mirrorCameraPosition == null)
+        {
+            Debug.LogError("Cannot find MirrorCameraPosition in Mirror " + this.name);
+        }
+
+        mirrorMaterial = m_mirrorRenderer.material;
         if (isDirty)
         {
             // Change the renderer's material to the texture
-            mirrorRenderer.material = dirtyMirrorMaterial;
+            m_mirrorRenderer.material = dirtyMirrorMaterial;
         }
         else
         {
-            mirrorRenderer.material = mirrorMaterial;
+            m_mirrorRenderer.material = mirrorMaterial;
         }
     }
 
@@ -38,8 +49,18 @@ public class MirrorPlane : MonoBehaviour
         if (isDirty)
         {
             isDirty = false;
-            mirrorRenderer.material = mirrorMaterial;
+            m_mirrorRenderer.material = mirrorMaterial;
             // mirrorMaterial.Lerp( dirtyMirrorMaterial, mirrorMaterial, 0 ); TODO: Fix this, doesn't work atm
         }
+    }
+
+    public void ReflectOverMirror(Transform player, Transform playerCamera)
+    {
+        m_mirrorCameraPosition.ReflectOverMirror(player, playerCamera);
+    }
+
+    public void SetOppositeCameraPosition(Transform player, Transform playerCamera, Transform otherMirrorPlane)
+    {
+        m_mirrorCameraPosition.SetOppositeCameraPosition(player, playerCamera, otherMirrorPlane);
     }
 }
