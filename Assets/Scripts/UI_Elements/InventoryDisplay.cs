@@ -10,7 +10,7 @@ public class InventoryDisplay : MonoBehaviour
     void Start()
     {
         InventoryBar.SetActive(false);
-        GameObject text = InventoryBar.transform.GetChild(2).gameObject;
+        GameObject text = InventoryBar.transform.GetChild(3).gameObject;
         text.SetActive(false);
     }
     public void openInventory()
@@ -23,29 +23,29 @@ public class InventoryDisplay : MonoBehaviour
     }
     public void addItem(PickupItem item, int idx)
     {
-        GameObject slot = InventoryBar.transform.GetChild(0).GetChild(idx).gameObject;
+        GameObject slot = InventoryBar.transform.GetChild(1).GetChild(idx).gameObject;
         RawImage img = slot.transform.GetChild(0).GetComponent<RawImage>();
         img.enabled = true;
         img.texture = item.img;
     }
     public void dropItem(int idx)
     {
-        GameObject slot = InventoryBar.transform.GetChild(0).GetChild(idx).gameObject;
+        GameObject slot = InventoryBar.transform.GetChild(1).GetChild(idx).gameObject;
         RawImage img = slot.transform.GetChild(0).GetComponent<RawImage>();
         img.enabled = false;
     }
     public void SpinInventory(int spin)
     {
-        Transform background = InventoryBar.transform.GetChild(0);
-        background.Rotate(0, 0, spin * 40);
+        Transform background = InventoryBar.transform.GetChild(1);
+        background.Rotate(0, 0, spin * 45);
     }
     public void showItemName(string itemName){
-        GameObject text = InventoryBar.transform.GetChild(2).gameObject;
+        GameObject text = InventoryBar.transform.GetChild(3).gameObject;
         text.SetActive(true);
         text.transform.GetComponent<Text>().text = itemName;
     }
     public void hideItemName(){
-        GameObject text = InventoryBar.transform.GetChild(2).gameObject;
+        GameObject text = InventoryBar.transform.GetChild(3).gameObject;
         text.SetActive(false);
     }
 }
