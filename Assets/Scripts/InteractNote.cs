@@ -5,11 +5,9 @@ using UnityEngine;
 public class InteractNote : MonoBehaviour
 {
     public AudioClip voiceline;
-    private AudioSource m_dialogueSource;
     private GameObject m_player;
     void Start()
     {
-        m_dialogueSource = GameObject.FindGameObjectWithTag( Globals.Tags.DIALOGUE_SOURCE ).GetComponent<AudioSource>();
         m_player = GameObject.FindGameObjectWithTag( Globals.Tags.PLAYER );
         EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.INTERACT_KEY ), OnUserInteract );
     }
@@ -22,19 +20,13 @@ public class InteractNote : MonoBehaviour
         if ( Physics.Raycast( camera.position, camera.forward, out hit, Globals.Misc.MAX_INTERACT_DISTANCE )
             && hit.collider.gameObject.Equals( this.gameObject ) )
         {
-            PlayerController.PlaySound( "paper_unravel" );
+            AudioPlayer.Play( Globals.AudioFiles.PAPER_UNRAVEL, Globals.Tags.MAIN_SOURCE );
             HandleInteract();
         }
     }
 
     void HandleInteract()
     {
-        if ( m_dialogueSource.isPlaying )
-        {
-            m_dialogueSource.Stop();
-        }
-
-        m_dialogueSource.clip = voiceline;
-        m_dialogueSource.Play();
+        AudioPlayer.Play( voiceline, Globals.Tags.DIALOGUE_SOURCE );
     }
 }
