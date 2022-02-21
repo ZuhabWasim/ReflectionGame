@@ -10,7 +10,6 @@ public class MirrorCameraPosition : MonoBehaviour
     private float mirrorWidth;
     private float mirrorHeight;
 
-    public Transform playerBody;
     public Transform mirrorPlane;
     public Transform mirrorChild;
 
@@ -20,7 +19,6 @@ public class MirrorCameraPosition : MonoBehaviour
     void Start()
     {
         mirrorCam = mirrorChild.GetComponent<Camera>();
-        _playerCameraTransform = playerBody.GetComponentInChildren<Camera>().transform;
 
         //mirrorRenderer = mirrorPlane.GetComponent<Renderer>();
         mirrorWidth = Mathf.Abs(mirrorPlane.localScale.x) * 10f;
@@ -78,23 +76,23 @@ public class MirrorCameraPosition : MonoBehaviour
     }
 
     // Reflects the camera over its parent mirror plane line
-    public void ReflectOverMirror()
+    public void ReflectOverMirror(Transform player, Transform playerCamera)
     {
-        float inputX = playerBody.position.x;
-        float inputZ = playerBody.position.z;
+        float inputX = player.position.x;
+        float inputZ = player.position.z;
 
         float YRotation = mirrorPlane.rotation.eulerAngles.y;
         float a = Mathf.Cos(YRotation * Mathf.Deg2Rad);  // change in x direction
         float b = Mathf.Sin(YRotation * Mathf.Deg2Rad);  // change in z direction
 
         Vector2 xz = RelfectOverLine(inputX, inputZ, a, b, mirrorPlane.position.x, mirrorPlane.position.z);
-        transform.position = new Vector3(xz.x, _playerCameraTransform.position.y, xz.y);
+        transform.position = new Vector3(xz.x, playerCamera.position.y, xz.y);
     }
 
     // Sets the camera position based on the opposite camera. Used for the past/present reflections
-    public void SetOppositeCameraPosition(Transform otherMirrorPlane)
+    public void SetOppositeCameraPosition(Transform player, Transform playerCamera, Transform otherMirrorPlane)
     {
-        Vector3 playerToMirror = otherMirrorPlane.position - playerBody.position;
+        Vector3 playerToMirror = otherMirrorPlane.position - player.position; // Relative to the mirror
 
         // Note: the up/right vectors are in local coordinates
         Vector3 displacement = Vector3.Dot(playerToMirror, otherMirrorPlane.up) * transform.up;
@@ -104,7 +102,7 @@ public class MirrorCameraPosition : MonoBehaviour
         transform.position = displacement + mirrorPlane.position;
 
         // Fix the camera y position to the player camere
-        transform.position = new Vector3(transform.position.x, _playerCameraTransform.position.y, transform.position.z);
+        transform.position = new Vector3(transform.position.x, playerCamera.position.y, transform.position.z);
     }
 
     void MirrorImp1()
