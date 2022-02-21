@@ -80,6 +80,14 @@ public class Globals
         public static string INTERACTABLES_ENABLED = "interactables_enabled";
         public static string IS_PRESENT_WORLD = "isPresent";
     }
+
+    public class AudioFiles
+    {
+        public static string PAPER_UNRAVEL = "paper_unravel";
+        public static string OBJECT_OBTAINED = "object_obtained";
+        public static string NON_INTERACTABLE = "non_interactable";
+        public static string MAIN_DOOR = "main_door";
+    }
 }
 
 public enum ItemPickupResult
