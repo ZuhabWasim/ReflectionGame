@@ -2274,10 +2274,6 @@ MonoBehaviour:
   jumpForce: 5
   jumpKey: 32
   gravityAccel: 15
-  openInventoryKey: 304
-  pickupKey: 101
-  dropKey: 103
-  interactKey: 102
   pickupDistance: 2
   dropDistance: 1.25
 --- !u!114 &6437057603233689076
