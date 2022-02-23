@@ -105,6 +105,11 @@ public class MirrorCameraPosition : MonoBehaviour
         transform.position = new Vector3(transform.position.x, playerCamera.position.y, transform.position.z);
     }
 
+    public void SetMirrorRenderTexture(RenderTexture texture)
+    {
+        mirrorCam.targetTexture = texture;
+    }
+
     void MirrorImp1()
     {
         //For some reason this looks okay even though it makes no modifications to the mirror's aspect ratio
