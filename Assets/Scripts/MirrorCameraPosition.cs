@@ -107,6 +107,7 @@ public class MirrorCameraPosition : MonoBehaviour
 
     public void SetMirrorRenderTexture(RenderTexture texture)
     {
+        mirrorCam = GetComponentInChildren<Camera>();
         mirrorCam.targetTexture = texture;
     }
 

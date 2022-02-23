@@ -17,6 +17,7 @@ public class MirrorPlane : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        m_mirrorCameraPosition = GetComponentInChildren<MirrorCameraPosition>();
         if (m_mirrorCameraPosition == null)
         {
             Debug.LogError("Cannot find MirrorCameraPosition in Mirror " + this.name);
@@ -68,7 +69,14 @@ public class MirrorPlane : MonoBehaviour
     public void SetCameraRenderTexture(RenderTexture texture)
     {
         m_mirrorCameraPosition = GetComponentInChildren<MirrorCameraPosition>();
-        m_mirrorCameraPosition.SetMirrorRenderTexture(texture);
+        if (m_mirrorCameraPosition == null)
+        {
+            Debug.LogError("Cannot find MirrorCameraPosition in Mirror " + this.name);
+        }
+        else
+        {
+            m_mirrorCameraPosition.SetMirrorRenderTexture(texture);
+        }   
     }
 
     // Sets what texture the mirror displays. Used in conjunction with past mirrors
