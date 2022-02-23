@@ -32,11 +32,11 @@ public class Inventory
                 item.OnPickup();
                 inventoryDisplay.addItem(item, pos);
                 inventoryDisplay.showItemName(item.itemName);
-                PlayerController.PlaySound( "object_obtained" );
+                AudioPlayer.Play( Globals.AudioFiles.OBJECT_OBTAINED, Globals.Tags.MAIN_SOURCE );
                 return ItemPickupResult.SUCCESS;
             }
         }
-        PlayerController.PlaySound( "non_interactable" );
+        AudioPlayer.Play( Globals.AudioFiles.NON_INTERACTABLE, Globals.Tags.MAIN_SOURCE );
         return ItemPickupResult.FAIL_INVENTORY_FULL;
     }
 

@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     private const float PITCH_MIN = -88.0f;
 
     private const float FOOT_STEP_INTERVAL = 2.2f;
+    private const string FOOTSTEP_AUDIO_SOURCE_NAME = "FootStepSource";
     // ===== CONSTANTS END ===
     
     // Camera vars
@@ -27,12 +28,12 @@ public class PlayerController : MonoBehaviour
     private Inventory m_inventory;
     private bool iventoryOpened = false;
     private ButtonPromptDisplay bp;
+    private AudioSource m_footstepSource;
     
     public float pickupDistance = 2.0f;
     public float dropDistance = 1.25f;
     
     // Player sounds
-    private AudioSource m_stepSource; // For footsteps and interaction sound effects.
     private float stepCounter = FOOT_STEP_INTERVAL;
     private bool stepRightFoot = true;
     
@@ -46,11 +47,11 @@ public class PlayerController : MonoBehaviour
 
         m_inventory = Inventory.GetInstance();
         bp = GameObject.Find("UI_Canvas").GetComponent<ButtonPromptDisplay>();
-
-        m_stepSource = GameObject.Find("FootStepSource").GetComponent<AudioSource>();
-        PlaySound( "main_door" );
+        m_footstepSource = GameObject.Find( FOOTSTEP_AUDIO_SOURCE_NAME ).GetComponent<AudioSource>();
 
         RegisterEventListeners();
+        RegisterAudioSources();
+        AudioPlayer.Play( Globals.AudioFiles.MAIN_DOOR, Globals.Tags.MAIN_SOURCE );
     }
 
     void RegisterEventListeners()
@@ -63,19 +64,13 @@ public class PlayerController : MonoBehaviour
         // keyup events
         EventManager.Sub( InputManager.GetKeyUpEventName( Keybinds.INVENTORY_KEY ), HandleCloseInventory );
     }
-    
-    public static void PlaySound(string soundEffectPath)
-    {
-        AudioClip soundEffect = Utilities.AssetLoader.GetSFX( soundEffectPath );
-        AudioSource mainSource = GameObject.FindGameObjectWithTag( Globals.Tags.MAIN_SOURCE ).GetComponent<AudioSource>();
-        if ( mainSource.isPlaying )
-        {
-            mainSource.Stop();
-        }
-        mainSource.clip = soundEffect;
-        mainSource.Play();
-    }
 
+    void RegisterAudioSources()
+    {
+        AudioPlayer.RegisterAudioPlayer( Globals.Tags.MAIN_SOURCE, GameObject.FindGameObjectWithTag( Globals.Tags.MAIN_SOURCE ).GetComponent<AudioSource>() );
+        AudioPlayer.RegisterAudioPlayer( Globals.Tags.DIALOGUE_SOURCE, GameObject.FindGameObjectWithTag( Globals.Tags.DIALOGUE_SOURCE ).GetComponent<AudioSource>() );
+    }
+    
     // Update is called once per frame
     void Update()
     {
@@ -145,13 +140,13 @@ public class PlayerController : MonoBehaviour
                 // Change pitch on right or left footstep
                 if (stepRightFoot)
                 {
-                    m_stepSource.pitch = 1.0f;
+                    m_footstepSource.pitch = 1.0f;
                 }
                 else
                 {
-                    m_stepSource.pitch = 0.85f;
+                    m_footstepSource.pitch = 0.85f;
                 }
-                m_stepSource.PlayOneShot(m_stepSource.clip);
+                m_footstepSource.PlayOneShot( m_footstepSource.clip );
                 stepCounter = FOOT_STEP_INTERVAL;
             }
             else

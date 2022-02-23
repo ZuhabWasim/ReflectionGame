@@ -3,16 +3,36 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-/*
-    public class AssetPaths
+struct AssetCacheKey
+{
+    string name;
+    System.Type assetType;
+
+    public AssetCacheKey( string name, System.Type type )
     {
-        public static string MAIN_DOOR_SOUND = "Assets/Audio/Section 1/main_door.wav";
-        public static string ITEM_OBTAINED_SOUND = "Assets/Audio/object_obtained.wav";
-        public static string NON_INTERACTABLE_SOUND = "Assets/Audio/non_interactable.wav";
-        public static string PAPER_UNRAVELING_SOUND = "Assets/Audio/paper_unravel.wav"; // For notes
-        
+        this.name = name;
+        this.assetType = type;
     }
-*/
+}
+
+struct AssetCacheValue
+{
+    public readonly string assetPath;
+    public readonly Object asset;
+    bool isValid;
+
+    public bool IsValid()
+    {
+        return isValid;
+    }
+
+    public AssetCacheValue( string path, Object asset )
+    {
+        this.assetPath = path;
+        this.asset = asset;
+        this.isValid = true;
+    }
+}
 
 namespace Utilities
 {
@@ -21,6 +41,7 @@ namespace Utilities
         private static char SEPARATOR = '/';
         private static string ASSETS_FOLDER = "Assets";
         private static string SFX_ROOT_FOLDER = "Audio";
+        private static Hashtable m_loadedAssetCache = new Hashtable();
 
         private static string JoinPath( params string[] filesAndFolders )
         {
@@ -45,8 +66,39 @@ namespace Utilities
             return AssetDatabase.FindAssets( assetName, new[] { folder } );
         }
 
+        private static AssetCacheValue GetCachedAsset( string name, System.Type type )
+        {
+            AssetCacheKey key = new AssetCacheKey( name, type );
+            if ( m_loadedAssetCache.ContainsKey( key ) )
+            {
+                AssetCacheValue value = (AssetCacheValue) m_loadedAssetCache[ key ];
+                return value;
+            }
+
+            return default( AssetCacheValue );
+        }
+
+        private static void CacheAsset( string assetName, string assetPath, System.Type assetType, Object asset )
+        {
+            AssetCacheKey key = new AssetCacheKey( assetName, assetType );
+            if ( m_loadedAssetCache.ContainsKey( key ) )
+            {
+                // already exists in cache
+                return;
+            }
+
+            AssetCacheValue value = new AssetCacheValue( assetPath, asset );
+            m_loadedAssetCache.Add( key, value );
+        }
+
         public static AudioClip GetSFX( string assetName )
         {
+            AssetCacheValue cachedAsset = GetCachedAsset( assetName, typeof( AudioClip ) );
+            if ( cachedAsset.IsValid() )
+            {
+                return (AudioClip) cachedAsset.asset;
+            }
+
             string[] matchingAssetGUIDs = SearchAssets( assetName, GetSoundAssetsFolder() );
             if ( matchingAssetGUIDs.Length == 0 )
             {
@@ -59,7 +111,9 @@ namespace Utilities
             }
 
             string finalAssetPath = AssetDatabase.GUIDToAssetPath( matchingAssetGUIDs[0] );
-            return AssetDatabase.LoadAssetAtPath<AudioClip>( finalAssetPath );
+            AudioClip asset = AssetDatabase.LoadAssetAtPath<AudioClip>( finalAssetPath );
+            CacheAsset( assetName, finalAssetPath, typeof( AudioClip ), asset );
+            return asset;
         }
     }
 }
