@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
     public float gravityAccel;
 
     private Inventory m_inventory;
+    private bool iventoryOpened = false;
     private ButtonPromptDisplay bp;
     private AudioSource m_footstepSource;
     
@@ -61,7 +62,7 @@ public class PlayerController : MonoBehaviour
         EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.INVENTORY_KEY ), HandleOpenInventory );
 
         // keyup events
-        EventManager.Sub( InputManager.GetKeyUpEventName( Keybinds.INVENTORY_KEY ), m_inventory.CloseInventory );
+        EventManager.Sub( InputManager.GetKeyUpEventName( Keybinds.INVENTORY_KEY ), HandleCloseInventory );
     }
 
     void RegisterAudioSources()
@@ -88,6 +89,12 @@ public class PlayerController : MonoBehaviour
 
         transform.Rotate( Vector3.up * input.x * sensitivity );
         DisplayInteractionPrompts();
+        if (iventoryOpened) {
+            int spin = (int) Input.mouseScrollDelta.y;
+            if (spin != 0) {
+                m_inventory.SpinInventory(spin);
+            }
+        }
     }
 
     public bool IsGrounded()
@@ -162,10 +169,12 @@ public class PlayerController : MonoBehaviour
     void HandleOpenInventory()
     {
         m_inventory.openInventory();
-        int spin = (int) Input.mouseScrollDelta.y;
-        if (spin != 0) {
-            m_inventory.SpinInventory(spin);
-        }
+        iventoryOpened = true;
+    }
+    void HandleCloseInventory()
+    {
+        m_inventory.CloseInventory();
+        iventoryOpened = false;
     }
 
     void DisplayInteractionPrompts()
