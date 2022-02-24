@@ -57,13 +57,13 @@ public class InterpolateTransform : MonoBehaviour
 
     private void FinalizePosition()
     {
-        this.gameObject.transform.position = m_moveDir == MoveDirection.END ? endPostion : startPosition;
+        this.gameObject.transform.localPosition = m_moveDir == MoveDirection.END ? endPostion : startPosition;
         m_moveDir = m_moveDir == MoveDirection.END ? MoveDirection.START : MoveDirection.END;
     }
 
     private void FinalizeRotation()
     {
-        this.gameObject.transform.rotation = Quaternion.Euler( m_rotDir == RotDirection.END ? endRotation : startRotation );
+        this.gameObject.transform.localRotation = Quaternion.Euler( m_rotDir == RotDirection.END ? endRotation : startRotation );
         m_rotDir = m_rotDir == RotDirection.END ? RotDirection.START : RotDirection.END;
     }
 
@@ -95,11 +95,11 @@ public class InterpolateTransform : MonoBehaviour
 
         if ( m_moveDir == MoveDirection.END )
         {
-            this.gameObject.transform.position = Vector3.Lerp( startPosition, endPostion, percentComplete );
+            this.gameObject.transform.localPosition = Vector3.Lerp( startPosition, endPostion, percentComplete );
         }
         else
         {
-            this.gameObject.transform.position = Vector3.Lerp( endPostion, startPosition, percentComplete );
+            this.gameObject.transform.localPosition = Vector3.Lerp( endPostion, startPosition, percentComplete );
         }
         
         return percentComplete;
@@ -111,11 +111,11 @@ public class InterpolateTransform : MonoBehaviour
 
         if ( m_rotDir == RotDirection.END )
         {
-            this.gameObject.transform.rotation =  Quaternion.Euler( Vector3.Lerp( startRotation, endRotation, percentComplete ) );
+            this.gameObject.transform.localRotation =  Quaternion.Euler( Vector3.Lerp( startRotation, endRotation, percentComplete ) );
         }
         else
         {
-            this.gameObject.transform.rotation = Quaternion.Euler( Vector3.Lerp( endRotation, startRotation, percentComplete ) );
+            this.gameObject.transform.localRotation = Quaternion.Euler( Vector3.Lerp( endRotation, startRotation, percentComplete ) );
         }
 
         return percentComplete;
