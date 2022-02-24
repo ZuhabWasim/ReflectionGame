@@ -12,7 +12,7 @@ public class AudioPlayer
         Assert.IsNotNull( source, "Tried to register an invalid audio source!" );
         if ( m_audioPlayers.ContainsKey( identifier ) )
         {
-            Debug.LogWarning( "Tried to register multiple audio source with id '{0}'!" );
+            Debug.LogWarningFormat( "Tried to register multiple audio source with id '{0}'!", identifier );
             return;
         }
 

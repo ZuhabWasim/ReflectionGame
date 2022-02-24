@@ -22,12 +22,7 @@ public class Globals
     private static void UpdateWorldOnTeleport()
     {
         GlobalState.SetVar<bool>( Globals.Vars.IS_PRESENT_WORLD, !GlobalState.GetVar<bool>( Globals.Vars.IS_PRESENT_WORLD ) );
-        bool isPresent = GlobalState.GetVar<bool>( Globals.Vars.IS_PRESENT_WORLD );
-        // !! This is broken rn
-        // GameObject sun = GameObject.Find( "Sun" );
-        // GameObject moon =  GameObject.Find( "Moon" );
-        // moon.SetActive( isPresent );
-        // sun.SetActive( !isPresent );
+        // bool isPresent = GlobalState.GetVar<bool>( Globals.Vars.IS_PRESENT_WORLD );
     }   
 
     public class Events
@@ -88,6 +83,11 @@ public class Globals
         public static string NON_INTERACTABLE = "non_interactable";
         public static string MAIN_DOOR = "main_door";
     }
+
+    public class EnvironmentParams
+    {
+        public static SunConfig presentSunConfig = new SunConfig( 10000.0f, 10000.0f );
+    }
 }
 
 public enum ItemPickupResult
@@ -104,3 +104,15 @@ public enum Keybinds
     DROP_KEY = KeyCode.G,
     INVENTORY_KEY = KeyCode.LeftShift
 }
+
+public struct SunConfig
+{
+    public readonly float colorTemp; // temp in K
+    public readonly float intensity;
+
+    public SunConfig( float temp, float intensity )
+    {
+        colorTemp = temp;
+        this.intensity = intensity;
+    }
+};
