@@ -14,6 +14,13 @@ enum RotDirection
     END
 }
 
+public enum InterpolateTransformTriggerMethod
+{
+    USER_INTERACT = 0,
+    SCRIPT,
+    BOTH
+}
+
 public class InterpolateTransform : MonoBehaviour
 {
     public Vector3 startPosition;
@@ -26,6 +33,7 @@ public class InterpolateTransform : MonoBehaviour
     public bool loop = false;
     [Tooltip( "Duration to interpolate the over (in seconds)" )]
     public float interpDuration;
+    public InterpolateTransformTriggerMethod triggerMethod = InterpolateTransformTriggerMethod.USER_INTERACT;
     private float m_elapsedTime = 0;
     private bool m_isMoving = false;
     private MoveDirection m_moveDir = MoveDirection.END;
@@ -41,6 +49,10 @@ public class InterpolateTransform : MonoBehaviour
 
     void OnUserInteract()
     {
+        if ( triggerMethod == InterpolateTransformTriggerMethod.SCRIPT )
+        {
+            return;
+        }
         if ( this.m_isMoving )
         {
             return;
@@ -53,6 +65,15 @@ public class InterpolateTransform : MonoBehaviour
         {
             this.m_isMoving = true;
         }
+    }
+
+    public void TriggerMotion()
+    {
+        if ( triggerMethod == InterpolateTransformTriggerMethod.USER_INTERACT )
+        {
+            return;
+        }
+        this.m_isMoving = true;
     }
 
     private void FinalizePosition()
