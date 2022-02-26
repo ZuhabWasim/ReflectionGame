@@ -64,6 +64,8 @@ public class MirrorConnector : MonoBehaviour
         }
 
         m_active = active;
+
+        EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.INTERACT_KEY ), HandleUserTeleport );
     }
 
     // Update is called once per frame
@@ -82,7 +84,6 @@ public class MirrorConnector : MonoBehaviour
             Debug.Log("Can teleport");
 
             m_canTeleport = true;
-            HandleUserTeleport();
         }
         else
         {
@@ -113,9 +114,14 @@ public class MirrorConnector : MonoBehaviour
 
     private void HandleUserTeleport()
     {
-        bool pressedInteract = Input.GetKeyDown(KeyCode.M); // TODO: don't hardcode this, use input system.
+        if (!m_canTeleport)
+        {
+            return;
+        }
+
+        // bool pressedInteract = Input.GetKeyDown(KeyCode.M); // TODO: don't hardcode this, use input system.
         bool teleporting = GlobalState.GetVar<bool>(Globals.Vars.TELEPORTING);
-        if (pressedInteract && !teleporting)
+        if (!teleporting)
         {
             GlobalState.SetVar<bool>(Globals.Vars.TELEPORTING, true);
             StartCoroutine(Teleport());
