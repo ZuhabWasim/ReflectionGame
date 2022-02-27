@@ -29,7 +29,7 @@ public class Inventory
             int pos = (int) (cursor + i * Math.Pow(-1.0, slot) + inventorySize) % inventorySize; 
             if (m_items[pos] == null){
                 m_items[pos] = item;
-                item.OnPickup();
+                item.OnUserInteract();
                 inventoryDisplay.addItem(item, pos);
                 inventoryDisplay.showItemName(item.itemName);
                 AudioPlayer.Play( Globals.AudioFiles.OBJECT_OBTAINED, Globals.Tags.MAIN_SOURCE );

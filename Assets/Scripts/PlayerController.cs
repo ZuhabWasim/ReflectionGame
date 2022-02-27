@@ -26,11 +26,13 @@ public class PlayerController : MonoBehaviour
     public float gravityAccel;
 
     private Inventory m_inventory;
-    private bool iventoryOpened = false;
+    private bool inventoryOpened = false;
+
+    public InteractableAbstract targetObject;
     private ButtonPromptDisplay bp;
     private AudioSource m_footstepSource;
     
-    public float pickupDistance = 2.0f;
+    //public float pickupDistance = 2.0f;
     public float dropDistance = 1.25f;
     
     // Player sounds
@@ -46,6 +48,7 @@ public class PlayerController : MonoBehaviour
         m_collider = GetComponent<Collider>();
 
         m_inventory = Inventory.GetInstance();
+        targetObject = null;
         bp = GameObject.Find("UI_Canvas").GetComponent<ButtonPromptDisplay>();
         m_footstepSource = GameObject.Find( FOOTSTEP_AUDIO_SOURCE_NAME ).GetComponent<AudioSource>();
 
@@ -57,7 +60,7 @@ public class PlayerController : MonoBehaviour
     void RegisterEventListeners()
     {
         // keydown events
-        EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.PICKUP_KEY ), HandlePickup );
+        EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.INTERACT_KEY ), HandleInteractPress);
         EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.DROP_KEY ), HandleDrop );
         EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.INVENTORY_KEY ), HandleOpenInventory );
 
@@ -88,8 +91,11 @@ public class PlayerController : MonoBehaviour
         playerCamera.localEulerAngles = Vector3.right * pitch;
 
         transform.Rotate( Vector3.up * input.x * sensitivity );
+
+        LookAtObject();
         DisplayInteractionPrompts();
-        if (iventoryOpened) {
+
+        if (inventoryOpened) {
             int spin = (int) Input.mouseScrollDelta.y;
             if (spin != 0) {
                 m_inventory.SpinInventory(spin);
@@ -166,64 +172,68 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void HandleInteractPress()
+    {
+        if ( targetObject != null)
+        {
+            if (targetObject.GetItemType() == InteractableAbstract.ItemType.INTERACT
+                || targetObject.GetItemType() == InteractableAbstract.ItemType.MOVE
+                || targetObject.GetItemType() == InteractableAbstract.ItemType.OPEN
+                || targetObject.GetItemType() == InteractableAbstract.ItemType.CLOSE)
+            {
+                targetObject.OnUserInteract();
+
+            } else if (targetObject.GetItemType() == InteractableAbstract.ItemType.PICKUP)
+            {
+                PickupItem item = (PickupItem)targetObject;
+                ItemPickupResult res = Inventory.GetInstance().PickupItem(ref item);
+                if (res != ItemPickupResult.SUCCESS)
+                {
+                    Debug.Log("Inventory failed to store item");
+                }
+            }
+        }
+    }
+
     void HandleOpenInventory()
     {
         m_inventory.openInventory();
-        iventoryOpened = true;
+        inventoryOpened = true;
     }
     void HandleCloseInventory()
     {
         m_inventory.CloseInventory();
-        iventoryOpened = false;
+        inventoryOpened = false;
+    }
+
+    void LookAtObject()
+    {
+        RaycastHit hitRes;
+        bool hit = Physics.Raycast(playerCamera.position, playerCamera.forward, out hitRes, Globals.Misc.MAX_INTERACT_DISTANCE);
+        if (hit && hitRes.collider.gameObject.GetComponent<InteractableAbstract>() != null)
+        {
+            targetObject = hitRes.collider.gameObject.GetComponent<InteractableAbstract>();
+        } else
+        {
+            targetObject = null;
+        }
     }
 
     void DisplayInteractionPrompts()
     {
-        //TODO check pickup/interactable object name to get proper button prompt
-        RaycastHit hitRes;
-        bool hit = Physics.Raycast(playerCamera.position, playerCamera.forward, out hitRes, pickupDistance);
-        bp.hidePrompt();
-        if (hit && hitRes.collider.gameObject.tag == Globals.Tags.PICKUP_ITEM)
-        {
-            bp.SetButton('e');
-            bp.showPrompt(Globals.UIStrings.PICKUP_HANDKERCHIEF);
-        } else if (hit && hitRes.collider.gameObject.tag == Globals.Tags.INTERACTABLE)
+        //TODO check pickup/interactable
+        if (targetObject != null && targetObject.WillDisplayPrompt() == true)
         {
             bp.SetButton('f');
-            if (hitRes.collider.gameObject.name == "Drawer")
-            {
-                bp.showPrompt(Globals.UIStrings.INTERACT_DRAWER);
-            } else if (hitRes.collider.gameObject.name == "Switch")
-            {
-                bp.showPrompt(Globals.UIStrings.INTERACT_SWITCH);
-            }else if (hitRes.collider.gameObject.name == "IntroNote")
-            {
-                bp.showPrompt(Globals.UIStrings.INTERACT_NOTE);
-            }
-            else if (hitRes.collider.gameObject.name == "Mirror" && m_inventory.GetSelectedItem().Equals("Handkerchief"))
-            {
-                bp.showPrompt(Globals.UIStrings.USE_HANDKERCHIEF);
-            }
+            bp.showPrompt( targetObject.GetPromptText() );
+            return;
         }
-    }
-
-    void HandlePickup()
-    {
-        RaycastHit hitRes;
-        if ( Physics.Raycast( playerCamera.position, playerCamera.forward, out hitRes, pickupDistance ) &&
-            hitRes.collider.gameObject.tag == Globals.Tags.PICKUP_ITEM )
-        {
-            PickupItem item = hitRes.collider.gameObject.GetComponent<PickupItem>();
-            ItemPickupResult res = Inventory.GetInstance().PickupItem( ref item );
-            if ( res != ItemPickupResult.SUCCESS )
-            {
-                Debug.Log( "Inventory failed to store item" );
-            }
-        }
+        bp.hidePrompt();
     }
 
     void HandleDrop()
     {
+        //Deprecated??
         if ( !Physics.Raycast( playerCamera.position, playerCamera.forward, dropDistance - 0.1f )
                 && Inventory.GetInstance().DropItem( playerCamera.position + playerCamera.forward * dropDistance ) )
         {

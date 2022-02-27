@@ -21,7 +21,7 @@ public enum InterpolateTransformTriggerMethod
     BOTH
 }
 
-public class InterpolateTransform : MonoBehaviour
+public class InterpolateTransform : InteractableAbstract
 {
     public Vector3 startPosition;
     public Vector3 endPostion;
@@ -39,15 +39,12 @@ public class InterpolateTransform : MonoBehaviour
     private MoveDirection m_moveDir = MoveDirection.END;
     private RotDirection m_rotDir = RotDirection.END;
     private const float INTERP_DELTA = 0.05f;
-    private GameObject m_player;
 
     void Start()
     {
-        m_player = GameObject.FindGameObjectWithTag( Globals.Tags.PLAYER );
-        EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.INTERACT_KEY ), OnUserInteract );
     }
 
-    void OnUserInteract()
+    public override void OnUserInteract()
     {
         if ( triggerMethod == InterpolateTransformTriggerMethod.SCRIPT )
         {
@@ -57,14 +54,16 @@ public class InterpolateTransform : MonoBehaviour
         {
             return;
         }
-        
-        Transform camera = m_player.GetComponent<PlayerController>().playerCamera;
-        RaycastHit hit;
-        if ( Physics.Raycast( camera.position, camera.forward, out hit, Globals.Misc.MAX_INTERACT_DISTANCE )
-            && hit.collider.gameObject.Equals( this.gameObject ) )
+
+        if (myType == ItemType.OPEN)
         {
-            this.m_isMoving = true;
+            SetType(ItemType.CLOSE);
+        } else if (myType == ItemType.CLOSE)
+        {
+            SetType(ItemType.OPEN);
         }
+
+        this.m_isMoving = true;
     }
 
     public void TriggerMotion()
