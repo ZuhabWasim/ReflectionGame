@@ -176,14 +176,7 @@ public class PlayerController : MonoBehaviour
     {
         if ( targetObject != null)
         {
-            if (targetObject.GetItemType() == InteractableAbstract.ItemType.INTERACT
-                || targetObject.GetItemType() == InteractableAbstract.ItemType.MOVE
-                || targetObject.GetItemType() == InteractableAbstract.ItemType.OPEN
-                || targetObject.GetItemType() == InteractableAbstract.ItemType.CLOSE)
-            {
-                targetObject.OnUserInteract();
-
-            } else if (targetObject.GetItemType() == InteractableAbstract.ItemType.PICKUP)
+            if (targetObject.GetItemType() == InteractableAbstract.ItemType.PICKUP)
             {
                 PickupItem item = (PickupItem)targetObject;
                 ItemPickupResult res = Inventory.GetInstance().PickupItem(ref item);
@@ -191,6 +184,9 @@ public class PlayerController : MonoBehaviour
                 {
                     Debug.Log("Inventory failed to store item");
                 }
+            } else
+            {
+                targetObject.ActivateItem();
             }
         }
     }

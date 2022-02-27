@@ -17,6 +17,8 @@ public abstract class InteractableAbstract : MonoBehaviour
     }
     public ItemType myType;
 
+    public AudioClip voiceLine;
+
 
     public void SetType( ItemType typeIn )
     {
@@ -68,6 +70,14 @@ public abstract class InteractableAbstract : MonoBehaviour
         return displayPrompt;
     }
 
+    public void ActivateItem()
+    {
+        if (voiceLine != null)
+        {
+            AudioPlayer.Play(voiceLine, Globals.Tags.DIALOGUE_SOURCE);
+        }
+        OnUserInteract();
+    }
     public abstract void OnUserInteract();
 
 }
