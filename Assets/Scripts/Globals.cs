@@ -59,14 +59,19 @@ public class Globals
 
     public class UIStrings
     {
-        public static string INTERACT_MIRROR = "Interact with Mirror";
+        public static string INTERACT_ITEM = "Interact with ";
+        public static string PICKUP_ITEM = "Pick up ";
+        public static string MOVE_ITEM = "Move ";
+        public static string OPEN_ITEM = "Open ";
+        public static string CLOSE_ITEM = "Close ";
 
-        public static string PICKUP_HANDKERCHIEF = "Pick up Handkerchief";
+        public static string MIRROR_ITEM = "Mirror";
+        public static string DRAWER_ITEM = "Drawer";
+        public static string NOTE_ITEM = "Note";
+
+        public static string HANDKERCHIEF_ITEM = "Handkerchief";
+
         public static string USE_HANDKERCHIEF = "Use Handkerchief";
-
-        public static string INTERACT_DRAWER = "Interact with Drawer";
-        public static string INTERACT_SWITCH = "Interact with Switch";
-        public static string INTERACT_NOTE = "Interact with Note";
     }
 
     public class Vars
@@ -100,7 +105,6 @@ public enum ItemPickupResult
 public enum Keybinds
 {
     INTERACT_KEY = KeyCode.F,
-    PICKUP_KEY = KeyCode.E,
     DROP_KEY = KeyCode.G,
     INVENTORY_KEY = KeyCode.LeftShift
 }

@@ -76,7 +76,7 @@ public class Teleporter : MonoBehaviour
         if ( canTeleport )
         {
             m_canTeleport = true;
-            bp.showPrompt( Globals.UIStrings.INTERACT_MIRROR );
+            bp.showPrompt( Globals.UIStrings.INTERACT_ITEM + Globals.UIStrings.MIRROR_ITEM );
         }
         else
         {
