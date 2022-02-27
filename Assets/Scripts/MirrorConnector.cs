@@ -142,16 +142,34 @@ public class MirrorConnector : MonoBehaviour
 
         if (GlobalState.GetVar<bool>(Globals.Vars.IS_PRESENT_WORLD))
         {
-            return Vector3.Distance(m_player.position, presentMirror.transform.position) < Globals.Misc.MAX_INTERACT_DISTANCE;
+            return PlayerInFrontOfMirror(presentMirror.transform);
         }
         else
         {
-            if (pastMirror != null) // Should not fail
-            {
-                return Vector3.Distance(m_player.position, pastMirror.transform.position) < Globals.Misc.MAX_INTERACT_DISTANCE;
-            }
+            return PlayerInFrontOfMirror(pastMirror.transform);
         }
-        return false;
+    }
+
+    private bool PlayerInFrontOfMirror(Transform mirrorTransform)
+    {
+        // Since mirrors can be rotated in arbitrary direction, this uses the dot product definition
+        // and pythogrean theorem to figure out if the player is in front of a mirror in a square
+        // See: https://mathinsight.org/dot_product
+
+        Vector3 mirrorDirection = new Vector3(mirrorTransform.up.x, 0.0f, mirrorTransform.up.z);
+
+        Vector3 playerPositionRelative = m_player.position - mirrorTransform.position;
+        playerPositionRelative = new Vector3(playerPositionRelative.x, 0.0f, playerPositionRelative.z);
+
+        // Projection of player displacement onto mirror direction
+        float adjacent = Vector3.Dot(playerPositionRelative, mirrorDirection.normalized);
+
+        float playerDist = Vector3.Distance(playerPositionRelative, new Vector3(0.0f, 0.0f, 0.0f));
+        float opposite = playerDist * playerDist - adjacent * adjacent;
+        opposite = Mathf.Sqrt(opposite);
+
+        return 0.0f <= adjacent && adjacent < Globals.Misc.MAX_INTERACT_DISTANCE
+            && opposite < 1.5f; // TODO: IDK how to get the mirror's width.
     }
 
     private bool LookingAtTeleporter()
@@ -210,6 +228,6 @@ public class MirrorConnector : MonoBehaviour
         EventManager.Fire( Globals.Events.TELEPORT );
 
         yield return new WaitForSecondsRealtime( Globals.Teleporting.TELEPORTER_COOLDOWN );
-    } 
+    }
 
 }
