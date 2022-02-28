@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - PickupItem
+  - DialogueSource
+  - Interactable
+  - MainSource
   layers:
   - Default
   - TransparentFX

@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 // Singleton Class, should not be instantiated!! Use Inventory.GetInstance instead
 public class Inventory
 {
-    public int inventorySize = 9;
-    private static PickupItem[] empty = {null, null, null, null, null, null, null, null, null};
+    public int inventorySize = 8;
+    private static PickupItem[] empty = {null, null, null, null, null, null, null, null};
     private List<PickupItem> m_items = new List<PickupItem>(empty);
     private static Inventory m_instance = new Inventory();
     private int cursor = 2;
@@ -22,34 +23,20 @@ public class Inventory
         {
             return ItemPickupResult.FAIL_ERROR;
         }
-        if (m_items[cursor] == null) {
-            m_items[cursor] = item;
-            item.OnPickup();
-            inventoryDisplay.addItem(item, cursor);
-            return ItemPickupResult.SUCCESS;
-        }
-        for (int i = 1; i < 5; i ++) {
-            int pos1 = cursor + i;
-            if (pos1 >= inventorySize) {
-                pos1 -= inventorySize;
-            }
-            int pos2 = cursor - i;
-            if (pos2 < 0) {
-                pos2 += inventorySize;
-            }
-            if (m_items[pos2] == null){
-                m_items[pos2] = item;
+        for (int slot = 0; slot < inventorySize; slot++) 
+        {
+            int i = (int) Math.Ceiling(slot / 2.0); 
+            int pos = (int) (cursor + i * Math.Pow(-1.0, slot) + inventorySize) % inventorySize; 
+            if (m_items[pos] == null){
+                m_items[pos] = item;
                 item.OnPickup();
-                inventoryDisplay.addItem(item, pos2);
-                return ItemPickupResult.SUCCESS;
-            }
-            if (m_items[pos1] == null){
-                m_items[pos1] = item;
-                item.OnPickup();
-                inventoryDisplay.addItem(item, pos1);
+                inventoryDisplay.addItem(item, pos);
+                inventoryDisplay.showItemName(item.itemName);
+                AudioPlayer.Play( Globals.AudioFiles.OBJECT_OBTAINED, Globals.Tags.MAIN_SOURCE );
                 return ItemPickupResult.SUCCESS;
             }
         }
+        AudioPlayer.Play( Globals.AudioFiles.NON_INTERACTABLE, Globals.Tags.MAIN_SOURCE );
         return ItemPickupResult.FAIL_INVENTORY_FULL;
     }
 
@@ -64,6 +51,7 @@ public class Inventory
             cursor = newPos - inventorySize;
         }
     }
+
     public void openInventory()
     {
         inventoryDisplay.openInventory();
@@ -74,14 +62,20 @@ public class Inventory
             inventoryDisplay.hideItemName();
         }
     }    
-    public void closeInventory()
+    public void CloseInventory()
     {
-        inventoryDisplay.closeInventory();
+        inventoryDisplay.CloseInventory();
     }
-    public void spinInventory(int spin)
+    public void SpinInventory(int spin)
     {
         MoveCursor( cursor + spin );
-        inventoryDisplay.spinInventory(spin);
+        inventoryDisplay.SpinInventory(spin);
+        if (m_items[cursor] != null){
+            PickupItem item = m_items[cursor];
+            inventoryDisplay.showItemName(item.itemName);
+        } else {
+            inventoryDisplay.hideItemName();
+        }
     }
     public int GetCursor()
     {
@@ -96,9 +90,48 @@ public class Inventory
             item.OnDrop( dropPosition );
             m_items[cursor] = null;
             inventoryDisplay.dropItem(cursor);
+            inventoryDisplay.hideItemName();
             return true;
         }
         Debug.Log( "Tried to drop item from a slot that doesn't have a valid item" );
+        return false;
+    }
+
+    public string GetSelectedItem()
+    {
+        if (m_items[cursor] != null)
+        {
+            return m_items[cursor].itemName;
+        }
+
+        return "";
+    }
+    public bool HasItem(string itemName)
+    {
+        foreach (PickupItem item in m_items)
+        {
+            if (item.itemName == itemName)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+    
+    public bool DeleteItem(string itemName)
+    {
+        for (int i = 0; i < inventorySize; i++)
+        {
+            if (m_items[i] != null && m_items[i].itemName == itemName)
+            {
+                // Delete item after using it
+                m_items[cursor] = null;
+                inventoryDisplay.dropItem(cursor);
+                return true;
+            } 
+        }
+        // Return false if the deletion of this item was unsuccessful
         return false;
     }
 }
