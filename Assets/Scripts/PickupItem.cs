@@ -9,6 +9,7 @@ public class PickupItem : InteractableAbstract
     public Texture img;
     void Start()
     {
+        myType = ItemType.PICKUP;
         m_id = _id++;
     }
 
