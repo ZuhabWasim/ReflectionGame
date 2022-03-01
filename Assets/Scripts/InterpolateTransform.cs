@@ -44,7 +44,7 @@ public class InterpolateTransform : InteractableAbstract
     {
     }
 
-    public override void OnUserInteract()
+    protected override void OnUserInteract()
     {
         if ( triggerMethod == InterpolateTransformTriggerMethod.SCRIPT )
         {

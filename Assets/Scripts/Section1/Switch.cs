@@ -14,7 +14,7 @@ public class Switch : InteractableAbstract
         fb = transform.parent.gameObject;
     }
 
-    public override void OnUserInteract()
+    protected override void OnUserInteract()
     {
         fb.GetComponent<Fusebox>().switchLight(switch_index);
     }

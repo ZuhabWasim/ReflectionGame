@@ -12,7 +12,7 @@ public class PickupItem : InteractableAbstract
         m_id = _id++;
     }
 
-    public override void OnUserInteract()
+    protected override void OnUserInteract()
     {
         this.gameObject.SetActive( false );
     }

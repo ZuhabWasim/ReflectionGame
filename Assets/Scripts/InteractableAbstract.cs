@@ -6,7 +6,9 @@ public abstract class InteractableAbstract : MonoBehaviour
 {
 
     public bool displayPrompt = true;
+    public bool acceptItem = false;
     public string itemName;
+    protected string desiredItem = "";
     public enum ItemType
     {
         INTERACT,
@@ -60,6 +62,11 @@ public abstract class InteractableAbstract : MonoBehaviour
         return t + itemName;
     }
 
+    public string GetItemText(string objectName)
+    {
+        return Globals.UIStrings.USE_ITEM_A + objectName + Globals.UIStrings.USE_ITEM_B + itemName;
+    }
+
     public ItemType GetItemType()
     {
         return myType;
@@ -70,6 +77,11 @@ public abstract class InteractableAbstract : MonoBehaviour
         return displayPrompt;
     }
 
+    public bool WillAcceptItem()
+    {
+        return acceptItem;
+    }
+
     public void ActivateItem()
     {
         if (voiceLine != null)
@@ -78,6 +90,20 @@ public abstract class InteractableAbstract : MonoBehaviour
         }
         OnUserInteract();
     }
-    public abstract void OnUserInteract();
+
+    public void ActivateUseItem(string objectName)
+    {
+        if (desiredItem == objectName)
+        {
+            OnUseItem();
+        } else
+        {
+            //Millie says generic line like "I don't think I should use this here"S
+        }
+    }
+
+    protected abstract void OnUserInteract();
+
+    protected virtual void OnUseItem() {}
 
 }

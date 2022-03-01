@@ -2,42 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UseHandkerchief : MonoBehaviour
+public class UseHandkerchief : InteractableAbstract
 {
     private const string MIRROR_AUDIO_SOURCE = "MirrorAudioSource";
-    public string itemName;
     public AudioClip soundEffect;
     public MirrorPlane dirtyMirror; // TODO(dennis): remove this
     private Inventory m_inventory;
-    private GameObject m_player;
     
     void Start()
     {
-        EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.INTERACT_KEY ), OnUserInteract );
         m_inventory = Inventory.GetInstance();
-        m_player = GameObject.FindGameObjectWithTag( Globals.Tags.PLAYER );
         AudioPlayer.RegisterAudioPlayer( MIRROR_AUDIO_SOURCE, GetComponent<AudioSource>() );
+
+        desiredItem = Globals.UIStrings.HANDKERCHIEF_ITEM;
     }
 
-    void OnUserInteract()
-    {   
-        Transform camera = m_player.GetComponent<PlayerController>().playerCamera;
-        RaycastHit hit;
-        if ( Physics.Raycast( camera.position, camera.forward, out hit, Globals.Misc.MAX_INTERACT_DISTANCE )
-             && hit.collider.gameObject.Equals( this.gameObject ))
-        {
-            if (m_inventory.GetSelectedItem().Equals(itemName))
-            {
-                Debug.Log( "Using handkerchief" );
-                m_inventory.DeleteItem(itemName);
-                HandleInteract();
-            }
-            else
-            {
-                AudioPlayer.Play( Globals.AudioFiles.NON_INTERACTABLE, Globals.Tags.MAIN_SOURCE );
-            }
-            
-        }
+    protected override void OnUserInteract()
+    {
+        AudioPlayer.Play(Globals.AudioFiles.NON_INTERACTABLE, Globals.Tags.MAIN_SOURCE);
+    }
+
+    protected override void OnUseItem()
+    {
+        Debug.Log("Using handkerchief");
+        m_inventory.DeleteItem(itemName);
+        HandleInteract();
     }
 
     void HandleInteract()

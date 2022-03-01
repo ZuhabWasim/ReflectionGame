@@ -65,6 +65,9 @@ public class Globals
         public static string OPEN_ITEM = "Open ";
         public static string CLOSE_ITEM = "Close ";
 
+        public static string USE_ITEM_A = "Use ";
+        public static string USE_ITEM_B = " on ";
+
         public static string MIRROR_ITEM = "Mirror";
         public static string DRAWER_ITEM = "Drawer";
         public static string NOTE_ITEM = "Note";
@@ -105,6 +108,7 @@ public enum ItemPickupResult
 public enum Keybinds
 {
     INTERACT_KEY = KeyCode.F,
+    USE_ITEM_KEY = KeyCode.E,
     DROP_KEY = KeyCode.G,
     INVENTORY_KEY = KeyCode.LeftShift
 }

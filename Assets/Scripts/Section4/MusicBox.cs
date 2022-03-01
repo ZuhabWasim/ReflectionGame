@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MusicBox : InteractableAbstract
 {
-    public override void OnUserInteract()
+    protected override void OnUserInteract()
     {
         //TODO this
     }
