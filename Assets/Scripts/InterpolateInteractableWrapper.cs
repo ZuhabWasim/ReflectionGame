@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class InterpolateInteractableWrapper : InteractableAbstract
 {
+    //THIS OBJECT MUST ALSO HAVE AN INTERPOLATETRANSFORM SCRIPT
+
     private InterpolateTransform it;
     
     // Start is called before the first frame update
