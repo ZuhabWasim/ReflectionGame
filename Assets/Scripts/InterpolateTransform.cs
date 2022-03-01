@@ -21,7 +21,7 @@ public enum InterpolateTransformTriggerMethod
     BOTH
 }
 
-public class InterpolateTransform : InteractableAbstract
+public class InterpolateTransform : MonoBehaviour
 {
     public Vector3 startPosition;
     public Vector3 endPostion;
@@ -44,26 +44,19 @@ public class InterpolateTransform : InteractableAbstract
     {
     }
 
-    protected override void OnUserInteract()
+    public bool ActivateInteractMotion()
     {
         if ( triggerMethod == InterpolateTransformTriggerMethod.SCRIPT )
         {
-            return;
+            return false;
         }
         if ( this.m_isMoving )
         {
-            return;
-        }
-
-        if (myType == ItemType.OPEN)
-        {
-            SetType(ItemType.CLOSE);
-        } else if (myType == ItemType.CLOSE)
-        {
-            SetType(ItemType.OPEN);
+            return false;
         }
 
         this.m_isMoving = true;
+        return true;
     }
 
     public void TriggerMotion()
