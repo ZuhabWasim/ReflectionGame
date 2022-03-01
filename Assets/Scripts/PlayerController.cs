@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
 
     public InteractableAbstract targetObject;
     private ButtonPromptDisplay bp;
+    private ButtonPromptDisplay bp2;
     private AudioSource m_footstepSource;
     
     //public float pickupDistance = 2.0f;
@@ -49,7 +50,8 @@ public class PlayerController : MonoBehaviour
 
         m_inventory = Inventory.GetInstance();
         targetObject = null;
-        bp = GameObject.Find("UI_Canvas").GetComponent<ButtonPromptDisplay>();
+        bp = GameObject.Find("UI_Canvas").GetComponents<ButtonPromptDisplay>()[0];
+        bp2 = GameObject.Find("UI_Canvas").GetComponents<ButtonPromptDisplay>()[1];
         m_footstepSource = GameObject.Find( FOOTSTEP_AUDIO_SOURCE_NAME ).GetComponent<AudioSource>();
 
         RegisterEventListeners();
@@ -61,6 +63,7 @@ public class PlayerController : MonoBehaviour
     {
         // keydown events
         EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.INTERACT_KEY ), HandleInteractPress);
+        EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.USE_ITEM_KEY ), HandleUseItemPress);
         EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.DROP_KEY ), HandleDrop );
         EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.INVENTORY_KEY ), HandleOpenInventory );
 
@@ -191,6 +194,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void HandleUseItemPress()
+    {
+        if (targetObject != null && targetObject.WillAcceptItem())
+        {
+            targetObject.ActivateUseItem(m_inventory.GetSelectedItem());
+        }
+    }
+
     void HandleOpenInventory()
     {
         m_inventory.openInventory();
@@ -217,14 +228,30 @@ public class PlayerController : MonoBehaviour
 
     void DisplayInteractionPrompts()
     {
-        //TODO check pickup/interactable
-        if (targetObject != null && targetObject.WillDisplayPrompt() == true)
+        if (targetObject != null)
         {
-            bp.SetButton('f');
-            bp.showPrompt( targetObject.GetPromptText() );
-            return;
+            if (targetObject.WillDisplayPrompt())
+            {
+                bp.SetButton('f');
+                bp.showPrompt(targetObject.GetPromptText());
+            } else
+            {
+                bp.hidePrompt();
+            }
+            string selectedItem = m_inventory.GetSelectedItem();
+            if (targetObject.WillAcceptItem() && selectedItem != "")
+            {
+                bp2.SetButton('e');
+                bp2.showPrompt(targetObject.GetItemText(selectedItem));
+            } else
+            {
+                bp2.hidePrompt();
+            }
+        } else
+        {
+            bp.hidePrompt();
+            bp2.hidePrompt();
         }
-        bp.hidePrompt();
     }
 
     void HandleDrop()
