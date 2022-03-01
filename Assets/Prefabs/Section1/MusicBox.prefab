@@ -1648,8 +1648,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1251930376031383106}
-  - component: {fileID: 2986100794634839670}
-  - component: {fileID: 1632124550453851722}
   m_Layer: 0
   m_Name: MusicBox
   m_TagString: Untagged
@@ -1674,32 +1672,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &2986100794634839670
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8534910745807025161}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.2, y: 0.45, z: 0.65}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1632124550453851722
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8534910745807025161}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b40c49d9200890046992326b741f3c9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  displayPrompt: 1
-  itemName: Music box
-  myType: 0
-  voiceLine: {fileID: 8300000, guid: 64f1791a5819c554e8506c1fcfd911bc, type: 3}

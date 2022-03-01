@@ -10,6 +10,11 @@ public class Globals
         // All global state var should be initialized here
         GlobalState.AddVar<bool>( Globals.Vars.INTERACTABLES_ENABLED, false );
         GlobalState.AddVar<bool>( Globals.Vars.IS_PRESENT_WORLD, true );
+
+        // Teleporting variables
+        GlobalState.AddVar<bool>(Globals.Vars.TELEPORTING, false);
+        GlobalState.AddVar<bool>(Globals.Vars.CAN_TELEPORT, false);
+
         Debug.Log( "Loaded global state vars" );
     }
 
@@ -80,8 +85,16 @@ public class Globals
     public class Vars
     {
         public static string TELEPORTING = "teleporting";
+        public static string CAN_TELEPORT = "canTeleport";
+
         public static string INTERACTABLES_ENABLED = "interactables_enabled";
         public static string IS_PRESENT_WORLD = "isPresent";
+    }
+
+    public class Teleporting
+    {
+        public const float TELEPORTER_COOLDOWN = 1.75f;
+        public const float INPUT_LOCK_COOLDOWN = 0.5f;
     }
 
     public class AudioFiles

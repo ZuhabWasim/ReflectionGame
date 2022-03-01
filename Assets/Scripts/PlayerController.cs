@@ -15,6 +15,10 @@ public class PlayerController : MonoBehaviour
     // Camera vars
     public Transform playerCamera;
     public float sensitivity = 2.0f;
+    public float zoomThreshold = 1.0f;
+    public int defaultFOV = 70;
+    public int zoomedFOV = 40;
+    private bool m_zoomAnimating = false;
     private float pitch = 0.0f;
     
     // Movement vars
@@ -98,12 +102,52 @@ public class PlayerController : MonoBehaviour
         LookAtObject();
         DisplayInteractionPrompts();
 
+        float scrollDelta = Input.mouseScrollDelta.y;
+        if ( Mathf.Abs( scrollDelta ) >= zoomThreshold )
+        {
+            HandleZoom( scrollDelta );
+        }
+        
         if (inventoryOpened) {
             int spin = (int) Input.mouseScrollDelta.y;
             if (spin != 0) {
                 m_inventory.SpinInventory(spin);
             }
         }
+    }
+
+    void HandleZoom( float scrollDelta )
+    {
+        if ( m_zoomAnimating ) return;
+        m_zoomAnimating = true;
+        int newFov = scrollDelta > 0 ? zoomedFOV : defaultFOV;
+        StartCoroutine( AnimateZoom( newFov ) );
+    }
+
+    private IEnumerator AnimateZoom( int newFOV )
+    {
+        float elapsedTime = 0.0f, percentComplete = 0.0f;
+        Camera camera = playerCamera.gameObject.GetComponent<Camera>();
+        float currentFOV = camera.fieldOfView;
+        const float approximationDelta = 0.99f;
+        const float animationDuration = 0.5f;
+
+        while ( ((int)currentFOV) != newFOV )
+        {
+            elapsedTime += Time.deltaTime;
+            percentComplete = elapsedTime / animationDuration;
+            camera.fieldOfView = Mathf.Lerp( currentFOV, newFOV, percentComplete );
+            // approximate for the last few values
+            if ( percentComplete >= approximationDelta )
+            {
+                camera.fieldOfView = newFOV;
+                break;
+            }
+
+            yield return new WaitForEndOfFrame();
+        }
+
+        m_zoomAnimating = false;
     }
 
     public bool IsGrounded()

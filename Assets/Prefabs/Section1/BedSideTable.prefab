@@ -1491,10 +1491,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57cb33a5ebfe4b94fa97cb4b6351b42e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayPrompt: 0
-  itemName: 
-  myType: 0
-  voiceLine: {fileID: 0}
   startPosition: {x: 0, y: 0, z: 0}
   endPostion: {x: 0, y: 0, z: 0}
   startRotation: {x: 0, y: 0, z: 0}
@@ -1503,7 +1499,6 @@ MonoBehaviour:
   interpolatePosition: 1
   loop: 0
   interpDuration: 0
-  triggerMethod: 0
 --- !u!1 &3875957422411016680
 GameObject:
   m_ObjectHideFlags: 0
@@ -2995,10 +2990,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57cb33a5ebfe4b94fa97cb4b6351b42e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayPrompt: 0
-  itemName: 
-  myType: 0
-  voiceLine: {fileID: 0}
   startPosition: {x: 0, y: 0, z: 0}
   endPostion: {x: 0, y: 0, z: 0}
   startRotation: {x: 0, y: 0, z: 0}
@@ -3007,7 +2998,6 @@ MonoBehaviour:
   interpolatePosition: 1
   loop: 0
   interpDuration: 0
-  triggerMethod: 0
 --- !u!1 &6954797711950354141
 GameObject:
   m_ObjectHideFlags: 0
