@@ -132,12 +132,13 @@ public class PlayerController : MonoBehaviour
             if ( percentComplete >= approximationDelta )
             {
                 camera.fieldOfView = newFOV;
-                m_zoomAnimating = false;
                 break;
             }
 
             yield return new WaitForEndOfFrame();
         }
+
+        m_zoomAnimating = false;
     }
 
     public bool IsGrounded()
