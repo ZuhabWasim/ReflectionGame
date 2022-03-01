@@ -31,13 +31,13 @@ public class AnimationStateController : MonoBehaviour
         isBackingUpHash = Animator.StringToHash(Globals.Misc.IS_BACKING_UP);
         isInteractingHash = Animator.StringToHash(Globals.Misc.IS_INTERACTING);
 
-        EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.PICKUP_KEY ),
+        EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.INTERACT_KEY ),
             () => {
                 AnimatePickup( true );
                 }
             );
         
-        EventManager.Sub( InputManager.GetKeyUpEventName( Keybinds.PICKUP_KEY ),
+        EventManager.Sub( InputManager.GetKeyUpEventName( Keybinds.INTERACT_KEY ),
             () => {
                 AnimatePickup( false );
                 }

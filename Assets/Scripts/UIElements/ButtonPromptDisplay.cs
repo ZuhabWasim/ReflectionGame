@@ -15,7 +15,6 @@ public class ButtonPromptDisplay : MonoBehaviour
     //public Dictionary<char, Texture> buttonTextures;
 
     public float btnTextSpace;
-    public float promptPosY;
 
     // Start is called before the first frame update
     void Start()
@@ -55,8 +54,10 @@ public class ButtonPromptDisplay : MonoBehaviour
 
     private void updatePromptPos()
     {
-        promptText.transform.localPosition = new Vector3((buttonImg.rectTransform.rect.width + btnTextSpace) / 2, promptPosY, 0);
-        buttonImg.transform.localPosition = new Vector3(-(promptText.preferredWidth + btnTextSpace) / 2, promptPosY, 0);
+        promptText.transform.localPosition = new Vector3((buttonImg.rectTransform.rect.width + btnTextSpace) / 2,
+            promptText.transform.localPosition.y, 0);
+        buttonImg.transform.localPosition = new Vector3(-(promptText.preferredWidth + btnTextSpace) / 2,
+            buttonImg.transform.localPosition.y, 0);
     }
 
 }

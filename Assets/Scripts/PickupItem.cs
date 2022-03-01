@@ -2,18 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PickupItem : MonoBehaviour
+public class PickupItem : InteractableAbstract
 {
     private static int _id;
     private int m_id;
-    public string itemName;
     public Texture img;
     void Start()
     {
+        myType = ItemType.PICKUP;
         m_id = _id++;
     }
 
-    public void OnPickup()
+    protected override void OnUserInteract()
     {
         this.gameObject.SetActive( false );
     }
