@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
     public InteractableAbstract targetObject;
     private ButtonPromptDisplay bp;
     private ButtonPromptDisplay bp2;
+    private InteractionIcon interactionIcon;
     private AudioSource m_footstepSource;
     
     //public float pickupDistance = 2.0f;
@@ -56,6 +57,7 @@ public class PlayerController : MonoBehaviour
         targetObject = null;
         bp = GameObject.Find("UI_Canvas").GetComponents<ButtonPromptDisplay>()[0];
         bp2 = GameObject.Find("UI_Canvas").GetComponents<ButtonPromptDisplay>()[1];
+        interactionIcon = GameObject.Find("UI_Canvas").GetComponents<InteractionIcon>()[0];
         m_footstepSource = GameObject.Find( FOOTSTEP_AUDIO_SOURCE_NAME ).GetComponent<AudioSource>();
 
         RegisterEventListeners();
@@ -101,6 +103,7 @@ public class PlayerController : MonoBehaviour
 
         LookAtObject();
         DisplayInteractionPrompts();
+        showInteractionIcon();
 
         float scrollDelta = Input.mouseScrollDelta.y;
         if ( Mathf.Abs( scrollDelta ) >= zoomThreshold )
@@ -297,7 +300,22 @@ public class PlayerController : MonoBehaviour
             bp2.hidePrompt();
         }
     }
-
+    void showInteractionIcon()
+    {
+        if (targetObject != null)
+        {
+            if (targetObject.GetItemType() == InteractableAbstract.ItemType.INTERACT)
+            {
+                interactionIcon.showEyeIcon();
+            } else
+            {
+                interactionIcon.showHandIcon();
+            }
+        } else
+        {
+            interactionIcon.hideIcon();
+        }
+    }
     void HandleDrop()
     {
         //Deprecated??
