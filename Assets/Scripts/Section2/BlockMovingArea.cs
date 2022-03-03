@@ -162,8 +162,8 @@ public class BlockMovingArea : MonoBehaviour
                         j++;
                     }
                 }
-
-                //sort rows based on box x
+                //assumes rows are sorted top->bottom
+                //assumes spaces are sorted left->right
                 tileGrid.Add(tileRow);
                 spaceGrid.Add(spaceRow);
                 i++;
