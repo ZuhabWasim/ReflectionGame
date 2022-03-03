@@ -45,6 +45,11 @@ public class MirrorPlane : MonoBehaviour
         
     }
 
+    public MirrorCameraPosition GetMirrorCameraPosition()
+    {
+        return m_mirrorCameraPosition;
+    }
+
     public void CleanMirror()
     {
         if (isDirty)

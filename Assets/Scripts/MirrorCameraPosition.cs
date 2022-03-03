@@ -12,17 +12,24 @@ public class MirrorCameraPosition : MonoBehaviour
 
     private Transform m_mirrorPlaneTransform;
     private Transform m_mirrorCamTransform;
+    private Vector3 m_defaultMirrorCamFwd;
 
     // Start is called before the first frame update
     void Start()
     {
         mirrorCam = GetComponentInChildren<Camera>();
+        m_defaultMirrorCamFwd = mirrorCam.transform.forward;
         m_mirrorCamTransform = mirrorCam.transform;
         m_mirrorPlaneTransform = transform.parent;
 
         //mirrorRenderer = mirrorPlane.GetComponent<Renderer>();
         mirrorWidth = Mathf.Abs(m_mirrorPlaneTransform.localScale.x) * 10f;
         mirrorHeight = Mathf.Abs(m_mirrorPlaneTransform.localScale.z) * 10f;
+    }
+
+    public Vector3 GetMirrorNormal()
+    {
+        return m_defaultMirrorCamFwd;
     }
 
     // Update is called once per frame
