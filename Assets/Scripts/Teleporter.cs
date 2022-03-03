@@ -20,6 +20,7 @@ public class Teleporter : MonoBehaviour
     public KeyCode interactKey = KeyCode.F;
 
     private ButtonPromptDisplay bp;
+    private InteractionIcon interactionIcon;
     private bool m_canTeleport = false;
     private bool m_teleporting = false;
     // consts
@@ -77,11 +78,13 @@ public class Teleporter : MonoBehaviour
         {
             m_canTeleport = true;
             bp.showPrompt( Globals.UIStrings.INTERACT_ITEM + Globals.UIStrings.MIRROR_ITEM );
+            interactionIcon.showReflectionIcon();
         }
         else
         {
             m_canTeleport = false;
             bp.hidePrompt();
+            interactionIcon.hideIcon();
         }   
     }
 }
