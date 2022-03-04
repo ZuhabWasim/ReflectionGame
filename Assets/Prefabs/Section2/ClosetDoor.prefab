@@ -258,6 +258,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8404606981694419755}
+  - component: {fileID: 2444526774495988928}
   m_Layer: 0
   m_Name: DoorPivot
   m_TagString: Untagged
@@ -279,8 +280,21 @@ Transform:
   m_Children:
   - {fileID: 5545497893995451654}
   m_Father: {fileID: 5440112544721598299}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2444526774495988928
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1649749810864722095}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.7991748, y: 3.8388166, z: 0.1317029}
+  m_Center: {x: 0.8748524, y: -0.24708891, z: 0.022714853}
 --- !u!1 &4151271036438932792
 GameObject:
   m_ObjectHideFlags: 0
@@ -373,7 +387,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5440112544721598299}
-  - component: {fileID: 6379924822530546031}
   m_Layer: 0
   m_Name: ClosetDoor
   m_TagString: Untagged
@@ -395,25 +408,10 @@ Transform:
   m_Children:
   - {fileID: 6765842469881716740}
   - {fileID: 763824486952171363}
-  - {fileID: 1333219167518038543}
   - {fileID: 8404606981694419755}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &6379924822530546031
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4626596657964166625}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
 --- !u!1 &5218472407342801253
 GameObject:
   m_ObjectHideFlags: 0
@@ -458,7 +456,6 @@ GameObject:
   - component: {fileID: 5545497893995451654}
   - component: {fileID: 5545497893995451648}
   - component: {fileID: 5545497893995451649}
-  - component: {fileID: 8025079051682462456}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -532,19 +529,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8025079051682462456
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5545497893995451655}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 6999.9995, y: 20000, z: 659.9364}
-  m_Center: {x: -12783.944, y: 10079.998, z: 207.49849}
 --- !u!1 &6622057628714666989
 GameObject:
   m_ObjectHideFlags: 0
@@ -695,51 +679,6 @@ Transform:
   m_Father: {fileID: 5440112544721598299}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &8172840012348653661
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1333219167518038543}
-  - component: {fileID: 4942692857447156607}
-  m_Layer: 0
-  m_Name: DoorCollider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1333219167518038543
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8172840012348653661}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -23772, y: 9985, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 5440112544721598299}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &4942692857447156607
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8172840012348653661}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 9438.88, y: 20000, z: 983.8712}
-  m_Center: {x: 7517.9526, y: 0, z: 125.43562}
 --- !u!1 &8543284965567942563
 GameObject:
   m_ObjectHideFlags: 0
