@@ -92,6 +92,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4194578212009634957}
+  - component: {fileID: 5059717883754490400}
   m_Layer: 0
   m_Name: WallBaseboard
   m_TagString: Untagged
@@ -117,6 +118,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &5059717883754490400
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3566272580817860151}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.5050688, y: 2.9927502, z: 0.12469554}
+  m_Center: {x: 4.1488585, y: 1.5052772, z: -0.36799884}
 --- !u!1 &6704451926543228669
 GameObject:
   m_ObjectHideFlags: 0
