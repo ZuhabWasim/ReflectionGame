@@ -1233,7 +1233,6 @@ GameObject:
   - component: {fileID: 2610882711194520201}
   - component: {fileID: 2610882711194520183}
   - component: {fileID: 2610882711194520182}
-  - component: {fileID: 2726535984075697751}
   m_Layer: 0
   m_Name: Books1
   m_TagString: Untagged
@@ -1306,19 +1305,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &2726535984075697751
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2610882711194520200}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fff89cdfbbcaa24cbae8518c257b75a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _quality: 0.2
 --- !u!1 &2610882711207594995
 GameObject:
   m_ObjectHideFlags: 0
@@ -3099,7 +3085,6 @@ GameObject:
   - component: {fileID: 4154659288408333285}
   - component: {fileID: 1440808206782667330}
   - component: {fileID: 7594939905515862130}
-  - component: {fileID: 6768915603221500898}
   m_Layer: 0
   m_Name: books
   m_TagString: Untagged
@@ -3172,16 +3157,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &6768915603221500898
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8203842499417712959}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fff89cdfbbcaa24cbae8518c257b75a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _quality: 0.5
