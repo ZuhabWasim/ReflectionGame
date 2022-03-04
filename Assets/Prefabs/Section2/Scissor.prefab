@@ -92,10 +92,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8040347526011103017}
-  - component: {fileID: 5908088579679979113}
+  - component: {fileID: 7022259981871316185}
+  - component: {fileID: 7699680254665238714}
   m_Layer: 0
   m_Name: Scissor
-  m_TagString: Untagged
+  m_TagString: PickupItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -116,7 +117,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: -90}
---- !u!114 &5908088579679979113
+--- !u!114 &7022259981871316185
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -125,7 +126,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7268490756395203987}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c62f7a00ddc5581499fb5ae6ab3481c2, type: 3}
+  m_Script: {fileID: 11500000, guid: 77650e260da45a54fbad7a52da2ce0b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   interactable: 1
@@ -135,3 +136,17 @@ MonoBehaviour:
   itemName: Scissors
   myType: 2
   voiceLine: {fileID: 0}
+  img: {fileID: 0}
+--- !u!65 &7699680254665238714
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7268490756395203987}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 9.778253, y: 4.1324368, z: 0.8120367}
+  m_Center: {x: 0.13580723, y: -0.040787913, z: 0.093982}
