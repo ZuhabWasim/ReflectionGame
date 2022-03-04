@@ -36,7 +36,7 @@ public class BlockMovingArea : MonoBehaviour
         spaceGrid = new List<List<Transform>>();
         
         InitGrid();
-        PrintBoxGrids();
+        //PrintBoxGrids();
     }
 
     public void MoveBox(int x, int y, MoveDirect dir)
