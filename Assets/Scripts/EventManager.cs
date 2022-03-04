@@ -14,7 +14,14 @@ public class EventManager : MonoBehaviour
             List<System.Action> callbacks = ( (List<System.Action>) m_arglessListeners[ev] );
             foreach ( System.Action cb in callbacks )
             {
-                cb();
+                try
+                {
+                    cb();   
+                }
+                catch ( System.Exception )
+                {
+                    continue;
+                }
             }
         }
 
@@ -26,7 +33,14 @@ public class EventManager : MonoBehaviour
         List<System.Action<GameObject>> argcallbacks = ( (List<System.Action<GameObject>>) m_argListeners[ev] );
         foreach ( System.Action<GameObject> cb in argcallbacks )
         {
-            cb( obj );
+            try
+            {
+                cb( obj );   
+            }
+            catch ( System.Exception )
+            {
+                continue;
+            }
         }
     }
 
