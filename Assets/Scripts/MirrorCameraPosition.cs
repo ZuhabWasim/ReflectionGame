@@ -37,7 +37,7 @@ public class MirrorCameraPosition : MonoBehaviour
     {
         m_mirrorCamTransform.LookAt(m_mirrorPlaneTransform);
 
-        MirrorImp1();
+        MirrorImp4();
     }
 
     // Finds reflection of (X1, Z1) in the line with slope m = dZ/dX that goes through point (X2, Z2)
@@ -167,6 +167,20 @@ public class MirrorCameraPosition : MonoBehaviour
         float hyp = Mathf.Sqrt((h * h) + ((mirrorWidth / 2 + dc) * (mirrorWidth / 2 + dc)));
         float h2 = Mathf.Sqrt((h * h) + ((dc - (mirrorWidth / 2)) * (dc - (mirrorWidth / 2))));
         mirrorCam.fieldOfView = Mathf.Rad2Deg * Mathf.Acos(((h2 * h2) + (hyp * hyp) - (mirrorWidth * mirrorWidth)) / (2 * h2 * hyp));
+    }
+
+    void MirrorImp4()
+    {
+        //Using Vertical FOV axis
+
+        float h = Mathf.Abs(transform.position.z - m_mirrorPlaneTransform.position.z);
+        float dc = Mathf.Abs(transform.position.x - m_mirrorPlaneTransform.position.x);
+        float d = Mathf.Sqrt(h * h + dc * dc);
+
+        float dy = Mathf.Abs(transform.position.y - m_mirrorPlaneTransform.position.y);
+        float hyp = Mathf.Sqrt((d * d) + ((mirrorHeight / 2 + dy) * (mirrorHeight / 2 + dy)));
+        float h2 = Mathf.Sqrt((d * d) + ((dy - (mirrorHeight / 2)) * (dy - (mirrorHeight / 2))));
+        mirrorCam.fieldOfView = Mathf.Rad2Deg * Mathf.Acos(((h2 * h2) + (hyp * hyp) - (mirrorHeight * mirrorHeight)) / (2 * h2 * hyp));
     }
 
 

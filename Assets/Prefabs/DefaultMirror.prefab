@@ -257,6 +257,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDirty: 0
   dirtyMirrorMaterial: {fileID: 0}
+  opaqueMirrorMaterial: {fileID: 2100000, guid: 377fddac4eca303409eee8362fcc05e9, type: 2}
 --- !u!1 &7243826340965363571
 GameObject:
   m_ObjectHideFlags: 0
