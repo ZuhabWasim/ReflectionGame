@@ -408,6 +408,7 @@ GameObject:
   - component: {fileID: 2610882710642657966}
   - component: {fileID: 2610882710642657964}
   - component: {fileID: 2610882710642657967}
+  - component: {fileID: 8239747803175506607}
   m_Layer: 0
   m_Name: BookShelf1
   m_TagString: Untagged
@@ -481,6 +482,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &8239747803175506607
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2610882710642657953}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0043987297, y: 0.030040877, z: 0.030011758}
+  m_Center: {x: -0.0003085899, y: 0.0019649134, z: -0.00071891537}
 --- !u!1 &2610882710764396828
 GameObject:
   m_ObjectHideFlags: 0
@@ -2973,6 +2987,7 @@ GameObject:
   - component: {fileID: 4538531147235924454}
   - component: {fileID: 1144153789121131597}
   - component: {fileID: 5760268003448113986}
+  - component: {fileID: 5321089844549861213}
   m_Layer: 0
   m_Name: BookShelf2
   m_TagString: Untagged
@@ -3046,6 +3061,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &5321089844549861213
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3239370319981569068}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0043987297, y: 0.030040877, z: 0.030011758}
+  m_Center: {x: -0.0003085899, y: 0.0019649097, z: -0.00071890047}
 --- !u!1 &8203842499417712959
 GameObject:
   m_ObjectHideFlags: 0

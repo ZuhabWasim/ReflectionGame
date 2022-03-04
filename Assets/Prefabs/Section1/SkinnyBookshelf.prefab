@@ -2665,6 +2665,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7675541557548879427}
+  - component: {fileID: -7253537122508982668}
   m_Layer: 0
   m_Name: SkinnyBookshelf
   m_TagString: Untagged
@@ -2728,6 +2729,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &-7253537122508982668
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7047800048566097145}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.6219976, y: 2.803654, z: 1.3314928}
+  m_Center: {x: 0.013521671, y: 0.05637707, z: -1.2009588}
 --- !u!1 &7114707537400798007
 GameObject:
   m_ObjectHideFlags: 0

@@ -424,6 +424,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8679666894077887116}
+  - component: {fileID: 5638096466792093036}
   m_Layer: 0
   m_Name: EmptySkinnyBookshelf
   m_TagString: Untagged
@@ -451,3 +452,16 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!65 &5638096466792093036
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8304514160562755638}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.6219976, y: 2.803654, z: 1.3314928}
+  m_Center: {x: 0.013521671, y: 0.05637707, z: -1.2009588}
