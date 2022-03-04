@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7243826339403835142}
   - component: {fileID: 7243826339403835137}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: MirrorCameraMover
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -155,7 +155,7 @@ GameObject:
   - component: {fileID: 7243826340179432234}
   - component: {fileID: 7243826340179432235}
   - component: {fileID: 7243826340179432215}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: DefaultMirror
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -269,7 +269,7 @@ GameObject:
   - component: {fileID: 7243826340965363583}
   - component: {fileID: 7243826340965363580}
   - component: {fileID: 7243826340965363581}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -322,7 +322,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 63
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
