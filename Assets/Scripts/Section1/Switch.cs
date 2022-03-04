@@ -9,7 +9,7 @@ public class Switch : InteractableAbstract
 
     private GameObject fb;
 
-    void Start()
+    protected override void OnStart()
     {
         fb = transform.parent.gameObject;
     }

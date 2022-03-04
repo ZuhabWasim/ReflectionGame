@@ -23,6 +23,9 @@ using UnityEngine;
 public abstract class InteractableAbstract : MonoBehaviour
 {
 
+    public bool interactable = false;
+    [Tooltip( "Event which should set this object to become interactable" )]
+    public string makeInteractableEvent = "";
     public bool displayPrompt = true;
     public bool acceptItem = false;
     public string itemName;
@@ -39,6 +42,15 @@ public abstract class InteractableAbstract : MonoBehaviour
 
     public AudioClip voiceLine;
 
+    public void Start()
+    {
+        if ( makeInteractableEvent != string.Empty ) 
+        {
+            EventManager.Sub( makeInteractableEvent, () => { interactable = true; } );
+        }
+
+        OnStart();
+    }
 
     public void SetType( ItemType typeIn )
     {
@@ -48,6 +60,11 @@ public abstract class InteractableAbstract : MonoBehaviour
     public string GetItemName()
     {
         return itemName;
+    }
+
+    public void SetInteractable( bool v )
+    {
+        interactable = v;
     }
 
     public string GetPromptText()
@@ -102,6 +119,7 @@ public abstract class InteractableAbstract : MonoBehaviour
 
     public void ActivateItem()
     {
+        if ( !interactable ) return;
         if (voiceLine != null)
         {
             AudioPlayer.Play(voiceLine, Globals.Tags.DIALOGUE_SOURCE);
@@ -123,5 +141,7 @@ public abstract class InteractableAbstract : MonoBehaviour
     protected virtual void OnUserInteract() {}
 
     protected virtual void OnUseItem() {}
+
+    protected virtual void OnStart() {}
 
 }

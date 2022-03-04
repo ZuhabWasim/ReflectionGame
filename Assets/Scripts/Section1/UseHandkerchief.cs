@@ -9,7 +9,7 @@ public class UseHandkerchief : InteractableAbstract
     public MirrorPlane dirtyMirror; // TODO(dennis): remove this
     private Inventory m_inventory;
     
-    void Start()
+    protected override void OnStart()
     {
         m_inventory = Inventory.GetInstance();
         AudioPlayer.RegisterAudioPlayer(MIRROR_AUDIO_SOURCE, GetComponent<AudioSource>());
