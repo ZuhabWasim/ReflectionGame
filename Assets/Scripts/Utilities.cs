@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEditor;
 
@@ -40,8 +41,37 @@ namespace Utilities
     {
         private static char SEPARATOR = '/';
         private static string ASSETS_FOLDER = "Assets";
+        private static string RESOURCES_FOLDER = "Resources";
         private static string SFX_ROOT_FOLDER = "Audio";
+        private static string EXT_META = ".meta";
         private static Hashtable m_loadedAssetCache = new Hashtable();
+        private static Hashtable m_assetPathTable = new Hashtable();
+
+        [RuntimeInitializeOnLoadMethod]
+        public static void BuildAssetPathTable( )
+        {
+            DirectoryInfo audioDir = new DirectoryInfo( JoinPath( ASSETS_FOLDER, RESOURCES_FOLDER, SFX_ROOT_FOLDER ) );
+            AddAssetsAtDir( audioDir );
+        }
+
+        private static void AddAssetsAtDir( DirectoryInfo dir )
+        {
+            foreach ( FileInfo file in dir.GetFiles() )
+            {
+                if ( file.Extension == EXT_META || m_assetPathTable.ContainsKey( file.Name ) ) continue;
+                m_assetPathTable.Add( Path.GetFileNameWithoutExtension( file.Name ),
+                    Path.ChangeExtension(
+                        file.FullName.Substring( file.FullName.IndexOf( RESOURCES_FOLDER ) + RESOURCES_FOLDER.Length + 1 ),
+                        null
+                    )
+                );
+            }
+
+            foreach ( DirectoryInfo subdir in dir.GetDirectories() )
+            {
+                AddAssetsAtDir( subdir );
+            }
+        }
 
         private static string JoinPath( params string[] filesAndFolders )
         {
@@ -99,20 +129,17 @@ namespace Utilities
                 return (AudioClip) cachedAsset.asset;
             }
 
-            string[] matchingAssetGUIDs = SearchAssets( assetName, GetSoundAssetsFolder() );
-            if ( matchingAssetGUIDs.Length == 0 )
+            string finalAssetPath = (string) m_assetPathTable[ assetName ];
+            AudioClip asset = Resources.Load<AudioClip>( finalAssetPath );
+            if ( asset == null )
             {
                 Debug.LogWarningFormat( "SFX asset {0} not found! Is the name correct?", assetName );
-                return null;
             }
-            else if ( matchingAssetGUIDs.Length > 1 )
+            else
             {
-                Debug.LogWarningFormat( "Multiple SFX assets found for {0}, returning the first one that can be found", assetName );
+                CacheAsset( assetName, finalAssetPath, typeof( AudioClip ), asset );
             }
 
-            string finalAssetPath = AssetDatabase.GUIDToAssetPath( matchingAssetGUIDs[0] );
-            AudioClip asset = AssetDatabase.LoadAssetAtPath<AudioClip>( finalAssetPath );
-            CacheAsset( assetName, finalAssetPath, typeof( AudioClip ), asset );
             return asset;
         }
     }
