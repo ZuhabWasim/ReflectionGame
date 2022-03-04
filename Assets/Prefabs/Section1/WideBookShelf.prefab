@@ -177,6 +177,7 @@ GameObject:
   - component: {fileID: 1538642341906561651}
   - component: {fileID: 1538642341906561653}
   - component: {fileID: 1538642341906561650}
+  - component: {fileID: 7839856211058040501}
   m_Layer: 0
   m_Name: WideBookShelf
   m_TagString: Untagged
@@ -251,3 +252,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &7839856211058040501
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1538642341906561648}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0043987306, y: 0.030040877, z: 0.030011766}
+  m_Center: {x: -0.00030857508, y: 0.0019649097, z: -0.00071890064}

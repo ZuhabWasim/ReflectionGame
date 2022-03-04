@@ -92,6 +92,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 695195070043019139}
+  - component: {fileID: 4536342658239555913}
   m_Layer: 0
   m_Name: Mantel
   m_TagString: Untagged
@@ -120,6 +121,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &4536342658239555913
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 695195070043019138}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 20.611631, y: 18.465147, z: 7.502304}
+  m_Center: {x: 1.7941777, y: 7.0144763, z: -0.6319766}
 --- !u!1 &695195070242481153
 GameObject:
   m_ObjectHideFlags: 0
