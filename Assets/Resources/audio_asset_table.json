@@ -1,0 +1,44 @@
+{
+    "AssetPaths": [
+        {
+            "name": "idea_theme",
+            "path": "Audio\\idea_theme"
+        },
+        {
+            "name": "reflections_game",
+            "path": "Audio\\reflections_game"
+        },
+        {
+            "name": "paper_unravel",
+            "path": "Audio\\paper_unravel"
+        },
+        {
+            "name": "object_obtained",
+            "path": "Audio\\object_obtained"
+        },
+        {
+            "name": "non_interactable",
+            "path": "Audio\\non_interactable"
+        },
+        {
+            "name": "Handkerchief",
+            "path": "Audio\\Section1\\Handkerchief"
+        },
+        {
+            "name": "placeholder",
+            "path": "Audio\\Voicelines\\placeholder"
+        },
+        {
+            "name": "main_door",
+            "path": "Audio\\Section1\\main_door"
+        },
+        {
+            "name": "footstep_wood",
+            "path": "Audio\\footstep_wood"
+        },
+        {
+            "name": "Fusebox",
+            "path": "Audio\\Section1\\Fusebox"
+        }
+    ]
+}
