@@ -8,6 +8,8 @@ TagManager:
   - DialogueSource
   - Interactable
   - MainSource
+  - MomRow
+  - MomSpace
   layers:
   - Default
   - TransparentFX
