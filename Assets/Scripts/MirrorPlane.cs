@@ -114,4 +114,18 @@ public class MirrorPlane : MonoBehaviour
         m_mirrorRenderer = GetComponent<Renderer>();
         m_mirrorMaterial = new Material(m_mirrorRenderer.material);
     }
+
+    public void Deactivate()
+    {
+        m_mirrorCameraPosition.gameObject.SetActive(false);
+
+        // TODO: change the material to the inactive texture
+    }
+
+    public void Activate()
+    {
+        m_mirrorCameraPosition.gameObject.SetActive(true);
+
+        // TODO: change the material to the inactive texture
+    }
 }
