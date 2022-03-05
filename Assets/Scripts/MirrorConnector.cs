@@ -85,6 +85,10 @@ public class MirrorConnector : MonoBehaviour
         m_active = active;
         hasOpaque = false;
         interactionIcon = GameObject.Find(Globals.Misc.UI_Canvas).GetComponent<InteractionIcon>();
+        if (!m_active)
+        {
+            Deactivate();
+        }
 
         EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.INTERACT_KEY ), HandleUserTeleport );
     }
@@ -275,6 +279,30 @@ public class MirrorConnector : MonoBehaviour
         EventManager.Fire( Globals.Events.TELEPORT );
 
         yield return new WaitForSecondsRealtime( Globals.Teleporting.TELEPORTER_COOLDOWN );
+    }
+
+    // Sets both of the mirrors to to be active
+    public void Activate()
+    {
+        m_active = true;
+        presentMirror.Activate();
+
+        if (pastMirror != null)
+        {
+            pastMirror.Activate();
+        }
+    }
+
+    // Sets both of the mirrors to be inactive
+    public void Deactivate()
+    {
+        m_active = false;
+        presentMirror.Deactivate();
+
+        if (pastMirror != null)
+        {
+            pastMirror.Deactivate();
+        }
     }
 
 }
