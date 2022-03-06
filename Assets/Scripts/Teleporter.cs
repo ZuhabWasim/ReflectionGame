@@ -77,6 +77,7 @@ public class Teleporter : MonoBehaviour
     {
         if ( canTeleport )
         {
+            Debug.Log("can teleport");
             m_canTeleport = true;
             bp.showPrompt( Globals.UIStrings.INTERACT_ITEM + Globals.UIStrings.MIRROR_ITEM );
             interactionIcon.ShowReflectionIcon();

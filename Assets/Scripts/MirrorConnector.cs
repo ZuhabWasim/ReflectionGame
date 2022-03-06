@@ -27,6 +27,7 @@ public class MirrorConnector : MonoBehaviour
     [Tooltip("Event which should set this object to become active")]
     public string makeNonInteractableEvent = "";
     private bool hasOpaque;
+    private InteractionIcon interactionIcon;
 
     // Start is called before the first frame update
     void Start()
@@ -83,6 +84,7 @@ public class MirrorConnector : MonoBehaviour
 
         m_active = active;
         hasOpaque = false;
+        interactionIcon = GameObject.Find(Globals.Misc.UI_Canvas).GetComponent<InteractionIcon>();
 
         EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.INTERACT_KEY ), HandleUserTeleport );
     }
@@ -114,10 +116,12 @@ public class MirrorConnector : MonoBehaviour
         if (teleportable && InTeleporterRange() && LookingAtTeleporter())
         {
             m_canTeleport = true;
+            interactionIcon.ShowReflectionIcon();
         }
         else
         {
             m_canTeleport = false;
+            interactionIcon.HideIcon();
         }
     }
 
