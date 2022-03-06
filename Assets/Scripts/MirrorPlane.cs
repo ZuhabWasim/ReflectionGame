@@ -19,7 +19,7 @@ public class MirrorPlane : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        m_mirrorCameraPosition = GetComponentInChildren<MirrorCameraPosition>();
+        m_mirrorCameraPosition = GetComponentInChildren(typeof(MirrorCameraPosition), true) as MirrorCameraPosition;
         if (m_mirrorCameraPosition == null)
         {
             Debug.LogError("Cannot find MirrorCameraPosition in Mirror " + this.name);
@@ -49,7 +49,14 @@ public class MirrorPlane : MonoBehaviour
 
     public void SetOpaqueTexture()
     {
-        m_mirrorRenderer.material = opaqueMirrorMaterial;
+        if (opaqueMirrorMaterial != null)
+        {
+            m_mirrorRenderer.material = opaqueMirrorMaterial;
+        }
+        else
+        {
+            Debug.LogWarning(this.name + " called to SetOpaqueTexture with null");
+        }
     }
 
     public void SetNormalTexture()
@@ -115,8 +122,17 @@ public class MirrorPlane : MonoBehaviour
         m_mirrorMaterial = new Material(m_mirrorRenderer.material);
     }
 
+    private void SetupMirrorCameraPosition()
+    {
+        if (m_mirrorCameraPosition == null)
+        {
+            m_mirrorCameraPosition = GetComponentInChildren(typeof(MirrorCameraPosition), true) as MirrorCameraPosition;
+        }
+    }
+
     public void Deactivate()
     {
+        SetupMirrorCameraPosition();
         m_mirrorCameraPosition.gameObject.SetActive(false);
 
         SetOpaqueTexture();
@@ -124,6 +140,7 @@ public class MirrorPlane : MonoBehaviour
 
     public void Activate()
     {
+        SetupMirrorCameraPosition();
         m_mirrorCameraPosition.gameObject.SetActive(true);
 
         SetNormalTexture();
