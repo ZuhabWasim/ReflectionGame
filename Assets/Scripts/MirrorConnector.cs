@@ -8,9 +8,12 @@ public class MirrorConnector : MonoBehaviour
     public MirrorPlane presentMirror; // Mirror that is in the regular world
     public MirrorPlane pastMirror; // Mirror in the past world
 
+    [Tooltip("If this mirror can be used to teleport.")]
     public bool teleportable = false;
     [Tooltip( "Check this if the player rotation is incorrect on teleport" )]
     public bool teleportIncorrectRotationFix = false; // this is a hack to get teleport working correctly
+
+    [Tooltip("If the associated mirrors should be active at start. Do not toggle mid-game, it will not work.")]
     public bool active = true; // Only toggleable in Unity
 
     private Transform m_player; // Player transform, programmatically selected and updated
@@ -24,9 +27,9 @@ public class MirrorConnector : MonoBehaviour
 
     [Tooltip("Event which should set this object to become active")]
     public string makeInteractableEvent = "";
-    [Tooltip("Event which should set this object to become active")]
+    [Tooltip("Event which should set this object to become inactive")]
     public string makeNonInteractableEvent = "";
-    private bool hasOpaque;
+    private bool m_hasOpaque = false;
 
     // Start is called before the first frame update
     void Start()
@@ -82,11 +85,6 @@ public class MirrorConnector : MonoBehaviour
         }
 
         m_active = active;
-        hasOpaque = false;
-        if (!m_active)
-        {
-            Deactivate();
-        }
 
         EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.INTERACT_KEY ), HandleUserTeleport );
     }
@@ -94,22 +92,23 @@ public class MirrorConnector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // This needs to be done here because there is no order for Start()
         if (!m_active)
         {
-            if (!hasOpaque)
+            if (!m_hasOpaque)
             {
-                presentMirror.SetOpaqueTexture();
-                pastMirror.SetOpaqueTexture();
-                hasOpaque = true;
+                presentMirror.Deactivate();
+                pastMirror.Deactivate();
+                m_hasOpaque = true;
             }
             return;
         }
 
-        if (hasOpaque)
+        if (m_hasOpaque)
         {
-            presentMirror.SetNormalTexture();
-            pastMirror.SetNormalTexture();
-            hasOpaque = false;
+            presentMirror.Activate();
+            pastMirror.Activate();
+            m_hasOpaque = false;
         }
 
         SetMirrorCameraPositions();
