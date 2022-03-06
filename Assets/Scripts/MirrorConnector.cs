@@ -121,7 +121,6 @@ public class MirrorConnector : MonoBehaviour
         else
         {
             m_canTeleport = false;
-            interactionIcon.HideIcon();
         }
     }
 
