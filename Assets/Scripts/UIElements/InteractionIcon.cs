@@ -16,22 +16,22 @@ public class InteractionIcon : MonoBehaviour
     {
         interactionIcon.SetActive(false);
     }
-    public void showReflectionIcon()
+    public void ShowReflectionIcon()
     {
         iconImg.texture = reflectionImg;
         interactionIcon.SetActive(true);
     }
-    public void showEyeIcon()
+    public void ShowEyeIcon()
     {
         iconImg.texture = eyeImg;
         interactionIcon.SetActive(true);
     }
-    public void showHandIcon()
+    public void ShowHandIcon()
     {
         iconImg.texture = handImg;
         interactionIcon.SetActive(true);
     }
-    public void hideIcon()
+    public void HideIcon()
     {
         interactionIcon.SetActive(false);
     }
