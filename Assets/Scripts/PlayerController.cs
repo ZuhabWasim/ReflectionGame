@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
         targetObject = null;
         bp = GameObject.Find(Globals.Misc.UI_Canvas).GetComponents<ButtonPromptDisplay>()[0];
         bp2 = GameObject.Find(Globals.Misc.UI_Canvas).GetComponents<ButtonPromptDisplay>()[1];
-        interactionIcon = GameObject.Find(Globals.Misc.UI_Canvas).GetComponents<InteractionIcon>()[0];
+        interactionIcon = GameObject.Find(Globals.Misc.UI_Canvas).GetComponent<InteractionIcon>();
         m_footstepSource = GameObject.Find( FOOTSTEP_AUDIO_SOURCE_NAME ).GetComponent<AudioSource>();
 
         RegisterEventListeners();
