@@ -29,19 +29,36 @@ public class MirrorConnector : MonoBehaviour
     public string makeInteractableEvent = "";
     [Tooltip("Event which should set this object to become inactive")]
     public string makeNonInteractableEvent = "";
-    private bool m_hasOpaque = false;
 
     // Start is called before the first frame update
     void Start()
     {
         if (makeInteractableEvent != string.Empty)
         {
-            EventManager.Sub(makeInteractableEvent, () => { m_active = true; });
+            EventManager.Sub(makeInteractableEvent, () =>
+                {
+                    m_active = true;
+                    presentMirror.Activate();
+                    if (pastMirror != null)
+                    {
+                        pastMirror.Activate();
+                    }
+                }
+            );
         }
 
         if (makeNonInteractableEvent != string.Empty)
         {
-            EventManager.Sub(makeNonInteractableEvent, () => { m_active = false; });
+            EventManager.Sub(makeNonInteractableEvent, () =>
+                {
+                    m_active = false;
+                    presentMirror.Deactivate();
+                    if (pastMirror != null)
+                    {
+                        pastMirror.Deactivate();
+                    }
+                }
+            );
         }
 
         // There must be a presentMirror on start
@@ -85,6 +102,14 @@ public class MirrorConnector : MonoBehaviour
         }
 
         m_active = active;
+        if (!m_active)
+        {
+            presentMirror.Deactivate();
+            if (pastMirror != null)
+            {
+                pastMirror.Deactivate();
+            }
+        }
 
         EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.INTERACT_KEY ), HandleUserTeleport );
     }
@@ -95,20 +120,7 @@ public class MirrorConnector : MonoBehaviour
         // This needs to be done here because there is no order for Start()
         if (!m_active)
         {
-            if (!m_hasOpaque)
-            {
-                presentMirror.Deactivate();
-                pastMirror.Deactivate();
-                m_hasOpaque = true;
-            }
             return;
-        }
-
-        if (m_hasOpaque)
-        {
-            presentMirror.Activate();
-            pastMirror.Activate();
-            m_hasOpaque = false;
         }
 
         SetMirrorCameraPositions();
