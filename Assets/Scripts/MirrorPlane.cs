@@ -108,7 +108,7 @@ public class MirrorPlane : MonoBehaviour
         m_mirrorMaterial.SetTexture("_MainTex", texture);
     }
 
-    // Sets up the m_mirrorRenderer and m_mirrorMaterial. Used since initialization order is not defined.
+    // Sets up the m_mirrorRenderer and m_mirrorMaterial. Necessary since Start() order is not defined.
     private void SetupRendererAndMaterial()
     {
         m_mirrorRenderer = GetComponent<Renderer>();
@@ -119,13 +119,13 @@ public class MirrorPlane : MonoBehaviour
     {
         m_mirrorCameraPosition.gameObject.SetActive(false);
 
-        // TODO: change the material to the inactive texture
+        SetOpaqueTexture();
     }
 
     public void Activate()
     {
         m_mirrorCameraPosition.gameObject.SetActive(true);
 
-        // TODO: change the material to the inactive texture
+        SetNormalTexture();
     }
 }
