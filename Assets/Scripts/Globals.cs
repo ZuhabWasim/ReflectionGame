@@ -124,7 +124,10 @@ public enum Keybinds
     INTERACT_KEY = KeyCode.F,
     USE_ITEM_KEY = KeyCode.E,
     DROP_KEY = KeyCode.G,
-    INVENTORY_KEY = KeyCode.LeftShift
+    INVENTORY_KEY = KeyCode.LeftShift,
+
+    // This is for debug only, should be removed in release
+    DEBUG_TRIGGER = KeyCode.Alpha0
 }
 
 public struct SunConfig

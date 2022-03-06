@@ -9,6 +9,8 @@ public class MirrorConnector : MonoBehaviour
     public MirrorPlane pastMirror; // Mirror in the past world
 
     public bool teleportable = false;
+    [Tooltip( "Check this if the player rotation is incorrect on teleport" )]
+    public bool teleportIncorrectRotationFix = false; // this is a hack to get teleport working correctly
     public bool active = true; // Only toggleable in Unity
 
     private Transform m_player; // Player transform, programmatically selected and updated
@@ -20,9 +22,25 @@ public class MirrorConnector : MonoBehaviour
     private bool m_canTeleport = false;
     private bool m_active;
 
+    [Tooltip("Event which should set this object to become active")]
+    public string makeInteractableEvent = "";
+    [Tooltip("Event which should set this object to become active")]
+    public string makeNonInteractableEvent = "";
+    private bool hasOpaque;
+
     // Start is called before the first frame update
     void Start()
     {
+        if (makeInteractableEvent != string.Empty)
+        {
+            EventManager.Sub(makeInteractableEvent, () => { m_active = true; });
+        }
+
+        if (makeNonInteractableEvent != string.Empty)
+        {
+            EventManager.Sub(makeNonInteractableEvent, () => { m_active = false; });
+        }
+
         // There must be a presentMirror on start
         if (presentMirror == null)
         {
@@ -64,6 +82,7 @@ public class MirrorConnector : MonoBehaviour
         }
 
         m_active = active;
+        hasOpaque = false;
 
         EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.INTERACT_KEY ), HandleUserTeleport );
     }
@@ -73,7 +92,20 @@ public class MirrorConnector : MonoBehaviour
     {
         if (!m_active)
         {
+            if (!hasOpaque)
+            {
+                presentMirror.SetOpaqueTexture();
+                pastMirror.SetOpaqueTexture();
+                hasOpaque = true;
+            }
             return;
+        }
+
+        if (hasOpaque)
+        {
+            presentMirror.SetNormalTexture();
+            pastMirror.SetNormalTexture();
+            hasOpaque = false;
         }
 
         SetMirrorCameraPositions();
@@ -81,8 +113,6 @@ public class MirrorConnector : MonoBehaviour
         // Check if player is in teleport range only if teleportable
         if (teleportable && InTeleporterRange() && LookingAtTeleporter())
         {
-            Debug.Log("Can teleport");
-
             m_canTeleport = true;
         }
         else
@@ -209,10 +239,20 @@ public class MirrorConnector : MonoBehaviour
         return false;
     }
 
-
     public bool CanTeleport()
     {
         return m_canTeleport;
+    }
+
+    private Vector3 GetPlayerFwdOnTeleport( Vector3 normal, Vector3 fwd, float relativeRotation, bool isPresent )
+    {
+        // fwd => incidence vector
+        Vector3 reflected = -( fwd - ( 2 * Vector3.Dot( fwd, normal ) * normal ) );
+        if ( isPresent ) // traveling from present to past
+        {
+            relativeRotation = teleportIncorrectRotationFix ? -relativeRotation : relativeRotation;
+        }
+        return Quaternion.AngleAxis( relativeRotation, Vector3.up ) * reflected;
     }
 
     public IEnumerator Teleport()
@@ -220,7 +260,11 @@ public class MirrorConnector : MonoBehaviour
         bool present = GlobalState.GetVar<bool>(Globals.Vars.IS_PRESENT_WORLD);
 
         Vector3 mirrorPosition = present ? pastMirror.transform.position : presentMirror.transform.position;
-        m_player.position = new Vector3(mirrorPosition.x, m_player.position.y + 0.05f, mirrorPosition.z + 2.0f);
+        m_player.position = mirrorPosition + ( ( present ? pastMirror : presentMirror ).GetMirrorCameraPosition().GetMirrorNormal() * 2.0f );
+        
+        Vector3 mirrorNormal = ( present ? pastMirror : presentMirror ).GetMirrorCameraPosition().GetMirrorNormal();
+        m_player.forward = GetPlayerFwdOnTeleport( mirrorNormal, m_player.forward,
+            Vector3.Angle( presentMirror.GetMirrorCameraPosition().GetMirrorNormal(), pastMirror.GetMirrorCameraPosition().GetMirrorNormal() ), present ).normalized;
 
         yield return new WaitForSecondsRealtime( Globals.Teleporting.INPUT_LOCK_COOLDOWN );
 
