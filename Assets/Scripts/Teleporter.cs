@@ -33,7 +33,8 @@ public class Teleporter : MonoBehaviour
         triggerA.GetComponent<TeleporterTrigger>().SetTeleporter( this );
         triggerB.GetComponent<TeleporterTrigger>().SetTeleporter( this );
 
-        bp = GameObject.Find("UI_Canvas").GetComponent<ButtonPromptDisplay>();
+        bp = GameObject.Find(Globals.Misc.UI_Canvas).GetComponent<ButtonPromptDisplay>();
+        interactionIcon = GameObject.Find(Globals.Misc.UI_Canvas).GetComponent<InteractionIcon>();
     }
 
     // Update is called once per frame
@@ -78,13 +79,13 @@ public class Teleporter : MonoBehaviour
         {
             m_canTeleport = true;
             bp.showPrompt( Globals.UIStrings.INTERACT_ITEM + Globals.UIStrings.MIRROR_ITEM );
-            interactionIcon.showReflectionIcon();
+            interactionIcon.ShowReflectionIcon();
         }
         else
         {
             m_canTeleport = false;
             bp.hidePrompt();
-            interactionIcon.hideIcon();
+            interactionIcon.HideIcon();
         }   
     }
 }

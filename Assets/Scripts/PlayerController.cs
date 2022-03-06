@@ -55,9 +55,9 @@ public class PlayerController : MonoBehaviour
 
         m_inventory = Inventory.GetInstance();
         targetObject = null;
-        bp = GameObject.Find("UI_Canvas").GetComponents<ButtonPromptDisplay>()[0];
-        bp2 = GameObject.Find("UI_Canvas").GetComponents<ButtonPromptDisplay>()[1];
-        interactionIcon = GameObject.Find("UI_Canvas").GetComponents<InteractionIcon>()[0];
+        bp = GameObject.Find(Globals.Misc.UI_Canvas).GetComponents<ButtonPromptDisplay>()[0];
+        bp2 = GameObject.Find(Globals.Misc.UI_Canvas).GetComponents<ButtonPromptDisplay>()[1];
+        interactionIcon = GameObject.Find(Globals.Misc.UI_Canvas).GetComponents<InteractionIcon>()[0];
         m_footstepSource = GameObject.Find( FOOTSTEP_AUDIO_SOURCE_NAME ).GetComponent<AudioSource>();
 
         RegisterEventListeners();
@@ -103,7 +103,7 @@ public class PlayerController : MonoBehaviour
 
         LookAtObject();
         DisplayInteractionPrompts();
-        showInteractionIcon();
+        ShowInteractionIcon();
 
         float scrollDelta = Input.mouseScrollDelta.y;
         if ( Mathf.Abs( scrollDelta ) >= zoomThreshold )
@@ -300,20 +300,20 @@ public class PlayerController : MonoBehaviour
             bp2.hidePrompt();
         }
     }
-    void showInteractionIcon()
+    void ShowInteractionIcon()
     {
         if (targetObject != null)
         {
             if (targetObject.GetItemType() == InteractableAbstract.ItemType.INTERACT)
             {
-                interactionIcon.showEyeIcon();
+                interactionIcon.ShowEyeIcon();
             } else
             {
-                interactionIcon.showHandIcon();
+                interactionIcon.ShowHandIcon();
             }
         } else
         {
-            interactionIcon.hideIcon();
+            interactionIcon.HideIcon();
         }
     }
     void HandleDrop()
