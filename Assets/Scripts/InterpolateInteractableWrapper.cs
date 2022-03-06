@@ -8,8 +8,7 @@ public class InterpolateInteractableWrapper : InteractableAbstract
 
     private InterpolateTransform it;
     
-    // Start is called before the first frame update
-    void Start()
+    protected override void OnStart()
     {
         it = GetComponent<InterpolateTransform>();
     }

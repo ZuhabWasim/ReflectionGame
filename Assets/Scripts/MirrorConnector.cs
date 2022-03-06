@@ -22,9 +22,25 @@ public class MirrorConnector : MonoBehaviour
     private bool m_canTeleport = false;
     private bool m_active;
 
+    [Tooltip("Event which should set this object to become active")]
+    public string makeInteractableEvent = "";
+    [Tooltip("Event which should set this object to become active")]
+    public string makeNonInteractableEvent = "";
+    private bool hasOpaque;
+
     // Start is called before the first frame update
     void Start()
     {
+        if (makeInteractableEvent != string.Empty)
+        {
+            EventManager.Sub(makeInteractableEvent, () => { m_active = true; });
+        }
+
+        if (makeNonInteractableEvent != string.Empty)
+        {
+            EventManager.Sub(makeNonInteractableEvent, () => { m_active = false; });
+        }
+
         // There must be a presentMirror on start
         if (presentMirror == null)
         {
@@ -66,6 +82,7 @@ public class MirrorConnector : MonoBehaviour
         }
 
         m_active = active;
+        hasOpaque = false;
 
         EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.INTERACT_KEY ), HandleUserTeleport );
     }
@@ -75,7 +92,20 @@ public class MirrorConnector : MonoBehaviour
     {
         if (!m_active)
         {
+            if (!hasOpaque)
+            {
+                presentMirror.SetOpaqueTexture();
+                pastMirror.SetOpaqueTexture();
+                hasOpaque = true;
+            }
             return;
+        }
+
+        if (hasOpaque)
+        {
+            presentMirror.SetNormalTexture();
+            pastMirror.SetNormalTexture();
+            hasOpaque = false;
         }
 
         SetMirrorCameraPositions();

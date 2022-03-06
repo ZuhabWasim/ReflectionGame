@@ -221,7 +221,7 @@ public class PlayerController : MonoBehaviour
 
     void HandleInteractPress()
     {
-        if ( targetObject != null)
+        if ( targetObject != null && targetObject.interactable )
         {
             if (targetObject.GetItemType() == InteractableAbstract.ItemType.PICKUP)
             {
@@ -240,7 +240,7 @@ public class PlayerController : MonoBehaviour
 
     void HandleUseItemPress()
     {
-        if (targetObject != null && targetObject.WillAcceptItem())
+        if (targetObject != null && targetObject.interactable && targetObject.WillAcceptItem())
         {
             targetObject.ActivateUseItem(m_inventory.GetSelectedItem());
         }
@@ -272,7 +272,7 @@ public class PlayerController : MonoBehaviour
 
     void DisplayInteractionPrompts()
     {
-        if (targetObject != null)
+        if (targetObject != null && targetObject.interactable)
         {
             if (targetObject.WillDisplayPrompt())
             {

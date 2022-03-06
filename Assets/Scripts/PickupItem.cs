@@ -7,7 +7,7 @@ public class PickupItem : InteractableAbstract
     private static int _id;
     private int m_id;
     public Texture img;
-    void Start()
+    protected override void OnStart()
     {
         myType = ItemType.PICKUP;
         m_id = _id++;

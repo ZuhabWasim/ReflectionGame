@@ -289,7 +289,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4734012006821788147}
-  m_Mesh: {fileID: -8898385632266283163, guid: 58d01840d112a024ab9431b0144b031c, type: 3}
+  m_Mesh: {fileID: 4300000, guid: ec4365c4b115e6748bf904b1a5a7a6b1, type: 2}
 --- !u!23 &5602059389966654615
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -372,7 +372,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5148634476144605056}
-  m_Mesh: {fileID: -1652544002441837614, guid: 58d01840d112a024ab9431b0144b031c, type: 3}
+  m_Mesh: {fileID: 4300000, guid: d9e46144adb29b84ab3507e8c72790a4, type: 2}
 --- !u!23 &6735314007709957281
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -424,6 +424,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8679666894077887116}
+  - component: {fileID: 5638096466792093036}
   m_Layer: 0
   m_Name: EmptySkinnyBookshelf
   m_TagString: Untagged
@@ -451,3 +452,16 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!65 &5638096466792093036
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8304514160562755638}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.6219976, y: 2.803654, z: 1.3314928}
+  m_Center: {x: 0.013521671, y: 0.05637707, z: -1.2009588}
