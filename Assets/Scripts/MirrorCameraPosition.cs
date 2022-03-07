@@ -22,9 +22,11 @@ public class MirrorCameraPosition : MonoBehaviour
         m_mirrorCamTransform = mirrorCam.transform;
         m_mirrorPlaneTransform = transform.parent;
 
-        //mirrorRenderer = mirrorPlane.GetComponent<Renderer>();
-        mirrorWidth = Mathf.Abs(m_mirrorPlaneTransform.localScale.x) * 10f;
-        mirrorHeight = Mathf.Abs(m_mirrorPlaneTransform.localScale.z) * 10f;
+        Renderer mirrorRenderer = m_mirrorPlaneTransform.GetComponent<Renderer>();
+        mirrorWidth = mirrorRenderer.bounds.size.z;
+        mirrorHeight = mirrorRenderer.bounds.size.y;
+        //mirrorWidth = Mathf.Abs(m_mirrorPlaneTransform.localScale.x) * 10f;
+        //mirrorHeight = Mathf.Abs(m_mirrorPlaneTransform.localScale.z) * 10f;
     }
 
     public Vector3 GetMirrorNormal()
@@ -36,8 +38,18 @@ public class MirrorCameraPosition : MonoBehaviour
     void Update()
     {
         m_mirrorCamTransform.LookAt(m_mirrorPlaneTransform);
-
+        mirrorCam.nearClipPlane = GetNearClipPlane();
         MirrorImp4();
+    }
+
+    private float GetNearClipPlane()
+    {
+        
+        float dx = Mathf.Abs(transform.position.x - m_mirrorPlaneTransform.position.x);
+        float dy = Mathf.Abs(transform.position.y - m_mirrorPlaneTransform.position.y);
+        float dz = Mathf.Abs(transform.position.z - m_mirrorPlaneTransform.position.z);
+        return Mathf.Sqrt(dx * dx + dy * dy + dz * dz);
+
     }
 
     // Finds reflection of (X1, Z1) in the line with slope m = dZ/dX that goes through point (X2, Z2)
