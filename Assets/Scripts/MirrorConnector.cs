@@ -8,9 +8,12 @@ public class MirrorConnector : MonoBehaviour
     public MirrorPlane presentMirror; // Mirror that is in the regular world
     public MirrorPlane pastMirror; // Mirror in the past world
 
+    [Tooltip("If this mirror can be used to teleport.")]
     public bool teleportable = false;
     [Tooltip( "Check this if the player rotation is incorrect on teleport" )]
     public bool teleportIncorrectRotationFix = false; // this is a hack to get teleport working correctly
+
+    [Tooltip("If the associated mirrors should be active at start. Do not toggle mid-game, it will not work.")]
     public bool active = true; // Only toggleable in Unity
 
     private Transform m_player; // Player transform, programmatically selected and updated
@@ -24,9 +27,8 @@ public class MirrorConnector : MonoBehaviour
 
     [Tooltip("Event which should set this object to become active")]
     public string makeInteractableEvent = "";
-    [Tooltip("Event which should set this object to become active")]
+    [Tooltip("Event which should set this object to become inactive")]
     public string makeNonInteractableEvent = "";
-    private bool hasOpaque;
     private InteractionIcon interactionIcon;
 
     // Start is called before the first frame update
@@ -34,12 +36,30 @@ public class MirrorConnector : MonoBehaviour
     {
         if (makeInteractableEvent != string.Empty)
         {
-            EventManager.Sub(makeInteractableEvent, () => { m_active = true; });
+            EventManager.Sub(makeInteractableEvent, () =>
+                {
+                    m_active = true;
+                    presentMirror.Activate();
+                    if (pastMirror != null)
+                    {
+                        pastMirror.Activate();
+                    }
+                }
+            );
         }
 
         if (makeNonInteractableEvent != string.Empty)
         {
-            EventManager.Sub(makeNonInteractableEvent, () => { m_active = false; });
+            EventManager.Sub(makeNonInteractableEvent, () =>
+                {
+                    m_active = false;
+                    presentMirror.Deactivate();
+                    if (pastMirror != null)
+                    {
+                        pastMirror.Deactivate();
+                    }
+                }
+            );
         }
 
         // There must be a presentMirror on start
@@ -83,8 +103,11 @@ public class MirrorConnector : MonoBehaviour
         }
 
         m_active = active;
-        hasOpaque = false;
         interactionIcon = GameObject.Find(Globals.Misc.UI_Canvas).GetComponent<InteractionIcon>();
+        if (!m_active)
+        {
+            Deactivate();
+        }
 
         EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.INTERACT_KEY ), HandleUserTeleport );
     }
@@ -92,22 +115,10 @@ public class MirrorConnector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // This needs to be done here because there is no order for Start()
         if (!m_active)
         {
-            if (!hasOpaque)
-            {
-                presentMirror.SetOpaqueTexture();
-                pastMirror.SetOpaqueTexture();
-                hasOpaque = true;
-            }
             return;
-        }
-
-        if (hasOpaque)
-        {
-            presentMirror.SetNormalTexture();
-            pastMirror.SetNormalTexture();
-            hasOpaque = false;
         }
 
         SetMirrorCameraPositions();
@@ -275,6 +286,30 @@ public class MirrorConnector : MonoBehaviour
         EventManager.Fire( Globals.Events.TELEPORT );
 
         yield return new WaitForSecondsRealtime( Globals.Teleporting.TELEPORTER_COOLDOWN );
+    }
+
+    // Sets both of the mirrors to to be active
+    public void Activate()
+    {
+        m_active = true;
+        presentMirror.Activate();
+
+        if (pastMirror != null)
+        {
+            pastMirror.Activate();
+        }
+    }
+
+    // Sets both of the mirrors to be inactive
+    public void Deactivate()
+    {
+        m_active = false;
+        presentMirror.Deactivate();
+
+        if (pastMirror != null)
+        {
+            pastMirror.Deactivate();
+        }
     }
 
 }

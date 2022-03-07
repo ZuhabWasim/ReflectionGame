@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6fe4660eceb797541b7b3d28647b1449, type: 2}
+  - {fileID: 2100000, guid: 01dde25d57cee514d8879e032e3b9cce, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -163,7 +163,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 40529fee377c96d4d947000e0fe050a6, type: 2}
+  - {fileID: 2100000, guid: 01dde25d57cee514d8879e032e3b9cce, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -211,6 +211,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c62f7a00ddc5581499fb5ae6ab3481c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactable: 0
+  makeInteractableEvent: 
   displayPrompt: 1
   acceptItem: 0
   itemName: Drawer
@@ -1081,6 +1083,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77650e260da45a54fbad7a52da2ce0b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactable: 0
+  makeInteractableEvent: 
   displayPrompt: 1
   acceptItem: 0
   itemName: Handkerchief
@@ -2215,6 +2219,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 966ab03b8728dd54a86d1608185e3f25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactable: 0
+  makeInteractableEvent: 
   displayPrompt: 1
   acceptItem: 0
   itemName: Note
@@ -2545,7 +2551,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 40529fee377c96d4d947000e0fe050a6, type: 2}
+  - {fileID: 2100000, guid: 01dde25d57cee514d8879e032e3b9cce, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2681,7 +2687,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 40529fee377c96d4d947000e0fe050a6, type: 2}
+  - {fileID: 2100000, guid: 01dde25d57cee514d8879e032e3b9cce, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2779,7 +2785,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6fe4660eceb797541b7b3d28647b1449, type: 2}
+  - {fileID: 2100000, guid: 01dde25d57cee514d8879e032e3b9cce, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

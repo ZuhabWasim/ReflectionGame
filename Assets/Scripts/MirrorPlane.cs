@@ -19,7 +19,7 @@ public class MirrorPlane : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        m_mirrorCameraPosition = GetComponentInChildren<MirrorCameraPosition>();
+        m_mirrorCameraPosition = GetComponentInChildren(typeof(MirrorCameraPosition), true) as MirrorCameraPosition;
         if (m_mirrorCameraPosition == null)
         {
             Debug.LogError("Cannot find MirrorCameraPosition in Mirror " + this.name);
@@ -49,7 +49,14 @@ public class MirrorPlane : MonoBehaviour
 
     public void SetOpaqueTexture()
     {
-        m_mirrorRenderer.material = opaqueMirrorMaterial;
+        if (opaqueMirrorMaterial != null)
+        {
+            m_mirrorRenderer.material = opaqueMirrorMaterial;
+        }
+        else
+        {
+            Debug.LogWarning(this.name + " called to SetOpaqueTexture with null");
+        }
     }
 
     public void SetNormalTexture()
@@ -108,10 +115,34 @@ public class MirrorPlane : MonoBehaviour
         m_mirrorMaterial.SetTexture("_MainTex", texture);
     }
 
-    // Sets up the m_mirrorRenderer and m_mirrorMaterial. Used since initialization order is not defined.
+    // Sets up the m_mirrorRenderer and m_mirrorMaterial. Necessary since Start() order is not defined.
     private void SetupRendererAndMaterial()
     {
         m_mirrorRenderer = GetComponent<Renderer>();
         m_mirrorMaterial = new Material(m_mirrorRenderer.material);
+    }
+
+    private void SetupMirrorCameraPosition()
+    {
+        if (m_mirrorCameraPosition == null)
+        {
+            m_mirrorCameraPosition = GetComponentInChildren(typeof(MirrorCameraPosition), true) as MirrorCameraPosition;
+        }
+    }
+
+    public void Deactivate()
+    {
+        SetupMirrorCameraPosition();
+        m_mirrorCameraPosition.gameObject.SetActive(false);
+
+        SetOpaqueTexture();
+    }
+
+    public void Activate()
+    {
+        SetupMirrorCameraPosition();
+        m_mirrorCameraPosition.gameObject.SetActive(true);
+
+        SetNormalTexture();
     }
 }
