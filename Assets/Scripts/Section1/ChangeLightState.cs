@@ -37,6 +37,7 @@ public class ChangeLightState : MonoBehaviour
         }
         m_soundSource.clip = soundEffect;
         m_soundSource.Play();
+        AudioPlayer.Play( Globals.AudioFiles.LIGHTS_TURN_ON_ROOM, Globals.Tags.DIALOGUE_SOURCE );
     }
 
 
