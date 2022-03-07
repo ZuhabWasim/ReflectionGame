@@ -10,6 +10,9 @@ public class PlayerController : MonoBehaviour
 
     private const float FOOT_STEP_INTERVAL = 2.2f;
     private const string FOOTSTEP_AUDIO_SOURCE_NAME = "FootStepSource";
+    private const float PRESENT_HEIGHT = 1.5f;
+    private const float PAST_HEIGHT = 1.0f;
+
     // ===== CONSTANTS END ===
     
     // Camera vars
@@ -76,6 +79,9 @@ public class PlayerController : MonoBehaviour
 
         // keyup events
         EventManager.Sub( InputManager.GetKeyUpEventName( Keybinds.INVENTORY_KEY ), HandleCloseInventory );
+
+        // Other events
+        EventManager.Sub(Globals.Events.TELEPORT, SwitchHeightOnTeleport);
     }
 
     void RegisterAudioSources()
@@ -328,6 +334,18 @@ public class PlayerController : MonoBehaviour
         else
         {
             Debug.Log( "Failed to drop item" );
+        }
+    }
+
+    void SwitchHeightOnTeleport()
+    {
+        if (GlobalState.GetVar<bool>(Globals.Vars.IS_PRESENT_WORLD))
+        {
+            transform.localScale = new Vector3(transform.localScale.x, PRESENT_HEIGHT, transform.localScale.z);
+        }
+        else
+        {
+            transform.localScale = new Vector3(transform.localScale.x, PAST_HEIGHT, transform.localScale.z);
         }
     }
 }
