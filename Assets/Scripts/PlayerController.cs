@@ -63,6 +63,7 @@ public class PlayerController : MonoBehaviour
         RegisterEventListeners();
         RegisterAudioSources();
         AudioPlayer.Play( Globals.AudioFiles.MAIN_DOOR, Globals.Tags.MAIN_SOURCE );
+        AudioPlayer.Play( Globals.AudioFiles.ENTERING_ROOM, Globals.Tags.DIALOGUE_SOURCE );
     }
 
     void RegisterEventListeners()

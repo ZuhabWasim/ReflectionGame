@@ -106,6 +106,7 @@ public class Globals
         public static string OBJECT_OBTAINED = "object_obtained";
         public static string NON_INTERACTABLE = "non_interactable";
         public static string MAIN_DOOR = "main_door";
+        public static string ENTERING_ROOM = "entering_room";
     }
 
     public class EnvironmentParams
