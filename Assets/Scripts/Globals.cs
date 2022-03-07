@@ -36,6 +36,7 @@ public class Globals
         public static string TELEPORT = "teleport";
         public static string LIGHTS_TURN_ON = "TurnOnLights";
         public static string LIGHTS_TURN_OFF = "TurnOffLights";
+        public static string MILLIE_KEY_INTERACT = "MillieKeyInteract";
     }
 
     public class Tags
@@ -79,6 +80,7 @@ public class Globals
         public static string NOTE_ITEM = "Note";
 
         public static string HANDKERCHIEF_ITEM = "Handkerchief";
+        public static string MUSICBOXMILLIE_ITEM = "Millie's Key";
 
         public static string USE_HANDKERCHIEF = "Use Handkerchief";
     }

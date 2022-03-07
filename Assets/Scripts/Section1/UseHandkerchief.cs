@@ -25,7 +25,7 @@ public class UseHandkerchief : InteractableAbstract
     protected override void OnUseItem()
     {
         Debug.Log("Using handkerchief");
-        m_inventory.DeleteItem(itemName);
+        m_inventory.DeleteItem(desiredItem);
         HandleInteract();
     }
 
