@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2273533688320189040}
   - component: {fileID: 1918184044038340554}
   - component: {fileID: 8006243736348505551}
+  - component: {fileID: 8929509550381898208}
   m_Layer: 0
   m_Name: Stool
   m_TagString: Untagged
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &8929509550381898208
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5016111483363222895}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 34.6484, y: 44.2085, z: 34.6598}
+  m_Center: {x: 0, y: 22.113552, z: 0}
