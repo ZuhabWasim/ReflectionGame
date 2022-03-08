@@ -31,7 +31,7 @@ public class UseHandkerchief : InteractableAbstract
         }
         else
         {
-            AudioPlayer.Play( Globals.AudioFiles.NON_INTERACTABLE, Globals.Tags.MAIN_SOURCE );
+            AudioPlayer.Play( Globals.AudioFiles.DIRTY_MIRROR, Globals.Tags.DIALOGUE_SOURCE );
         }
     }
 

@@ -108,6 +108,7 @@ public class Globals
         public static string MAIN_DOOR = "main_door";
         public static string LIGHTS_TURN_ON_ROOM = "seeing_lit_room";
         public static string ENTERING_ROOM = "its_really_dark";
+        public static string DIRTY_MIRROR = "dirty_mirror";
     }
 
     public class EnvironmentParams

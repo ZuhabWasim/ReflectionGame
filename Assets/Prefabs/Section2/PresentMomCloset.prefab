@@ -19808,6 +19808,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ad6ca3da0452804d84edfbecf15fee8, type: 3}
+--- !u!1 &4569609196847714540 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1649749810864722095, guid: 3ad6ca3da0452804d84edfbecf15fee8, type: 3}
+  m_PrefabInstance: {fileID: 2994777121704591427}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7112768020060047383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4569609196847714540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71e0e0319f401c8408104afee3512a10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactable: 0
+  makeInteractableEvent: TurnOnLights
+  displayPrompt: 1
+  acceptItem: 0
+  itemName: 
+  myType: 0
+  voiceLine: {fileID: 8300000, guid: e5adaee6e2a74ef4987b68c8a4b43b0e, type: 3}
 --- !u!4 &7129405354503157528 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5440112544721598299, guid: 3ad6ca3da0452804d84edfbecf15fee8, type: 3}
