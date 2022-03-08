@@ -4,89 +4,89 @@ using UnityEngine;
 
 public enum UserLocation
 {
-    A,
-    B
+	A,
+	B
 }
 
 public class Teleporter : MonoBehaviour
 {
 
-    public GameObject player;
-    public GameObject spawnerA;
-    public GameObject spawnerB;
-    public GameObject triggerA;
-    public GameObject triggerB;
-    public UserLocation userLocation;
-    public KeyCode interactKey = KeyCode.F;
+	public GameObject player;
+	public GameObject spawnerA;
+	public GameObject spawnerB;
+	public GameObject triggerA;
+	public GameObject triggerB;
+	public UserLocation userLocation;
+	public KeyCode interactKey = KeyCode.F;
 
-    private ButtonPromptDisplay bp;
-    private InteractionIcon interactionIcon;
-    private bool m_canTeleport = false;
-    private bool m_teleporting = false;
-    // consts
-    const float TELEPORTER_COOLDOWN = 1.75f;
-    const float INPUT_LOCK_COOLDOWN = 0.5f;
+	private ButtonPromptDisplay bp;
+	private InteractionIcon interactionIcon;
+	private bool m_canTeleport = false;
+	private bool m_teleporting = false;
+	// consts
+	const float TELEPORTER_COOLDOWN = 1.75f;
+	const float INPUT_LOCK_COOLDOWN = 0.5f;
 
-    void Start()
-    {
-        GlobalState.AddVar<bool>( Globals.Vars.TELEPORTING, false );
-        triggerA.GetComponent<TeleporterTrigger>().SetTeleporter( this );
-        triggerB.GetComponent<TeleporterTrigger>().SetTeleporter( this );
+	void Start()
+	{
+		GlobalState.AddVar<bool>( Globals.Vars.TELEPORTING, false );
+		triggerA.GetComponent<TeleporterTrigger>().SetTeleporter( this );
+		triggerB.GetComponent<TeleporterTrigger>().SetTeleporter( this );
 
-        bp = GameObject.Find(Globals.Misc.UI_Canvas).GetComponent<ButtonPromptDisplay>();
-        interactionIcon = GameObject.Find(Globals.Misc.UI_Canvas).GetComponent<InteractionIcon>();
-    }
+		bp = GameObject.Find( Globals.Misc.UI_Canvas ).GetComponent<ButtonPromptDisplay>();
+		interactionIcon = GameObject.Find( Globals.Misc.UI_Canvas ).GetComponent<InteractionIcon>();
+	}
 
-    // Update is called once per frame
-    void Update()
-    {
-        HandleUserInput();
-    }
+	// Update is called once per frame
+	void Update()
+	{
+		HandleUserInput();
+	}
 
-    void HandleUserInput()
-    {
-        bool pressedInteract = Input.GetKeyDown( interactKey );
-        if ( m_canTeleport && pressedInteract && !m_teleporting )
-        {
-            m_teleporting = true;
-            GlobalState.SetVar<bool>( Globals.Vars.TELEPORTING, true );
-            StartCoroutine( Teleport() );
-        }
-    }
+	void HandleUserInput()
+	{
+		bool pressedInteract = Input.GetKeyDown( interactKey );
+		if ( m_canTeleport && pressedInteract && !m_teleporting )
+		{
+			m_teleporting = true;
+			GlobalState.SetVar<bool>( Globals.Vars.TELEPORTING, true );
+			StartCoroutine( Teleport() );
+		}
+	}
 
-    IEnumerator Teleport()
-    {
-        Debug.Log( "Teleporting.." );
-        player.transform.position = userLocation == UserLocation.A ? spawnerB.transform.position : spawnerA.transform.position; 
-        
-        userLocation = userLocation == UserLocation.A ? UserLocation.B : UserLocation.A;
+	IEnumerator Teleport()
+	{
+		Debug.Log( "Teleporting.." );
+		player.transform.position = userLocation == UserLocation.A ? spawnerB.transform.position : spawnerA.transform.position;
 
-        // don't hold the input for entire duration of teleporter cooldown
-        yield return new WaitForSecondsRealtime( INPUT_LOCK_COOLDOWN );
-        GlobalState.SetVar<bool>( Globals.Vars.TELEPORTING, false );
+		userLocation = userLocation == UserLocation.A ? UserLocation.B : UserLocation.A;
 
-        EventManager.Fire( Globals.Events.TELEPORT );
+		// don't hold the input for entire duration of teleporter cooldown
+		yield return new WaitForSecondsRealtime( INPUT_LOCK_COOLDOWN );
+		GlobalState.SetVar<bool>( Globals.Vars.TELEPORTING, false );
 
-        // add a small delay so the user doesn't accidentally teleport back
-        yield return new WaitForSecondsRealtime( TELEPORTER_COOLDOWN );
-        
-        m_teleporting = false;
-    }
+		EventManager.Fire( Globals.Events.TELEPORT );
 
-    public void SetCanTeleport( bool canTeleport )
-    {
-        if ( canTeleport )
-        {
-            Debug.Log("can teleport");
-            m_canTeleport = true;
-            bp.showPrompt( Globals.UIStrings.INTERACT_ITEM + Globals.UIStrings.MIRROR_ITEM );
-            interactionIcon.ShowReflectionIcon();
-        }
-        else
-        {
-            m_canTeleport = false;
-            bp.hidePrompt();
-            interactionIcon.HideIcon();
-        }   
-    }
+		// add a small delay so the user doesn't accidentally teleport back
+		yield return new WaitForSecondsRealtime( TELEPORTER_COOLDOWN );
+
+		m_teleporting = false;
+	}
+
+	public void SetCanTeleport( bool canTeleport )
+	{
+		if ( canTeleport )
+		{
+			Debug.Log( "can teleport" );
+			m_canTeleport = true;
+			bp.showPrompt( Globals.UIStrings.INTERACT_ITEM + Globals.UIStrings.MIRROR_ITEM );
+			interactionIcon.ShowReflectionIcon();
+		}
+		else
+		{
+			m_canTeleport = false;
+			bp.hidePrompt();
+			interactionIcon.HideIcon();
+		}
+	}
 }

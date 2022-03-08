@@ -5,17 +5,17 @@ using UnityEngine;
 public class Switch : InteractableAbstract
 {
 
-    public int switch_index;
+	public int switch_index;
 
-    private GameObject fb;
+	private GameObject fb;
 
-    protected override void OnStart()
-    {
-        fb = transform.parent.gameObject;
-    }
+	protected override void OnStart()
+	{
+		fb = transform.parent.gameObject;
+	}
 
-    protected override void OnUserInteract()
-    {
-        fb.GetComponent<Fusebox>().switchLight(switch_index);
-    }
+	protected override void OnUserInteract()
+	{
+		fb.GetComponent<Fusebox>().switchLight( switch_index );
+	}
 }
