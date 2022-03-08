@@ -24,10 +24,9 @@ public class UseHandkerchief : InteractableAbstract
 
     protected override void OnUserInteract()
     {
-        Debug.Log(mirrorCleaned);
         if (mirrorCleaned)
         {
-            AudioPlayer.Play( afterCleanVoiceline, Globals.Tags.MAIN_SOURCE );
+            AudioPlayer.Play( afterCleanVoiceline, Globals.Tags.DIALOGUE_SOURCE );
         }
         else
         {
