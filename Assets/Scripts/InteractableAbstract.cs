@@ -23,141 +23,142 @@ using UnityEngine;
 public abstract class InteractableAbstract : MonoBehaviour
 {
 
-    public bool interactable = false;
-    [Tooltip( "Event which should set this object to become interactable" )]
-    public string makeInteractableEvent = "";
-    public string makeNonInteractableEvent = "";
-    public bool displayPrompt = true;
-    public bool acceptItem = false;
-    public string itemName;
-    protected string desiredItem = "";
-    public enum ItemType
-    {
-        INTERACT,
-        MOVE,
-        PICKUP,
-        OPEN,
-        CLOSE
-    }
-    public ItemType myType;
+	public bool interactable = false;
+	[Tooltip( "Event which should set this object to become interactable" )]
+	public string makeInteractableEvent = "";
+	public string makeNonInteractableEvent = "";
+	public bool displayPrompt = true;
+	public bool acceptItem = false;
+	public string itemName;
+	protected string desiredItem = "";
+	public enum ItemType
+	{
+		INTERACT,
+		MOVE,
+		PICKUP,
+		OPEN,
+		CLOSE
+	}
+	public ItemType myType;
 
-    public AudioClip voiceLine;
-    public AudioClip nonInteractableVoiceLine;
-    
-    public void Start()
-    {
-        if ( makeInteractableEvent != string.Empty ) 
-        {
-            EventManager.Sub( makeInteractableEvent, () => { interactable = true; } );
-        }
-        
-        if ( makeNonInteractableEvent != string.Empty )
-        {
-            EventManager.Sub( makeNonInteractableEvent, () => { interactable = false; } );
-        }
+	public AudioClip voiceLine;
+	public AudioClip nonInteractableVoiceLine;
 
-        OnStart();
-    }
+	public void Start()
+	{
+		if ( makeInteractableEvent != string.Empty )
+		{
+			EventManager.Sub( makeInteractableEvent, () => { interactable = true; } );
+		}
 
-    public void SetType( ItemType typeIn )
-    {
-        myType = typeIn;
-    }
+		if ( makeNonInteractableEvent != string.Empty )
+		{
+			EventManager.Sub( makeNonInteractableEvent, () => { interactable = false; } );
+		}
 
-    public string GetItemName()
-    {
-        return itemName;
-    }
+		OnStart();
+	}
 
-    public void SetInteractable( bool v )
-    {
-        interactable = v;
-    }
+	public void SetType( ItemType typeIn )
+	{
+		myType = typeIn;
+	}
 
-    public string GetPromptText()
-    {
-        string t = "";
-        switch (myType)
-        {
-            case ItemType.MOVE:
-                t += Globals.UIStrings.MOVE_ITEM;
-                break;
+	public string GetItemName()
+	{
+		return itemName;
+	}
 
-            case ItemType.OPEN:
-                t += Globals.UIStrings.OPEN_ITEM;
-                break;
+	public void SetInteractable( bool v )
+	{
+		interactable = v;
+	}
 
-            case ItemType.CLOSE:
-                t += Globals.UIStrings.CLOSE_ITEM;
-                break;
+	public string GetPromptText()
+	{
+		string t = "";
+		switch ( myType )
+		{
+			case ItemType.MOVE:
+				t += Globals.UIStrings.MOVE_ITEM;
+				break;
 
-            case ItemType.PICKUP:
-                t += Globals.UIStrings.PICKUP_ITEM;
-                break;
+			case ItemType.OPEN:
+				t += Globals.UIStrings.OPEN_ITEM;
+				break;
 
-            default:
-                t += Globals.UIStrings.INTERACT_ITEM;
-                break;
+			case ItemType.CLOSE:
+				t += Globals.UIStrings.CLOSE_ITEM;
+				break;
 
-        }
+			case ItemType.PICKUP:
+				t += Globals.UIStrings.PICKUP_ITEM;
+				break;
 
-        return t + itemName;
-    }
+			default:
+				t += Globals.UIStrings.INTERACT_ITEM;
+				break;
 
-    public string GetItemText(string objectName)
-    {
-        return Globals.UIStrings.USE_ITEM_A + objectName + Globals.UIStrings.USE_ITEM_B + itemName;
-    }
+		}
 
-    public ItemType GetItemType()
-    {
-        return myType;
-    }
+		return t + itemName;
+	}
 
-    public bool WillDisplayPrompt()
-    {
-        return displayPrompt;
-    }
+	public string GetItemText( string objectName )
+	{
+		return Globals.UIStrings.USE_ITEM_A + objectName + Globals.UIStrings.USE_ITEM_B + itemName;
+	}
 
-    public bool WillAcceptItem()
-    {
-        return acceptItem;
-    }
+	public ItemType GetItemType()
+	{
+		return myType;
+	}
 
-    public void ActivateItem()
-    {
-        
-        if (!interactable)
-        {
-            if (nonInteractableVoiceLine != null)
-            {
-                AudioPlayer.Play(nonInteractableVoiceLine, Globals.Tags.DIALOGUE_SOURCE);
-            }
-            return;
-        }
-        
-        if (voiceLine != null)
-        {
-            AudioPlayer.Play(voiceLine, Globals.Tags.DIALOGUE_SOURCE);
-        }
-        OnUserInteract();
-    }
+	public bool WillDisplayPrompt()
+	{
+		return displayPrompt;
+	}
 
-    public void ActivateUseItem(string objectName)
-    {
-        if (desiredItem == objectName)
-        {
-            OnUseItem();
-        } else
-        {
-            //Millie says generic line like "I don't think I should use this here"
-        }
-    }
+	public bool WillAcceptItem()
+	{
+		return acceptItem;
+	}
 
-    protected virtual void OnUserInteract() {}
+	public void ActivateItem()
+	{
 
-    protected virtual void OnUseItem() {}
+		if ( !interactable )
+		{
+			if ( nonInteractableVoiceLine != null )
+			{
+				AudioPlayer.Play( nonInteractableVoiceLine, Globals.Tags.DIALOGUE_SOURCE );
+			}
+			return;
+		}
 
-    protected virtual void OnStart() {}
+		if ( voiceLine != null )
+		{
+			AudioPlayer.Play( voiceLine, Globals.Tags.DIALOGUE_SOURCE );
+		}
+		OnUserInteract();
+	}
+
+	public void ActivateUseItem( string objectName )
+	{
+		if ( desiredItem == objectName )
+		{
+			OnUseItem();
+		}
+		else
+		{
+			//Millie says generic line like "I don't think I should use this here"
+		}
+	}
+
+	protected virtual void OnUserInteract() { }
+
+	protected virtual void OnUseItem() { }
+
+	protected virtual void OnStart() { }
 
 }

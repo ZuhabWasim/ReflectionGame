@@ -5,144 +5,144 @@ using UnityEngine;
 public class MirrorPlane : MonoBehaviour
 {
 
-    public bool isDirty = false;
-    public Material dirtyMirrorMaterial; // Dirty texture to use for dirty mirrors
-    public Material opaqueMirrorMaterial;
+	public bool isDirty = false;
+	public Material dirtyMirrorMaterial; // Dirty texture to use for dirty mirrors
+	public Material opaqueMirrorMaterial;
 
-    private Renderer m_mirrorRenderer;
-    private Material m_mirrorMaterial; // the original mirror material (i.e. the reflective one)
-    private Material m_originalMaterial;
+	private Renderer m_mirrorRenderer;
+	private Material m_mirrorMaterial; // the original mirror material (i.e. the reflective one)
+	private Material m_originalMaterial;
 
-    // Child components of the mirror
-    private MirrorCameraPosition m_mirrorCameraPosition;
+	// Child components of the mirror
+	private MirrorCameraPosition m_mirrorCameraPosition;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        m_mirrorCameraPosition = GetComponentInChildren(typeof(MirrorCameraPosition), true) as MirrorCameraPosition;
-        if (m_mirrorCameraPosition == null)
-        {
-            Debug.LogError("Cannot find MirrorCameraPosition in Mirror " + this.name);
-        }
+	// Start is called before the first frame update
+	void Start()
+	{
+		m_mirrorCameraPosition = GetComponentInChildren( typeof( MirrorCameraPosition ), true ) as MirrorCameraPosition;
+		if ( m_mirrorCameraPosition == null )
+		{
+			Debug.LogError( "Cannot find MirrorCameraPosition in Mirror " + this.name );
+		}
 
-        if (m_mirrorRenderer == null || m_mirrorMaterial == null)
-        {
-            SetupRendererAndMaterial();
-        }
+		if ( m_mirrorRenderer == null || m_mirrorMaterial == null )
+		{
+			SetupRendererAndMaterial();
+		}
 
-        if (isDirty)
-        {
-            // Change the renderer's material to the texture
-            m_mirrorRenderer.material = dirtyMirrorMaterial;
-        }
-        else
-        {
-            m_mirrorRenderer.material = m_mirrorMaterial;
-        }
-    }
+		if ( isDirty )
+		{
+			// Change the renderer's material to the texture
+			m_mirrorRenderer.material = dirtyMirrorMaterial;
+		}
+		else
+		{
+			m_mirrorRenderer.material = m_mirrorMaterial;
+		}
+	}
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	// Update is called once per frame
+	void Update()
+	{
 
-    public void SetOpaqueTexture()
-    {
-        if (opaqueMirrorMaterial != null)
-        {
-            m_mirrorRenderer.material = opaqueMirrorMaterial;
-        }
-        else
-        {
-            Debug.LogWarning(this.name + " called to SetOpaqueTexture with null");
-        }
-    }
+	}
 
-    public void SetNormalTexture()
-    {
-        m_mirrorRenderer.material = m_mirrorMaterial;
-    }
+	public void SetOpaqueTexture()
+	{
+		if ( opaqueMirrorMaterial != null )
+		{
+			m_mirrorRenderer.material = opaqueMirrorMaterial;
+		}
+		else
+		{
+			Debug.LogWarning( this.name + " called to SetOpaqueTexture with null" );
+		}
+	}
 
-    public MirrorCameraPosition GetMirrorCameraPosition()
-    {
-        return m_mirrorCameraPosition;
-    }
+	public void SetNormalTexture()
+	{
+		m_mirrorRenderer.material = m_mirrorMaterial;
+	}
 
-    public void CleanMirror()
-    {
-        if (isDirty)
-        {
-            isDirty = false;
-            m_mirrorRenderer.material = m_mirrorMaterial;
-            // mirrorMaterial.Lerp( dirtyMirrorMaterial, mirrorMaterial, 0 ); TODO: Fix this, doesn't work atm
-        }
-    }
+	public MirrorCameraPosition GetMirrorCameraPosition()
+	{
+		return m_mirrorCameraPosition;
+	}
 
-    public void ReflectOverMirror(Transform player, Transform playerCamera)
-    {
-        m_mirrorCameraPosition.ReflectOverMirror(player, playerCamera);
-    }
+	public void CleanMirror()
+	{
+		if ( isDirty )
+		{
+			isDirty = false;
+			m_mirrorRenderer.material = m_mirrorMaterial;
+			// mirrorMaterial.Lerp( dirtyMirrorMaterial, mirrorMaterial, 0 ); TODO: Fix this, doesn't work atm
+		}
+	}
 
-    public void SetOppositeCameraPosition(Transform player, Transform playerCamera, Transform otherMirrorPlane)
-    {
-        m_mirrorCameraPosition.SetOppositeCameraPosition(player, playerCamera, otherMirrorPlane);
-    }
+	public void ReflectOverMirror( Transform player, Transform playerCamera )
+	{
+		m_mirrorCameraPosition.ReflectOverMirror( player, playerCamera );
+	}
 
-    // Sets what texture the camera will render to
-    public void SetCameraRenderTexture(RenderTexture texture)
-    {
-        m_mirrorCameraPosition = GetComponentInChildren<MirrorCameraPosition>();
-        if (m_mirrorCameraPosition == null)
-        {
-            Debug.LogError("Cannot find MirrorCameraPosition in Mirror " + this.name);
-        }
-        else
-        {
-            m_mirrorCameraPosition.SetMirrorRenderTexture(texture);
-        }   
-    }
+	public void SetOppositeCameraPosition( Transform player, Transform playerCamera, Transform otherMirrorPlane )
+	{
+		m_mirrorCameraPosition.SetOppositeCameraPosition( player, playerCamera, otherMirrorPlane );
+	}
 
-    // Sets what texture the mirror displays. Used in conjunction with past mirrors
-    public void SetMirrorDisplayTexture(RenderTexture texture)
-    {
-        if (m_mirrorMaterial == null)
-        {
-            SetupRendererAndMaterial();
-        }
+	// Sets what texture the camera will render to
+	public void SetCameraRenderTexture( RenderTexture texture )
+	{
+		m_mirrorCameraPosition = GetComponentInChildren<MirrorCameraPosition>();
+		if ( m_mirrorCameraPosition == null )
+		{
+			Debug.LogError( "Cannot find MirrorCameraPosition in Mirror " + this.name );
+		}
+		else
+		{
+			m_mirrorCameraPosition.SetMirrorRenderTexture( texture );
+		}
+	}
 
-        // Don't need to make a new material here
-        m_mirrorMaterial.SetTexture("_MainTex", texture);
-    }
+	// Sets what texture the mirror displays. Used in conjunction with past mirrors
+	public void SetMirrorDisplayTexture( RenderTexture texture )
+	{
+		if ( m_mirrorMaterial == null )
+		{
+			SetupRendererAndMaterial();
+		}
 
-    // Sets up the m_mirrorRenderer and m_mirrorMaterial. Necessary since Start() order is not defined.
-    private void SetupRendererAndMaterial()
-    {
-        m_mirrorRenderer = GetComponent<Renderer>();
-        m_mirrorMaterial = new Material(m_mirrorRenderer.material);
-    }
+		// Don't need to make a new material here
+		m_mirrorMaterial.SetTexture( "_MainTex", texture );
+	}
 
-    private void SetupMirrorCameraPosition()
-    {
-        if (m_mirrorCameraPosition == null)
-        {
-            m_mirrorCameraPosition = GetComponentInChildren(typeof(MirrorCameraPosition), true) as MirrorCameraPosition;
-        }
-    }
+	// Sets up the m_mirrorRenderer and m_mirrorMaterial. Necessary since Start() order is not defined.
+	private void SetupRendererAndMaterial()
+	{
+		m_mirrorRenderer = GetComponent<Renderer>();
+		m_mirrorMaterial = new Material( m_mirrorRenderer.material );
+	}
 
-    public void Deactivate()
-    {
-        SetupMirrorCameraPosition();
-        m_mirrorCameraPosition.gameObject.SetActive(false);
+	private void SetupMirrorCameraPosition()
+	{
+		if ( m_mirrorCameraPosition == null )
+		{
+			m_mirrorCameraPosition = GetComponentInChildren( typeof( MirrorCameraPosition ), true ) as MirrorCameraPosition;
+		}
+	}
 
-        SetOpaqueTexture();
-    }
+	public void Deactivate()
+	{
+		SetupMirrorCameraPosition();
+		m_mirrorCameraPosition.gameObject.SetActive( false );
 
-    public void Activate()
-    {
-        SetupMirrorCameraPosition();
-        m_mirrorCameraPosition.gameObject.SetActive(true);
+		SetOpaqueTexture();
+	}
 
-        SetNormalTexture();
-    }
+	public void Activate()
+	{
+		SetupMirrorCameraPosition();
+		m_mirrorCameraPosition.gameObject.SetActive( true );
+
+		SetNormalTexture();
+	}
 }

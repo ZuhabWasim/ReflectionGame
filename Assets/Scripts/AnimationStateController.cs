@@ -5,116 +5,118 @@ using UnityEngine;
 
 public class AnimationStateController : MonoBehaviour
 {
-    // ===== CONSTANTS =====
-    private const float JUMP_ANIMATION_THRESHOLD = 0.2f;
-    // ===== CONSTANTS END ===
+	// ===== CONSTANTS =====
+	private const float JUMP_ANIMATION_THRESHOLD = 0.2f;
+	// ===== CONSTANTS END ===
 
-    // Animator Parameters
-    private int isWalkingHash;
-    private int isJumpingHash;
-    private int isBackingUpHash;
-    private int isInteractingHash;
+	// Animator Parameters
+	private int isWalkingHash;
+	private int isJumpingHash;
+	private int isBackingUpHash;
+	private int isInteractingHash;
 
-    // Components
-    Animator animator;
-    private PlayerController _playerController;
+	// Components
+	Animator animator;
+	private PlayerController _playerController;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        animator = GetComponent<Animator>();
-        _playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+	// Start is called before the first frame update
+	void Start()
+	{
+		animator = GetComponent<Animator>();
+		_playerController = GameObject.Find( "Player" ).GetComponent<PlayerController>();
 
-        // Animation Parameter Hashes
-        isWalkingHash = Animator.StringToHash(Globals.Misc.IS_WALKING);
-        isJumpingHash = Animator.StringToHash(Globals.Misc.IS_JUMPING);
-        isBackingUpHash = Animator.StringToHash(Globals.Misc.IS_BACKING_UP);
-        isInteractingHash = Animator.StringToHash(Globals.Misc.IS_INTERACTING);
+		// Animation Parameter Hashes
+		isWalkingHash = Animator.StringToHash( Globals.Misc.IS_WALKING );
+		isJumpingHash = Animator.StringToHash( Globals.Misc.IS_JUMPING );
+		isBackingUpHash = Animator.StringToHash( Globals.Misc.IS_BACKING_UP );
+		isInteractingHash = Animator.StringToHash( Globals.Misc.IS_INTERACTING );
 
-        EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.INTERACT_KEY ),
-            () => {
-                AnimatePickup( true );
-                }
-            );
-        
-        EventManager.Sub( InputManager.GetKeyUpEventName( Keybinds.INTERACT_KEY ),
-            () => {
-                AnimatePickup( false );
-                }
-            );
-    }
+		EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.INTERACT_KEY ),
+			() =>
+			{
+				AnimatePickup( true );
+			}
+			);
 
-    void AnimatePickup( bool pickUpPress )
-    {
-        bool isInteracting = animator.GetBool( isInteractingHash );
-        if ( !isInteracting && pickUpPress )
-        {
-            animator.SetBool( isInteractingHash, true );
-        }
+		EventManager.Sub( InputManager.GetKeyUpEventName( Keybinds.INTERACT_KEY ),
+			() =>
+			{
+				AnimatePickup( false );
+			}
+			);
+	}
 
-        if ( isInteracting && !pickUpPress )
-        {
-            animator.SetBool( isInteractingHash, false );
-        }
-    }
+	void AnimatePickup( bool pickUpPress )
+	{
+		bool isInteracting = animator.GetBool( isInteractingHash );
+		if ( !isInteracting && pickUpPress )
+		{
+			animator.SetBool( isInteractingHash, true );
+		}
 
-    // Update is called once per frame
-    void Update()
-    {
-        // Retrieve all animation parameters
-        bool isWalking = animator.GetBool(isWalkingHash);
-        bool isJumping = animator.GetBool(isJumpingHash);
-        bool isBackingUp = animator.GetBool(isBackingUpHash);
+		if ( isInteracting && !pickUpPress )
+		{
+			animator.SetBool( isInteractingHash, false );
+		}
+	}
 
-        // Player movement
-        float verticalMovement = Input.GetAxis("Vertical");
-        float horizontalMovement = Math.Abs(Input.GetAxis("Horizontal"));
+	// Update is called once per frame
+	void Update()
+	{
+		// Retrieve all animation parameters
+		bool isWalking = animator.GetBool( isWalkingHash );
+		bool isJumping = animator.GetBool( isJumpingHash );
+		bool isBackingUp = animator.GetBool( isBackingUpHash );
 
-        // Whether the player is moving forward, backward, or sideways
-        bool forwardPress = verticalMovement > 0;
-        bool backwardPress = verticalMovement < 0;
-        bool sidewaysPress = horizontalMovement > 0;
+		// Player movement
+		float verticalMovement = Input.GetAxis( "Vertical" );
+		float horizontalMovement = Math.Abs( Input.GetAxis( "Horizontal" ) );
 
-        // Player events
-        // bool pickUpPress = Input.GetKeyDown( _playerController.pickupKey );
-        bool jumpAcceleration = _playerController.m_playerBody.velocity.y > JUMP_ANIMATION_THRESHOLD;
+		// Whether the player is moving forward, backward, or sideways
+		bool forwardPress = verticalMovement > 0;
+		bool backwardPress = verticalMovement < 0;
+		bool sidewaysPress = horizontalMovement > 0;
 
-        // Jumping
-        if (!isJumping && jumpAcceleration)
-        {
-            animator.SetBool(isJumpingHash, true);
-        }
+		// Player events
+		// bool pickUpPress = Input.GetKeyDown( _playerController.pickupKey );
+		bool jumpAcceleration = _playerController.m_playerBody.velocity.y > JUMP_ANIMATION_THRESHOLD;
 
-        if (isJumping && !jumpAcceleration)
-        {
-            animator.SetBool(isJumpingHash, false);
-        }
-        
+		// Jumping
+		if ( !isJumping && jumpAcceleration )
+		{
+			animator.SetBool( isJumpingHash, true );
+		}
 
-        // Only do other movement animations if you're grounded.
-        if (_playerController.IsGrounded())
-        {
-            // Moving forward or sideways
-            if (!isWalking && (forwardPress || sidewaysPress))
-            {
-                animator.SetBool(isWalkingHash, true);
-            }
+		if ( isJumping && !jumpAcceleration )
+		{
+			animator.SetBool( isJumpingHash, false );
+		}
 
-            if (isWalking && (!forwardPress && !sidewaysPress))
-            {
-                animator.SetBool(isWalkingHash, false);
-            }
 
-            // Moving backward
-            if (!isBackingUp && backwardPress)
-            {
-                animator.SetBool(isBackingUpHash, true);
-            }
+		// Only do other movement animations if you're grounded.
+		if ( _playerController.IsGrounded() )
+		{
+			// Moving forward or sideways
+			if ( !isWalking && ( forwardPress || sidewaysPress ) )
+			{
+				animator.SetBool( isWalkingHash, true );
+			}
 
-            if (isBackingUp && !backwardPress)
-            {
-                animator.SetBool(isBackingUpHash, false);
-            }
-        }
-    }
+			if ( isWalking && ( !forwardPress && !sidewaysPress ) )
+			{
+				animator.SetBool( isWalkingHash, false );
+			}
+
+			// Moving backward
+			if ( !isBackingUp && backwardPress )
+			{
+				animator.SetBool( isBackingUpHash, true );
+			}
+
+			if ( isBackingUp && !backwardPress )
+			{
+				animator.SetBool( isBackingUpHash, false );
+			}
+		}
+	}
 }
