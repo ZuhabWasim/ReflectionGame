@@ -4,91 +4,91 @@ using UnityEngine;
 
 public class EventManager : MonoBehaviour
 {
-    private static Hashtable m_arglessListeners = new Hashtable();
-    private static Hashtable m_argListeners = new Hashtable();
+	private static Hashtable m_arglessListeners = new Hashtable();
+	private static Hashtable m_argListeners = new Hashtable();
 
-    public static void Fire( string ev, GameObject obj = null )
-    {
-        if ( m_arglessListeners.ContainsKey( ev ) )
-        {
-            List<System.Action> callbacks = ( (List<System.Action>) m_arglessListeners[ev] );
-            foreach ( System.Action cb in callbacks )
-            {
-                try
-                {
-                    cb();   
-                }
-                catch ( System.Exception )
-                {
-                    continue;
-                }
-            }
-        }
+	public static void Fire( string ev, GameObject obj = null )
+	{
+		if ( m_arglessListeners.ContainsKey( ev ) )
+		{
+			List<System.Action> callbacks = ( (List<System.Action>)m_arglessListeners[ ev ] );
+			foreach ( System.Action cb in callbacks )
+			{
+				try
+				{
+					cb();
+				}
+				catch ( System.Exception )
+				{
+					continue;
+				}
+			}
+		}
 
-        if ( !m_argListeners.ContainsKey( ev ) )
-        {
-            return;
-        }
+		if ( !m_argListeners.ContainsKey( ev ) )
+		{
+			return;
+		}
 
-        List<System.Action<GameObject>> argcallbacks = ( (List<System.Action<GameObject>>) m_argListeners[ev] );
-        foreach ( System.Action<GameObject> cb in argcallbacks )
-        {
-            try
-            {
-                cb( obj );   
-            }
-            catch ( System.Exception )
-            {
-                continue;
-            }
-        }
-    }
+		List<System.Action<GameObject>> argcallbacks = ( (List<System.Action<GameObject>>)m_argListeners[ ev ] );
+		foreach ( System.Action<GameObject> cb in argcallbacks )
+		{
+			try
+			{
+				cb( obj );
+			}
+			catch ( System.Exception )
+			{
+				continue;
+			}
+		}
+	}
 
-    public static void Sub( string ev, System.Action callback )
-    {
-        if ( !m_arglessListeners.ContainsKey( ev ) )
-        {
-            m_arglessListeners.Add( ev, new List<System.Action>() );
-        }
+	public static void Sub( string ev, System.Action callback )
+	{
+		if ( !m_arglessListeners.ContainsKey( ev ) )
+		{
+			m_arglessListeners.Add( ev, new List<System.Action>() );
+		}
 
-        List<System.Action> callbacks = ( (List<System.Action>) m_arglessListeners[ev] );
-        if ( !callbacks.Contains( callback ) )
-        {
-            callbacks.Add( callback );
-        }
-    }
+		List<System.Action> callbacks = ( (List<System.Action>)m_arglessListeners[ ev ] );
+		if ( !callbacks.Contains( callback ) )
+		{
+			callbacks.Add( callback );
+		}
+	}
 
-    public static void Sub( string ev, System.Action<GameObject> callback )
-    {
-        if ( !m_argListeners.ContainsKey( ev ) )
-        {
-            m_argListeners.Add( ev, new List<System.Action<GameObject>>() );
-        }
+	public static void Sub( string ev, System.Action<GameObject> callback )
+	{
+		if ( !m_argListeners.ContainsKey( ev ) )
+		{
+			m_argListeners.Add( ev, new List<System.Action<GameObject>>() );
+		}
 
-        List<System.Action<GameObject>> callbacks = ( (List<System.Action<GameObject>>) m_argListeners[ev] );
-        if ( !callbacks.Contains( callback ) )
-        {
-            callbacks.Add( callback );
-        }
-    }
+		List<System.Action<GameObject>> callbacks = ( (List<System.Action<GameObject>>)m_argListeners[ ev ] );
+		if ( !callbacks.Contains( callback ) )
+		{
+			callbacks.Add( callback );
+		}
+	}
 
-    public static void Unsub( string ev, System.Action callback )
-    {
-        if ( !m_arglessListeners.ContainsKey( ev ) )
-        {
-            return;
-        }
+	public static void Unsub( string ev, System.Action callback )
+	{
+		if ( !m_arglessListeners.ContainsKey( ev ) )
+		{
+			return;
+		}
 
-        ( (List<System.Action>) m_arglessListeners[ev] ).Remove( callback );
-    }
+		( (List<System.Action>)m_arglessListeners[ ev ] ).Remove( callback );
+	}
 
-    public static void Unsub( string ev, System.Action<GameObject> callback )
-    {
-        if ( !m_argListeners.ContainsKey( ev ) )
-        {
-            return;
-        }
+	public static void Unsub( string ev, System.Action<GameObject> callback )
+	{
+		if ( !m_argListeners.ContainsKey( ev ) )
+		{
+			return;
+		}
 
-        ( (List<System.Action<GameObject>>) m_arglessListeners[ev] ).Remove( callback );
-    }
+		( (List<System.Action<GameObject>>)m_arglessListeners[ ev ] ).Remove( callback );
+	}
 }

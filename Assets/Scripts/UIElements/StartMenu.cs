@@ -6,10 +6,12 @@ using UnityEngine.SceneManagement;
 public class StartMenu : MonoBehaviour
 {
 
-    public void onClickStart() {
-        SceneManager.LoadScene(1);
-    }
-    public void onClickQuit() {
-        Application.Quit();
-    }
+	public void onClickStart()
+	{
+		SceneManager.LoadScene( 1 );
+	}
+	public void onClickQuit()
+	{
+		Application.Quit();
+	}
 }
