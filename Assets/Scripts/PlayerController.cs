@@ -231,7 +231,7 @@ public class PlayerController : MonoBehaviour
 
     void HandleInteractPress()
     {
-        if ( targetObject != null && targetObject.interactable )
+        if ( targetObject != null )
         {
             if (targetObject.GetItemType() == InteractableAbstract.ItemType.PICKUP)
             {

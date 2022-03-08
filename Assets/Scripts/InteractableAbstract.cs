@@ -26,6 +26,7 @@ public abstract class InteractableAbstract : MonoBehaviour
     public bool interactable = false;
     [Tooltip( "Event which should set this object to become interactable" )]
     public string makeInteractableEvent = "";
+    public string makeNonInteractableEvent = "";
     public bool displayPrompt = true;
     public bool acceptItem = false;
     public string itemName;
@@ -41,12 +42,18 @@ public abstract class InteractableAbstract : MonoBehaviour
     public ItemType myType;
 
     public AudioClip voiceLine;
-
+    public AudioClip nonInteractableVoiceLine;
+    
     public void Start()
     {
         if ( makeInteractableEvent != string.Empty ) 
         {
             EventManager.Sub( makeInteractableEvent, () => { interactable = true; } );
+        }
+        
+        if ( makeNonInteractableEvent != string.Empty )
+        {
+            EventManager.Sub( makeNonInteractableEvent, () => { interactable = false; } );
         }
 
         OnStart();
@@ -119,7 +126,16 @@ public abstract class InteractableAbstract : MonoBehaviour
 
     public void ActivateItem()
     {
-        if ( !interactable ) return;
+        
+        if (!interactable)
+        {
+            if (nonInteractableVoiceLine != null)
+            {
+                AudioPlayer.Play(nonInteractableVoiceLine, Globals.Tags.DIALOGUE_SOURCE);
+            }
+            return;
+        }
+        
         if (voiceLine != null)
         {
             AudioPlayer.Play(voiceLine, Globals.Tags.DIALOGUE_SOURCE);
