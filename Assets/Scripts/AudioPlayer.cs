@@ -33,7 +33,7 @@ public class AudioPlayer
 		Utilities.CoroutineRunner.RunCoroutine( HandleAudioPlayer( player ) );
 	}
 
-	public static void Play( string audioFile, string targetSource, bool force = false )
+	public static void Play( string audioFile, string targetSource, bool force = true )
 	{
 		Assert.IsTrue( m_audioPlayers.ContainsKey( targetSource ) );
 
@@ -44,7 +44,7 @@ public class AudioPlayer
 		}
 	}
 
-	public static void Play( AudioClip clip, string targetSource, bool force = false )
+	public static void Play( AudioClip clip, string targetSource, bool force = true )
 	{
 		Assert.IsTrue( m_audioPlayers.ContainsKey( targetSource ) );
 		RegisteredAudioPlayer player = (RegisteredAudioPlayer)m_audioPlayers[ targetSource ];
