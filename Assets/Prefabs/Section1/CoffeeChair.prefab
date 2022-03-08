@@ -92,6 +92,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1040603977656727194}
+  - component: {fileID: 5082370744442264941}
   m_Layer: 0
   m_Name: CoffeeChair
   m_TagString: Untagged
@@ -120,6 +121,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -149.976, z: 0}
+--- !u!65 &5082370744442264941
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 376938293304372256}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.7988498, y: 1.8956356, z: 1.9242852}
+  m_Center: {x: -0.0030929905, y: 0.92645377, z: 0.056780986}
 --- !u!1 &3131334820255004263
 GameObject:
   m_ObjectHideFlags: 0
