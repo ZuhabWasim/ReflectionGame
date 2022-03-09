@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
 	private Inventory m_inventory;
 	private bool inventoryOpened = false;
 
-	public InteractableAbstract targetObject;
+	private List<InteractableAbstract> m_targetObjects = new List<InteractableAbstract>();
 	private ButtonPromptDisplay bp;
 	private ButtonPromptDisplay bp2;
 	private InteractionIcon interactionIcon;
@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
 		m_collider = GetComponent<Collider>();
 
 		m_inventory = Inventory.GetInstance();
-		targetObject = null;
+
 		bp = GameObject.Find( Globals.Misc.UI_Canvas ).GetComponents<ButtonPromptDisplay>()[ 0 ];
 		bp2 = GameObject.Find( Globals.Misc.UI_Canvas ).GetComponents<ButtonPromptDisplay>()[ 1 ];
 		interactionIcon = GameObject.Find( Globals.Misc.UI_Canvas ).GetComponent<InteractionIcon>();
@@ -195,7 +195,7 @@ public class PlayerController : MonoBehaviour
 	void SkipCurrentVoiceline()
 	{
 		// user presses INTERACT_KEY without looking at some interactable object => user is trying to skip voiceline
-		if ( targetObject != null )
+		if ( m_targetObjects.Count == 0 )
 		{
 			return;
 		}
@@ -245,29 +245,36 @@ public class PlayerController : MonoBehaviour
 
 	void HandleInteractPress()
 	{
-		if ( targetObject != null )
+		foreach ( InteractableAbstract target in m_targetObjects )
 		{
-			if ( targetObject.GetItemType() == InteractableAbstract.ItemType.PICKUP )
+			if ( target.GetItemType() == InteractableAbstract.ItemType.PICKUP )
 			{
-				PickupItem item = (PickupItem)targetObject;
+				PickupItem item = (PickupItem)target;
 				ItemPickupResult res = Inventory.GetInstance().PickupItem( ref item );
-				if ( res != ItemPickupResult.SUCCESS )
+				if ( res == ItemPickupResult.FAIL_ERROR )
 				{
-					Debug.Log( "Inventory failed to store item" );
+					Debug.LogError( "Inventory failed to store item " );
+				}
+				else if (res == ItemPickupResult.FAIL_INVENTORY_FULL)
+				{
+					Debug.LogError( "Inventory full, could not pick up item");
 				}
 			}
 			else
 			{
-				targetObject.ActivateItem();
+				target.ActivateItem();
 			}
 		}
 	}
 
 	void HandleUseItemPress()
 	{
-		if ( targetObject != null && targetObject.interactable && targetObject.WillAcceptItem() )
+		foreach ( InteractableAbstract target in m_targetObjects )
 		{
-			targetObject.ActivateUseItem( m_inventory.GetSelectedItem() );
+			if (target.interactable && target.WillAcceptItem() )
+			{
+				target.ActivateUseItem( m_inventory.GetSelectedItem() );
+			}
 		}
 	}
 
@@ -288,39 +295,50 @@ public class PlayerController : MonoBehaviour
 		bool hit = Physics.Raycast( playerCamera.position, playerCamera.forward, out hitRes, Globals.Misc.MAX_INTERACT_DISTANCE );
 		if ( hit && hitRes.collider.gameObject.GetComponent<InteractableAbstract>() != null )
 		{
-			targetObject = hitRes.collider.gameObject.GetComponent<InteractableAbstract>();
+			// This seems like a bad idea, but it's fine in practice
+			m_targetObjects = new List<InteractableAbstract>(hitRes.collider.gameObject.GetComponents<InteractableAbstract>());
 		}
 		else
 		{
-			targetObject = null;
+			m_targetObjects.Clear();
 		}
 	}
 
 	void DisplayInteractionPrompts()
 	{
-		if ( targetObject != null && targetObject.interactable )
+		bool interactable = false;
+		foreach ( InteractableAbstract target in m_targetObjects )
 		{
-			if ( targetObject.WillDisplayPrompt() )
+			if ( !target.interactable )
+			{
+				continue;
+			}
+
+			interactable = true;
+
+			if ( target.WillDisplayPrompt() )
 			{
 				bp.SetButton( 'f' );
-				bp.showPrompt( targetObject.GetPromptText() );
+				bp.showPrompt( target.GetPromptText() );
 			}
 			else
 			{
 				bp.hidePrompt();
 			}
+
 			string selectedItem = m_inventory.GetSelectedItem();
-			if ( targetObject.WillAcceptItem() && selectedItem != "" )
+			if ( target.WillAcceptItem() && selectedItem != "" )
 			{
 				bp2.SetButton( 'e' );
-				bp2.showPrompt( targetObject.GetItemText( selectedItem ) );
+				bp2.showPrompt( target.GetItemText( selectedItem ) );
 			}
 			else
 			{
 				bp2.hidePrompt();
 			}
 		}
-		else
+
+		if ( m_targetObjects.Count == 0 && !interactable )
 		{
 			bp.hidePrompt();
 			bp2.hidePrompt();
@@ -328,9 +346,9 @@ public class PlayerController : MonoBehaviour
 	}
 	void ShowInteractionIcon()
 	{
-		if ( targetObject != null )
+		foreach ( InteractableAbstract target in m_targetObjects )
 		{
-			if ( targetObject.GetItemType() == InteractableAbstract.ItemType.INTERACT )
+			if ( target.GetItemType() == InteractableAbstract.ItemType.INTERACT )
 			{
 				interactionIcon.ShowEyeIcon();
 			}
@@ -339,7 +357,8 @@ public class PlayerController : MonoBehaviour
 				interactionIcon.ShowHandIcon();
 			}
 		}
-		else
+
+		if ( m_targetObjects.Count == 0 )
 		{
 			interactionIcon.HideIcon();
 		}
