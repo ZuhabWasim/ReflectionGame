@@ -37,6 +37,9 @@ public class Globals
 		public static string LIGHTS_TURN_ON = "TurnOnLights";
 		public static string LIGHTS_TURN_OFF = "TurnOffLights";
 		public static string MILLIE_KEY_INTERACT = "MillieKeyInteract";
+		public static string HAS_MILLIE_KEY = "HasMillieKey";
+		public static string LOCK_MOM_DOOR = "LockMomDoor";
+		public static string LOCK_DAD_DOOR = "LockDadDoor";
 	}
 
 	public class Tags
@@ -110,6 +113,8 @@ public class Globals
 		public static string LIGHTS_TURN_ON_ROOM = "seeing_lit_room";
 		public static string ENTERING_ROOM = "its_really_dark";
 		public static string DIRTY_MIRROR = "dirty_mirror";
+		public static string MUSIC_BOX_INTERACT = "its_my_musicbox";
+		public static string MILLIE_POV_INTRO = "mille_pov_intro";
 	}
 
 	public class EnvironmentParams

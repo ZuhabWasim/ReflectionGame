@@ -11,6 +11,7 @@ public class InterpolateInteractableWrapper : InteractableAbstract
 	protected override void OnStart()
 	{
 		it = GetComponent<InterpolateTransform>();
+		EventManager.Sub( Globals.Events.LOCK_MOM_DOOR, () => { LockDoor(); } );
 	}
 
 	protected override void OnUserInteract()
@@ -26,5 +27,14 @@ public class InterpolateInteractableWrapper : InteractableAbstract
 				SetType( ItemType.OPEN );
 			}
 		}
+	}
+
+	void LockDoor()
+	{
+		Debug.Log("LockMomDoor");
+		SetType( ItemType.CLOSE );
+		it.TriggerMotion();
+		interactable = false;
+		
 	}
 }
