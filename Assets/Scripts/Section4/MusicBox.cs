@@ -14,6 +14,7 @@ public class MusicBox : InteractableAbstract
 	protected override void OnStart()
 	{
 		EventManager.Sub( Globals.Events.MILLIE_KEY_INTERACT, MillieKeyInteract );
+		EventManager.Sub( Globals.Events.HAS_MILLIE_KEY, HasMillieKey );
 
 		m_inventory = Inventory.GetInstance();
 		// AudioPlayer.RegisterAudioPlayer(MUSICBOX_AUDIO_SOURCE, GetComponent<AudioSource>());
@@ -23,7 +24,7 @@ public class MusicBox : InteractableAbstract
 
 	protected override void OnUserInteract()
 	{
-		AudioPlayer.Play( voiceLine, Globals.Tags.MAIN_SOURCE );
+		AudioPlayer.Play( voiceLine, Globals.Tags.DIALOGUE_SOURCE );
 	}
 
 	protected override void OnUseItem()
@@ -40,7 +41,15 @@ public class MusicBox : InteractableAbstract
 	void MillieKeyInteract()
 	{
 		Debug.Log( "MillieKeyInteract" );
-		AudioPlayer.Play( millieKeyVoiceline, Globals.Tags.MAIN_SOURCE );
+		AudioPlayer.Play( millieKeyVoiceline, Globals.Tags.DIALOGUE_SOURCE );
 	}
 
+	void HasMillieKey()
+	{
+		Debug.Log( "HasMillieKey" );
+		if ( m_inventory.HasItem(Globals.UIStrings.MUSICBOXMILLIE_ITEM) )
+		{
+			AudioPlayer.Play( Globals.AudioFiles.MUSIC_BOX_INTERACT, Globals.Tags.DIALOGUE_SOURCE );
+		}
+	}
 }

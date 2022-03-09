@@ -17,7 +17,7 @@ public class ProximityTrigger : MonoBehaviour
 	private float sqrdTriggerDist;
 
 	private const float TRIGGER_PLAYER_DIST_CHECK_TIME = 0.5f; // in seconds
-	private const float TRIGGER_RESET_DELAY = 5f;
+	private const float TRIGGER_RESET_DELAY = 3f;
 	void Start()
 	{
 		m_player = GameObject.FindGameObjectWithTag( Globals.Tags.PLAYER );
