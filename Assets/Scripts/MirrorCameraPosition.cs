@@ -23,8 +23,9 @@ public class MirrorCameraPosition : MonoBehaviour
         m_mirrorPlaneTransform = transform.parent;
 
         Renderer mirrorRenderer = m_mirrorPlaneTransform.GetComponent<Renderer>();
-        mirrorWidth = mirrorRenderer.bounds.size.z;
-        mirrorHeight = mirrorRenderer.bounds.size.y;
+        Vector3 bounds = mirrorRenderer.bounds.size;
+        mirrorWidth = Vector3.Project(bounds, m_mirrorPlaneTransform.right).magnitude;
+        mirrorHeight = Vector3.Project(bounds, m_mirrorPlaneTransform.forward).magnitude;
         //mirrorWidth = Mathf.Abs(m_mirrorPlaneTransform.localScale.x) * 10f;
         //mirrorHeight = Mathf.Abs(m_mirrorPlaneTransform.localScale.z) * 10f;
     }
