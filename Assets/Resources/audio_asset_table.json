@@ -1,44 +1,112 @@
 {
     "AssetPaths": [
         {
-            "name": "idea_theme",
-            "path": "Audio\\idea_theme"
-        },
-        {
-            "name": "reflections_game",
-            "path": "Audio\\reflections_game"
-        },
-        {
-            "name": "paper_unravel",
-            "path": "Audio\\paper_unravel"
-        },
-        {
-            "name": "object_obtained",
-            "path": "Audio\\object_obtained"
-        },
-        {
-            "name": "non_interactable",
-            "path": "Audio\\non_interactable"
-        },
-        {
-            "name": "Handkerchief",
-            "path": "Audio\\Section1\\Handkerchief"
-        },
-        {
             "name": "placeholder",
             "path": "Audio\\Voicelines\\placeholder"
+        },
+        {
+            "name": "music_box_needs_two_more_keys",
+            "path": "Audio\\Voicelines\\Section1\\music_box_needs_two_more_keys"
         },
         {
             "name": "main_door",
             "path": "Audio\\Section1\\main_door"
         },
         {
+            "name": "placeholder2",
+            "path": "Audio\\Voicelines\\placeholder2"
+        },
+        {
+            "name": "object_obtained",
+            "path": "Audio\\object_obtained"
+        },
+        {
+            "name": "paper_unravel",
+            "path": "Audio\\paper_unravel"
+        },
+        {
+            "name": "Handkerchief",
+            "path": "Audio\\Section1\\Handkerchief"
+        },
+        {
+            "name": "locked_closet_doors",
+            "path": "Audio\\Voicelines\\Section1\\locked_closet_doors"
+        },
+        {
+            "name": "idea_theme",
+            "path": "Audio\\idea_theme"
+        },
+        {
+            "name": "millie_key_pickup",
+            "path": "Audio\\Voicelines\\Section1\\millie_key_pickup"
+        },
+        {
+            "name": "dirty_mirror",
+            "path": "Audio\\Voicelines\\Section1\\dirty_mirror"
+        },
+        {
+            "name": "non_interactable",
+            "path": "Audio\\non_interactable"
+        },
+        {
+            "name": "placeholder1",
+            "path": "Audio\\Voicelines\\placeholder1"
+        },
+        {
+            "name": "its_really_dark",
+            "path": "Audio\\Voicelines\\Section1\\its_really_dark"
+        },
+        {
+            "name": "vanity_mirror_code",
+            "path": "Audio\\Voicelines\\Section1\\vanity_mirror_code"
+        },
+        {
             "name": "footstep_wood",
             "path": "Audio\\footstep_wood"
         },
         {
+            "name": "interact_mother_door",
+            "path": "Audio\\Voicelines\\Section1\\interact_mother_door"
+        },
+        {
+            "name": "going_through_fireplace_first_time",
+            "path": "Audio\\Voicelines\\Section1\\going_through_fireplace_first_time"
+        },
+        {
+            "name": "seeing_lit_room",
+            "path": "Audio\\Voicelines\\Section1\\seeing_lit_room"
+        },
+        {
+            "name": "fireplace_too_high",
+            "path": "Audio\\Voicelines\\Section1\\fireplace_too_high"
+        },
+        {
+            "name": "main_door_locked",
+            "path": "Audio\\Voicelines\\Section1\\main_door_locked"
+        },
+        {
+            "name": "intro_note",
+            "path": "Audio\\Voicelines\\Section1\\intro_note"
+        },
+        {
             "name": "Fusebox",
             "path": "Audio\\Section1\\Fusebox"
+        },
+        {
+            "name": "reflections_game",
+            "path": "Audio\\reflections_game"
+        },
+        {
+            "name": "placeholder3",
+            "path": "Audio\\Voicelines\\placeholder3"
+        },
+        {
+            "name": "vanity_mirror_reflection",
+            "path": "Audio\\Voicelines\\Section1\\vanity_mirror_reflection"
+        },
+        {
+            "name": "intro_letter_millie_pov",
+            "path": "Audio\\Voicelines\\Section1\\intro_letter_millie_pov"
         }
     ]
 }
