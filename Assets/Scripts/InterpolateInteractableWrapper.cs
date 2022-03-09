@@ -31,10 +31,8 @@ public class InterpolateInteractableWrapper : InteractableAbstract
 
 	void LockDoor()
 	{
-		Debug.Log("LockMomDoor");
 		SetType( ItemType.CLOSE );
 		it.TriggerMotion();
 		interactable = false;
-		
 	}
 }

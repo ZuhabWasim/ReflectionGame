@@ -40,13 +40,11 @@ public class MusicBox : InteractableAbstract
 
 	void MillieKeyInteract()
 	{
-		Debug.Log( "MillieKeyInteract" );
 		AudioPlayer.Play( millieKeyVoiceline, Globals.Tags.DIALOGUE_SOURCE );
 	}
 
 	void HasMillieKey()
 	{
-		Debug.Log( "HasMillieKey" );
 		if ( m_inventory.HasItem(Globals.UIStrings.MUSICBOXMILLIE_ITEM) )
 		{
 			AudioPlayer.Play( Globals.AudioFiles.MUSIC_BOX_INTERACT, Globals.Tags.DIALOGUE_SOURCE );

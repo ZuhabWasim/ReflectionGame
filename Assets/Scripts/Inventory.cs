@@ -121,7 +121,7 @@ public class Inventory
 	{
 		foreach ( PickupItem item in m_items )
 		{
-			if ( item.itemName == itemName )
+			if ( item && item.itemName == itemName )
 			{
 				return true;
 			}
