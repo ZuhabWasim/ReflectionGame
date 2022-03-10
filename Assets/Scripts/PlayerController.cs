@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
 	private bool inventoryOpened = false;
 
 	public InteractableAbstract targetObject;
+
 	private ButtonPromptDisplay bp;
 	private ButtonPromptDisplay bp2;
 	private InteractionIcon interactionIcon;
@@ -67,6 +68,7 @@ public class PlayerController : MonoBehaviour
 		RegisterAudioSources();
 		AudioPlayer.Play( Globals.AudioFiles.MAIN_DOOR, Globals.Tags.MAIN_SOURCE );
 		AudioPlayer.Play( Globals.AudioFiles.ENTERING_ROOM, Globals.Tags.DIALOGUE_SOURCE );
+		AudioPlayer.Play( Globals.AudioFiles.PRESENT_AMBIENCE, Globals.Tags.AMBIENCE_SOURCE );
 	}
 
 	void RegisterEventListeners()
@@ -83,12 +85,15 @@ public class PlayerController : MonoBehaviour
 
 		// Other events
 		EventManager.Sub( Globals.Events.TELEPORT, SwitchHeightOnTeleport );
+		EventManager.Sub( Globals.Events.TELEPORT, ChangeAudioOnTeleport );
 	}
 
 	void RegisterAudioSources()
 	{
 		AudioPlayer.RegisterAudioPlayer( Globals.Tags.MAIN_SOURCE, GameObject.FindGameObjectWithTag( Globals.Tags.MAIN_SOURCE ).GetComponent<AudioSource>() );
 		AudioPlayer.RegisterAudioPlayer( Globals.Tags.DIALOGUE_SOURCE, GameObject.FindGameObjectWithTag( Globals.Tags.DIALOGUE_SOURCE ).GetComponent<AudioSource>() );
+		AudioPlayer.RegisterAudioPlayer( Globals.Tags.AMBIENCE_SOURCE, GameObject.FindGameObjectWithTag( Globals.Tags.AMBIENCE_SOURCE ).GetComponent<AudioSource>() );
+		AudioPlayer.RegisterAudioPlayer( Globals.Tags.MUSIC_SOURCE, GameObject.FindGameObjectWithTag( Globals.Tags.MUSIC_SOURCE ).GetComponent<AudioSource>() );
 	}
 
 	// Update is called once per frame
@@ -367,6 +372,18 @@ public class PlayerController : MonoBehaviour
 		else
 		{
 			transform.localScale = new Vector3( transform.localScale.x, PAST_HEIGHT, transform.localScale.z );
+		}
+	}
+
+	void ChangeAudioOnTeleport()
+	{
+		if ( GlobalState.GetVar<bool>( Globals.Vars.IS_PRESENT_WORLD ) )
+		{
+			AudioPlayer.Play( Globals.AudioFiles.PRESENT_AMBIENCE, Globals.Tags.AMBIENCE_SOURCE );
+		}
+		else
+		{
+			AudioPlayer.Play( Globals.AudioFiles.PAST_AMBIENCE, Globals.Tags.AMBIENCE_SOURCE );
 		}
 	}
 }

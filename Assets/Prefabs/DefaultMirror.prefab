@@ -155,6 +155,7 @@ GameObject:
   - component: {fileID: 7243826340179432234}
   - component: {fileID: 7243826340179432235}
   - component: {fileID: 7243826340179432215}
+  - component: {fileID: 8653845728701680328}
   m_Layer: 0
   m_Name: DefaultMirror
   m_TagString: Untagged
@@ -258,6 +259,29 @@ MonoBehaviour:
   isDirty: 0
   dirtyMirrorMaterial: {fileID: 0}
   opaqueMirrorMaterial: {fileID: 2100000, guid: 377fddac4eca303409eee8362fcc05e9, type: 2}
+--- !u!114 &8653845728701680328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7243826340179432232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 529aba765379d0b46b5a2649509ad27e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactable: 1
+  makeInteractableEvent: 
+  makeNonInteractableEvent: 
+  displayPrompt: 1
+  acceptItem: 1
+  itemName: Mirror
+  myType: 0
+  voiceLine: {fileID: 0}
+  nonInteractableVoiceLine: {fileID: 0}
+  audioSourceName: 
+  interactSound: {fileID: 0}
 --- !u!1 &7243826340965363571
 GameObject:
   m_ObjectHideFlags: 0

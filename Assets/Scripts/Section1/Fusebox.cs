@@ -12,9 +12,13 @@ public class Fusebox : MonoBehaviour
 	public Material light_off;
 	public GameObject[] lights;
 
+	private const string FUSEBOX_AUDIO_SOURCE = "FuseBoxAudioSource";
+	
 	// Start is called before the first frame update
 	void Start()
 	{
+		AudioPlayer.RegisterAudioPlayer( FUSEBOX_AUDIO_SOURCE, GetComponent<AudioSource>() );
+		
 		solved = false;
 		for ( int i = 0; i < 6; i++ )
 		{
@@ -62,6 +66,7 @@ public class Fusebox : MonoBehaviour
 			switchPositions[ n ] = !switchPositions[ n ];
 			UpdateLight( n );
 			CheckInput();
+			AudioPlayer.Play(Globals.AudioFiles.FUSE_BOX_TOGGLETICK, FUSEBOX_AUDIO_SOURCE);
 		}
 	}
 }
