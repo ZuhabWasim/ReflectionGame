@@ -8,27 +8,36 @@ public class MirrorInteractable : InteractableAbstract
 {
     [Tooltip( "Name of the audio source. If unset, will fall back to GameObject.name" )]    
     public string audioSourceName;
-    public AudioClip reflectingDialog;
-
+    
+    public bool teleportable;
+    public string makeTeleportableEvent;
+    public string makeNonTeleportableEvent;
+    public AudioClip teleportableVoiceLine;
+    public AudioClip nonTeleportableVoiceLine;
+    public AudioClip teleportingVoiceLine;
+    
     private MirrorConnector m_connector;
     private string m_audioSourceName;
-
+    
     // Start is called before the first frame update
     protected override void OnStart()
     {
-        if (audioSourceName == "")
+        if (GetComponent<AudioSource>() != null)
         {
-            // This will be used for a reflection sound most likely, which 
-            m_audioSourceName = this.name;
-            Debug.Log("audioSourceName in " + this.name + " is not set, falling back to GameObject.name");
-            AudioPlayer.RegisterAudioPlayer(this.name, GetComponent<AudioSource>());
-        }
-        else
-        {
-            m_audioSourceName = audioSourceName;
-            AudioPlayer.RegisterAudioPlayer( audioSourceName, GetComponent<AudioSource>() );
+            m_audioSourceName = audioSourceName == "" ? this.name : audioSourceName;
+            AudioPlayer.RegisterAudioPlayer(m_audioSourceName, GetComponent<AudioSource>());
         }
 
+        if ( makeTeleportableEvent != string.Empty )
+        {
+            EventManager.Sub( makeTeleportableEvent, () => { teleportable = true; } );
+        }
+
+        if ( makeNonTeleportableEvent != string.Empty )
+        {
+            EventManager.Sub( makeNonTeleportableEvent, () => { teleportable = false; } );
+        }
+        
         // IF PENGUINS ARE SO SMART, HOW COME THEY LIVE IN IGLOOS?
     }
 
@@ -39,16 +48,31 @@ public class MirrorInteractable : InteractableAbstract
 
     private void HandleInteract()
 	{
-        AudioPlayer.Play(voiceLine, Globals.Tags.DIALOGUE_SOURCE);
+        if (teleportable)
+        {
+            AudioPlayer.Play(teleportableVoiceLine, Globals.Tags.DIALOGUE_SOURCE);
+        }
+        else
+        {
+            // We're going to use the regular voiceline from Interactable as any dialog when the mirror is not teleportable.
+            AudioPlayer.Play(voiceLine, Globals.Tags.DIALOGUE_SOURCE);
+        }
     }
 
 
     protected override void OnUseItem()
     {
-        // Teleporting checks done in the connector
-        m_connector.HandleUserTeleport();
-        AudioPlayer.Play(reflectingDialog, Globals.Tags.DIALOGUE_SOURCE);
-        AudioPlayer.Play(reflectingDialog, Globals.Tags.DIALOGUE_SOURCE);
+        // If it's possible, we should probably make teleporting checks here and propogate them to the connector e.g.
+        if (teleportable)
+        {
+            m_connector.HandleUserTeleport();
+            AudioPlayer.Play(teleportingVoiceLine, Globals.Tags.DIALOGUE_SOURCE);
+            // Also play reflecting sound
+        }
+        else
+        {
+            AudioPlayer.Play(nonTeleportableVoiceLine, Globals.Tags.DIALOGUE_SOURCE);
+        }
     }
     public void SetMirrorConnector(MirrorConnector connector)
     {

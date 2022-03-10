@@ -27,6 +27,9 @@ public abstract class InteractableAbstract : MonoBehaviour
 	[Tooltip( "Event which should set this object to become interactable" )]
 	public string makeInteractableEvent = "";
 	public string makeNonInteractableEvent = "";
+	public AudioClip voiceLine;
+	public AudioClip nonInteractableVoiceLine;
+	
 	public bool displayPrompt = true;
 	public bool acceptItem = false;
 	public string itemName;
@@ -41,8 +44,6 @@ public abstract class InteractableAbstract : MonoBehaviour
 	}
 	public ItemType myType;
 
-	public AudioClip voiceLine;
-	public AudioClip nonInteractableVoiceLine;
 
 	public void Start()
 	{

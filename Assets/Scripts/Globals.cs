@@ -123,6 +123,7 @@ public class Globals
 		public static string CANT_USE_ITEM = "cant_use_here";
 		public static string NOT_HOLDING_ANYTHING = "not_holding_anything";
 		public static string FUSE_BOX_TOGGLETICK = "fusebox_toggle_tick";
+		public static string FUSE_BOX = "fusebox";
 	}
 
 	public class EnvironmentParams
