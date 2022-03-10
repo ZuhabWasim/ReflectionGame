@@ -19,7 +19,7 @@ public class MirrorInteractable : InteractableAbstract
         if (audioSourceName == "")
         {
             m_audioSourceName = this.name;
-            Debug.LogWarning("audioSourceName in " + this.name + " is not set, falling back to GameObject.name");
+            Debug.Log("audioSourceName in " + this.name + " is not set, falling back to GameObject.name");
             AudioPlayer.RegisterAudioPlayer(this.name, GetComponent<AudioSource>());
         }
         else
