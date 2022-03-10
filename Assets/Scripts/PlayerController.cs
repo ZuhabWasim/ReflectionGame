@@ -295,7 +295,6 @@ public class PlayerController : MonoBehaviour
 		bool hit = Physics.Raycast( playerCamera.position, playerCamera.forward, out hitRes, Globals.Misc.MAX_INTERACT_DISTANCE );
 		if ( hit && hitRes.collider.gameObject.GetComponent<InteractableAbstract>() != null )
 		{
-			// This seems like a bad idea, but it's fine in practice
 			m_targetObjects = new List<InteractableAbstract>(hitRes.collider.gameObject.GetComponents<InteractableAbstract>());
 		}
 		else
