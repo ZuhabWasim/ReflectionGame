@@ -8,7 +8,7 @@ public class MirrorInteractable : InteractableAbstract
 {
     [Tooltip( "Name of the audio source. If unset, will fall back to GameObject.name" )]    
     public string audioSourceName;
-    public AudioClip interactSound;
+    public AudioClip reflectingDialog;
 
     private MirrorConnector m_connector;
     private string m_audioSourceName;
@@ -18,6 +18,7 @@ public class MirrorInteractable : InteractableAbstract
     {
         if (audioSourceName == "")
         {
+            // This will be used for a reflection sound most likely, which 
             m_audioSourceName = this.name;
             Debug.Log("audioSourceName in " + this.name + " is not set, falling back to GameObject.name");
             AudioPlayer.RegisterAudioPlayer(this.name, GetComponent<AudioSource>());
@@ -38,7 +39,7 @@ public class MirrorInteractable : InteractableAbstract
 
     private void HandleInteract()
 	{
-        AudioPlayer.Play(interactSound, m_audioSourceName);
+        AudioPlayer.Play(voiceLine, Globals.Tags.DIALOGUE_SOURCE);
     }
 
 
@@ -46,6 +47,8 @@ public class MirrorInteractable : InteractableAbstract
     {
         // Teleporting checks done in the connector
         m_connector.HandleUserTeleport();
+        AudioPlayer.Play(reflectingDialog, Globals.Tags.DIALOGUE_SOURCE);
+        AudioPlayer.Play(reflectingDialog, Globals.Tags.DIALOGUE_SOURCE);
     }
     public void SetMirrorConnector(MirrorConnector connector)
     {

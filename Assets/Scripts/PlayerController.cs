@@ -35,7 +35,8 @@ public class PlayerController : MonoBehaviour
 	private Inventory m_inventory;
 	private bool inventoryOpened = false;
 
-	private List<InteractableAbstract> m_targetObjects = new List<InteractableAbstract>();
+	public InteractableAbstract targetObject;
+
 	private ButtonPromptDisplay bp;
 	private ButtonPromptDisplay bp2;
 	private InteractionIcon interactionIcon;
@@ -57,7 +58,7 @@ public class PlayerController : MonoBehaviour
 		m_collider = GetComponent<Collider>();
 
 		m_inventory = Inventory.GetInstance();
-
+		targetObject = null;
 		bp = GameObject.Find( Globals.Misc.UI_Canvas ).GetComponents<ButtonPromptDisplay>()[ 0 ];
 		bp2 = GameObject.Find( Globals.Misc.UI_Canvas ).GetComponents<ButtonPromptDisplay>()[ 1 ];
 		interactionIcon = GameObject.Find( Globals.Misc.UI_Canvas ).GetComponent<InteractionIcon>();
@@ -67,6 +68,7 @@ public class PlayerController : MonoBehaviour
 		RegisterAudioSources();
 		AudioPlayer.Play( Globals.AudioFiles.MAIN_DOOR, Globals.Tags.MAIN_SOURCE );
 		AudioPlayer.Play( Globals.AudioFiles.ENTERING_ROOM, Globals.Tags.DIALOGUE_SOURCE );
+		AudioPlayer.Play( Globals.AudioFiles.PRESENT_AMBIENCE, Globals.Tags.AMBIENCE_SOURCE );
 	}
 
 	void RegisterEventListeners()
@@ -83,12 +85,15 @@ public class PlayerController : MonoBehaviour
 
 		// Other events
 		EventManager.Sub( Globals.Events.TELEPORT, SwitchHeightOnTeleport );
+		EventManager.Sub( Globals.Events.TELEPORT, ChangeAudioOnTeleport );
 	}
 
 	void RegisterAudioSources()
 	{
 		AudioPlayer.RegisterAudioPlayer( Globals.Tags.MAIN_SOURCE, GameObject.FindGameObjectWithTag( Globals.Tags.MAIN_SOURCE ).GetComponent<AudioSource>() );
 		AudioPlayer.RegisterAudioPlayer( Globals.Tags.DIALOGUE_SOURCE, GameObject.FindGameObjectWithTag( Globals.Tags.DIALOGUE_SOURCE ).GetComponent<AudioSource>() );
+		AudioPlayer.RegisterAudioPlayer( Globals.Tags.AMBIENCE_SOURCE, GameObject.FindGameObjectWithTag( Globals.Tags.AMBIENCE_SOURCE ).GetComponent<AudioSource>() );
+		AudioPlayer.RegisterAudioPlayer( Globals.Tags.MUSIC_SOURCE, GameObject.FindGameObjectWithTag( Globals.Tags.MUSIC_SOURCE ).GetComponent<AudioSource>() );
 	}
 
 	// Update is called once per frame
@@ -195,7 +200,7 @@ public class PlayerController : MonoBehaviour
 	void SkipCurrentVoiceline()
 	{
 		// user presses INTERACT_KEY without looking at some interactable object => user is trying to skip voiceline
-		if ( m_targetObjects.Count == 0 )
+		if ( targetObject != null )
 		{
 			return;
 		}
@@ -245,36 +250,29 @@ public class PlayerController : MonoBehaviour
 
 	void HandleInteractPress()
 	{
-		foreach ( InteractableAbstract target in m_targetObjects )
+		if ( targetObject != null )
 		{
-			if ( target.GetItemType() == InteractableAbstract.ItemType.PICKUP )
+			if ( targetObject.GetItemType() == InteractableAbstract.ItemType.PICKUP )
 			{
-				PickupItem item = (PickupItem)target;
+				PickupItem item = (PickupItem)targetObject;
 				ItemPickupResult res = Inventory.GetInstance().PickupItem( ref item );
-				if ( res == ItemPickupResult.FAIL_ERROR )
+				if ( res != ItemPickupResult.SUCCESS )
 				{
-					Debug.LogError( "Inventory failed to store item " );
-				}
-				else if (res == ItemPickupResult.FAIL_INVENTORY_FULL)
-				{
-					Debug.LogError( "Inventory full, could not pick up item");
+					Debug.Log( "Inventory failed to store item" );
 				}
 			}
 			else
 			{
-				target.ActivateItem();
+				targetObject.ActivateItem();
 			}
 		}
 	}
 
 	void HandleUseItemPress()
 	{
-		foreach ( InteractableAbstract target in m_targetObjects )
+		if ( targetObject != null && targetObject.interactable && targetObject.WillAcceptItem() )
 		{
-			if (target.interactable && target.WillAcceptItem() )
-			{
-				target.ActivateUseItem( m_inventory.GetSelectedItem() );
-			}
+			targetObject.ActivateUseItem( m_inventory.GetSelectedItem() );
 		}
 	}
 
@@ -295,49 +293,39 @@ public class PlayerController : MonoBehaviour
 		bool hit = Physics.Raycast( playerCamera.position, playerCamera.forward, out hitRes, Globals.Misc.MAX_INTERACT_DISTANCE );
 		if ( hit && hitRes.collider.gameObject.GetComponent<InteractableAbstract>() != null )
 		{
-			m_targetObjects = new List<InteractableAbstract>(hitRes.collider.gameObject.GetComponents<InteractableAbstract>());
+			targetObject = hitRes.collider.gameObject.GetComponent<InteractableAbstract>();
 		}
 		else
 		{
-			m_targetObjects.Clear();
+			targetObject = null;
 		}
 	}
 
 	void DisplayInteractionPrompts()
 	{
-		bool interactable = false;
-		foreach ( InteractableAbstract target in m_targetObjects )
+		if ( targetObject != null && targetObject.interactable )
 		{
-			if ( !target.interactable )
-			{
-				continue;
-			}
-
-			interactable = true;
-
-			if ( target.WillDisplayPrompt() )
+			if ( targetObject.WillDisplayPrompt() )
 			{
 				bp.SetButton( 'f' );
-				bp.showPrompt( target.GetPromptText() );
+				bp.showPrompt( targetObject.GetPromptText() );
 			}
 			else
 			{
 				bp.hidePrompt();
 			}
-
 			string selectedItem = m_inventory.GetSelectedItem();
-			if ( target.WillAcceptItem() && selectedItem != "" )
+			if ( targetObject.WillAcceptItem() && selectedItem != "" )
 			{
 				bp2.SetButton( 'e' );
-				bp2.showPrompt( target.GetItemText( selectedItem ) );
+				bp2.showPrompt( targetObject.GetItemText( selectedItem ) );
 			}
 			else
 			{
 				bp2.hidePrompt();
 			}
 		}
-
-		if ( m_targetObjects.Count == 0 && !interactable )
+		else
 		{
 			bp.hidePrompt();
 			bp2.hidePrompt();
@@ -345,9 +333,9 @@ public class PlayerController : MonoBehaviour
 	}
 	void ShowInteractionIcon()
 	{
-		foreach ( InteractableAbstract target in m_targetObjects )
+		if ( targetObject != null )
 		{
-			if ( target.GetItemType() == InteractableAbstract.ItemType.INTERACT )
+			if ( targetObject.GetItemType() == InteractableAbstract.ItemType.INTERACT )
 			{
 				interactionIcon.ShowEyeIcon();
 			}
@@ -356,8 +344,7 @@ public class PlayerController : MonoBehaviour
 				interactionIcon.ShowHandIcon();
 			}
 		}
-
-		if ( m_targetObjects.Count == 0 )
+		else
 		{
 			interactionIcon.HideIcon();
 		}
@@ -385,6 +372,19 @@ public class PlayerController : MonoBehaviour
 		else
 		{
 			transform.localScale = new Vector3( transform.localScale.x, PAST_HEIGHT, transform.localScale.z );
+		}
+	}
+
+	void ChangeAudioOnTeleport()
+	{
+		if ( GlobalState.GetVar<bool>( Globals.Vars.IS_PRESENT_WORLD ) )
+		{
+			AudioPlayer.Play( Globals.AudioFiles.PRESENT_AMBIENCE, Globals.Tags.AMBIENCE_SOURCE );
+		}
+		else
+		{
+			Debug.Log("Should change to Past audio");
+			AudioPlayer.Play( Globals.AudioFiles.PAST_AMBIENCE, Globals.Tags.AMBIENCE_SOURCE );
 		}
 	}
 }

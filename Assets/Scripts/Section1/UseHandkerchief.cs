@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UseHandkerchief : InteractableAbstract
+public class UseHandkerchief : MirrorInteractable
 {
+
 	private const string MIRROR_AUDIO_SOURCE = "MirrorAudioSource";
 	public AudioClip soundEffect;
 	public AudioClip cleanMirrorVoiceline;

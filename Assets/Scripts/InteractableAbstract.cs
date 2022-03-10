@@ -149,6 +149,10 @@ public abstract class InteractableAbstract : MonoBehaviour
 		{
 			OnUseItem();
 		}
+		else if ( desiredItem == "") // Temporary fix to allow player to Reflect with items selected
+		{
+			OnUseItem();
+		}
 		else
 		{
 			//Millie says generic line like "I don't think I should use this here"

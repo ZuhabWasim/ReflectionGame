@@ -33,7 +33,14 @@ public class Inventory
 				item.ActivateItem();
 				inventoryDisplay.addItem( item, pos );
 				inventoryDisplay.showItemName( item.itemName );
-				AudioPlayer.Play( Globals.AudioFiles.OBJECT_OBTAINED, Globals.Tags.MAIN_SOURCE );
+				if (item.itemName.ToLower().Contains("key"))
+				{
+					AudioPlayer.Play( Globals.AudioFiles.MUSICBOXKEY_OBTAINED, Globals.Tags.MAIN_SOURCE );
+				}
+				else
+				{
+					AudioPlayer.Play( Globals.AudioFiles.OBJECT_OBTAINED, Globals.Tags.MAIN_SOURCE );
+				}
 				return ItemPickupResult.SUCCESS;
 			}
 		}
