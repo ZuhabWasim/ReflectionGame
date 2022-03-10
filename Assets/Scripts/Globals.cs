@@ -120,6 +120,9 @@ public class Globals
 		public static string MILLIE_POV_INTRO = "mille_pov_intro";
 		public static string PRESENT_AMBIENCE = "amb_rainceiling_loop";
 		public static string PAST_AMBIENCE = "amb_past_birds_wind_loop";
+		public static string CANT_USE_ITEM = "cant_use_here";
+		public static string NOT_HOLDING_ANYTHING = "not_holding_anything";
+		public static string FUSE_BOX_TOGGLETICK = "fusebox_toggle_tick";
 	}
 
 	public class EnvironmentParams

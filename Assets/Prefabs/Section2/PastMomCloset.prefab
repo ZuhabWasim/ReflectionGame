@@ -13858,8 +13858,8 @@ MonoBehaviour:
   interpolatePosition: 0
   loop: 0
   interpDuration: 1.5
-  triggerMethod: 0
---- !u!114 &6653233797133605162
+  triggerMethod: 2
+--- !u!114 &7910832203196610534
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -13868,7 +13868,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 559803378342407692}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ec1d719915118945b1f9718b12d45bb, type: 3}
+  m_Script: {fileID: 11500000, guid: c62f7a00ddc5581499fb5ae6ab3481c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   interactable: 1
@@ -13880,9 +13880,11 @@ MonoBehaviour:
   myType: 3
   voiceLine: {fileID: 0}
   nonInteractableVoiceLine: {fileID: 0}
-  openSound: {fileID: 8300000, guid: 29c9ae8609b53634eb3512de32e1bfe6, type: 3}
-  closeSound: {fileID: 8300000, guid: 63f4eee317d0c604e832c76e3c871bab, type: 3}
+  openSound: {fileID: 0}
+  closeSound: {fileID: 0}
   audioSourceName: momClosetDoor
+  closeEvent: LockMomDoor
+  openEvent: 
 --- !u!4 &6511902746561694200 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5440112544721598299, guid: 3ad6ca3da0452804d84edfbecf15fee8, type: 3}

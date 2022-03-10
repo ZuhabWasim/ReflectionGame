@@ -383,7 +383,6 @@ public class PlayerController : MonoBehaviour
 		}
 		else
 		{
-			Debug.Log("Should change to Past audio");
 			AudioPlayer.Play( Globals.AudioFiles.PAST_AMBIENCE, Globals.Tags.AMBIENCE_SOURCE );
 		}
 	}
