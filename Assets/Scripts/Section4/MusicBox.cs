@@ -13,7 +13,7 @@ public class MusicBox : InteractableAbstract
 
 	protected override void OnStart()
 	{
-		EventManager.Sub( Globals.Events.MILLIE_KEY_INTERACT, MillieKeyInteract );
+		//EventManager.Sub( Globals.Events.MILLIE_KEY_INTERACT, MillieKeyInteract );
 		EventManager.Sub( Globals.Events.HAS_MILLIE_KEY, HasMillieKey );
 
 		m_inventory = Inventory.GetInstance();
@@ -41,6 +41,7 @@ public class MusicBox : InteractableAbstract
 	void MillieKeyInteract()
 	{
 		AudioPlayer.Play( millieKeyVoiceline, Globals.Tags.DIALOGUE_SOURCE );
+		EventManager.Fire( Globals.Events.MILLIE_KEY_INTERACT );
 	}
 
 	void HasMillieKey()
