@@ -18,14 +18,20 @@ public class MirrorConnector : MonoBehaviour
     [Tooltip("If the associated mirrors should be active at start. Do not toggle mid-game, it will not work.")]
     public bool active = true; // Only toggleable in Unity
 
+    // Mirror interactable interfaces
+    private MirrorInteractable presentInteractable;
+    private MirrorInteractable pastInteractable;
+
     private Transform m_player; // Player transform, programmatically selected and updated
     private Transform m_playerCamera;
 
     // Textures to render to.
     private RenderTexture m_presentMirrorTexture;
     private RenderTexture m_pastMirrorTexture;
-    private bool m_canTeleport = false;
+
+    // Boolean flags for interactability
     private bool m_active;
+    private bool m_canTeleport = false;
 
     [Tooltip("Event which should set this object to become active")]
     public string makeInteractableEvent = "";
@@ -38,38 +44,24 @@ public class MirrorConnector : MonoBehaviour
     {
         if (makeInteractableEvent != string.Empty)
         {
-            EventManager.Sub(makeInteractableEvent, () =>
-                {
-                    m_active = true;
-                    presentMirror.Activate();
-                    if (pastMirror != null)
-                    {
-                        pastMirror.Activate();
-                    }
-                }
-            );
+            EventManager.Sub(makeInteractableEvent, () => { Activate(); });
         }
 
         if (makeNonInteractableEvent != string.Empty)
         {
-            EventManager.Sub(makeNonInteractableEvent, () =>
-                {
-                    m_active = false;
-                    presentMirror.Deactivate();
-                    if (pastMirror != null)
-                    {
-                        pastMirror.Deactivate();
-                    }
-                }
-            );
+            EventManager.Sub(makeNonInteractableEvent, () => { Deactivate(); });
         }
 
         // There must be a presentMirror on start
         if (presentMirror == null)
         {
-            Debug.LogError("No presentMirror in Mirror " + this.name);
+            Debug.LogError("No presentMirror in Mirror " + this.name + ", this is a fatal error");
             return;
         }
+
+        // Find interactables
+        SetupMirrorInteractable(presentMirror, presentInteractable);
+        SetupMirrorInteractable(pastMirror, pastInteractable);
 
         // Find the player
         try
@@ -110,8 +102,6 @@ public class MirrorConnector : MonoBehaviour
         {
             Deactivate();
         }
-
-        EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.INTERACT_KEY ), HandleUserTeleport );
     }
 
     // Update is called once per frame
@@ -126,7 +116,7 @@ public class MirrorConnector : MonoBehaviour
         SetMirrorCameraPositions();
 
         // Check if player is in teleport range only if teleportable
-        if (teleportable && InTeleporterRange() && LookingAtTeleporter())
+        if (teleportable && InTeleporterRange())
         {
             m_canTeleport = true;
             interactionIcon.ShowReflectionIcon();
@@ -158,14 +148,14 @@ public class MirrorConnector : MonoBehaviour
         }
     }
 
-    private void HandleUserTeleport()
+    // Teleports only if m_canTeleport is true
+    public void HandleUserTeleport()
     {
         if (!m_canTeleport)
         {
             return;
         }
 
-        // bool pressedInteract = Input.GetKeyDown(KeyCode.M); // TODO: don't hardcode this, use input system.
         bool teleporting = GlobalState.GetVar<bool>(Globals.Vars.TELEPORTING);
         if (!teleporting)
         {
@@ -314,4 +304,19 @@ public class MirrorConnector : MonoBehaviour
         }
     }
 
+    private void SetupMirrorInteractable(MirrorPlane mirror, MirrorInteractable interactable)
+    {
+        if (mirror != null)
+        {
+            interactable = mirror.GetComponent<MirrorInteractable>();
+            if (interactable != null)
+            {
+                interactable.SetMirrorConnector(this);
+            }
+            else
+            {
+                Debug.LogWarning("Mirror " + mirror.name + " has no MirrorInteractable. This is likely unintentional");
+            }
+        }
+    }
 }

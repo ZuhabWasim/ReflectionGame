@@ -145,13 +145,27 @@ public abstract class InteractableAbstract : MonoBehaviour
 
 	public void ActivateUseItem( string objectName )
 	{
+		// Correctly picking item to use on object
 		if ( desiredItem == objectName )
 		{
 			OnUseItem();
 		}
+		// Temporary fix to allow player to Reflect with items selected
+		else if ( desiredItem == "") 
+		{
+			OnUseItem();
+		}
+		// If no item is selected.
+		else if (objectName == "")
+		{
+			AudioPlayer.Play(Globals.AudioFiles.NOT_HOLDING_ANYTHING, Globals.Tags.DIALOGUE_SOURCE);
+			AudioPlayer.Play(Globals.AudioFiles.NON_INTERACTABLE, Globals.Tags.MAIN_SOURCE);
+		} 
+		// If the wrong item is selected.
 		else
 		{
-			//Millie says generic line like "I don't think I should use this here"
+			AudioPlayer.Play(Globals.AudioFiles.CANT_USE_ITEM, Globals.Tags.DIALOGUE_SOURCE);
+			AudioPlayer.Play(Globals.AudioFiles.NON_INTERACTABLE, Globals.Tags.MAIN_SOURCE);
 		}
 	}
 

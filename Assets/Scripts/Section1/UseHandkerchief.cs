@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UseHandkerchief : InteractableAbstract
+public class UseHandkerchief : MirrorInteractable
 {
+
 	private const string MIRROR_AUDIO_SOURCE = "MirrorAudioSource";
 	public AudioClip soundEffect;
 	public AudioClip cleanMirrorVoiceline;
 	public AudioClip afterCleanVoiceline;
 
-	public MirrorPlane dirtyMirror; // TODO(dennis): remove this
+	private MirrorPlane m_dirtyMirror; // TODO(dennis): remove this, this is utterly imbecilic
 	private Inventory m_inventory;
 	private bool mirrorCleaned;
 
@@ -20,6 +21,8 @@ public class UseHandkerchief : InteractableAbstract
 
 		mirrorCleaned = false;
 		desiredItem = Globals.UIStrings.HANDKERCHIEF_ITEM;
+
+		m_dirtyMirror = gameObject.GetComponent<MirrorPlane>();
 	}
 
 	protected override void OnUserInteract()
@@ -36,20 +39,19 @@ public class UseHandkerchief : InteractableAbstract
 
 	protected override void OnUseItem()
 	{
-		Debug.Log( "Using handkerchief" );
 		m_inventory.DeleteItem( desiredItem );
-		HandleInteract();
+		HandleUseItem();
 	}
 
-	void HandleInteract()
+	void HandleUseItem()
 	{
 		// We can probably keep the above function as inheritable and do all specific things like changing the dirty texture here
 		AudioPlayer.Play( soundEffect, MIRROR_AUDIO_SOURCE );
 		AudioPlayer.Play( cleanMirrorVoiceline, Globals.Tags.DIALOGUE_SOURCE );
 
-		if ( dirtyMirror != null )
+		if ( m_dirtyMirror != null )
 		{
-			dirtyMirror.CleanMirror();
+			m_dirtyMirror.CleanMirror();
 			mirrorCleaned = true;
 		}
 	}

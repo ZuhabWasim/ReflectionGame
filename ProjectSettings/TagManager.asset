@@ -10,6 +10,8 @@ TagManager:
   - MainSource
   - MomRow
   - MomSpace
+  - AmbienceSource
+  - MusicSource
   layers:
   - Default
   - TransparentFX

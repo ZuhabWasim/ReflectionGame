@@ -112,6 +112,7 @@ GameObject:
   - component: {fileID: 7077006183084530750}
   - component: {fileID: 1936794294797491234}
   - component: {fileID: 7077006183084530751}
+  - component: {fileID: 6876167721375408248}
   m_Layer: 0
   m_Name: TopDrawer
   m_TagString: Untagged
@@ -211,13 +212,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c62f7a00ddc5581499fb5ae6ab3481c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactable: 0
+  interactable: 1
   makeInteractableEvent: 
+  makeNonInteractableEvent: 
   displayPrompt: 1
   acceptItem: 0
   itemName: Drawer
   myType: 3
   voiceLine: {fileID: 0}
+  nonInteractableVoiceLine: {fileID: 0}
+  openSound: {fileID: 8300000, guid: bd1069cb393949a4ba69a5314490bfa2, type: 3}
+  closeSound: {fileID: 8300000, guid: e7b8b07a39fb7dd4a9b0d58885cdde24, type: 3}
+  audioSourceName: IntroTableDesk
 --- !u!114 &7077006183084530751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,8 +243,104 @@ MonoBehaviour:
   interpolateRotation: 0
   interpolatePosition: 1
   loop: 0
-  interpDuration: 1
+  interpDuration: 1.2
   triggerMethod: 0
+--- !u!82 &6876167721375408248
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1936794294797491235}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &7077006182108888349
 GameObject:
   m_ObjectHideFlags: 0
@@ -1085,11 +1187,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactable: 0
   makeInteractableEvent: 
+  makeNonInteractableEvent: 
   displayPrompt: 1
   acceptItem: 0
   itemName: Handkerchief
   myType: 0
   voiceLine: {fileID: 0}
+  nonInteractableVoiceLine: {fileID: 0}
   img: {fileID: 2800000, guid: 18ac8ea28e700b747b9d5c5c4427f4fc, type: 3}
 --- !u!1 &7077006183106151820
 GameObject:
@@ -2221,11 +2325,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactable: 0
   makeInteractableEvent: 
+  makeNonInteractableEvent: 
   displayPrompt: 1
   acceptItem: 0
   itemName: Note
   myType: 0
   voiceLine: {fileID: 8300000, guid: 64f1791a5819c554e8506c1fcfd911bc, type: 3}
+  nonInteractableVoiceLine: {fileID: 0}
 --- !u!1 &7077006183986395089
 GameObject:
   m_ObjectHideFlags: 0
