@@ -170,14 +170,14 @@ public abstract class InteractableAbstract : MonoBehaviour
 		// If no item is selected.
 		else if (objectName == "")
 		{
-			AudioPlayer.Play(Globals.AudioFiles.NOT_HOLDING_ANYTHING, Globals.Tags.DIALOGUE_SOURCE);
-			AudioPlayer.Play(Globals.AudioFiles.NON_INTERACTABLE, Globals.Tags.MAIN_SOURCE);
+			AudioPlayer.Play(Globals.VoiceLines.General.NOT_HOLDING_ANYTHING, Globals.Tags.DIALOGUE_SOURCE);
+			AudioPlayer.Play(Globals.AudioFiles.General.NON_INTERACTABLE, Globals.Tags.MAIN_SOURCE);
 		} 
 		// If the wrong item is selected.
 		else
 		{
-			AudioPlayer.Play(Globals.AudioFiles.CANT_USE_ITEM, Globals.Tags.DIALOGUE_SOURCE);
-			AudioPlayer.Play(Globals.AudioFiles.NON_INTERACTABLE, Globals.Tags.MAIN_SOURCE);
+			AudioPlayer.Play(Globals.VoiceLines.General.CANT_USE_ITEM, Globals.Tags.DIALOGUE_SOURCE);
+			AudioPlayer.Play(Globals.AudioFiles.General.NON_INTERACTABLE, Globals.Tags.MAIN_SOURCE);
 		}
 	}
 

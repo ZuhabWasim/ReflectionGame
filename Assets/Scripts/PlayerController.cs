@@ -66,9 +66,9 @@ public class PlayerController : MonoBehaviour
 
 		RegisterEventListeners();
 		RegisterAudioSources();
-		AudioPlayer.Play( Globals.AudioFiles.MAIN_DOOR, Globals.Tags.MAIN_SOURCE );
-		AudioPlayer.Play( Globals.AudioFiles.ENTERING_ROOM, Globals.Tags.DIALOGUE_SOURCE );
-		AudioPlayer.Play( Globals.AudioFiles.PRESENT_AMBIENCE, Globals.Tags.AMBIENCE_SOURCE );
+		AudioPlayer.Play( Globals.AudioFiles.Section1.MAIN_DOOR, Globals.Tags.MAIN_SOURCE );
+		AudioPlayer.Play( Globals.VoiceLines.Section1.DARK_IN_HERE, Globals.Tags.DIALOGUE_SOURCE );
+		AudioPlayer.Play( Globals.AudioFiles.Ambience.PRESENT_AMBIENCE, Globals.Tags.AMBIENCE_SOURCE );
 	}
 
 	void RegisterEventListeners()
@@ -382,11 +382,11 @@ public class PlayerController : MonoBehaviour
 	{
 		if ( GlobalState.GetVar<bool>( Globals.Vars.IS_PRESENT_WORLD ) )
 		{
-			AudioPlayer.Play( Globals.AudioFiles.PRESENT_AMBIENCE, Globals.Tags.AMBIENCE_SOURCE );
+			AudioPlayer.Play( Globals.AudioFiles.Ambience.PRESENT_AMBIENCE, Globals.Tags.AMBIENCE_SOURCE );
 		}
 		else
 		{
-			AudioPlayer.Play( Globals.AudioFiles.PAST_AMBIENCE, Globals.Tags.AMBIENCE_SOURCE );
+			AudioPlayer.Play( Globals.AudioFiles.Ambience.PAST_AMBIENCE, Globals.Tags.AMBIENCE_SOURCE );
 		}
 	}
 }

@@ -10,21 +10,24 @@ public class MusicBox : InteractableAbstract
 	public AudioClip millieKeyVoiceline;
 	public AudioClip motherKeyVoiceline;
 	public AudioClip fatherKeyVoiceline;
-
+	public bool discoveredBox;
+	
 	protected override void OnStart()
 	{
 		//EventManager.Sub( Globals.Events.MILLIE_KEY_INTERACT, MillieKeyInteract );
-		EventManager.Sub( Globals.Events.HAS_MILLIE_KEY, HasMillieKey );
+		EventManager.Sub( Globals.Events.HAS_MILLIE_KEY, OnHavingMillieKey );
 
 		m_inventory = Inventory.GetInstance();
 		// AudioPlayer.RegisterAudioPlayer(MUSICBOX_AUDIO_SOURCE, GetComponent<AudioSource>());
 
+		discoveredBox = false;
 		desiredItem = Globals.UIStrings.MUSICBOXMILLIE_ITEM;
 	}
 
 	protected override void OnUserInteract()
 	{
 		AudioPlayer.Play( voiceLine, Globals.Tags.DIALOGUE_SOURCE );
+		discoveredBox = true;
 	}
 
 	protected override void OnUseItem()
@@ -44,11 +47,16 @@ public class MusicBox : InteractableAbstract
 		EventManager.Fire( Globals.Events.MILLIE_KEY_INTERACT );
 	}
 
-	void HasMillieKey()
+	private bool HasMillieKey()
 	{
-		if ( m_inventory.HasItem(Globals.UIStrings.MUSICBOXMILLIE_ITEM) )
+		return m_inventory.HasItem(Globals.UIStrings.MUSICBOXMILLIE_ITEM);
+	}
+	
+	void OnHavingMillieKey()
+	{
+		if ( HasMillieKey() )
 		{
-			AudioPlayer.Play( Globals.AudioFiles.MUSIC_BOX_INTERACT, Globals.Tags.DIALOGUE_SOURCE );
+			AudioPlayer.Play( Globals.VoiceLines.Section1.DISCOVER_KEY_FIRST__OH_THERE_IT_IS, Globals.Tags.DIALOGUE_SOURCE );
 		}
 	}
 }

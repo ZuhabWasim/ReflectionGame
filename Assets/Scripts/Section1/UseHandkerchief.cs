@@ -34,7 +34,7 @@ public class UseHandkerchief : MirrorInteractable
 		}
 		else
 		{
-			AudioPlayer.Play( Globals.AudioFiles.DIRTY_MIRROR, Globals.Tags.DIALOGUE_SOURCE );
+			AudioPlayer.Play( Globals.VoiceLines.Section1.FILTHY_MIRROR, Globals.Tags.DIALOGUE_SOURCE );
 		}
 	}
 
