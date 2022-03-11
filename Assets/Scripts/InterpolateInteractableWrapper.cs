@@ -13,6 +13,7 @@ public class InterpolateInteractableWrapper : InteractableAbstract
     public string closeEvent = "";
     public string openEvent = "";
 
+    public string needsItem = "";
     private string m_audioSource;
 
     protected override void OnStart()
@@ -22,6 +23,11 @@ public class InterpolateInteractableWrapper : InteractableAbstract
         {
             m_audioSource = audioSourceName == "" ? this.name : audioSourceName;
             AudioPlayer.RegisterAudioPlayer(m_audioSource, GetComponent<AudioSource>());
+        }
+
+        if (needsItem != "")
+        {
+            desiredItem = needsItem;
         }
 
         if (closeEvent != string.Empty)
@@ -50,6 +56,19 @@ public class InterpolateInteractableWrapper : InteractableAbstract
     }
 
     protected override void OnUserInteract()
+    {
+        if (desiredItem == "")
+        {
+            Act();
+        }
+    }
+
+    protected override void OnUseItem()
+    {
+        Act();
+    }
+
+    private void Act()
     {
         if (it.ActivateInteractMotion())
         {

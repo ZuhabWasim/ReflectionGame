@@ -13,6 +13,7 @@ TagManager:
   - AmbienceSource
   - MusicSource
   - InteractableBook
+  - MirrorInactiveZone
   layers:
   - Default
   - TransparentFX
