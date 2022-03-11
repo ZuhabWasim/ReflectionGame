@@ -12,6 +12,7 @@ TagManager:
   - MomSpace
   - AmbienceSource
   - MusicSource
+  - MirrorInactiveZone
   layers:
   - Default
   - TransparentFX
