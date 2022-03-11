@@ -46,6 +46,8 @@ public abstract class InteractableAbstract : MonoBehaviour
 	public ItemType myType;
 
 	private Inventory m_inventory;
+	[HideInInspector]
+	public bool thisIsAMirror=false;
 
 
 	public void Start()
