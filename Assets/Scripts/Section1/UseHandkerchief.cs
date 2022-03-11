@@ -23,6 +23,7 @@ public class UseHandkerchief : MirrorInteractable
 		desiredItem = Globals.UIStrings.HANDKERCHIEF_ITEM;
 
 		m_dirtyMirror = gameObject.GetComponent<MirrorPlane>();
+		deleteItem = true;
 	}
 
 	protected override void OnUserInteract()
@@ -39,7 +40,6 @@ public class UseHandkerchief : MirrorInteractable
 
 	protected override void OnUseItem()
 	{
-		m_inventory.DeleteItem( desiredItem );
 		HandleUseItem();
 	}
 
