@@ -743,8 +743,10 @@ MonoBehaviour:
   nonInteractableVoiceLine: {fileID: 0}
   displayPrompt: 1
   acceptItem: 0
+  deleteItem: 0
   itemName: Box
   myType: 0
+  thisIsAMirror: 0
   bma: {fileID: 4768157690519674229}
   correspondingBlock: {fileID: 0}
 --- !u!65 &6468488659938286877
@@ -849,8 +851,10 @@ MonoBehaviour:
   nonInteractableVoiceLine: {fileID: 0}
   displayPrompt: 1
   acceptItem: 0
+  deleteItem: 0
   itemName: Box
   myType: 0
+  thisIsAMirror: 0
   bma: {fileID: 4768157690519674229}
   correspondingBlock: {fileID: 0}
 --- !u!65 &6208848156698202016
@@ -1022,8 +1026,10 @@ MonoBehaviour:
   nonInteractableVoiceLine: {fileID: 0}
   displayPrompt: 1
   acceptItem: 0
+  deleteItem: 0
   itemName: Box
   myType: 0
+  thisIsAMirror: 0
   bma: {fileID: 4768157690519674229}
   correspondingBlock: {fileID: 0}
 --- !u!65 &7301712739828593978
@@ -2369,7 +2375,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &415214136595427791
 Transform:
   m_ObjectHideFlags: 0
@@ -2886,8 +2892,10 @@ MonoBehaviour:
   nonInteractableVoiceLine: {fileID: 0}
   displayPrompt: 1
   acceptItem: 0
+  deleteItem: 0
   itemName: Box
   myType: 0
+  thisIsAMirror: 0
   bma: {fileID: 4768157690519674229}
   correspondingBlock: {fileID: 0}
 --- !u!65 &7972370404394580272
@@ -7679,8 +7687,10 @@ MonoBehaviour:
   nonInteractableVoiceLine: {fileID: 0}
   displayPrompt: 1
   acceptItem: 0
+  deleteItem: 0
   itemName: Box
   myType: 0
+  thisIsAMirror: 0
   bma: {fileID: 4768157690519674229}
   correspondingBlock: {fileID: 0}
 --- !u!65 &4027618753110734513
@@ -7817,8 +7827,10 @@ MonoBehaviour:
   nonInteractableVoiceLine: {fileID: 0}
   displayPrompt: 1
   acceptItem: 0
+  deleteItem: 0
   itemName: Box
   myType: 0
+  thisIsAMirror: 0
   bma: {fileID: 4768157690519674229}
   correspondingBlock: {fileID: 0}
 --- !u!65 &4865746523589627128
