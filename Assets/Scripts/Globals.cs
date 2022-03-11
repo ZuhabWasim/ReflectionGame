@@ -51,6 +51,8 @@ public class Globals
 		public static string MAIN_SOURCE = "MainSource";
 		public static string AMBIENCE_SOURCE = "AmbienceSource";
 		public static string MUSIC_SOURCE = "MusicSource";
+		public static string MUSIC_BOX = "MusicBox";
+		
 	}
 
 	public class Misc
@@ -108,34 +110,18 @@ public class Globals
 
 	public class AudioFiles
 	{
-		public static string PAPER_UNRAVEL = "paper_unravel";
-		public static string OBJECT_OBTAINED = "object_obtained";
-		public static string MUSICBOXKEY_OBTAINED = "key_acquired";
-		public static string NON_INTERACTABLE = "non_interactable";
-		public static string MAIN_DOOR = "main_door";
-		public static string LIGHTS_TURN_ON_ROOM = "seeing_lit_room";
-		public static string ENTERING_ROOM = "its_really_dark";
-		public static string DIRTY_MIRROR = "dirty_mirror";
-		public static string MUSIC_BOX_INTERACT = "its_my_musicbox";
-		public static string MILLIE_POV_INTRO = "mille_pov_intro";
-		public static string PRESENT_AMBIENCE = "amb_rainceiling_loop";
-		public static string PAST_AMBIENCE = "amb_past_birds_wind_loop";
-		public static string CANT_USE_ITEM = "cant_use_here";
-		public static string NOT_HOLDING_ANYTHING = "not_holding_anything";
-		public static string FUSE_BOX_TOGGLETICK = "fusebox_toggle_tick";
-		public static string FUSE_BOX = "fusebox";
-		
+
 		public class Ambience
 		{
 			public static string PRESENT_AMBIENCE = "amb_rainceiling_loop";
 			public static string PAST_AMBIENCE = "amb_past_birds_wind_loop";
-			
-			
 		}
+		
 		public class Music
 		{
 			// Music goes here
 		}
+		
 		public class General
 		{
 			public static string PAPER_UNRAVEL = "paper_unravel";
@@ -162,7 +148,7 @@ public class Globals
 	{
 		public class General
 		{
-			public static string CANT_USE_ITEM = "cant_use_here";
+			public static string CANT_USE_ITEM = "1.14__hmm_that_doesnt_seem_right";
 			public static string NOT_HOLDING_ANYTHING = "not_holding_anything";
 			
 		}
@@ -171,6 +157,7 @@ public class Globals
 			public static string DARK_IN_HERE = "1.03__dark_in_here";
 			public static string TOO_DARK_TO_SEE = "1.04__too_dark_to_see";
 			public static string DOOR_AM_I_LOCKED_IN = "1.05__door_am_i_locked_in";
+			public static string DOOR_NOT_BUDGING = "1.05__door_am_i_locked_in_short";
 			public static string LOCKED_FROM_THE_INSIDE = "1.06__locked_from_the_inside";
 			
 			public static string JOHNSON_LETTER = "1.11__johnson_letter";

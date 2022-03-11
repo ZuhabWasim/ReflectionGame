@@ -35,16 +35,16 @@ public class Inventory
 				inventoryDisplay.showItemName( item.itemName );
 				if (item.itemName.ToLower().Contains("key"))
 				{
-					AudioPlayer.Play( Globals.AudioFiles.MUSICBOXKEY_OBTAINED, Globals.Tags.MAIN_SOURCE );
+					AudioPlayer.Play( Globals.AudioFiles.General.MUSICBOXKEY_OBTAINED, Globals.Tags.MAIN_SOURCE );
 				}
 				else
 				{
-					AudioPlayer.Play( Globals.AudioFiles.OBJECT_OBTAINED, Globals.Tags.MAIN_SOURCE );
+					AudioPlayer.Play( Globals.AudioFiles.General.OBJECT_OBTAINED, Globals.Tags.MAIN_SOURCE );
 				}
 				return ItemPickupResult.SUCCESS;
 			}
 		}
-		AudioPlayer.Play( Globals.AudioFiles.NON_INTERACTABLE, Globals.Tags.MAIN_SOURCE );
+		AudioPlayer.Play( Globals.AudioFiles.General.NON_INTERACTABLE, Globals.Tags.MAIN_SOURCE );
 		return ItemPickupResult.FAIL_INVENTORY_FULL;
 	}
 
