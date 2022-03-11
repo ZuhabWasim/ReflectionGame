@@ -29,6 +29,9 @@ public class BlockMovingArea : MonoBehaviour
 	private List<List<TileStatus>> tileGrid;
 	private List<List<Transform>> spaceGrid;
 
+	public GameObject mirrorConnector;
+	private MirrorConnector[] mcList;
+
 	// Start is called before the first frame update
 	void Start()
 	{
@@ -36,6 +39,8 @@ public class BlockMovingArea : MonoBehaviour
 		spaceGrid = new List<List<Transform>>();
 
 		InitGrid();
+		mcList = mirrorConnector.GetComponents<MirrorConnector>();
+		RefreshMCList();
 		//PrintBoxGrids();
 	}
 
@@ -172,6 +177,17 @@ public class BlockMovingArea : MonoBehaviour
 		}
 		numTilesX = j;
 		numTilesY = i;
+	}
+
+	public void RefreshMCList()
+    {
+		if (mirrorConnector != null)
+		{
+			for (int i = 0; i < mcList.Length; i++)
+			{
+				mcList[i].CheckForDeactivateZone();
+			}
+		}
 	}
 
 	private void PrintBoxGrids()

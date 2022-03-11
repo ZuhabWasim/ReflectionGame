@@ -2653,7 +2653,7 @@ GameObject:
   - component: {fileID: 4243447672618393706}
   - component: {fileID: 7188905671995797035}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Block
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2712,6 +2712,7 @@ MonoBehaviour:
   itemName: Box
   myType: 1
   bma: {fileID: 3549029090781362658}
+  correspondingBlock: {fileID: 0}
 --- !u!1 &4446986650658672437
 GameObject:
   m_ObjectHideFlags: 0
@@ -6615,6 +6616,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9f8fce9d3d5f3419b067df4d534378, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mirrorConnector: {fileID: 0}
 --- !u!1 &7566776974016509078
 GameObject:
   m_ObjectHideFlags: 0
@@ -9786,7 +9788,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1455786737497547667, guid: b0f64961bc198c34ea27978eefeeebd8, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.054235008
+      value: -0.05423501
+      objectReference: {fileID: 0}
+    - target: {fileID: 1455786737497547667, guid: b0f64961bc198c34ea27978eefeeebd8, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.032
       objectReference: {fileID: 0}
     - target: {fileID: 1455786737497547667, guid: b0f64961bc198c34ea27978eefeeebd8, type: 3}
       propertyPath: m_LocalScale.z
@@ -9794,15 +9800,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1455786737497547667, guid: b0f64961bc198c34ea27978eefeeebd8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -49.428
+      value: -49.51
       objectReference: {fileID: 0}
     - target: {fileID: 1455786737497547667, guid: b0f64961bc198c34ea27978eefeeebd8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.812
+      value: -3.45
       objectReference: {fileID: 0}
     - target: {fileID: 1455786737497547667, guid: b0f64961bc198c34ea27978eefeeebd8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 25.918
+      value: 25.92
       objectReference: {fileID: 0}
     - target: {fileID: 1455786737497547667, guid: b0f64961bc198c34ea27978eefeeebd8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -9840,6 +9846,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MirrorDPresent
       objectReference: {fileID: 0}
+    - target: {fileID: 2596622726514304080, guid: b0f64961bc198c34ea27978eefeeebd8, type: 3}
+      propertyPath: teleportable
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2813343139957047190, guid: b0f64961bc198c34ea27978eefeeebd8, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -9859,6 +9869,18 @@ PrefabInstance:
     - target: {fileID: 3863784063081142984, guid: b0f64961bc198c34ea27978eefeeebd8, type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4077606933384085994, guid: b0f64961bc198c34ea27978eefeeebd8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4077606933384085994, guid: b0f64961bc198c34ea27978eefeeebd8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4077606933566045616, guid: b0f64961bc198c34ea27978eefeeebd8, type: 3}
+      propertyPath: m_Name
+      value: MomMirrorDPast
       objectReference: {fileID: 0}
     - target: {fileID: 5497514715088115743, guid: b0f64961bc198c34ea27978eefeeebd8, type: 3}
       propertyPath: m_Mesh

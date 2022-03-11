@@ -47,7 +47,8 @@ public class MoveableBlock : InteractableAbstract
 			if (correspondingBlock != null)
             {
 				correspondingBlock.TryMoveBox(dir);
-            }
+				bma.RefreshMCList();
+			}
 			return true;
 		}
 		return false;
