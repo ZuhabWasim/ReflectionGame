@@ -51,6 +51,7 @@ public class Globals
 		public static string MAIN_SOURCE = "MainSource";
 		public static string AMBIENCE_SOURCE = "AmbienceSource";
 		public static string MUSIC_SOURCE = "MusicSource";
+		public static string INTERACTABLE_BOOK = "InteractableBook";
 	}
 
 	public class Misc

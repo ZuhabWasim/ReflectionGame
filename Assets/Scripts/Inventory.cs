@@ -124,6 +124,16 @@ public class Inventory
 
 		return "";
 	}
+
+	public PickupItem GetSelectedPickupItem()
+	{
+		if ( m_items[ cursor ] != null )
+		{
+			return m_items[ cursor ];
+		}
+
+		return null;
+	}
 	public bool HasItem( string itemName )
 	{
 		foreach ( PickupItem item in m_items )
