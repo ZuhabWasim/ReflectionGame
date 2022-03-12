@@ -14,6 +14,7 @@ TagManager:
   - MusicSource
   - InteractableBook
   - MirrorInactiveZone
+  - BookSlot
   layers:
   - Default
   - TransparentFX

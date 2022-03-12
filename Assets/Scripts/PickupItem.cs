@@ -7,6 +7,8 @@ public class PickupItem : InteractableAbstract
 	private static int _id;
 	private int m_id;
 	public Texture img;
+	public string onPickupEvent;
+
 	protected override void OnStart()
 	{
 		myType = ItemType.PICKUP;
@@ -16,11 +18,14 @@ public class PickupItem : InteractableAbstract
 	protected override void OnUserInteract()
 	{
 		this.gameObject.SetActive( false );
+		if ( onPickupEvent == string.Empty ) return;
+		EventManager.Fire( onPickupEvent, this.gameObject );
 	}
 
-	public void OnDrop( Vector3 dropPostion )
+	public void OnDrop( Vector3 dropPostion, bool isLocal = false )
 	{
 		this.gameObject.SetActive( true );
-		this.gameObject.transform.position = dropPostion;
+		if ( isLocal ) this.gameObject.transform.localPosition = dropPostion;
+		else this.gameObject.transform.position = dropPostion;
 	}
 }

@@ -101,7 +101,7 @@ public class PlayerController : MonoBehaviour
 	{
 		HandleMouseInput();
 		HandleKeyboardInput();
-		HandleFootSteps();
+		// HandleFootSteps();
 	}
 
 	void HandleMouseInput()
@@ -315,13 +315,15 @@ public class PlayerController : MonoBehaviour
 				bp.hidePrompt();
 			}
 			string selectedItem = m_inventory.GetSelectedItem();
-			if (targetObject.thisIsAMirror) {
-				bp2.SetButton('e');
-				bp2.showPrompt("Reflect across Mirror");
-			} else if ( targetObject.WillAcceptItem() && selectedItem != "" )
+			if ( targetObject.thisIsAMirror )
 			{
-				bp2.SetButton('e');
-				bp2.showPrompt(targetObject.GetItemText(selectedItem));
+				bp2.SetButton( 'e' );
+				bp2.showPrompt( "Reflect across Mirror" );
+			}
+			else if ( targetObject.WillAcceptItem() && selectedItem != "" )
+			{
+				bp2.SetButton( 'e' );
+				bp2.showPrompt( targetObject.GetItemText( selectedItem ) );
 			}
 			else
 			{

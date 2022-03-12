@@ -40,6 +40,8 @@ public class Globals
 		public static string HAS_MILLIE_KEY = "HasMillieKey";
 		public static string LOCK_MOM_DOOR = "LockMomDoor";
 		public static string LOCK_DAD_DOOR = "LockDadDoor";
+		public static string BOOKSHELF_BOOK_PLACED = "BookshelfBookPlaced";
+		public static string BOOKSHELF_BOOK_PICKED_UP = "BookshelfBookPickedUp";
 	}
 
 	public class Tags
@@ -52,6 +54,7 @@ public class Globals
 		public static string AMBIENCE_SOURCE = "AmbienceSource";
 		public static string MUSIC_SOURCE = "MusicSource";
 		public static string INTERACTABLE_BOOK = "InteractableBook";
+		public static string BOOK_SLOT = "BookSlot";
 	}
 
 	public class Misc
