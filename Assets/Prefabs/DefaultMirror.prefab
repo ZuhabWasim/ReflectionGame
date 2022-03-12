@@ -274,14 +274,20 @@ MonoBehaviour:
   interactable: 1
   makeInteractableEvent: 
   makeNonInteractableEvent: 
-  displayPrompt: 1
-  acceptItem: 1
-  itemName: Mirror
-  myType: 0
   voiceLine: {fileID: 0}
   nonInteractableVoiceLine: {fileID: 0}
+  displayPrompt: 1
+  acceptItem: 1
+  deleteItem: 0
+  itemName: Mirror
+  myType: 0
   audioSourceName: 
-  interactSound: {fileID: 0}
+  teleportable: 0
+  makeTeleportableEvent: 
+  makeNonTeleportableEvent: 
+  teleportableVoiceLine: {fileID: 0}
+  nonTeleportableVoiceLine: {fileID: 0}
+  teleportingVoiceLine: {fileID: 0}
 --- !u!1 &7243826340965363571
 GameObject:
   m_ObjectHideFlags: 0

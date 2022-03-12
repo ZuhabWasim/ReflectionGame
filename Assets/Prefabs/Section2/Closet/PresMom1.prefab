@@ -738,12 +738,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactable: 1
   makeInteractableEvent: 
+  makeNonInteractableEvent: 
+  voiceLine: {fileID: 0}
+  nonInteractableVoiceLine: {fileID: 0}
   displayPrompt: 1
   acceptItem: 0
+  deleteItem: 0
   itemName: Box
   myType: 0
-  voiceLine: {fileID: 0}
+  thisIsAMirror: 0
   bma: {fileID: 4768157690519674229}
+  correspondingBlock: {fileID: 0}
 --- !u!65 &6468488659938286877
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -841,12 +846,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactable: 1
   makeInteractableEvent: 
+  makeNonInteractableEvent: 
+  voiceLine: {fileID: 0}
+  nonInteractableVoiceLine: {fileID: 0}
   displayPrompt: 1
   acceptItem: 0
+  deleteItem: 0
   itemName: Box
   myType: 0
-  voiceLine: {fileID: 0}
+  thisIsAMirror: 0
   bma: {fileID: 4768157690519674229}
+  correspondingBlock: {fileID: 0}
 --- !u!65 &6208848156698202016
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -994,7 +1004,7 @@ Transform:
   m_Children:
   - {fileID: 7696542699223128245}
   - {fileID: 8109040771306911515}
-  m_Father: {fileID: 6672719748889739581}
+  m_Father: {fileID: 6672719749134501097}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3804086606310032024
@@ -1011,12 +1021,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactable: 1
   makeInteractableEvent: 
+  makeNonInteractableEvent: 
+  voiceLine: {fileID: 0}
+  nonInteractableVoiceLine: {fileID: 0}
   displayPrompt: 1
   acceptItem: 0
+  deleteItem: 0
   itemName: Box
   myType: 0
-  voiceLine: {fileID: 0}
+  thisIsAMirror: 0
   bma: {fileID: 4768157690519674229}
+  correspondingBlock: {fileID: 0}
 --- !u!65 &7301712739828593978
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2360,7 +2375,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &415214136595427791
 Transform:
   m_ObjectHideFlags: 0
@@ -2855,7 +2870,7 @@ Transform:
   - {fileID: 3069667319287503407}
   - {fileID: 8539924635593276799}
   - {fileID: 8797256428157238912}
-  m_Father: {fileID: 6672719748937413595}
+  m_Father: {fileID: 6672719748889739581}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &33499070367278228
@@ -2872,12 +2887,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactable: 1
   makeInteractableEvent: 
+  makeNonInteractableEvent: 
+  voiceLine: {fileID: 0}
+  nonInteractableVoiceLine: {fileID: 0}
   displayPrompt: 1
   acceptItem: 0
+  deleteItem: 0
   itemName: Box
   myType: 0
-  voiceLine: {fileID: 0}
+  thisIsAMirror: 0
   bma: {fileID: 4768157690519674229}
+  correspondingBlock: {fileID: 0}
 --- !u!65 &7972370404394580272
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3650,7 +3670,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5006834963045117889}
+  - {fileID: 5137214553934436029}
   m_Father: {fileID: 6672719749853079155}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4026,8 +4046,7 @@ Transform:
   m_LocalPosition: {x: -4.456009, y: -0.35625133, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 5137214553934436029}
+  m_Children: []
   m_Father: {fileID: 6672719749744445879}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4698,7 +4717,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6672719749074648078
 Transform:
   m_ObjectHideFlags: 0
@@ -4749,7 +4768,8 @@ Transform:
   m_LocalPosition: {x: -1.1620026, y: -0.35625133, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 5006834963045117889}
   m_Father: {fileID: 6672719749744445879}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5554,6 +5574,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9f8fce9d3d5f3419b067df4d534378, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mirrorConnector: {fileID: 0}
 --- !u!1 &6672719749666630298
 GameObject:
   m_ObjectHideFlags: 0
@@ -7661,12 +7682,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactable: 1
   makeInteractableEvent: 
+  makeNonInteractableEvent: 
+  voiceLine: {fileID: 0}
+  nonInteractableVoiceLine: {fileID: 0}
   displayPrompt: 1
   acceptItem: 0
+  deleteItem: 0
   itemName: Box
   myType: 0
-  voiceLine: {fileID: 0}
+  thisIsAMirror: 0
   bma: {fileID: 4768157690519674229}
+  correspondingBlock: {fileID: 0}
 --- !u!65 &4027618753110734513
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7695,7 +7721,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8401888786006727216
 Transform:
   m_ObjectHideFlags: 0
@@ -7796,12 +7822,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactable: 1
   makeInteractableEvent: 
+  makeNonInteractableEvent: 
+  voiceLine: {fileID: 0}
+  nonInteractableVoiceLine: {fileID: 0}
   displayPrompt: 1
   acceptItem: 0
+  deleteItem: 0
   itemName: Box
   myType: 0
-  voiceLine: {fileID: 0}
+  thisIsAMirror: 0
   bma: {fileID: 4768157690519674229}
+  correspondingBlock: {fileID: 0}
 --- !u!65 &4865746523589627128
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11651,6 +11682,10 @@ PrefabInstance:
     - target: {fileID: 2267614087413528873, guid: b0f64961bc198c34ea27978eefeeebd8, type: 3}
       propertyPath: m_Name
       value: MirrorA
+      objectReference: {fileID: 0}
+    - target: {fileID: 2596622726514304080, guid: b0f64961bc198c34ea27978eefeeebd8, type: 3}
+      propertyPath: teleportable
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2813343139957047190, guid: b0f64961bc198c34ea27978eefeeebd8, type: 3}
       propertyPath: m_Mesh
