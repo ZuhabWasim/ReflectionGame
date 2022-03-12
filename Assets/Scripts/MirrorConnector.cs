@@ -300,11 +300,13 @@ public class MirrorConnector : MonoBehaviour
     // Sets both of the mirrors to to be active
     public void Activate()
     {
+        //presentInteractable.teleportable = true;
         m_active = true;
         presentMirror.Activate();
 
         if (pastMirror != null)
         {
+            //pastInteractable.teleportable = true;
             pastMirror.Activate();
         }
     }
@@ -312,11 +314,13 @@ public class MirrorConnector : MonoBehaviour
     // Sets both of the mirrors to be inactive
     public void Deactivate()
     {
+        //presentInteractable.teleportable = false;
         m_active = false;
         presentMirror.Deactivate();
 
         if (pastMirror != null)
         {
+            //pastInteractable.teleportable = false;
             pastMirror.Deactivate();
         }
     }
