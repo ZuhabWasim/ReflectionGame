@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
 	private const string FOOTSTEP_AUDIO_SOURCE_NAME = "FootStepSource";
 	private const float PRESENT_HEIGHT = 1.5f;
 	private const float PAST_HEIGHT = 1.0f;
-	private const float RAYCAST_RATE = 2f; // how many raycasts to do per sec
+	private const float RAYCAST_RATE = 10f; // how many raycasts to do per sec
 
 	// ===== CONSTANTS END ===
 
