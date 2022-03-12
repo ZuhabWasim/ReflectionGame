@@ -181,6 +181,7 @@ namespace Utilities
 			return finalPath;
 		}
 
+#if UNITY_EDITOR
 		private static string GetSoundAssetsFolder()
 		{
 			return JoinPath( ASSETS_FOLDER, SFX_ROOT_FOLDER );
@@ -190,6 +191,7 @@ namespace Utilities
 		{
 			return AssetDatabase.FindAssets( assetName, new[] { folder } );
 		}
+#endif // if UNITY_EDITOR
 
 		private static AssetCacheValue GetCachedAsset( string name, System.Type type )
 		{
