@@ -5520,7 +5520,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1455786737497547667, guid: b0f64961bc198c34ea27978eefeeebd8, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.054235008
+      value: 0.04
       objectReference: {fileID: 0}
     - target: {fileID: 1455786737497547667, guid: b0f64961bc198c34ea27978eefeeebd8, type: 3}
       propertyPath: m_LocalScale.y
@@ -5577,6 +5577,10 @@ PrefabInstance:
     - target: {fileID: 2267614087413528873, guid: b0f64961bc198c34ea27978eefeeebd8, type: 3}
       propertyPath: m_Name
       value: MirrorA
+      objectReference: {fileID: 0}
+    - target: {fileID: 2596622726514304080, guid: b0f64961bc198c34ea27978eefeeebd8, type: 3}
+      propertyPath: teleportable
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2813343139957047190, guid: b0f64961bc198c34ea27978eefeeebd8, type: 3}
       propertyPath: m_Mesh
@@ -6750,15 +6754,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8404606981694419755, guid: 3ad6ca3da0452804d84edfbecf15fee8, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.92492175
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8404606981694419755, guid: 3ad6ca3da0452804d84edfbecf15fee8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8404606981694419755, guid: 3ad6ca3da0452804d84edfbecf15fee8, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.38015768
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8404606981694419755, guid: 3ad6ca3da0452804d84edfbecf15fee8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8404606981694419755, guid: 3ad6ca3da0452804d84edfbecf15fee8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -44.687
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8475203299369122453, guid: 3ad6ca3da0452804d84edfbecf15fee8, type: 3}
       propertyPath: m_Mesh
@@ -6779,6 +6791,61 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5440112544721598299, guid: 3ad6ca3da0452804d84edfbecf15fee8, type: 3}
   m_PrefabInstance: {fileID: 4645466150186052986}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6241167127813619157 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1649749810864722095, guid: 3ad6ca3da0452804d84edfbecf15fee8, type: 3}
+  m_PrefabInstance: {fileID: 4645466150186052986}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6105555830786088276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6241167127813619157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57cb33a5ebfe4b94fa97cb4b6351b42e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startPosition: {x: 0, y: 0, z: 0}
+  endPostion: {x: 0, y: 0, z: 0}
+  startRotation: {x: 0, y: 0, z: 0}
+  endRotation: {x: 0, y: -90, z: 0}
+  interpolateRotation: 1
+  interpolatePosition: 0
+  loop: 0
+  interpDuration: 0.7
+  triggerMethod: 2
+--- !u!114 &4350744480836757455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6241167127813619157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c62f7a00ddc5581499fb5ae6ab3481c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactable: 1
+  makeInteractableEvent: 
+  makeNonInteractableEvent: LockMomDoor
+  voiceLine: {fileID: 0}
+  nonInteractableVoiceLine: {fileID: 0}
+  displayPrompt: 1
+  acceptItem: 0
+  deleteItem: 0
+  itemName: Mom's Closet Door
+  myType: 3
+  thisIsAMirror: 0
+  openSound: {fileID: 0}
+  closeSound: {fileID: 0}
+  audioSourceName: momClosetDoor
+  closeEvent: LockMomDoor
+  openEvent: 
+  needsItem: 
 --- !u!1001 &4745671323562674061
 PrefabInstance:
   m_ObjectHideFlags: 0

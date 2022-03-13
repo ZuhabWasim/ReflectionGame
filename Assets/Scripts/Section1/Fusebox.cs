@@ -66,7 +66,7 @@ public class Fusebox : MonoBehaviour
 			switchPositions[ n ] = !switchPositions[ n ];
 			UpdateLight( n );
 			CheckInput();
-			AudioPlayer.Play(Globals.AudioFiles.FUSE_BOX_TOGGLETICK, FUSEBOX_AUDIO_SOURCE);
+			AudioPlayer.Play(Globals.AudioFiles.Section1.FUSE_BOX_TOGGLETICK, FUSEBOX_AUDIO_SOURCE);
 		}
 	}
 }

@@ -22,6 +22,7 @@ public class MirrorInteractable : InteractableAbstract
     // Start is called before the first frame update
     protected override void OnStart()
     {
+        thisIsAMirror = true;
         if (GetComponent<AudioSource>() != null)
         {
             m_audioSourceName = audioSourceName == "" ? this.name : audioSourceName;

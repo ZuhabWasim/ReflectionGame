@@ -15,7 +15,7 @@ using UnityEngine;
  *      
  *  3: If you want a use item prompt to appear, set 'acceptItem' to true in inspector
  *      a: have the inheriting script set 'desiredItem' to the item it wants the player to use (see UseHandkerchief for example)
- *      b: Write an override 'OnUserItem' method on the inheriting script to handle the result of the player using the correct item
+ *      b: Write an override 'OnUseItem' method on the inheriting script to handle the result of the player using the correct item
  *      
  *  4: If either prompts are active, make sure you set 'itemName' in inspector since this appears in the prompts
  */
@@ -32,6 +32,7 @@ public abstract class InteractableAbstract : MonoBehaviour
 	
 	public bool displayPrompt = true;
 	public bool acceptItem = false;
+	public bool deleteItem = false;
 	public string itemName;
 	protected string desiredItem = "";
 	public enum ItemType
@@ -43,6 +44,10 @@ public abstract class InteractableAbstract : MonoBehaviour
 		CLOSE
 	}
 	public ItemType myType;
+
+	private Inventory m_inventory;
+	[HideInInspector]
+	public bool thisIsAMirror=false;
 
 
 	public void Start()
@@ -56,6 +61,8 @@ public abstract class InteractableAbstract : MonoBehaviour
 		{
 			EventManager.Sub( makeNonInteractableEvent, () => { interactable = false; } );
 		}
+
+		m_inventory = Inventory.GetInstance();
 
 		OnStart();
 	}
@@ -150,6 +157,10 @@ public abstract class InteractableAbstract : MonoBehaviour
 		if ( desiredItem == objectName )
 		{
 			OnUseItem();
+			if (deleteItem)
+            {
+				m_inventory.DeleteItem(desiredItem);
+			}
 		}
 		// Temporary fix to allow player to Reflect with items selected
 		else if ( desiredItem == "") 
@@ -159,14 +170,14 @@ public abstract class InteractableAbstract : MonoBehaviour
 		// If no item is selected.
 		else if (objectName == "")
 		{
-			AudioPlayer.Play(Globals.AudioFiles.NOT_HOLDING_ANYTHING, Globals.Tags.DIALOGUE_SOURCE);
-			AudioPlayer.Play(Globals.AudioFiles.NON_INTERACTABLE, Globals.Tags.MAIN_SOURCE);
+			AudioPlayer.Play(Globals.VoiceLines.General.NOT_HOLDING_ANYTHING, Globals.Tags.DIALOGUE_SOURCE);
+			AudioPlayer.Play(Globals.AudioFiles.General.NON_INTERACTABLE, Globals.Tags.MAIN_SOURCE);
 		} 
 		// If the wrong item is selected.
 		else
 		{
-			AudioPlayer.Play(Globals.AudioFiles.CANT_USE_ITEM, Globals.Tags.DIALOGUE_SOURCE);
-			AudioPlayer.Play(Globals.AudioFiles.NON_INTERACTABLE, Globals.Tags.MAIN_SOURCE);
+			AudioPlayer.Play(Globals.VoiceLines.General.CANT_USE_ITEM, Globals.Tags.DIALOGUE_SOURCE);
+			AudioPlayer.Play(Globals.AudioFiles.General.NON_INTERACTABLE, Globals.Tags.MAIN_SOURCE);
 		}
 	}
 

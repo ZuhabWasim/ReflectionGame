@@ -12,6 +12,9 @@ TagManager:
   - MomSpace
   - AmbienceSource
   - MusicSource
+  - InteractableBook
+  - MirrorInactiveZone
+  - MusicBox
   layers:
   - Default
   - TransparentFX

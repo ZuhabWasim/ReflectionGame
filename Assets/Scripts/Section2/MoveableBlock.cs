@@ -6,6 +6,8 @@ public class MoveableBlock : InteractableAbstract
 {
 	public BlockMovingArea bma;
 
+	public MoveableBlock correspondingBlock;
+
 	public void SetBoxArea( BlockMovingArea area )
 	{
 		bma = area;
@@ -42,6 +44,11 @@ public class MoveableBlock : InteractableAbstract
 		if ( bma.BoxAtPosition( pos.x, pos.y ) && bma.CanMoveBox( pos.x, pos.y, dir ) )
 		{
 			bma.MoveBox( pos.x, pos.y, dir );
+			if (correspondingBlock != null)
+            {
+				correspondingBlock.TryMoveBox(dir);
+				bma.RefreshMCList();
+			}
 			return true;
 		}
 		return false;

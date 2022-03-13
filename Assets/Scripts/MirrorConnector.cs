@@ -39,6 +39,8 @@ public class MirrorConnector : MonoBehaviour
     public string makeNonInteractableEvent = "";
     private InteractionIcon interactionIcon;
 
+    private GameObject[] deactivateVolumes;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,6 +53,8 @@ public class MirrorConnector : MonoBehaviour
         {
             EventManager.Sub(makeNonInteractableEvent, () => { Deactivate(); });
         }
+
+        deactivateVolumes = GameObject.FindGameObjectsWithTag("MirrorInactiveZone");
 
         // There must be a presentMirror on start
         if (presentMirror == null)
@@ -125,6 +129,19 @@ public class MirrorConnector : MonoBehaviour
         {
             m_canTeleport = false;
         }
+    }
+
+    public void CheckForDeactivateZone()
+    {
+        for (int i=0; i<deactivateVolumes.Length; i++) {
+            Bounds b = deactivateVolumes[i].GetComponent<Collider>().bounds;
+            if (presentMirror.GetComponent<Renderer>().bounds.Intersects(b)
+            || pastMirror.GetComponent<Renderer>().bounds.Intersects(b)) {
+                Deactivate();
+                return;
+            }
+        }
+        Activate();
     }
 
     private void SetMirrorCameraPositions()
@@ -266,7 +283,7 @@ public class MirrorConnector : MonoBehaviour
         bool present = GlobalState.GetVar<bool>(Globals.Vars.IS_PRESENT_WORLD);
 
         Vector3 mirrorPosition = present ? pastMirror.transform.position : presentMirror.transform.position;
-        m_player.position = mirrorPosition + ( ( present ? pastMirror : presentMirror ).GetMirrorCameraPosition().GetMirrorNormal() * 2.0f );
+        m_player.position = mirrorPosition + ( ( present ? pastMirror : presentMirror ).GetMirrorCameraPosition().GetMirrorNormal() * 1.0f );
         
         Vector3 mirrorNormal = ( present ? pastMirror : presentMirror ).GetMirrorCameraPosition().GetMirrorNormal();
         m_player.forward = GetPlayerFwdOnTeleport( mirrorNormal, m_player.forward,
@@ -283,11 +300,13 @@ public class MirrorConnector : MonoBehaviour
     // Sets both of the mirrors to to be active
     public void Activate()
     {
+        //presentInteractable.teleportable = true;
         m_active = true;
         presentMirror.Activate();
 
         if (pastMirror != null)
         {
+            //pastInteractable.teleportable = true;
             pastMirror.Activate();
         }
     }
@@ -295,11 +314,13 @@ public class MirrorConnector : MonoBehaviour
     // Sets both of the mirrors to be inactive
     public void Deactivate()
     {
+        //presentInteractable.teleportable = false;
         m_active = false;
         presentMirror.Deactivate();
 
         if (pastMirror != null)
         {
+            //pastInteractable.teleportable = false;
             pastMirror.Deactivate();
         }
     }

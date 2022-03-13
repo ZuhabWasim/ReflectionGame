@@ -23,6 +23,7 @@ public class UseHandkerchief : MirrorInteractable
 		desiredItem = Globals.UIStrings.HANDKERCHIEF_ITEM;
 
 		m_dirtyMirror = gameObject.GetComponent<MirrorPlane>();
+		deleteItem = true;
 	}
 
 	protected override void OnUserInteract()
@@ -33,13 +34,12 @@ public class UseHandkerchief : MirrorInteractable
 		}
 		else
 		{
-			AudioPlayer.Play( Globals.AudioFiles.DIRTY_MIRROR, Globals.Tags.DIALOGUE_SOURCE );
+			AudioPlayer.Play( Globals.VoiceLines.Section1.FILTHY_MIRROR, Globals.Tags.DIALOGUE_SOURCE );
 		}
 	}
 
 	protected override void OnUseItem()
 	{
-		m_inventory.DeleteItem( desiredItem );
 		HandleUseItem();
 	}
 

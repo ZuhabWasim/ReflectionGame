@@ -51,6 +51,8 @@ public class Globals
 		public static string MAIN_SOURCE = "MainSource";
 		public static string AMBIENCE_SOURCE = "AmbienceSource";
 		public static string MUSIC_SOURCE = "MusicSource";
+		public static string MUSIC_BOX = "MusicBox";
+		
 	}
 
 	public class Misc
@@ -108,22 +110,78 @@ public class Globals
 
 	public class AudioFiles
 	{
-		public static string PAPER_UNRAVEL = "paper_unravel";
-		public static string OBJECT_OBTAINED = "object_obtained";
-		public static string MUSICBOXKEY_OBTAINED = "key_acquired";
-		public static string NON_INTERACTABLE = "non_interactable";
-		public static string MAIN_DOOR = "main_door";
-		public static string LIGHTS_TURN_ON_ROOM = "seeing_lit_room";
-		public static string ENTERING_ROOM = "its_really_dark";
-		public static string DIRTY_MIRROR = "dirty_mirror";
-		public static string MUSIC_BOX_INTERACT = "its_my_musicbox";
-		public static string MILLIE_POV_INTRO = "mille_pov_intro";
-		public static string PRESENT_AMBIENCE = "amb_rainceiling_loop";
-		public static string PAST_AMBIENCE = "amb_past_birds_wind_loop";
-		public static string CANT_USE_ITEM = "cant_use_here";
-		public static string NOT_HOLDING_ANYTHING = "not_holding_anything";
-		public static string FUSE_BOX_TOGGLETICK = "fusebox_toggle_tick";
-		public static string FUSE_BOX = "fusebox";
+
+		public class Ambience
+		{
+			public static string PRESENT_AMBIENCE = "amb_rainceiling_loop";
+			public static string PAST_AMBIENCE = "amb_past_birds_wind_loop";
+		}
+		
+		public class Music
+		{
+			// Music goes here
+		}
+		
+		public class General
+		{
+			public static string PAPER_UNRAVEL = "paper_unravel";
+			public static string OBJECT_OBTAINED = "object_obtained";
+			public static string MUSICBOXKEY_OBTAINED = "key_acquired";
+			public static string NON_INTERACTABLE = "non_interactable";
+		}
+
+		public class Section1
+		{
+			public static string MAIN_DOOR = "main_door";
+			public static string FUSE_BOX_TOGGLETICK = "fusebox_toggle_tick";
+			public static string FUSE_BOX = "fusebox";
+			public static string HANDKERCHIEF = "handkerchief";
+			
+		}
+	}
+
+	public class SoundEffects
+	{
+		
+	}
+	public class VoiceLines
+	{
+		public class General
+		{
+			public static string CANT_USE_ITEM = "1.14__hmm_that_doesnt_seem_right";
+			public static string NOT_HOLDING_ANYTHING = "not_holding_anything";
+			
+		}
+		public class Section1
+		{
+			public static string DARK_IN_HERE = "1.03__dark_in_here";
+			public static string TOO_DARK_TO_SEE = "1.04__too_dark_to_see";
+			public static string DOOR_AM_I_LOCKED_IN = "1.05__door_am_i_locked_in";
+			public static string DOOR_NOT_BUDGING = "1.05__door_am_i_locked_in_short";
+			public static string LOCKED_FROM_THE_INSIDE = "1.06__locked_from_the_inside";
+			
+			public static string JOHNSON_LETTER = "1.11__johnson_letter";
+			public static string MILLE_POV_INTRO = "1.12__mille_pov_intro";
+			public static string HMM_THAT_DOESNT_SEEM_RIGHT = "1.14__hmm_that_doesnt_seem_right";
+			public static string HMM_CODE = "1.15__0_hmm_1";
+			public static string FILTHY_MIRROR = "1.18__filthy_mirror";
+			public static string CANT_SEE_REFLECTION_ROOM_DARK = "1.20__cant_see_reflection_room_dark";
+			public static string CODE_DIFFERENT = "1.25__code_different";
+			
+			public static string HOUSE_FEELS_UNFAMILIAR = "1.28__house_feels_unfamiliar";
+			public static string STILL_CANT_SEE_MYSELF = "1.30__still_cant_see_myself";
+			public static string ITS_MY_MUSICBOX = "1.32__its_my_musicbox";
+			public static string DISCOVER_BOX_FIRST = "1.33__discover_box_first";
+			public static string DISCOVER_KEY_FIRST = "1.33__discover_key_first";
+			public static string DISCOVER_KEY_FIRST__OH_THERE_IT_IS = "1.35__discover_key_first__oh_there_it_is";
+			public static string BOX_NEEDS_TWO_OTHER_KEYS = "1.36__box_needs_two_other_keys";
+			
+			public static string IS_THE_MIRROR_GLOWING = "1.38__is_the_mirror_glowing";
+			public static string WHY_AM_I_SO_SMALL = "1.42__why_am_i_so_small";
+			public static string I_M_TOO_SMALL = "1.43__i_m_too_small";
+			public static string MOTHERS_NAGGING = "1.48__mothers_nagging";
+			public static string FATHERS_VOICE = "1.49__fathers_voice";
+		}
 	}
 
 	public class EnvironmentParams
