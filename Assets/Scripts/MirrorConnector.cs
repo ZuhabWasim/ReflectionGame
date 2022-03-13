@@ -97,12 +97,17 @@ public class MirrorConnector : MonoBehaviour
         presentMirror.SetMirrorDisplayTexture(m_pastMirrorTexture);
         pastMirror.SetMirrorDisplayTexture(m_presentMirrorTexture);
 
-        m_active = active;
-        interactionIcon = GameObject.Find(Globals.Misc.UI_Canvas).GetComponent<InteractionIcon>();
-        if (!m_active)
+        m_active = active;        
+        if (m_active)
+        {
+            Activate();
+        }
+        else
         {
             Deactivate();
         }
+
+        interactionIcon = GameObject.Find(Globals.Misc.UI_Canvas).GetComponent<InteractionIcon>();
     }
 
     // Update is called once per frame
@@ -291,21 +296,40 @@ public class MirrorConnector : MonoBehaviour
         GlobalState.SetVar<bool>( Globals.Vars.TELEPORTING, false );
         EventManager.Fire( Globals.Events.TELEPORT );
 
+        Activate();
+
         yield return new WaitForSecondsRealtime( Globals.Teleporting.TELEPORTER_COOLDOWN );
     }
 
-    // Sets both of the mirrors to to be active
+    // Sets the mirrors/cameras to be active based on IS_PRESENT_WORLD
     public void Activate()
     {
-        //presentInteractable.teleportable = true;
         m_active = true;
-        presentMirror.Activate();
+        bool present = GlobalState.GetVar<bool>(Globals.Vars.IS_PRESENT_WORLD);
 
+        //presentInteractable.teleportable = true;
         //pastInteractable.teleportable = true;
-        pastMirror.Activate();
+
+        if (present)
+        {
+            // Need to set the present mirror camera to off, and past mirror texture to off
+            presentMirror.SetCamera(false);
+            presentMirror.SetNormalTexture();
+
+            pastMirror.SetOpaqueTexture();
+            pastMirror.SetCamera(true);
+        }
+        else
+        {
+            presentMirror.SetCamera(true);
+            presentMirror.SetOpaqueTexture();
+
+            pastMirror.SetNormalTexture();
+            pastMirror.SetCamera(false);
+        }
     }
 
-    // Sets both of the mirrors to be inactive
+    // Disable both of the mirrors (i.e. stops both cameras from working and sets them to inactive texture)
     public void Deactivate()
     {
         //presentInteractable.teleportable = false;
