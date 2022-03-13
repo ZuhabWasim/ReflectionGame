@@ -1,6 +1,10 @@
 {
     "AssetPaths": [
         {
+            "name": "Handkerchief",
+            "path": "Audio\\Section1\\Handkerchief"
+        },
+        {
             "name": "placeholder",
             "path": "Audio\\Voicelines\\placeholder"
         },
@@ -13,6 +17,10 @@
             "path": "Audio\\Section1\\main_door"
         },
         {
+            "name": "locked_closet_doors",
+            "path": "Audio\\Voicelines\\Section1\\locked_closet_doors"
+        },
+        {
             "name": "placeholder2",
             "path": "Audio\\Voicelines\\placeholder2"
         },
@@ -21,16 +29,28 @@
             "path": "Audio\\object_obtained"
         },
         {
+            "name": "locked_in_closet",
+            "path": "Audio\\Voicelines\\Section1\\locked_in_closet"
+        },
+        {
+            "name": "amb_past_birds_wind_loop",
+            "path": "Audio\\Ambience\\amb_past_birds_wind_loop"
+        },
+        {
             "name": "paper_unravel",
             "path": "Audio\\paper_unravel"
         },
         {
-            "name": "Handkerchief",
-            "path": "Audio\\Section1\\Handkerchief"
+            "name": "room_lights",
+            "path": "Audio\\Section1\\room_lights"
         },
         {
-            "name": "locked_closet_doors",
-            "path": "Audio\\Voicelines\\Section1\\locked_closet_doors"
+            "name": "cannot_see_this",
+            "path": "Audio\\Voicelines\\Section1\\cannot_see_this"
+        },
+        {
+            "name": "intro_letter_millie_pov",
+            "path": "Audio\\Voicelines\\Section1\\intro_letter_millie_pov"
         },
         {
             "name": "idea_theme",
@@ -41,8 +61,20 @@
             "path": "Audio\\Voicelines\\Section1\\millie_key_pickup"
         },
         {
+            "name": "cant_use_here",
+            "path": "Audio\\cant_use_here"
+        },
+        {
             "name": "dirty_mirror",
             "path": "Audio\\Voicelines\\Section1\\dirty_mirror"
+        },
+        {
+            "name": "amb_past_leaves_rustling_loop",
+            "path": "Audio\\Ambience\\amb_past_leaves_rustling_loop"
+        },
+        {
+            "name": "not_holding_anything",
+            "path": "Audio\\not_holding_anything"
         },
         {
             "name": "non_interactable",
@@ -65,6 +97,10 @@
             "path": "Audio\\footstep_wood"
         },
         {
+            "name": "mille_pov_intro",
+            "path": "Audio\\Voicelines\\Section1\\mille_pov_intro"
+        },
+        {
             "name": "interact_mother_door",
             "path": "Audio\\Voicelines\\Section1\\interact_mother_door"
         },
@@ -77,20 +113,48 @@
             "path": "Audio\\Voicelines\\Section1\\seeing_lit_room"
         },
         {
+            "name": "key_acquired",
+            "path": "Audio\\Section1\\key_acquired"
+        },
+        {
+            "name": "amb_past_room_loop",
+            "path": "Audio\\Ambience\\amb_past_room_loop"
+        },
+        {
             "name": "fireplace_too_high",
             "path": "Audio\\Voicelines\\Section1\\fireplace_too_high"
+        },
+        {
+            "name": "lamp_hum_loop",
+            "path": "Audio\\Section1\\lamp_hum_loop"
         },
         {
             "name": "main_door_locked",
             "path": "Audio\\Voicelines\\Section1\\main_door_locked"
         },
         {
+            "name": "close_drawer",
+            "path": "Audio\\Section1\\close_drawer"
+        },
+        {
             "name": "intro_note",
             "path": "Audio\\Voicelines\\Section1\\intro_note"
         },
         {
+            "name": "fusebox_toggle_tick",
+            "path": "Audio\\Section1\\fusebox_toggle_tick"
+        },
+        {
             "name": "Fusebox",
             "path": "Audio\\Section1\\Fusebox"
+        },
+        {
+            "name": "open_drawer",
+            "path": "Audio\\Section1\\open_drawer"
+        },
+        {
+            "name": "amb_rainceiling_loop",
+            "path": "Audio\\Ambience\\amb_rainceiling_loop"
         },
         {
             "name": "reflections_game",
@@ -105,8 +169,12 @@
             "path": "Audio\\Voicelines\\Section1\\vanity_mirror_reflection"
         },
         {
-            "name": "intro_letter_millie_pov",
-            "path": "Audio\\Voicelines\\Section1\\intro_letter_millie_pov"
+            "name": "amb_rain_windowsill_loop",
+            "path": "Audio\\Ambience\\amb_rain_windowsill_loop"
+        },
+        {
+            "name": "its_my_musicbox",
+            "path": "Audio\\Voicelines\\Section1\\its_my_musicbox"
         }
     ]
 }
