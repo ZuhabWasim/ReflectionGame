@@ -68,7 +68,7 @@ public class Globals
 		public static string IS_BACKING_UP = "IsBackingUp";
 		public static string IS_JUMPING = "IsJumping";
 		public static string IS_INTERACTING = "IsInteracting";
-		public static float MAX_INTERACT_DISTANCE = 2f;
+		public static float MAX_INTERACT_DISTANCE = 3f;
 		public static float DEFAULT_PROXIMITY_TRIGGER_DIST = 3.5f;
 	}
 
