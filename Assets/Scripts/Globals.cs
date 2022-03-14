@@ -203,6 +203,7 @@ public enum Keybinds
 	USE_ITEM_KEY = KeyCode.E,
 	DROP_KEY = KeyCode.G,
 	INVENTORY_KEY = KeyCode.LeftShift,
+	ESCAPE_KEY = KeyCode.Escape,
 
 	// This is for debug only, should be removed in release
 	DEBUG_TRIGGER = KeyCode.Alpha0
