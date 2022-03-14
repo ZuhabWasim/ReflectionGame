@@ -306,9 +306,10 @@ public class MirrorConnector : MonoBehaviour
     {
         m_active = true;
         bool present = GlobalState.GetVar<bool>(Globals.Vars.IS_PRESENT_WORLD);
-
-        //presentInteractable.teleportable = true;
-        //pastInteractable.teleportable = true;
+        
+        // Propagates whether a mirror is teleportable to the Mirror Interactable.
+        presentMirror.GetComponent<MirrorInteractable>().setTeleportable(true);
+        pastMirror.GetComponent<MirrorInteractable>().setTeleportable(true);
 
         if (present)
         {
@@ -332,11 +333,12 @@ public class MirrorConnector : MonoBehaviour
     // Disable both of the mirrors (i.e. stops both cameras from working and sets them to inactive texture)
     public void Deactivate()
     {
-        //presentInteractable.teleportable = false;
+        // Propagates whether a mirror is teleportable to the Mirror Interactable.
+        presentMirror.GetComponent<MirrorInteractable>().setTeleportable(false);
+        pastMirror.GetComponent<MirrorInteractable>().setTeleportable(false);
+        
         m_active = false;
         presentMirror.Deactivate();
-
-        //pastInteractable.teleportable = false;
         pastMirror.Deactivate();
     }
 
