@@ -63,6 +63,12 @@ public class MirrorConnector : MonoBehaviour
             return;
         }
 
+        if (pastMirror == null)
+        {
+            Debug.LogError("No pastMirror in Mirror " + this.name + ", this is a fatal error");
+            return;
+        }
+
         // Find interactables
         SetupMirrorInteractable(presentMirror, presentInteractable);
         SetupMirrorInteractable(pastMirror, pastInteractable);
@@ -82,30 +88,26 @@ public class MirrorConnector : MonoBehaviour
         // Create render textures
         RenderTextureDescriptor textureDescriptor = new RenderTextureDescriptor(512, 512*mirrorHeight, RenderTextureFormat.Default);
         m_presentMirrorTexture = new RenderTexture(textureDescriptor);
+        m_pastMirrorTexture = new RenderTexture(textureDescriptor);
 
-        if (pastMirror != null)
+        presentMirror.SetCameraRenderTexture(m_presentMirrorTexture);
+        pastMirror.SetCameraRenderTexture(m_pastMirrorTexture);
+
+        // After setting mirror camera textures, need to set them to render on the mirrors
+        presentMirror.SetMirrorDisplayTexture(m_pastMirrorTexture);
+        pastMirror.SetMirrorDisplayTexture(m_presentMirrorTexture);
+
+        m_active = active;        
+        if (m_active)
         {
-            m_pastMirrorTexture = new RenderTexture(textureDescriptor);
-
-            presentMirror.SetCameraRenderTexture(m_presentMirrorTexture);
-            pastMirror.SetCameraRenderTexture(m_pastMirrorTexture);
-
-            // After setting mirror camera textures, need to set them to render on the mirrors
-            presentMirror.SetMirrorDisplayTexture(m_pastMirrorTexture);
-            pastMirror.SetMirrorDisplayTexture(m_presentMirrorTexture);
+            Activate();
         }
         else
         {
-            presentMirror.SetCameraRenderTexture(m_presentMirrorTexture);
-            presentMirror.SetMirrorDisplayTexture(m_presentMirrorTexture);
-        }
-
-        m_active = active;
-        interactionIcon = GameObject.Find(Globals.Misc.UI_Canvas).GetComponent<InteractionIcon>();
-        if (!m_active)
-        {
             Deactivate();
         }
+
+        interactionIcon = GameObject.Find(Globals.Misc.UI_Canvas).GetComponent<InteractionIcon>();
     }
 
     // Update is called once per frame
@@ -149,11 +151,11 @@ public class MirrorConnector : MonoBehaviour
     private void SetMirrorCameraPositions()
     {
 
-        if (pastMirror == null)
-        {
-            presentMirror.ReflectOverMirror(m_player, m_playerCamera);
-            return;
-        }
+        // if (pastMirror == null)
+        // {
+        //     presentMirror.ReflectOverMirror(m_player, m_playerCamera);
+        //     return;
+        // }
 
         if (GlobalState.GetVar<bool>("isPresent"))
         {
@@ -296,32 +298,67 @@ public class MirrorConnector : MonoBehaviour
         GlobalState.SetVar<bool>( Globals.Vars.TELEPORTING, false );
         EventManager.Fire( Globals.Events.TELEPORT );
 
+        Activate();
+
         yield return new WaitForSecondsRealtime( Globals.Teleporting.TELEPORTER_COOLDOWN );
     }
 
-    // Sets both of the mirrors to to be active
+    // Sets the mirrors/cameras to be active based on IS_PRESENT_WORLD
     public void Activate()
     {
-        //presentInteractable.teleportable = true;
         m_active = true;
-        presentMirror.Activate();
+        bool present = GlobalState.GetVar<bool>(Globals.Vars.IS_PRESENT_WORLD);
+        
+        // Propagates whether a mirror is teleportable to the Mirror Interactable.
+        presentMirror.GetComponent<MirrorInteractable>().setTeleportable(true);
+        pastMirror.GetComponent<MirrorInteractable>().setTeleportable(true);
 
-        if (pastMirror != null)
+        if (present)
         {
-            //pastInteractable.teleportable = true;
-            pastMirror.Activate();
+            // Need to set the present mirror camera to off, and past mirror texture to off
+            presentMirror.SetCamera(false);
+            presentMirror.SetNormalTexture();
+
+            pastMirror.SetOpaqueTexture();
+            pastMirror.SetCamera(true);
+        }
+        else
+        {
+            presentMirror.SetCamera(true);
+            presentMirror.SetOpaqueTexture();
+
+            pastMirror.SetNormalTexture();
+            pastMirror.SetCamera(false);
         }
     }
 
-    // Sets both of the mirrors to be inactive
+    // Disable both of the mirrors (i.e. stops both cameras from working and sets them to inactive texture)
     public void Deactivate()
     {
-        //presentInteractable.teleportable = false;
+        // Propagates whether a mirror is teleportable to the Mirror Interactable.
+        presentMirror.GetComponent<MirrorInteractable>().setTeleportable(false);
+        pastMirror.GetComponent<MirrorInteractable>().setTeleportable(false);
+        
         m_active = false;
         presentMirror.Deactivate();
+        pastMirror.Deactivate();
+    }
 
-        if (pastMirror != null)
+    // Note: currently in progress
+    public void TeleportSwitch()
+    {
+        bool isPresent = GlobalState.GetVar<bool>(Globals.Vars.IS_PRESENT_WORLD);
+        if (isPresent)
         {
+            presentMirror.Deactivate();
+
+            //pastInteractable.teleportable = false;
+            pastMirror.Activate();
+        }
+        else
+        {
+            presentMirror.Activate();
+
             //pastInteractable.teleportable = false;
             pastMirror.Deactivate();
         }

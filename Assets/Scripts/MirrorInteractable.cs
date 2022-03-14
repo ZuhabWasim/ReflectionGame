@@ -42,6 +42,16 @@ public class MirrorInteractable : InteractableAbstract
         // IF PENGUINS ARE SO SMART, HOW COME THEY LIVE IN IGLOOS?
     }
 
+    public bool getTeleportable()
+    {
+        return teleportable;
+    }
+
+    public void setTeleportable(bool teleportable)
+    {
+        this.teleportable = teleportable;
+    }
+    
     protected override void OnUserInteract()
     {
         HandleInteract();
