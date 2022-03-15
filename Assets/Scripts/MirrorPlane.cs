@@ -6,6 +6,7 @@ public class MirrorPlane : MonoBehaviour
 {
 
 	public bool isDirty = false;
+	public bool onFloor = false;
 	public Material dirtyMirrorMaterial; // Dirty texture to use for dirty mirrors
 	public Material opaqueMirrorMaterial;
 

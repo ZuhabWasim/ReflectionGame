@@ -8,7 +8,7 @@ public class MirrorConnector : MonoBehaviour
     public MirrorPlane presentMirror; // Mirror that is in the regular world
     public MirrorPlane pastMirror; // Mirror in the past world
 
-    public int mirrorHeight = 1;
+    public float mirrorHeight = 1.0f;
 
     [Tooltip("If this mirror can be used to teleport.")]
     public bool teleportable = false;
@@ -86,7 +86,7 @@ public class MirrorConnector : MonoBehaviour
         }
 
         // Create render textures
-        RenderTextureDescriptor textureDescriptor = new RenderTextureDescriptor(512, 512*mirrorHeight, RenderTextureFormat.Default);
+        RenderTextureDescriptor textureDescriptor = new RenderTextureDescriptor(512, Mathf.RoundToInt(512*mirrorHeight), RenderTextureFormat.Default);
         m_presentMirrorTexture = new RenderTexture(textureDescriptor);
         m_pastMirrorTexture = new RenderTexture(textureDescriptor);
 
