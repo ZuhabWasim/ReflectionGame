@@ -43,7 +43,7 @@ public class Globals
 		public static string BOOKSHELF_BOOK_PLACED = "BookshelfBookPlaced";
 		public static string BOOKSHELF_BOOK_PICKED_UP = "BookshelfBookPickedUp";
 		public static string PAINT_BRUSH_WET = "PaintBrushWet";
-		public static string DAD_PUZZLE_1_MILLIE_PAINT = "DadPuzzle1_MillePaint";
+		public static string DAD_PUZZLE_1_MILLIE_PAINT = "DadPuzzle1_MilliePaint";
 	}
 
 	public class Tags
