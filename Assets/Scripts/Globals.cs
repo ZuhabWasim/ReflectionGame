@@ -44,6 +44,7 @@ public class Globals
 		public static string BOOKSHELF_BOOK_PICKED_UP = "BookshelfBookPickedUp";
 		public static string PAINT_BRUSH_WET = "PaintBrushWet";
 		public static string DAD_PUZZLE_1_MILLIE_PAINT = "DadPuzzle1_MillePaint";
+		public static string DAD_PUZZLE_1_BOOKSHELF_SOLVED = "DadPuzzle1_BookshelfSolved";
 	}
 
 	public class Tags
@@ -189,11 +190,6 @@ public class Globals
 			public static string FATHERS_VOICE = "1.49__fathers_voice";
 		}
 	}
-
-	public class EnvironmentParams
-	{
-		public static SunConfig presentSunConfig = new SunConfig( 10000.0f, 10000.0f );
-	}
 }
 
 public enum ItemPickupResult
@@ -213,15 +209,3 @@ public enum Keybinds
 	// This is for debug only, should be removed in release
 	DEBUG_TRIGGER = KeyCode.Alpha0
 }
-
-public struct SunConfig
-{
-	public readonly float colorTemp; // temp in K
-	public readonly float intensity;
-
-	public SunConfig( float temp, float intensity )
-	{
-		colorTemp = temp;
-		this.intensity = intensity;
-	}
-};

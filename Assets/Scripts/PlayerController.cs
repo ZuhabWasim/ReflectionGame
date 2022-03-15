@@ -84,6 +84,7 @@ public class PlayerController : MonoBehaviour
 		// keydown events
 		EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.INTERACT_KEY ), HandleInteractPress );
 		EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.INTERACT_KEY ), SkipCurrentVoiceline );
+		EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.USE_ITEM_KEY ), HandleDropItem );
 		EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.USE_ITEM_KEY ), HandleUseItemPress );
 		EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.DROP_KEY ), HandleDrop );
 		EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.INVENTORY_KEY ), HandleOpenInventory );
@@ -109,7 +110,7 @@ public class PlayerController : MonoBehaviour
 	{
 		HandleMouseInput();
 		HandleKeyboardInput();
-		// HandleFootSteps();
+		HandleFootSteps();
 	}
 
 	void HandleMouseInput()
@@ -259,6 +260,7 @@ public class PlayerController : MonoBehaviour
 	{
 		if ( targetObject != null )
 		{
+			targetObject.OnUserInteractUnfiltered();
 			if ( targetObject.GetItemType() == InteractableAbstract.ItemType.PICKUP )
 			{
 				PickupItem item = (PickupItem)targetObject;
@@ -277,10 +279,24 @@ public class PlayerController : MonoBehaviour
 
 	void HandleUseItemPress()
 	{
+		if ( targetObject != null )
+		{
+			targetObject.OnUseItemUnfiltered();
+		}
+
 		if ( targetObject != null && targetObject.interactable && targetObject.WillAcceptItem() )
 		{
 			targetObject.ActivateUseItem( m_inventory.GetSelectedItem() );
 		}
+	}
+
+	void HandleDropItem()
+	{
+		if ( targetObject ) return;
+		PickupItem inventoryItem = m_inventory.GetSelectedPickupItem();
+
+		if ( !inventoryItem ) return;
+		inventoryItem.OnDrop( this.transform.position + ( this.transform.forward * dropDistance ) + new Vector3( 0, 1, 0 ) );
 	}
 
 	void HandleOpenInventory()

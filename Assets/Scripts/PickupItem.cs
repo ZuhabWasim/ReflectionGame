@@ -22,7 +22,7 @@ public class PickupItem : InteractableAbstract
 		EventManager.Fire( onPickupEvent, this.gameObject );
 	}
 
-	public void OnDrop( Vector3 dropPostion, bool isLocal = false )
+	public virtual void OnDrop( Vector3 dropPostion, bool isLocal = false )
 	{
 		this.gameObject.SetActive( true );
 		if ( isLocal ) this.gameObject.transform.localPosition = dropPostion;

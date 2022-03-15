@@ -29,7 +29,7 @@ public abstract class InteractableAbstract : MonoBehaviour
 	public string makeNonInteractableEvent = "";
 	public AudioClip voiceLine;
 	public AudioClip nonInteractableVoiceLine;
-	
+
 	public bool displayPrompt = true;
 	public bool acceptItem = false;
 	public bool deleteItem = false;
@@ -47,7 +47,7 @@ public abstract class InteractableAbstract : MonoBehaviour
 
 	private Inventory m_inventory;
 	[HideInInspector]
-	public bool thisIsAMirror=false;
+	public bool thisIsAMirror = false;
 
 
 	public void Start()
@@ -157,27 +157,27 @@ public abstract class InteractableAbstract : MonoBehaviour
 		if ( desiredItem == objectName )
 		{
 			OnUseItem();
-			if (deleteItem)
-            {
-				m_inventory.DeleteItem(desiredItem);
+			if ( deleteItem )
+			{
+				m_inventory.DeleteItem( desiredItem );
 			}
 		}
 		// Temporary fix to allow player to Reflect with items selected
-		else if ( desiredItem == "") 
+		else if ( desiredItem == "" )
 		{
 			OnUseItem();
 		}
 		// If no item is selected.
-		else if (objectName == "")
+		else if ( objectName == "" )
 		{
-			AudioPlayer.Play(Globals.VoiceLines.General.NOT_HOLDING_ANYTHING, Globals.Tags.DIALOGUE_SOURCE);
-			AudioPlayer.Play(Globals.AudioFiles.General.NON_INTERACTABLE, Globals.Tags.MAIN_SOURCE);
-		} 
+			AudioPlayer.Play( Globals.VoiceLines.General.NOT_HOLDING_ANYTHING, Globals.Tags.DIALOGUE_SOURCE );
+			AudioPlayer.Play( Globals.AudioFiles.General.NON_INTERACTABLE, Globals.Tags.MAIN_SOURCE );
+		}
 		// If the wrong item is selected.
 		else
 		{
-			AudioPlayer.Play(Globals.VoiceLines.General.CANT_USE_ITEM, Globals.Tags.DIALOGUE_SOURCE);
-			AudioPlayer.Play(Globals.AudioFiles.General.NON_INTERACTABLE, Globals.Tags.MAIN_SOURCE);
+			AudioPlayer.Play( Globals.VoiceLines.General.CANT_USE_ITEM, Globals.Tags.DIALOGUE_SOURCE );
+			AudioPlayer.Play( Globals.AudioFiles.General.NON_INTERACTABLE, Globals.Tags.MAIN_SOURCE );
 		}
 	}
 
@@ -186,5 +186,9 @@ public abstract class InteractableAbstract : MonoBehaviour
 	protected virtual void OnUseItem() { }
 
 	protected virtual void OnStart() { }
+
+	// fired on the object everytime without conditions blocking
+	public virtual void OnUseItemUnfiltered() { }
+	public virtual void OnUserInteractUnfiltered() { }
 
 }

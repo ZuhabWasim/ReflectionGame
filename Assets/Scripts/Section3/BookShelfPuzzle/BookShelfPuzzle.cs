@@ -23,6 +23,7 @@ public class BookShelfPuzzle : MonoBehaviour
 			m_bookslots.Add( bookslot.GetComponent<BookSlot>() );
 		}
 
+		EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.DEBUG_TRIGGER ), OnPuzzleSolved );
 		EventManager.Sub( Globals.Events.BOOKSHELF_BOOK_PLACED, CheckPuzzleSolved );
 		// hack to fix transform for book
 		EventManager.Sub( Globals.Events.BOOKSHELF_BOOK_PICKED_UP, ( GameObject book ) =>
@@ -49,7 +50,8 @@ public class BookShelfPuzzle : MonoBehaviour
 
 	void OnPuzzleSolved()
 	{
-		Debug.Log( "Solved" );
+		Debug.Log( "Bookshelf puzzle solved" );
+		EventManager.Fire( Globals.Events.DAD_PUZZLE_1_BOOKSHELF_SOLVED );
 	}
 
 	void FixBookTransform( GameObject book )
