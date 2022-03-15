@@ -9,6 +9,9 @@ public class BookShelfPuzzle : MonoBehaviour
 	public uint numBookSlots = 4;
 	private List<BookSlot> m_bookslots;
 
+	private const string WHITE_BOOK = "WhiteBook";
+	private const string GREEN_BOOK = "GreenBook";
+
 	void Start()
 	{
 		m_bookslots = new List<BookSlot>();
@@ -21,6 +24,14 @@ public class BookShelfPuzzle : MonoBehaviour
 		}
 
 		EventManager.Sub( Globals.Events.BOOKSHELF_BOOK_PLACED, CheckPuzzleSolved );
+		// hack to fix transform for book
+		EventManager.Sub( Globals.Events.BOOKSHELF_BOOK_PICKED_UP, ( GameObject book ) =>
+		{
+			if ( book.name == WHITE_BOOK )
+			{
+				FixBookTransform( book );
+			}
+		} );
 	}
 
 	void CheckPuzzleSolved()
@@ -39,5 +50,10 @@ public class BookShelfPuzzle : MonoBehaviour
 	void OnPuzzleSolved()
 	{
 		Debug.Log( "Solved" );
+	}
+
+	void FixBookTransform( GameObject book )
+	{
+		book.transform.localEulerAngles = new Vector3(83.0208511f,83.0759659f,264.555115f);
 	}
 }
