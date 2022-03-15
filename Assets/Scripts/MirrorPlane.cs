@@ -130,19 +130,27 @@ public class MirrorPlane : MonoBehaviour
 		}
 	}
 
+	// Completely deactivates this mirror, both camera and texture
 	public void Deactivate()
 	{
 		SetupMirrorCameraPosition();
-		m_mirrorCameraPosition.gameObject.SetActive( false );
-
+		m_mirrorCameraPosition.SetCamera(false);
 		SetOpaqueTexture();
 	}
 
+	// IMPORTANT: this is a really unoptimized. Please see MirrorConnector.Activate for a better way
 	public void Activate()
 	{
 		SetupMirrorCameraPosition();
 		m_mirrorCameraPosition.gameObject.SetActive( true );
 
 		SetNormalTexture();
+	}
+
+	public void SetCamera(bool state)
+	{
+		// HACK: the following line makes m_mirrorPlane null transform
+		// m_mirrorCameraPosition.enabled = false;
+		m_mirrorCameraPosition.SetCamera(state);
 	}
 }

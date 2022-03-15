@@ -9587,15 +9587,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8404606981694419755, guid: 3ad6ca3da0452804d84edfbecf15fee8, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.92492175
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8404606981694419755, guid: 3ad6ca3da0452804d84edfbecf15fee8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8404606981694419755, guid: 3ad6ca3da0452804d84edfbecf15fee8, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.38015768
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8404606981694419755, guid: 3ad6ca3da0452804d84edfbecf15fee8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8404606981694419755, guid: 3ad6ca3da0452804d84edfbecf15fee8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -44.687
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8475203299369122453, guid: 3ad6ca3da0452804d84edfbecf15fee8, type: 3}
       propertyPath: m_Mesh
@@ -9619,6 +9627,34 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ad6ca3da0452804d84edfbecf15fee8, type: 3}
+--- !u!1 &4569609196847714540 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1649749810864722095, guid: 3ad6ca3da0452804d84edfbecf15fee8, type: 3}
+  m_PrefabInstance: {fileID: 2994777121704591427}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5752991081212461888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4569609196847714540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71e0e0319f401c8408104afee3512a10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactable: 0
+  makeInteractableEvent: TurnOnLights
+  makeNonInteractableEvent: 
+  voiceLine: {fileID: 8300000, guid: e3bc12dbdb5fac542a7dce4ab649a09d, type: 3}
+  nonInteractableVoiceLine: {fileID: 8300000, guid: 56fec2afa3da0b54b915562f97df9676, type: 3}
+  displayPrompt: 1
+  acceptItem: 0
+  deleteItem: 0
+  itemName: Mom's Closet Door
+  myType: 0
+  thisIsAMirror: 0
 --- !u!4 &7129405354503157528 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5440112544721598299, guid: 3ad6ca3da0452804d84edfbecf15fee8, type: 3}

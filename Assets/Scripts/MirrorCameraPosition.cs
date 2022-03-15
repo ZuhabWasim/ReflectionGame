@@ -131,6 +131,11 @@ public class MirrorCameraPosition : MonoBehaviour
         mirrorCam.targetTexture = texture;
     }
 
+    public void SetCamera(bool state)
+    {
+        mirrorCam.enabled = state;
+    }
+
     void MirrorImp1()
     {
         //For some reason this looks okay even though it makes no modifications to the mirror's aspect ratio

@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
 	private const string FOOTSTEP_AUDIO_SOURCE_NAME = "FootStepSource";
 	private const float PRESENT_HEIGHT = 1.5f;
 	private const float PAST_HEIGHT = 1.0f;
+	private const float RAYCAST_RATE = 10f; // how many raycasts to do per sec
 
 	// ===== CONSTANTS END ===
 
@@ -66,9 +67,16 @@ public class PlayerController : MonoBehaviour
 
 		RegisterEventListeners();
 		RegisterAudioSources();
-		AudioPlayer.Play( Globals.AudioFiles.MAIN_DOOR, Globals.Tags.MAIN_SOURCE );
-		AudioPlayer.Play( Globals.AudioFiles.ENTERING_ROOM, Globals.Tags.DIALOGUE_SOURCE );
-		AudioPlayer.Play( Globals.AudioFiles.PRESENT_AMBIENCE, Globals.Tags.AMBIENCE_SOURCE );
+
+		AudioPlayer.Play( Globals.AudioFiles.Section1.MAIN_DOOR, Globals.Tags.MAIN_SOURCE );
+		AudioPlayer.Play( Globals.VoiceLines.Section1.DARK_IN_HERE, Globals.Tags.DIALOGUE_SOURCE );
+		AudioPlayer.Play( Globals.AudioFiles.Ambience.PRESENT_AMBIENCE, Globals.Tags.AMBIENCE_SOURCE );
+		StartCoroutines();
+	}
+
+	void StartCoroutines()
+	{
+		StartCoroutine( LookAtObject() );
 	}
 
 	void RegisterEventListeners()
@@ -114,7 +122,6 @@ public class PlayerController : MonoBehaviour
 
 		transform.Rotate( Vector3.up * input.x * sensitivity );
 
-		LookAtObject();
 		DisplayInteractionPrompts();
 		ShowInteractionIcon();
 
@@ -287,17 +294,22 @@ public class PlayerController : MonoBehaviour
 		inventoryOpened = false;
 	}
 
-	void LookAtObject()
+	IEnumerator LookAtObject()
 	{
-		RaycastHit hitRes;
-		bool hit = Physics.Raycast( playerCamera.position, playerCamera.forward, out hitRes, Globals.Misc.MAX_INTERACT_DISTANCE );
-		if ( hit && hitRes.collider.gameObject.GetComponent<InteractableAbstract>() != null )
+		while ( true )
 		{
-			targetObject = hitRes.collider.gameObject.GetComponent<InteractableAbstract>();
-		}
-		else
-		{
-			targetObject = null;
+			RaycastHit hitRes;
+			bool hit = Physics.Raycast( playerCamera.position, playerCamera.forward, out hitRes, Globals.Misc.MAX_INTERACT_DISTANCE );
+			if ( hit && hitRes.collider.gameObject.GetComponent<InteractableAbstract>() != null )
+			{
+				targetObject = hitRes.collider.gameObject.GetComponent<InteractableAbstract>();
+			}
+			else
+			{
+				targetObject = null;
+			}
+
+			yield return new WaitForSecondsRealtime( 1 / RAYCAST_RATE );
 		}
 	}
 
@@ -384,11 +396,11 @@ public class PlayerController : MonoBehaviour
 	{
 		if ( GlobalState.GetVar<bool>( Globals.Vars.IS_PRESENT_WORLD ) )
 		{
-			AudioPlayer.Play( Globals.AudioFiles.PRESENT_AMBIENCE, Globals.Tags.AMBIENCE_SOURCE );
+			AudioPlayer.Play( Globals.AudioFiles.Ambience.PRESENT_AMBIENCE, Globals.Tags.AMBIENCE_SOURCE );
 		}
 		else
 		{
-			AudioPlayer.Play( Globals.AudioFiles.PAST_AMBIENCE, Globals.Tags.AMBIENCE_SOURCE );
+			AudioPlayer.Play( Globals.AudioFiles.Ambience.PAST_AMBIENCE, Globals.Tags.AMBIENCE_SOURCE );
 		}
 	}
 }
