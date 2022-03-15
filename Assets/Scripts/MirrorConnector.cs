@@ -108,6 +108,7 @@ public class MirrorConnector : MonoBehaviour
         }
 
         interactionIcon = GameObject.Find(Globals.Misc.UI_Canvas).GetComponent<InteractionIcon>();
+        EventManager.Sub(Globals.Events.TELEPORT, Activate);
     }
 
     // Update is called once per frame
@@ -297,8 +298,6 @@ public class MirrorConnector : MonoBehaviour
 
         GlobalState.SetVar<bool>( Globals.Vars.TELEPORTING, false );
         EventManager.Fire( Globals.Events.TELEPORT );
-
-        Activate();
 
         yield return new WaitForSecondsRealtime( Globals.Teleporting.TELEPORTER_COOLDOWN );
     }
