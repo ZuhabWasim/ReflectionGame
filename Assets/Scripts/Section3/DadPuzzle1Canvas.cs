@@ -8,6 +8,8 @@ public class DadPuzzle1Canvas : InteractableAbstract
     public string OnPaintEvent = string.Empty;
     private bool m_canUsePaintBrush = false;
     private const string PAINT_BRUSH = "Paint Brush";
+
+    public GameObject[] toActivate;
 	protected override void OnStart()
 	{
 		desiredItem = PAINT_BRUSH;
@@ -21,5 +23,11 @@ public class DadPuzzle1Canvas : InteractableAbstract
 		if ( !m_canUsePaintBrush ) return;
         Inventory.GetInstance().DeleteItem( PAINT_BRUSH );
         EventManager.Fire( OnPaintEvent );
-	}
+
+        for (int i=0; i<toActivate.Length; i++)
+        {
+            toActivate[i].SetActive(true);
+        }
+
+    }
 }
