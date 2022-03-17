@@ -40,11 +40,18 @@ public class Globals
 		public static string HAS_MILLIE_KEY = "HasMillieKey";
 		public static string LOCK_MOM_DOOR = "LockMomDoor";
 		public static string LOCK_DAD_DOOR = "LockDadDoor";
+
 		public static string BOOKSHELF_BOOK_PLACED = "BookshelfBookPlaced";
 		public static string BOOKSHELF_BOOK_PICKED_UP = "BookshelfBookPickedUp";
 		public static string PAINT_BRUSH_WET = "PaintBrushWet";
 		public static string DAD_PUZZLE_1_MILLIE_PAINT = "DadPuzzle1_MillePaint";
 		public static string DAD_PUZZLE_1_BOOKSHELF_SOLVED = "DadPuzzle1_BookshelfSolved";
+    
+		public static string OBTAINED_SCISSORS = "ObtainedScissors";
+		public static string CUTTING_CLOTHING_RACK = "CuttingClothingRack";
+		public static string SWEPT_DEBRIS = "SweptDebris";
+		public static string LOOKED_AT_MIRROR_B = "LookedAtMirrorB";
+
 	}
 
 	public class Tags
@@ -93,6 +100,8 @@ public class Globals
 		public static string MIRROR_ITEM = "Mirror";
 		public static string DRAWER_ITEM = "Drawer";
 		public static string NOTE_ITEM = "Note";
+		public static string SCISSORS_ITEM = "Scissors";
+		public static string BROOM_ITEM = "Broom";
 
 		public static string HANDKERCHIEF_ITEM = "Handkerchief";
 		public static string MUSICBOXMILLIE_ITEM = "Millie's Key";
@@ -157,7 +166,10 @@ public class Globals
 		{
 			public static string CANT_USE_ITEM = "1.14__hmm_that_doesnt_seem_right";
 			public static string NOT_HOLDING_ANYTHING = "not_holding_anything";
-			
+			public static string PLACEHOLDER = "placeholder";
+			public static string PLACEHOLDER_1 = "placeholder1";
+			public static string PLACEHOLDER_2 = "placeholder2";
+			public static string PLACEHOLDER_3 = "placeholder3";
 		}
 		public class Section1
 		{
