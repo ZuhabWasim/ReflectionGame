@@ -8,7 +8,7 @@ public class MirrorConnector : MonoBehaviour
     public MirrorPlane presentMirror; // Mirror that is in the regular world
     public MirrorPlane pastMirror; // Mirror in the past world
 
-    public int mirrorHeight = 1;
+    public float mirrorHeight = 1.0f;
 
     [Tooltip("If this mirror can be used to teleport.")]
     public bool teleportable = false;
@@ -86,7 +86,7 @@ public class MirrorConnector : MonoBehaviour
         }
 
         // Create render textures
-        RenderTextureDescriptor textureDescriptor = new RenderTextureDescriptor(512, 512*mirrorHeight, RenderTextureFormat.Default);
+        RenderTextureDescriptor textureDescriptor = new RenderTextureDescriptor(512, Mathf.RoundToInt(512*mirrorHeight), RenderTextureFormat.Default);
         m_presentMirrorTexture = new RenderTexture(textureDescriptor);
         m_pastMirrorTexture = new RenderTexture(textureDescriptor);
 
@@ -108,6 +108,8 @@ public class MirrorConnector : MonoBehaviour
         }
 
         interactionIcon = GameObject.Find(Globals.Misc.UI_Canvas).GetComponent<InteractionIcon>();
+
+        EventManager.Sub(Globals.Events.TELEPORT, Swap);
     }
 
     // Update is called once per frame
@@ -298,8 +300,6 @@ public class MirrorConnector : MonoBehaviour
         GlobalState.SetVar<bool>( Globals.Vars.TELEPORTING, false );
         EventManager.Fire( Globals.Events.TELEPORT );
 
-        Activate();
-
         yield return new WaitForSecondsRealtime( Globals.Teleporting.TELEPORTER_COOLDOWN );
     }
 
@@ -307,28 +307,36 @@ public class MirrorConnector : MonoBehaviour
     public void Activate()
     {
         m_active = true;
-        bool present = GlobalState.GetVar<bool>(Globals.Vars.IS_PRESENT_WORLD);
         
         // Propagates whether a mirror is teleportable to the Mirror Interactable.
-        presentMirror.GetComponent<MirrorInteractable>().setTeleportable(true);
-        pastMirror.GetComponent<MirrorInteractable>().setTeleportable(true);
+        presentMirror.GetComponent<MirrorInteractable>().setTeleportable(teleportable);
+        pastMirror.GetComponent<MirrorInteractable>().setTeleportable(teleportable);
 
-        if (present)
+        Swap();
+    }
+
+    void Swap()
+    {
+        if (m_active)
         {
-            // Need to set the present mirror camera to off, and past mirror texture to off
-            presentMirror.SetCamera(false);
-            presentMirror.SetNormalTexture();
+            bool present = GlobalState.GetVar<bool>(Globals.Vars.IS_PRESENT_WORLD);
+            if (present)
+            {
+                // Need to set the present mirror camera to off, and past mirror texture to off
+                presentMirror.SetCamera(false);
+                presentMirror.SetNormalTexture();
 
-            pastMirror.SetOpaqueTexture();
-            pastMirror.SetCamera(true);
-        }
-        else
-        {
-            presentMirror.SetCamera(true);
-            presentMirror.SetOpaqueTexture();
+                pastMirror.SetOpaqueTexture();
+                pastMirror.SetCamera(true);
+            }
+            else
+            {
+                presentMirror.SetCamera(true);
+                presentMirror.SetOpaqueTexture();
 
-            pastMirror.SetNormalTexture();
-            pastMirror.SetCamera(false);
+                pastMirror.SetNormalTexture();
+                pastMirror.SetCamera(false);
+            }
         }
     }
 
@@ -342,26 +350,6 @@ public class MirrorConnector : MonoBehaviour
         m_active = false;
         presentMirror.Deactivate();
         pastMirror.Deactivate();
-    }
-
-    // Note: currently in progress
-    public void TeleportSwitch()
-    {
-        bool isPresent = GlobalState.GetVar<bool>(Globals.Vars.IS_PRESENT_WORLD);
-        if (isPresent)
-        {
-            presentMirror.Deactivate();
-
-            //pastInteractable.teleportable = false;
-            pastMirror.Activate();
-        }
-        else
-        {
-            presentMirror.Activate();
-
-            //pastInteractable.teleportable = false;
-            pastMirror.Deactivate();
-        }
     }
 
     private void SetupMirrorInteractable(MirrorPlane mirror, MirrorInteractable interactable)

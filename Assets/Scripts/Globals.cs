@@ -40,10 +40,18 @@ public class Globals
 		public static string HAS_MILLIE_KEY = "HasMillieKey";
 		public static string LOCK_MOM_DOOR = "LockMomDoor";
 		public static string LOCK_DAD_DOOR = "LockDadDoor";
+
+		public static string BOOKSHELF_BOOK_PLACED = "BookshelfBookPlaced";
+		public static string BOOKSHELF_BOOK_PICKED_UP = "BookshelfBookPickedUp";
+		public static string PAINT_BRUSH_WET = "PaintBrushWet";
+		public static string DAD_PUZZLE_1_MILLIE_PAINT = "DadPuzzle1_MillePaint";
+		public static string DAD_PUZZLE_1_BOOKSHELF_SOLVED = "DadPuzzle1_BookshelfSolved";
+    
 		public static string OBTAINED_SCISSORS = "ObtainedScissors";
 		public static string CUTTING_CLOTHING_RACK = "CuttingClothingRack";
 		public static string SWEPT_DEBRIS = "SweptDebris";
 		public static string LOOKED_AT_MIRROR_B = "LookedAtMirrorB";
+
 	}
 
 	public class Tags
@@ -55,6 +63,8 @@ public class Globals
 		public static string MAIN_SOURCE = "MainSource";
 		public static string AMBIENCE_SOURCE = "AmbienceSource";
 		public static string MUSIC_SOURCE = "MusicSource";
+		public static string INTERACTABLE_BOOK = "InteractableBook";
+		public static string BOOK_SLOT = "BookSlot";
 		public static string MUSIC_BOX = "MusicBox";
 		
 	}
@@ -192,11 +202,6 @@ public class Globals
 			public static string FATHERS_VOICE = "1.49__fathers_voice";
 		}
 	}
-
-	public class EnvironmentParams
-	{
-		public static SunConfig presentSunConfig = new SunConfig( 10000.0f, 10000.0f );
-	}
 }
 
 public enum ItemPickupResult
@@ -216,15 +221,3 @@ public enum Keybinds
 	// This is for debug only, should be removed in release
 	DEBUG_TRIGGER = KeyCode.Alpha0
 }
-
-public struct SunConfig
-{
-	public readonly float colorTemp; // temp in K
-	public readonly float intensity;
-
-	public SunConfig( float temp, float intensity )
-	{
-		colorTemp = temp;
-		this.intensity = intensity;
-	}
-};
