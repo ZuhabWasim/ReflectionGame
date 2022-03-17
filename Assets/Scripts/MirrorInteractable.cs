@@ -73,7 +73,6 @@ public class MirrorInteractable : InteractableAbstract
 
     public override void OnUseItemUnfiltered()
     {
-        Debug.Log("HERE IN MY GARAGE " + this.name);
         // If it's possible, we should probably make teleporting checks here and propogate them to the connector e.g.
         if (teleportable)
         {

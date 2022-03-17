@@ -83,6 +83,20 @@ public class BlockMovingArea : MonoBehaviour
 
 		Transform box = spaceGrid[ y ][ x ].transform.GetChild( 0 );
 		box.SetParent( spaceGrid[ targetY ][ targetX ], false );
+		
+		// Check if Mirror A was moved to the final area (row 0, col 2), play audio if so
+		if (targetY == 0 && targetX == 2)
+		{
+			Transform[] ts = box.GetComponentsInChildren<Transform>();
+			foreach (Transform t in ts)
+			{
+				if (t.gameObject.name == "MirrorA")
+				{
+					AudioPlayer.Play(Globals.VoiceLines.Section2.MIRROR_A_RIGHT_SPOT, Globals.Tags.DIALOGUE_SOURCE);
+					break;
+				}
+			}
+		}
 	}
 
 	public bool BoxAtPosition( int x, int y )

@@ -11,16 +11,14 @@ public class ChangeLightState : MonoBehaviour
 	public Material whiteEmissiveOff;
 
 	public AudioClip soundEffect;
-	private AudioSource m_soundSource;
-
+	private const string FUSEBOX_AUDIO_SOURCE = "FuseBoxAudioSource";
+	
 	// Start is called before the first frame update
 	void Start()
 	{
 		EventManager.Sub( Globals.Events.LIGHTS_TURN_ON, TurnLightsOn );
 		EventManager.Sub( Globals.Events.LIGHTS_TURN_OFF, TurnLightsOff );
-
-		m_soundSource = GetComponent<AudioSource>();
-
+		
 		TurnLightsOff();
 	}
 
@@ -35,8 +33,7 @@ public class ChangeLightState : MonoBehaviour
 		{
 			lightSources[ i ].SetActive( true );
 		}
-		m_soundSource.clip = soundEffect;
-		m_soundSource.Play();
+		AudioPlayer.Play(soundEffect, FUSEBOX_AUDIO_SOURCE, false);
 		AudioPlayer.Play( Globals.VoiceLines.Section1.HOUSE_FEELS_UNFAMILIAR, Globals.Tags.DIALOGUE_SOURCE );
 	}
 

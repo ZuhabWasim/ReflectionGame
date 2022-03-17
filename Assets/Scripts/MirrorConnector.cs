@@ -97,14 +97,18 @@ public class MirrorConnector : MonoBehaviour
         presentMirror.SetMirrorDisplayTexture(m_pastMirrorTexture);
         pastMirror.SetMirrorDisplayTexture(m_presentMirrorTexture);
 
-        m_active = active;        
+        m_active = active;
+        
+        // Note that on Start, initial configurations of front Mirror handling can be separate from the connector.
+        // Need to account for this and not propagate any unwanted changes.
+        // E.g. Mom1 Mirror B is on but should NOT be teleportable. 
         if (m_active)
         {
-            Activate();
+            Activate(true);
         }
         else
         {
-            Deactivate();
+            Deactivate(true);
         }
 
         interactionIcon = GameObject.Find(Globals.Misc.UI_Canvas).GetComponent<InteractionIcon>();
@@ -304,14 +308,16 @@ public class MirrorConnector : MonoBehaviour
     }
 
     // Sets the mirrors/cameras to be active based on IS_PRESENT_WORLD
-    public void Activate()
+    public void Activate(bool onInitialization = false)
     {
         m_active = true;
         
-        // Propagates whether a mirror is teleportable to the Mirror Interactable.
-        presentMirror.GetComponent<MirrorInteractable>().setTeleportable(teleportable);
-        pastMirror.GetComponent<MirrorInteractable>().setTeleportable(teleportable);
-
+        // Propagates whether a mirror is teleportable to the Mirror Interactable. ONLY AFTER INITIALIZATION.
+        if ( !onInitialization ) {
+            presentMirror.GetComponent<MirrorInteractable>().setTeleportable(true);
+            pastMirror.GetComponent<MirrorInteractable>().setTeleportable(true);
+        }
+        
         Swap();
     }
 
@@ -341,12 +347,15 @@ public class MirrorConnector : MonoBehaviour
     }
 
     // Disable both of the mirrors (i.e. stops both cameras from working and sets them to inactive texture)
-    public void Deactivate()
+    public void Deactivate(bool onInitialization = false)
     {
-        // Propagates whether a mirror is teleportable to the Mirror Interactable.
-        presentMirror.GetComponent<MirrorInteractable>().setTeleportable(false);
-        pastMirror.GetComponent<MirrorInteractable>().setTeleportable(false);
-        
+        // Propagates whether a mirror is teleportable to the Mirror Interactable. ONLY AFTER INITIALIZATION.
+        if (!onInitialization)
+        {
+            presentMirror.GetComponent<MirrorInteractable>().setTeleportable(false);
+            pastMirror.GetComponent<MirrorInteractable>().setTeleportable(false);
+        }
+
         m_active = false;
         presentMirror.Deactivate();
         pastMirror.Deactivate();

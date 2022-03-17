@@ -50,7 +50,8 @@ public class Globals
 		public static string OBTAINED_SCISSORS = "ObtainedScissors";
 		public static string CUTTING_CLOTHING_RACK = "CuttingClothingRack";
 		public static string SWEPT_DEBRIS = "SweptDebris";
-		public static string LOOKED_AT_MIRROR_B = "LookedAtMirrorB";
+		public static string MOVE_MIRROR_B = "MoveMirrorB";
+		public static string HAS_MOM_KEY = "HasMomKey";
 
 	}
 
@@ -154,6 +155,16 @@ public class Globals
 			public static string HANDKERCHIEF = "handkerchief";
 			
 		}
+
+		public class Section2
+		{
+			public static string CUTTING_DRESS = "sfx_scissors_cutting_dress";
+			public static string MOVING_MIRROR = "mirror_b_move_placeholder";
+			public static string SAFE_UNLOCK = "sfx_safe_unlock_open_sequence";
+			public static string SWEEP_DEBRIS = "sfx_broom_sweep_debris";
+			public static string CARDBOARD_SLIDE = "sfx_cardboard_box_slide";
+			
+		}
 	}
 
 	public class SoundEffects
@@ -200,6 +211,16 @@ public class Globals
 			public static string I_M_TOO_SMALL = "1.43__i_m_too_small";
 			public static string MOTHERS_NAGGING = "1.48__mothers_nagging";
 			public static string FATHERS_VOICE = "1.49__fathers_voice";
+		}
+
+		public class Section2
+		{
+			public static string CONTAINER_TOO_FAR = "container_too_far";
+			public static string CONTAINER_TOO_HIGH = "container_too_high";
+			public static string LAVISH_CLOTHES = "lavish_clothes";
+			public static string TONE_DOWN = "tone_down";
+			public static string MIRROR_A_RIGHT_SPOT = "mirror_a_right_spot";
+			public static string NO_MORE_OBSTRUCTIONS = "no_more_obstructions";
 		}
 	}
 }

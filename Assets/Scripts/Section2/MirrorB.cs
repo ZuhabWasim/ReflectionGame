@@ -6,25 +6,23 @@ using UnityEngine;
 public class MirrorB : MirrorInteractable
 {
     private bool moved;
-    private bool sweptDebris;
     
     // Start is called before the first frame update
     void Start()
     {
         base.OnStart();
         
-        moved = false;
-        sweptDebris = false;
-        teleportable = false;
-        
         EventManager.Sub( Globals.Events.SWEPT_DEBRIS, OnSweepingDebris );
+        
+        moved = false;
+        teleportable = false;
     }
 
     protected override void OnUserInteract()
     {
         if (moved)
         {
-            AudioPlayer.Play( Globals.VoiceLines.Section1.I_M_TOO_SMALL, Globals.Tags.DIALOGUE_SOURCE );
+            AudioPlayer.Play( Globals.VoiceLines.Section2.NO_MORE_OBSTRUCTIONS, Globals.Tags.DIALOGUE_SOURCE );
         }
         else
         {
@@ -34,6 +32,10 @@ public class MirrorB : MirrorInteractable
             pastMover.TriggerMotion();
             presMover.TriggerMotion();
             
+            AudioPlayer.Play( Globals.AudioFiles.Section2.MOVING_MIRROR, Globals.Tags.MAIN_SOURCE); // Not working so use MainSource
+            
+            EventManager.Fire(Globals.Events.MOVE_MIRROR_B);
+            
             teleportable = true;
             moved = true;
         }
@@ -41,7 +43,6 @@ public class MirrorB : MirrorInteractable
 
     void OnSweepingDebris()
     {
-        sweptDebris = true;
         interactable = true;
     }
 

@@ -10,17 +10,10 @@ public class GlassBox : InterpolateInteractableWrapper
 	private const float ALLOWABLE_ERROR = 0.01f;
 	
 	
-	/*
-	protected override void OnStart()
-	{
-	}
-	*/
-
 	protected override void OnUserInteract()
 	{
 		if ( IsHighEnough() )
 		{
-			AudioPlayer.Play( Globals.VoiceLines.Section1.I_M_TOO_SMALL, Globals.Tags.DIALOGUE_SOURCE );
 			TriggerMotion();
 			interactable = false;
 		}
@@ -31,29 +24,21 @@ public class GlassBox : InterpolateInteractableWrapper
 		Vector3 playerPosition = GameObject.FindGameObjectWithTag(Globals.Tags.PLAYER).transform.position;
 		float distance = Vector3.Distance(playerPosition, this.transform.position);
 		
-		
-		Debug.Log("playerPosition: " + playerPosition + "           Distance: " + Vector3.Distance(playerPosition, this.transform.position));
-		
 		// Millie's not high enough to reach the box.
 		if ( playerPosition.y < ALLOWABLE_BOX_HEIGHT - ALLOWABLE_ERROR )
 		{
-			AudioPlayer.Play( voiceLine, Globals.Tags.DIALOGUE_SOURCE );
+			AudioPlayer.Play( Globals.VoiceLines.Section2.CONTAINER_TOO_HIGH, Globals.Tags.DIALOGUE_SOURCE );
 			return false;
 		}
 		
 		// Millie is high enough but needs to get a bit closer.
 		if ( distance > ALLOWABLE_DISTANCE + ALLOWABLE_ERROR )
 		{
-			AudioPlayer.Play( Globals.VoiceLines.Section1.DOOR_NOT_BUDGING, Globals.Tags.DIALOGUE_SOURCE );
+			AudioPlayer.Play( Globals.VoiceLines.Section2.CONTAINER_TOO_FAR, Globals.Tags.DIALOGUE_SOURCE );
 			return false;
 		}
-
-		return true;
-		// Millie is high enough and close enough.
 		
-		// Check if the player is close to the box and on at least the height of box 3.
-		return playerPosition.y >= ALLOWABLE_BOX_HEIGHT - ALLOWABLE_ERROR &&
-		       distance <= ALLOWABLE_DISTANCE + ALLOWABLE_ERROR;
-		return false;
+		// Millie is high enough and close enough.
+		return true;
 	}
 }
