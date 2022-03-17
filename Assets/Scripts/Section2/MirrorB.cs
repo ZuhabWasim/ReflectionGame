@@ -15,6 +15,7 @@ public class MirrorB : MirrorInteractable
         
         moved = false;
         sweptDebris = false;
+        teleportable = false;
         
         EventManager.Sub( Globals.Events.SWEPT_DEBRIS, OnSweepingDebris );
     }

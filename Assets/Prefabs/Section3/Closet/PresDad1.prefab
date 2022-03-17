@@ -7892,7 +7892,7 @@ MonoBehaviour:
   displayPrompt: 1
   acceptItem: 0
   deleteItem: 0
-  itemName: 
+  itemName: Empty Bucket
   myType: 2
   thisIsAMirror: 0
   img: {fileID: 0}
