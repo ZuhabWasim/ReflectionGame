@@ -2,15 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ColorFilterMode
-{
-	SUBTRACTIVE = 0,
-	ADDITIVE,
-	INVERT_SUBTRACTIVE
-}
+
 
 public class ColorFilter : MonoBehaviour
 {
+	public enum ColorFilterMode
+	{
+		SUBTRACTIVE = 0,
+		ADDITIVE,
+		[Tooltip( "Same as subtractive, but removes 1 - color (i.e., keeps the given color, removes rest)" )]
+		INVERT_SUBTRACTIVE
+	};
+
 	public Light outgoingLight;
 	public Color color;
 	[Range( 0.0f, 1.0f )]
