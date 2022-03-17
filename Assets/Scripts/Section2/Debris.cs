@@ -24,5 +24,7 @@ public class Debris : InteractableAbstract
         
         AudioPlayer.Play( soundEffect, DEBRIS_AUDIO_SOURCE );
         AudioPlayer.Play( sweepingDialogue, Globals.Tags.DIALOGUE_SOURCE );
+        
+        EventManager.Fire( Globals.Events.SWEPT_DEBRIS );
     }
 }

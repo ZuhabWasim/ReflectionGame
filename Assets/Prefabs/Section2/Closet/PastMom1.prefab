@@ -7444,6 +7444,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MirrorB
       objectReference: {fileID: 0}
+    - target: {fileID: 2596622726514304080, guid: b0f64961bc198c34ea27978eefeeebd8, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2813343139957047190, guid: b0f64961bc198c34ea27978eefeeebd8, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -7472,13 +7476,75 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2596622726514304080, guid: b0f64961bc198c34ea27978eefeeebd8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b0f64961bc198c34ea27978eefeeebd8, type: 3}
+--- !u!1 &5839435026358337054 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2267614087413528873, guid: b0f64961bc198c34ea27978eefeeebd8, type: 3}
+  m_PrefabInstance: {fileID: 5652573645872793399}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &729251168523763089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5839435026358337054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57cb33a5ebfe4b94fa97cb4b6351b42e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startPosition: {x: -50.309002, y: -3.8760002, z: 16.533}
+  endPostion: {x: -50.309002, y: -3.8760002, z: 12.388}
+  startRotation: {x: 0, y: 0, z: 0}
+  endRotation: {x: 0, y: 0, z: 0}
+  interpolateRotation: 0
+  interpolatePosition: 1
+  loop: 0
+  interpDuration: 3
+  triggerMethod: 1
 --- !u!4 &6503769175683474596 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1455786737497547667, guid: b0f64961bc198c34ea27978eefeeebd8, type: 3}
   m_PrefabInstance: {fileID: 5652573645872793399}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8567931365761497735 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4077606933566045616, guid: b0f64961bc198c34ea27978eefeeebd8, type: 3}
+  m_PrefabInstance: {fileID: 5652573645872793399}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7166276301984804639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8567931365761497735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 026d42f3a98c4884387ae8910ae1a15f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactable: 0
+  makeInteractableEvent: SweptDebris
+  makeNonInteractableEvent: 
+  voiceLine: {fileID: 8300000, guid: 64f1791a5819c554e8506c1fcfd911bc, type: 3}
+  nonInteractableVoiceLine: {fileID: 8300000, guid: aa0efe5fa956107468fc04a6d0d09c3f, type: 3}
+  displayPrompt: 1
+  acceptItem: 0
+  deleteItem: 0
+  itemName: Standing Mirror
+  myType: 0
+  thisIsAMirror: 0
+  audioSourceName: 
+  teleportable: 0
+  makeTeleportableEvent: 
+  makeNonTeleportableEvent: 
+  teleportableVoiceLine: {fileID: 8300000, guid: 5031b3a27dc40b64eb3a370dfeb66983, type: 3}
+  nonTeleportableVoiceLine: {fileID: 8300000, guid: 7ce6f6a32e534434db8f1769e26f6bee, type: 3}
+  teleportingVoiceLine: {fileID: 0}
 --- !u!1001 &6017379061066448601
 PrefabInstance:
   m_ObjectHideFlags: 0

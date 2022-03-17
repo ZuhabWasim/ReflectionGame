@@ -24,8 +24,6 @@ public class ClothingRack : InteractableAbstract
 
 	void HandleUseItem()
 	{
-	    
-		Debug.Log( "desiredItem: " + desiredItem );
 		Debug.Log( "Cutting Clothing Rack" );
         
 		this.gameObject.SetActive(false);
