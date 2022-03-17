@@ -6312,7 +6312,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4466652529691311381, guid: e32b347d67fd49444b6efccc2237b656, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 17.586
+      value: 17.739
       objectReference: {fileID: 0}
     - target: {fileID: 4466652529691311381, guid: e32b347d67fd49444b6efccc2237b656, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6714,6 +6714,7 @@ MonoBehaviour:
   myType: 2
   thisIsAMirror: 0
   img: {fileID: 0}
+  onPickupEvent: 
 --- !u!1001 &4307017838597370722
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7390,7 +7391,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1455786737497547667, guid: b0f64961bc198c34ea27978eefeeebd8, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.08858186
+      value: 0.06858421
       objectReference: {fileID: 0}
     - target: {fileID: 1455786737497547667, guid: b0f64961bc198c34ea27978eefeeebd8, type: 3}
       propertyPath: m_LocalScale.z
@@ -7402,7 +7403,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1455786737497547667, guid: b0f64961bc198c34ea27978eefeeebd8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.8760002
+      value: -2.9899
       objectReference: {fileID: 0}
     - target: {fileID: 1455786737497547667, guid: b0f64961bc198c34ea27978eefeeebd8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7442,7 +7443,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2267614087413528873, guid: b0f64961bc198c34ea27978eefeeebd8, type: 3}
       propertyPath: m_Name
-      value: MirrorB
+      value: MirrorBPast
       objectReference: {fileID: 0}
     - target: {fileID: 2596622726514304080, guid: b0f64961bc198c34ea27978eefeeebd8, type: 3}
       propertyPath: m_Enabled
@@ -7472,6 +7473,22 @@ PrefabInstance:
       propertyPath: m_VersionIndex
       value: 1141
       objectReference: {fileID: 0}
+    - target: {fileID: 4077606933384085994, guid: b0f64961bc198c34ea27978eefeeebd8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4077606933384085994, guid: b0f64961bc198c34ea27978eefeeebd8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4077606933384085994, guid: b0f64961bc198c34ea27978eefeeebd8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4077606933566045616, guid: b0f64961bc198c34ea27978eefeeebd8, type: 3}
+      propertyPath: m_Name
+      value: MirrorBPastPlane
+      objectReference: {fileID: 0}
     - target: {fileID: 5497514715088115743, guid: b0f64961bc198c34ea27978eefeeebd8, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -7496,8 +7513,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57cb33a5ebfe4b94fa97cb4b6351b42e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPosition: {x: -50.309002, y: -3.8760002, z: 16.533}
-  endPostion: {x: -50.309002, y: -3.8760002, z: 12.388}
+  startPosition: {x: -50.309002, y: -2.9899, z: 16.533}
+  endPostion: {x: -50.309, y: -2.9899, z: 12.685}
   startRotation: {x: 0, y: 0, z: 0}
   endRotation: {x: 0, y: 0, z: 0}
   interpolateRotation: 0

@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class MillieKey : PickupItem
 {
-    void Start()
-    {
-        base.OnStart();
-    }
     protected override void OnUserInteract()
     {
         this.gameObject.SetActive( false );

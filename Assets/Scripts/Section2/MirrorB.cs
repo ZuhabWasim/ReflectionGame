@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MirrorB : MirrorInteractable
@@ -26,13 +27,17 @@ public class MirrorB : MirrorInteractable
         }
         else
         {
-            InterpolateTransform it = gameObject.GetComponentInParent<InterpolateTransform>();
-            it.TriggerMotion();
+            InterpolateTransform pastMover = gameObject.GetComponentInParent<InterpolateTransform>();
+            InterpolateTransform presMover = GameObject.Find("MirrorBPresent").GetComponent<InterpolateTransform>();
+            
+            pastMover.TriggerMotion();
+            presMover.TriggerMotion();
+            
             teleportable = true;
             moved = true;
         }
     }
-    
+
     void OnSweepingDebris()
     {
         sweptDebris = true;
