@@ -1,3 +1,6 @@
+// PREPROCESSOR FLAGS
+#undef TEST_LEVEL // set this to #undef or comment out when running main-level. When defined, all audio stuff is disabled
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -66,11 +69,13 @@ public class PlayerController : MonoBehaviour
 		m_footstepSource = GameObject.Find( FOOTSTEP_AUDIO_SOURCE_NAME ).GetComponent<AudioSource>();
 
 		RegisterEventListeners();
+#if !TEST_LEVEL
 		RegisterAudioSources();
 
 		AudioPlayer.Play( Globals.AudioFiles.Section1.MAIN_DOOR, Globals.Tags.MAIN_SOURCE );
 		AudioPlayer.Play( Globals.VoiceLines.Section1.DARK_IN_HERE, Globals.Tags.DIALOGUE_SOURCE );
 		AudioPlayer.Play( Globals.AudioFiles.Ambience.PRESENT_AMBIENCE, Globals.Tags.AMBIENCE_SOURCE );
+#endif // if TEST_LEVEL
 		StartCoroutines();
 	}
 
@@ -110,7 +115,9 @@ public class PlayerController : MonoBehaviour
 	{
 		HandleMouseInput();
 		HandleKeyboardInput();
+#if !TEST_LEVEL
 		HandleFootSteps();
+#endif
 	}
 
 	void HandleMouseInput()
