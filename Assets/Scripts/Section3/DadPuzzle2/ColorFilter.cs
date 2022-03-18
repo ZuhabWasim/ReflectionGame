@@ -10,8 +10,8 @@ public class ColorFilter : MonoBehaviour
 	{
 		SUBTRACTIVE = 0,
 		ADDITIVE,
-		[Tooltip( "Same as subtractive, but removes 1 - color (i.e., keeps the given color, removes rest)" )]
-		INVERT_SUBTRACTIVE
+		[Tooltip( "Sets the light's color to the one provided" )]
+		SET
 	};
 
 	public Light outgoingLight;
@@ -31,8 +31,8 @@ public class ColorFilter : MonoBehaviour
 			case ColorFilterMode.ADDITIVE:
 				outgoingLight.color = FAdditive( input );
 				break;
-			case ColorFilterMode.INVERT_SUBTRACTIVE:
-				outgoingLight.color = FInvertedSubtractive( input );
+			case ColorFilterMode.SET:
+				outgoingLight.color = FSet( input );
 				break;
 		}
 
@@ -44,10 +44,9 @@ public class ColorFilter : MonoBehaviour
 		return input - ( factor * color );
 	}
 
-	private Color FInvertedSubtractive( Color input )
+	private Color FSet( Color input )
 	{
-		input = new Color( 1, 1, 1, 1 ) - input;
-		return Abs( input - ( factor * color ) );
+		return color;
 	}
 
 	private Color FAdditive( Color input )

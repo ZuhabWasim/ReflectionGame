@@ -35,7 +35,12 @@ public class CanvasManager : MonoBehaviour
 		}
 
 		initialLightSource.enabled = true;
+#if DEBUGGING_LIGHT_TRACE
 		StartCoroutine( TestLightTrace() );
+#else
+		ComputeLightPath();
+		EventManager.Sub( Globals.Events.CANVAS_STATE_CHANGE, HandleCanvasStateChange );
+#endif
 	}
 
 	IEnumerator TestLightTrace()
@@ -44,6 +49,31 @@ public class CanvasManager : MonoBehaviour
 		{
 			ComputeLightPath();
 			yield return new WaitForSecondsRealtime( 1.0f );
+		}
+	}
+
+	void HandleCanvasStateChange( GameObject canvas )
+	{
+		// retrace only if this canvas is one of the canvases we're managing
+		foreach ( CanvasPair pair in m_canvasPairs )
+		{
+			if ( pair.present.gameObject == canvas || pair.past.gameObject == canvas )
+			{
+				PrepareCanvasPairsForLightTrace();
+				ComputeLightPath();
+			}
+		}
+	}
+
+	void PrepareCanvasPairsForLightTrace()
+	{
+		foreach ( CanvasPair pair in m_canvasPairs )
+		{
+			if ( pair.past.state == CanvasState.REFLECTIVE && ( pair.past.state == pair.present.state ) )
+			{
+				pair.past.SetState( CanvasState.PORTAL, notifyChange: false );
+				pair.present.SetState( CanvasState.PORTAL, notifyChange: false );
+			}
 		}
 	}
 
@@ -98,11 +128,11 @@ public class CanvasManager : MonoBehaviour
 		{
 			// portal => switch worlds
 			otherCanvas.EnableLight();
-            Color outgoingColor = incomingLightColor;
+			Color outgoingColor = incomingLightColor;
 			if ( otherCanvas.outgoingFilter )
 			{
 				outgoingColor = otherCanvas.outgoingFilter.FilterColor( incomingLightColor );
-                // need to add delta so light stops at surface
+				// need to add delta so light stops at surface
 				otherCanvas.outgoingLight.range = ( otherCanvas.outgoingFilter.transform.position - otherCanvas.outgoingLight.transform.position ).magnitude - 0.5f;
 			}
 			otherCanvas.outgoingLight.color = incomingLightColor;
@@ -111,12 +141,12 @@ public class CanvasManager : MonoBehaviour
 		else
 		{
 			// reflective => continue trace in curr world
-            currCanvas.EnableLight();
+			currCanvas.EnableLight();
 			Color outgoingColor = incomingLightColor;
 			if ( currCanvas.outgoingFilter )
 			{
 				outgoingColor = currCanvas.outgoingFilter.FilterColor( incomingLightColor );
-                // need to add delta so light stops at surface
+				// need to add delta so light stops at surface
 				currCanvas.outgoingLight.range = ( currCanvas.outgoingFilter.transform.position - currCanvas.outgoingLight.transform.position ).magnitude - 0.5f;
 			}
 

@@ -45,6 +45,7 @@ public class Globals
 		public static string PAINT_BRUSH_WET = "PaintBrushWet";
 		public static string DAD_PUZZLE_1_MILLIE_PAINT = "DadPuzzle1_MillePaint";
 		public static string DAD_PUZZLE_1_BOOKSHELF_SOLVED = "DadPuzzle1_BookshelfSolved";
+		public static string CANVAS_STATE_CHANGE = "CanvasStateChange";
 	}
 
 	public class Tags
@@ -69,6 +70,7 @@ public class Globals
 		public static string MOUSE_X = "Mouse X";
 		public static string MOUSE_Y = "Mouse Y";
 		public static string UI_Canvas = "UI_Canvas";
+		public static string PAINT_BRUSH = "Paint Brush";
 
 		// For Animations
 		public static string IS_WALKING = "IsWalking";
