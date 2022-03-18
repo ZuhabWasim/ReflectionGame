@@ -294,8 +294,8 @@ public class PlayerController : MonoBehaviour
 	{
 		if ( targetObject ) return;
 		PickupItem inventoryItem = m_inventory.GetSelectedPickupItem();
-
-		if ( !inventoryItem ) return;
+		
+		if ( !inventoryItem || inventoryItem.itemName != "Empty Bucket") return;
 		inventoryItem.OnDrop( this.transform.position + ( this.transform.forward * dropDistance ) + new Vector3( 0, 1, 0 ) );
 	}
 

@@ -9,28 +9,40 @@
             "path": "Audio\\Voicelines\\Section1\\1.18__filthy_mirror"
         },
         {
-            "name": "vanity_mirror_code",
-            "path": "Audio\\Voicelines\\Section1\\vanity_mirror_code"
+            "name": "cutting_dresses",
+            "path": "Audio\\Voicelines\\Section2\\Temporary\\cutting_dresses"
         },
         {
-            "name": "Handkerchief",
-            "path": "Audio\\Section1\\Handkerchief"
+            "name": "container_too_far",
+            "path": "Audio\\Voicelines\\Section2\\Temporary\\container_too_far"
+        },
+        {
+            "name": "dress_form_no_wheel",
+            "path": "Audio\\Voicelines\\Section2\\Temporary\\dress_form_no_wheel"
+        },
+        {
+            "name": "no_fusebox",
+            "path": "Audio\\Voicelines\\Section1\\no_fusebox"
+        },
+        {
+            "name": "fusebox",
+            "path": "Audio\\Section1\\fusebox"
         },
         {
             "name": "1.49__fathers_voice",
             "path": "Audio\\Voicelines\\Section1\\1.49__fathers_voice"
         },
         {
+            "name": "container_might_break",
+            "path": "Audio\\Voicelines\\Section2\\Temporary\\container_might_break"
+        },
+        {
             "name": "1.11__johnson_letter",
             "path": "Audio\\Voicelines\\Section1\\1.11__johnson_letter"
         },
         {
-            "name": "dirty_mirror",
-            "path": "Audio\\Voicelines\\Section1\\dirty_mirror"
-        },
-        {
-            "name": "seeing_lit_room",
-            "path": "Audio\\Voicelines\\Section1\\seeing_lit_room"
+            "name": "dress_form_wheel",
+            "path": "Audio\\Voicelines\\Section2\\Temporary\\dress_form_wheel"
         },
         {
             "name": "1.36__box_needs_two_other_keys",
@@ -57,16 +69,12 @@
             "path": "Audio\\Voicelines\\Section1\\1.48__mothers_nagging"
         },
         {
-            "name": "fireplace_too_high",
-            "path": "Audio\\Voicelines\\Section1\\fireplace_too_high"
+            "name": "seeing_passage_c",
+            "path": "Audio\\Voicelines\\Section2\\Temporary\\seeing_passage_c"
         },
         {
-            "name": "object_obtained",
-            "path": "Audio\\General\\object_obtained"
-        },
-        {
-            "name": "going_through_fireplace_first_time",
-            "path": "Audio\\Voicelines\\Section1\\going_through_fireplace_first_time"
+            "name": "about_debris",
+            "path": "Audio\\Voicelines\\Section2\\Temporary\\about_debris"
         },
         {
             "name": "placeholder3",
@@ -77,16 +85,28 @@
             "path": "Audio\\Voicelines\\Section1\\1.25__code_different"
         },
         {
-            "name": "intro_note",
-            "path": "Audio\\Voicelines\\Section1\\intro_note"
+            "name": "summit_bookshelf",
+            "path": "Audio\\Voicelines\\Section2\\Temporary\\summit_bookshelf"
+        },
+        {
+            "name": "sfx_safe_unlock_open_sequence",
+            "path": "Audio\\Section2\\sfx_safe_unlock_open_sequence"
+        },
+        {
+            "name": "handkerchief",
+            "path": "Audio\\Section1\\handkerchief"
         },
         {
             "name": "1.30__still_cant_see_myself",
             "path": "Audio\\Voicelines\\Section1\\1.30__still_cant_see_myself"
         },
         {
-            "name": "interact_mother_door",
-            "path": "Audio\\Voicelines\\Section1\\interact_mother_door"
+            "name": "cleaning_debris",
+            "path": "Audio\\Voicelines\\Section2\\Temporary\\cleaning_debris"
+        },
+        {
+            "name": "rails_attached",
+            "path": "Audio\\Voicelines\\Section2\\Temporary\\rails_attached"
         },
         {
             "name": "open_drawer",
@@ -97,12 +117,12 @@
             "path": "Audio\\Voicelines\\not_holding_anything"
         },
         {
-            "name": "music_box_needs_two_more_keys",
-            "path": "Audio\\Voicelines\\Section1\\music_box_needs_two_more_keys"
+            "name": "amb_past_room_loop",
+            "path": "Audio\\Ambience\\amb_past_room_loop"
         },
         {
-            "name": "millie_key_pickup",
-            "path": "Audio\\Voicelines\\Section1\\millie_key_pickup"
+            "name": "scissors_pickup",
+            "path": "Audio\\Voicelines\\Section2\\Temporary\\scissors_pickup"
         },
         {
             "name": "1.15__0_hmm_1",
@@ -117,20 +137,32 @@
             "path": "Audio\\General\\key_acquired"
         },
         {
+            "name": "expensive_clothes",
+            "path": "Audio\\Voicelines\\Section2\\Temporary\\expensive_clothes"
+        },
+        {
             "name": "1.28__house_feels_unfamiliar",
             "path": "Audio\\Voicelines\\Section1\\1.28__house_feels_unfamiliar"
         },
         {
-            "name": "cannot_see_this",
-            "path": "Audio\\Voicelines\\Section1\\cannot_see_this"
+            "name": "seems_locked",
+            "path": "Audio\\Voicelines\\Section2\\Temporary\\seems_locked"
         },
         {
             "name": "placeholder",
             "path": "Audio\\Voicelines\\placeholder"
         },
         {
-            "name": "mille_pov_intro",
-            "path": "Audio\\Voicelines\\Section1\\mille_pov_intro"
+            "name": "mirror_a_right_spot",
+            "path": "Audio\\Voicelines\\Section2\\Temporary\\mirror_a_right_spot"
+        },
+        {
+            "name": "cannot_see_this",
+            "path": "Audio\\Voicelines\\Section1\\cannot_see_this"
+        },
+        {
+            "name": "object_obtained",
+            "path": "Audio\\General\\object_obtained"
         },
         {
             "name": "placeholder1",
@@ -145,12 +177,16 @@
             "path": "Audio\\Voicelines\\Section1\\1.33__discover_box_first"
         },
         {
-            "name": "vanity_mirror_reflection",
-            "path": "Audio\\Voicelines\\Section1\\vanity_mirror_reflection"
+            "name": "passage_c_help",
+            "path": "Audio\\Voicelines\\Section2\\Temporary\\passage_c_help"
         },
         {
             "name": "1.04__too_dark_to_see",
             "path": "Audio\\Voicelines\\Section1\\1.04__too_dark_to_see"
+        },
+        {
+            "name": "open_safe",
+            "path": "Audio\\Voicelines\\Section2\\Temporary\\open_safe"
         },
         {
             "name": "placeholder2",
@@ -161,12 +197,20 @@
             "path": "Audio\\Ambience\\amb_past_birds_wind_loop"
         },
         {
+            "name": "only_way_through",
+            "path": "Audio\\Voicelines\\Section2\\Temporary\\only_way_through"
+        },
+        {
             "name": "1.03__dark_in_here",
             "path": "Audio\\Voicelines\\Section1\\1.03__dark_in_here"
         },
         {
-            "name": "its_really_dark",
-            "path": "Audio\\Voicelines\\Section1\\its_really_dark"
+            "name": "sfx_cardboard_box_slide_loop",
+            "path": "Audio\\Section2\\sfx_cardboard_box_slide_loop"
+        },
+        {
+            "name": "container_too_high",
+            "path": "Audio\\Voicelines\\Section2\\Temporary\\container_too_high"
         },
         {
             "name": "1.32__its_my_musicbox",
@@ -181,12 +225,12 @@
             "path": "Audio\\Voicelines\\Section1\\1.05__door_am_i_locked_in"
         },
         {
-            "name": "amb_past_room_loop",
-            "path": "Audio\\Ambience\\amb_past_room_loop"
+            "name": "sfx_scissors_cutting_dress",
+            "path": "Audio\\Section2\\sfx_scissors_cutting_dress"
         },
         {
-            "name": "main_door_locked",
-            "path": "Audio\\Voicelines\\Section1\\main_door_locked"
+            "name": "sfx_cardboard_box_slide",
+            "path": "Audio\\Section2\\sfx_cardboard_box_slide"
         },
         {
             "name": "footstep_wood",
@@ -197,12 +241,24 @@
             "path": "Audio\\Voicelines\\Section1\\locked_closet_doors"
         },
         {
-            "name": "1.33__discover_key_first",
-            "path": "Audio\\Voicelines\\Section1\\1.33__discover_key_first"
+            "name": "safe_combination",
+            "path": "Audio\\Voicelines\\Section2\\Temporary\\safe_combination"
+        },
+        {
+            "name": "mirror_b_move_placeholder",
+            "path": "Audio\\Section2\\mirror_b_move_placeholder"
         },
         {
             "name": "1.12__mille_pov_intro",
             "path": "Audio\\Voicelines\\Section1\\1.12__mille_pov_intro"
+        },
+        {
+            "name": "cloudy_mirror",
+            "path": "Audio\\Voicelines\\Section2\\Temporary\\cloudy_mirror"
+        },
+        {
+            "name": "no_more_obstructions",
+            "path": "Audio\\Voicelines\\Section2\\Temporary\\no_more_obstructions"
         },
         {
             "name": "1.43__i_m_too_small",
@@ -213,36 +269,60 @@
             "path": "Audio\\Ambience\\amb_past_leaves_rustling_loop"
         },
         {
-            "name": "amb_rain_windowsill_loop",
-            "path": "Audio\\Ambience\\amb_rain_windowsill_loop"
+            "name": "mirror_b_another_way",
+            "path": "Audio\\Voicelines\\Section2\\Temporary\\mirror_b_another_way"
         },
         {
-            "name": "intro_letter_millie_pov",
-            "path": "Audio\\Voicelines\\Section1\\intro_letter_millie_pov"
+            "name": "amb_rain_windowsill_loop",
+            "path": "Audio\\Ambience\\amb_rain_windowsill_loop"
         },
         {
             "name": "reflections_game",
             "path": "Audio\\reflections_game"
         },
         {
+            "name": "1.05__door_am_i_locked_in_short",
+            "path": "Audio\\Voicelines\\Section1\\1.05__door_am_i_locked_in_short"
+        },
+        {
             "name": "idea_theme",
             "path": "Audio\\idea_theme"
         },
         {
-            "name": "its_my_musicbox",
-            "path": "Audio\\Voicelines\\Section1\\its_my_musicbox"
+            "name": "boxes_in_the_way",
+            "path": "Audio\\Voicelines\\Section2\\Temporary\\boxes_in_the_way"
+        },
+        {
+            "name": "lavish_clothes",
+            "path": "Audio\\Voicelines\\Section2\\Temporary\\lavish_clothes"
+        },
+        {
+            "name": "tone_down",
+            "path": "Audio\\Voicelines\\Section2\\Temporary\\tone_down"
         },
         {
             "name": "1.42__why_am_i_so_small",
             "path": "Audio\\Voicelines\\Section1\\1.42__why_am_i_so_small"
         },
         {
+            "name": "the_room_looks_older_in_this_one",
+            "path": "Audio\\Voicelines\\Section2\\Temporary\\the_room_looks_older_in_this_one"
+        },
+        {
+            "name": "cutting_clothes_first",
+            "path": "Audio\\Voicelines\\Section2\\Temporary\\cutting_clothes_first"
+        },
+        {
             "name": "paper_unravel",
             "path": "Audio\\General\\paper_unravel"
         },
         {
-            "name": "Fusebox",
-            "path": "Audio\\Section1\\Fusebox"
+            "name": "1.33__discover_key_first",
+            "path": "Audio\\Voicelines\\Section1\\1.33__discover_key_first"
+        },
+        {
+            "name": "locked_safe",
+            "path": "Audio\\Voicelines\\Section2\\Temporary\\locked_safe"
         },
         {
             "name": "amb_rainceiling_loop",
@@ -255,6 +335,10 @@
         {
             "name": "1.20__cant_see_reflection_room_dark",
             "path": "Audio\\Voicelines\\Section1\\1.20__cant_see_reflection_room_dark"
+        },
+        {
+            "name": "sfx_broom_sweep_debris",
+            "path": "Audio\\Section2\\sfx_broom_sweep_debris"
         },
         {
             "name": "room_lights",

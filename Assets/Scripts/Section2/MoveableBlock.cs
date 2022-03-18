@@ -49,6 +49,7 @@ public class MoveableBlock : InteractableAbstract
 				correspondingBlock.TryMoveBox(dir);
 				bma.RefreshMCList();
 			}
+			AudioPlayer.Play( Globals.AudioFiles.Section2.CARDBOARD_SLIDE, Globals.Tags.MAIN_SOURCE );
 			return true;
 		}
 		return false;

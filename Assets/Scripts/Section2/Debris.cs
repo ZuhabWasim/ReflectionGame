@@ -22,7 +22,7 @@ public class Debris : InteractableAbstract
         
         this.gameObject.SetActive(false);
         
-        AudioPlayer.Play( soundEffect, DEBRIS_AUDIO_SOURCE );
+        AudioPlayer.Play( soundEffect, Globals.Tags.MAIN_SOURCE ); // Use Main source for now until the models come in.
         AudioPlayer.Play( sweepingDialogue, Globals.Tags.DIALOGUE_SOURCE );
         
         EventManager.Fire( Globals.Events.SWEPT_DEBRIS );
