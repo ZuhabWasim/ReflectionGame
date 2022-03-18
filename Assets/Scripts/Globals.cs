@@ -91,6 +91,8 @@ public class Globals
 		public static string MUSICBOXMILLIE_ITEM = "Millie's Key";
 
 		public static string USE_HANDKERCHIEF = "Use Handkerchief";
+		public static string NOTE_PLACEHOLDER = "This note has not yet been collected.";
+		public static string NOTE_TITLE_PLACEHOLDER = "Unknown Note";
 	}
 
 	public class Vars

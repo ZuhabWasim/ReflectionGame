@@ -6,16 +6,19 @@ public class InteractNote : InteractableAbstract
 {
 
 	public int id;
-	public static InteractNote[] journal = new InteractNote[journalSize];;
+	public TextAsset noteText;
+	public static InteractNote[] journal = {null, null, null, null, null};
 	public static int journalSize = 5;
-	void start()
-	{
-		journal[id] = this;
-	}
+	public static int pointer = 0;
+	public string title;
 	protected override void OnUserInteract()
 	{
+		journal[id] = this;
+		this.gameObject.SetActive(false);
+		pointer = id;
 		AudioPlayer.Play( Globals.AudioFiles.General.PAPER_UNRAVEL, Globals.Tags.MAIN_SOURCE );
 		AudioPlayer.Play( Globals.VoiceLines.Section1.MILLE_POV_INTRO, Globals.Tags.DIALOGUE_SOURCE, false);
 	}
+
 
 }
