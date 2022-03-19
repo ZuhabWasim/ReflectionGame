@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
 	private ButtonPromptDisplay bp;
 	private ButtonPromptDisplay bp2;
 	private InteractionIcon interactionIcon;
+	private PauseMenu pauseMenu;
 	private AudioSource m_footstepSource;
 
 	//public float pickupDistance = 2.0f;
@@ -63,6 +64,7 @@ public class PlayerController : MonoBehaviour
 		bp = GameObject.Find( Globals.Misc.UI_Canvas ).GetComponents<ButtonPromptDisplay>()[ 0 ];
 		bp2 = GameObject.Find( Globals.Misc.UI_Canvas ).GetComponents<ButtonPromptDisplay>()[ 1 ];
 		interactionIcon = GameObject.Find( Globals.Misc.UI_Canvas ).GetComponent<InteractionIcon>();
+		pauseMenu = GameObject.Find( Globals.Misc.UI_Canvas ).GetComponent<PauseMenu>();
 		m_footstepSource = GameObject.Find( FOOTSTEP_AUDIO_SOURCE_NAME ).GetComponent<AudioSource>();
 
 		RegisterEventListeners();
@@ -88,6 +90,7 @@ public class PlayerController : MonoBehaviour
 		EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.USE_ITEM_KEY ), HandleUseItemPress );
 		EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.DROP_KEY ), HandleDrop );
 		EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.INVENTORY_KEY ), HandleOpenInventory );
+		EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.ESCAPE_KEY ), HandleEscape );
 
 		// keyup events
 		EventManager.Sub( InputManager.GetKeyUpEventName( Keybinds.INVENTORY_KEY ), HandleCloseInventory );
@@ -108,9 +111,12 @@ public class PlayerController : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
+		if ( !pauseMenu.IsPaused() )
+		{
 		HandleMouseInput();
 		HandleKeyboardInput();
 		HandleFootSteps();
+		}
 	}
 
 	void HandleMouseInput()
@@ -203,6 +209,21 @@ public class PlayerController : MonoBehaviour
 			yVelocity -= gravityAccel * Time.deltaTime;
 		}
 		m_playerBody.velocity = new Vector3( velocity.x, yVelocity, velocity.z );
+	}
+
+	void HandleEscape()
+	{
+		if ( pauseMenu.IsPaused() ) {
+			pauseMenu.ResumeGame();
+			Cursor.lockState = CursorLockMode.Locked;
+			Cursor.visible = false;
+		}
+		else
+		{
+			pauseMenu.PauseGame();
+			Cursor.lockState = CursorLockMode.Confined;
+			Cursor.visible = true;
+		}
 	}
 
 	void SkipCurrentVoiceline()

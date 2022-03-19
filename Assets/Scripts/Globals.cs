@@ -108,6 +108,8 @@ public class Globals
 		public static string MUSICBOXMILLIE_ITEM = "Millie's Key";
 
 		public static string USE_HANDKERCHIEF = "Use Handkerchief";
+		public static string NOTE_PLACEHOLDER = "This note has not yet been collected.";
+		public static string NOTE_TITLE_PLACEHOLDER = "Unknown Note";
 	}
 
 	public class Vars
@@ -238,6 +240,7 @@ public enum Keybinds
 	USE_ITEM_KEY = KeyCode.E,
 	DROP_KEY = KeyCode.G,
 	INVENTORY_KEY = KeyCode.LeftShift,
+	ESCAPE_KEY = KeyCode.Escape,
 
 	// This is for debug only, should be removed in release
 	DEBUG_TRIGGER = KeyCode.Alpha0
