@@ -35,6 +35,17 @@ public class MoveableBlock : InteractableAbstract
 		{
 			achieved = TryMoveBox( MoveDirect.LEFT );
 		}
+		if ( achieved && bma.transform.parent.name == Globals.Misc.SCISSOR_PUZZLE)
+		{
+			if (bma.BoxAtPosition(0, 0)) // If Mirror B position is blocked.
+			{
+				EventManager.Fire(Globals.Events.BLOCKING_MIRROR_B);
+			}
+			else
+			{
+				EventManager.Fire(Globals.Events.UNBLOCKING_MIRROR_B);
+			}
+		}
 	}
 
 	bool TryMoveBox( MoveDirect dir )
