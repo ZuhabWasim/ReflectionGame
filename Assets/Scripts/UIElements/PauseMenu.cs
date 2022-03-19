@@ -45,19 +45,25 @@ public class PauseMenu : MonoBehaviour
 
     public void FlipRight()
     {
-        index ++;
-        showNote();
+        if ( index <= InteractNote.journalSize - 2 )
+        {
+            index ++;
+            showNote();
+        }
     }
     public void FlipLeft()
     {
-        index --;
-        showNote();
+        if ( index >= 1 )
+        {
+            index --;
+            showNote();
+        }
     }
 
     private void showNote()
     {
-        GameObject title = pauseMenu.transform.GetChild( 2 ).gameObject;
-        GameObject content = pauseMenu.transform.GetChild( 3 ).GetChild( 0 ).gameObject;
+        GameObject title = pauseMenu.transform.GetChild( 2 ).GetChild( 0 ).gameObject;
+        GameObject content = pauseMenu.transform.GetChild( 2 ).GetChild( 1 ).gameObject;
         if ( InteractNote.journal[index] ) 
         {
             InteractNote note = InteractNote.journal[index];
@@ -69,19 +75,19 @@ public class PauseMenu : MonoBehaviour
             title.transform.GetComponent<Text>().text = Globals.UIStrings.NOTE_TITLE_PLACEHOLDER;
             content.transform.GetComponent<Text>().text = Globals.UIStrings.NOTE_PLACEHOLDER;
         }
-        if ( index == 0 )
-        {
-            pauseMenu.transform.GetChild( 5 ).gameObject.SetActive(false);
-        }
-        else {
-            pauseMenu.transform.GetChild( 5 ).gameObject.SetActive(true);
-        }
-        if ( index >= InteractNote.journalSize - 1 )
+        if ( index <= 0 )
         {
             pauseMenu.transform.GetChild( 4 ).gameObject.SetActive(false);
         }
         else {
             pauseMenu.transform.GetChild( 4 ).gameObject.SetActive(true);
+        }
+        if ( index >= InteractNote.journalSize - 1 )
+        {
+            pauseMenu.transform.GetChild( 3 ).gameObject.SetActive(false);
+        }
+        else {
+            pauseMenu.transform.GetChild( 3 ).gameObject.SetActive(true);
         }
     }
 }
