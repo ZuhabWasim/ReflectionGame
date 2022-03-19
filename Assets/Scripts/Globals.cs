@@ -52,6 +52,9 @@ public class Globals
 		public static string SWEPT_DEBRIS = "SweptDebris";
 		public static string MOVE_MIRROR_B = "MoveMirrorB";
 		public static string HAS_MOM_KEY = "HasMomKey";
+		public static string UNBLOCKING_MIRROR_B = "UnblockingMirrorB";
+		public static string BLOCKING_MIRROR_B = "BlockingMirrorB";
+		
 
 	}
 
@@ -77,6 +80,7 @@ public class Globals
 		public static string MOUSE_X = "Mouse X";
 		public static string MOUSE_Y = "Mouse Y";
 		public static string UI_Canvas = "UI_Canvas";
+		public static string SCISSOR_PUZZLE = "ScissorPuzzle";
 
 		// For Animations
 		public static string IS_WALKING = "IsWalking";
@@ -221,6 +225,7 @@ public class Globals
 			public static string TONE_DOWN = "tone_down";
 			public static string MIRROR_A_RIGHT_SPOT = "mirror_a_right_spot";
 			public static string NO_MORE_OBSTRUCTIONS = "no_more_obstructions";
+			public static string ANOTHER_BOX_BLOCKING = "another_box_blocking";
 		}
 	}
 }

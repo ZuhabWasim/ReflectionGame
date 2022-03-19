@@ -73,8 +73,8 @@ public class MirrorInteractable : InteractableAbstract
 
     public override void OnUseItemUnfiltered()
     {
-        // If it's possible, we should probably make teleporting checks here and propogate them to the connector e.g.
-        if (teleportable)
+        // Only Teleports if the Mirror Interactable allows it and the Mirror is interactable to begin with.
+        if (interactable && teleportable)
         {
             m_connector.HandleUserTeleport();
             AudioPlayer.Play(teleportingVoiceLine, Globals.Tags.DIALOGUE_SOURCE);
