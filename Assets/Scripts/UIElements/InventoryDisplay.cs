@@ -24,7 +24,6 @@ public class InventoryDisplay : MonoBehaviour
 	public void CloseInventory()
 	{
 		inventoryBar.SetActive( false );
-		inventoryIcon.SetActive( true );
 	}
 	public void addItem( PickupItem item, int idx )
 	{
