@@ -4,13 +4,10 @@ using UnityEngine;
 
 public class MillieKey : PickupItem
 {
-    void Start()
-    {
-        base.OnStart();
-    }
     protected override void OnUserInteract()
     {
         this.gameObject.SetActive( false );
+        
         MusicBox musicBox = GameObject.FindGameObjectWithTag(Globals.Tags.MUSIC_BOX).GetComponent<MusicBox>();
         if (musicBox.discoveredBox)
         {

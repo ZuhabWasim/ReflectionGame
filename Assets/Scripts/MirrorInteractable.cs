@@ -42,6 +42,16 @@ public class MirrorInteractable : InteractableAbstract
         // IF PENGUINS ARE SO SMART, HOW COME THEY LIVE IN IGLOOS?
     }
 
+    public bool getTeleportable()
+    {
+        return teleportable;
+    }
+
+    public void setTeleportable(bool teleportable)
+    {
+        this.teleportable = teleportable;
+    }
+    
     protected override void OnUserInteract()
     {
         HandleInteract();
@@ -61,7 +71,7 @@ public class MirrorInteractable : InteractableAbstract
     }
 
 
-    protected override void OnUseItem()
+    public override void OnUseItemUnfiltered()
     {
         // If it's possible, we should probably make teleporting checks here and propogate them to the connector e.g.
         if (teleportable)

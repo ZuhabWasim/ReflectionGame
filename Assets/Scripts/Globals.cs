@@ -40,6 +40,19 @@ public class Globals
 		public static string HAS_MILLIE_KEY = "HasMillieKey";
 		public static string LOCK_MOM_DOOR = "LockMomDoor";
 		public static string LOCK_DAD_DOOR = "LockDadDoor";
+
+		public static string BOOKSHELF_BOOK_PLACED = "BookshelfBookPlaced";
+		public static string BOOKSHELF_BOOK_PICKED_UP = "BookshelfBookPickedUp";
+		public static string PAINT_BRUSH_WET = "PaintBrushWet";
+		public static string DAD_PUZZLE_1_MILLIE_PAINT = "DadPuzzle1_MillePaint";
+		public static string DAD_PUZZLE_1_BOOKSHELF_SOLVED = "DadPuzzle1_BookshelfSolved";
+    
+		public static string OBTAINED_SCISSORS = "ObtainedScissors";
+		public static string CUTTING_CLOTHING_RACK = "CuttingClothingRack";
+		public static string SWEPT_DEBRIS = "SweptDebris";
+		public static string MOVE_MIRROR_B = "MoveMirrorB";
+		public static string HAS_MOM_KEY = "HasMomKey";
+
 	}
 
 	public class Tags
@@ -51,6 +64,8 @@ public class Globals
 		public static string MAIN_SOURCE = "MainSource";
 		public static string AMBIENCE_SOURCE = "AmbienceSource";
 		public static string MUSIC_SOURCE = "MusicSource";
+		public static string INTERACTABLE_BOOK = "InteractableBook";
+		public static string BOOK_SLOT = "BookSlot";
 		public static string MUSIC_BOX = "MusicBox";
 		
 	}
@@ -68,7 +83,7 @@ public class Globals
 		public static string IS_BACKING_UP = "IsBackingUp";
 		public static string IS_JUMPING = "IsJumping";
 		public static string IS_INTERACTING = "IsInteracting";
-		public static float MAX_INTERACT_DISTANCE = 2f;
+		public static float MAX_INTERACT_DISTANCE = 3f;
 		public static float DEFAULT_PROXIMITY_TRIGGER_DIST = 3.5f;
 	}
 
@@ -86,6 +101,8 @@ public class Globals
 		public static string MIRROR_ITEM = "Mirror";
 		public static string DRAWER_ITEM = "Drawer";
 		public static string NOTE_ITEM = "Note";
+		public static string SCISSORS_ITEM = "Scissors";
+		public static string BROOM_ITEM = "Broom";
 
 		public static string HANDKERCHIEF_ITEM = "Handkerchief";
 		public static string MUSICBOXMILLIE_ITEM = "Millie's Key";
@@ -140,6 +157,16 @@ public class Globals
 			public static string HANDKERCHIEF = "handkerchief";
 			
 		}
+
+		public class Section2
+		{
+			public static string CUTTING_DRESS = "sfx_scissors_cutting_dress";
+			public static string MOVING_MIRROR = "mirror_b_move_placeholder";
+			public static string SAFE_UNLOCK = "sfx_safe_unlock_open_sequence";
+			public static string SWEEP_DEBRIS = "sfx_broom_sweep_debris";
+			public static string CARDBOARD_SLIDE = "sfx_cardboard_box_slide";
+			
+		}
 	}
 
 	public class SoundEffects
@@ -152,7 +179,10 @@ public class Globals
 		{
 			public static string CANT_USE_ITEM = "1.14__hmm_that_doesnt_seem_right";
 			public static string NOT_HOLDING_ANYTHING = "not_holding_anything";
-			
+			public static string PLACEHOLDER = "placeholder";
+			public static string PLACEHOLDER_1 = "placeholder1";
+			public static string PLACEHOLDER_2 = "placeholder2";
+			public static string PLACEHOLDER_3 = "placeholder3";
 		}
 		public class Section1
 		{
@@ -184,11 +214,16 @@ public class Globals
 			public static string MOTHERS_NAGGING = "1.48__mothers_nagging";
 			public static string FATHERS_VOICE = "1.49__fathers_voice";
 		}
-	}
 
-	public class EnvironmentParams
-	{
-		public static SunConfig presentSunConfig = new SunConfig( 10000.0f, 10000.0f );
+		public class Section2
+		{
+			public static string CONTAINER_TOO_FAR = "container_too_far";
+			public static string CONTAINER_TOO_HIGH = "container_too_high";
+			public static string LAVISH_CLOTHES = "lavish_clothes";
+			public static string TONE_DOWN = "tone_down";
+			public static string MIRROR_A_RIGHT_SPOT = "mirror_a_right_spot";
+			public static string NO_MORE_OBSTRUCTIONS = "no_more_obstructions";
+		}
 	}
 }
 
@@ -210,15 +245,3 @@ public enum Keybinds
 	// This is for debug only, should be removed in release
 	DEBUG_TRIGGER = KeyCode.Alpha0
 }
-
-public struct SunConfig
-{
-	public readonly float colorTemp; // temp in K
-	public readonly float intensity;
-
-	public SunConfig( float temp, float intensity )
-	{
-		colorTemp = temp;
-		this.intensity = intensity;
-	}
-};
