@@ -28,6 +28,8 @@ public class PauseMenu : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
         index = InteractNote.pointer;
+        InventoryDisplay inventoryDisplay = GameObject.Find(Globals.Misc.UI_Canvas).GetComponent<InventoryDisplay>();
+		inventoryDisplay.hideNewEntryNotice();
         showNote();
     }
     public void ResumeGame()
