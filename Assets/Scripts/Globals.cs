@@ -30,23 +30,21 @@ public class Globals
 		// bool isPresent = GlobalState.GetVar<bool>( Globals.Vars.IS_PRESENT_WORLD );
 	}
 
+	// All events used by event manager should go here
+	// Do not add spaces between the words of the string, the event system will split it into multiple events
 	public class Events
 	{
-		// All events used by event manager should go here
+		// General events
 		public static string TELEPORT = "teleport";
+
+		// Section 1
 		public static string LIGHTS_TURN_ON = "TurnOnLights";
 		public static string LIGHTS_TURN_OFF = "TurnOffLights";
 		public static string MILLIE_KEY_INTERACT = "MillieKeyInteract";
 		public static string HAS_MILLIE_KEY = "HasMillieKey";
-		public static string LOCK_MOM_DOOR = "LockMomDoor";
-		public static string LOCK_DAD_DOOR = "LockDadDoor";
-		public static string BOOKSHELF_BOOK_PLACED = "BookshelfBookPlaced";
-		public static string BOOKSHELF_BOOK_PICKED_UP = "BookshelfBookPickedUp";
-		public static string PAINT_BRUSH_WET = "PaintBrushWet";
-		public static string DAD_PUZZLE_1_MILLIE_PAINT = "DadPuzzle1_MillePaint";
-		public static string DAD_PUZZLE_1_BOOKSHELF_SOLVED = "DadPuzzle1_BookshelfSolved";
-		public static string CANVAS_STATE_CHANGE = "CanvasStateChange";
 
+		// Section 2
+		public static string LOCK_MOM_DOOR = "LockMomDoor";
 		public static string OBTAINED_SCISSORS = "ObtainedScissors";
 		public static string CUTTING_CLOTHING_RACK = "CuttingClothingRack";
 		public static string SWEPT_DEBRIS = "SweptDebris";
@@ -57,6 +55,14 @@ public class Globals
 		public static string READ_MOM_NOTE = "ReadMomNote";
 
 
+		// Section 3
+		public static string LOCK_DAD_DOOR = "LockDadDoor";
+		public static string BOOKSHELF_BOOK_PLACED = "BookshelfBookPlaced";
+		public static string BOOKSHELF_BOOK_PICKED_UP = "BookshelfBookPickedUp";
+		public static string PAINT_BRUSH_WET = "PaintBrushWet";
+		public static string DAD_PUZZLE_1_MILLIE_PAINT = "DadPuzzle1_MillePaint";
+		public static string DAD_PUZZLE_1_BOOKSHELF_SOLVED = "DadPuzzle1_BookshelfSolved";
+		public static string CANVAS_STATE_CHANGE = "CanvasStateChange";
 	}
 
 	public class Tags

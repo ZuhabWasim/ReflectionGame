@@ -46,29 +46,39 @@ public class EventManager : MonoBehaviour
 
 	public static void Sub( string ev, System.Action callback )
 	{
-		if ( !m_arglessListeners.ContainsKey( ev ) )
-		{
-			m_arglessListeners.Add( ev, new List<System.Action>() );
-		}
+		string[] substrings = ev.Split( ' ' );
 
-		List<System.Action> callbacks = ( (List<System.Action>)m_arglessListeners[ ev ] );
-		if ( !callbacks.Contains( callback ) )
+		foreach ( string s in substrings )
 		{
-			callbacks.Add( callback );
+			if ( !m_arglessListeners.ContainsKey( s ) )
+			{
+				m_arglessListeners.Add( s, new List<System.Action>() );
+			}
+
+			List<System.Action> callbacks = ( (List<System.Action>)m_arglessListeners[ s ] );
+			if ( !callbacks.Contains( callback ) )
+			{
+				callbacks.Add( callback );
+			}
 		}
 	}
 
 	public static void Sub( string ev, System.Action<GameObject> callback )
 	{
-		if ( !m_argListeners.ContainsKey( ev ) )
-		{
-			m_argListeners.Add( ev, new List<System.Action<GameObject>>() );
-		}
+		string[] substrings = ev.Split( ' ' );
 
-		List<System.Action<GameObject>> callbacks = ( (List<System.Action<GameObject>>)m_argListeners[ ev ] );
-		if ( !callbacks.Contains( callback ) )
+		foreach ( string s in substrings )
 		{
-			callbacks.Add( callback );
+			if ( !m_argListeners.ContainsKey( s ) )
+			{
+				m_argListeners.Add( s, new List<System.Action<GameObject>>() );
+			}
+
+			List<System.Action<GameObject>> callbacks = ( (List<System.Action<GameObject>>)m_argListeners[ s ] );
+			if ( !callbacks.Contains( callback ) )
+			{
+				callbacks.Add( callback );
+			}
 		}
 	}
 
