@@ -11,6 +11,8 @@ public class InteractNote : InteractableAbstract
 	public static int journalSize = 5;
 	public static int pointer = 0;
 	public string title;
+	public string onReadFireEvent;
+	
 	protected override void OnUserInteract()
 	{
 		journal[id] = this;
@@ -19,7 +21,6 @@ public class InteractNote : InteractableAbstract
 		InventoryDisplay inventoryDisplay = GameObject.Find(Globals.Misc.UI_Canvas).GetComponent<InventoryDisplay>();
 		inventoryDisplay.showNewEntryNotice();
 		AudioPlayer.Play( Globals.AudioFiles.General.PAPER_UNRAVEL, Globals.Tags.MAIN_SOURCE );
-		AudioPlayer.Play( Globals.VoiceLines.Section1.MILLE_POV_INTRO, Globals.Tags.DIALOGUE_SOURCE, false);
 	}
 
 
