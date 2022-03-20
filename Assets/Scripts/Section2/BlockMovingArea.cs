@@ -185,7 +185,14 @@ public class BlockMovingArea : MonoBehaviour
 				i++;
 			}
 		}
-		leftVec = spaceGrid[0][0].transform.position - spaceGrid[0][1].transform.position;
+		if ( j > 1 )
+		{
+			leftVec = spaceGrid[0][0].transform.position - spaceGrid[0][1].transform.position;
+		}
+		else
+		{
+			leftVec = new Vector3(-1, 0, 0);
+		}
 		topVec = Quaternion.Euler(0, 90, 0) * leftVec;
 		numTilesX = j;
 		numTilesY = i;

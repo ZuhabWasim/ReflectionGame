@@ -54,6 +54,7 @@ public class Globals
 		public static string HAS_MOM_KEY = "HasMomKey";
 		public static string UNBLOCKING_MIRROR_B = "UnblockingMirrorB";
 		public static string BLOCKING_MIRROR_B = "BlockingMirrorB";
+		public static string READ_MOM_NOTE = "ReadMomNote";
 		
 
 	}
@@ -229,6 +230,7 @@ public class Globals
 			public static string MIRROR_A_RIGHT_SPOT = "mirror_a_right_spot";
 			public static string NO_MORE_OBSTRUCTIONS = "no_more_obstructions";
 			public static string ANOTHER_BOX_BLOCKING = "another_box_blocking";
+			public static string MOM_NOTE = "mom_note";
 		}
 	}
 }
