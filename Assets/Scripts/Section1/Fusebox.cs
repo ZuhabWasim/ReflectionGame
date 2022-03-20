@@ -30,11 +30,16 @@ public class Fusebox : MonoBehaviour
 	{
 		//Check if code input matches solution
 		bool correct = true;
+		bool wrongButReversed = true;
 		for ( int i = 0; i < 6; i++ )
 		{
 			if ( switchPositions[ i ] != answer[ i ] )
 			{
 				correct = false;
+			}
+			if ( switchPositions[ 5 - i ] != answer[ i ] )
+			{
+				wrongButReversed = false;
 			}
 		}
 		if ( correct )
@@ -42,6 +47,9 @@ public class Fusebox : MonoBehaviour
 			//Turn on all lights
 			solved = true;
 			EventManager.Fire( Globals.Events.LIGHTS_TURN_ON, this.gameObject );
+		} else if (wrongButReversed)
+		{
+			AudioPlayer.Play(Globals.VoiceLines.Section1.CODE_FLIPPED, Globals.Tags.DIALOGUE_SOURCE);
 		}
 	}
 
