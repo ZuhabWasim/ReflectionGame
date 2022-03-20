@@ -203,6 +203,7 @@ public class Globals
 			public static string FILTHY_MIRROR = "1.18__filthy_mirror";
 			public static string CANT_SEE_REFLECTION_ROOM_DARK = "1.20__cant_see_reflection_room_dark";
 			public static string CODE_DIFFERENT = "1.25__code_different";
+			public static string CODE_FLIPPED = "code_flipped";
 			
 			public static string HOUSE_FEELS_UNFAMILIAR = "1.28__house_feels_unfamiliar";
 			public static string STILL_CANT_SEE_MYSELF = "1.30__still_cant_see_myself";
