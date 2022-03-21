@@ -56,6 +56,6 @@ public class BookShelfPuzzle : MonoBehaviour
 
 	void FixBookTransform( GameObject book )
 	{
-		book.transform.localEulerAngles = new Vector3(83.0208511f,83.0759659f,264.555115f);
+		book.transform.localEulerAngles = new Vector3( 83.0208511f, 83.0759659f, 264.555115f );
 	}
 }

@@ -1,5 +1,5 @@
 // PREPROCESSOR FLAGS
-#define TEST_LEVEL // set this to #undef or comment out when running main-level. When defined, all audio stuff is disabled
+#undef TEST_LEVEL // set this to #undef or comment out when running main-level. When defined, all audio stuff is disabled
 
 using System.Collections;
 using System.Collections.Generic;
