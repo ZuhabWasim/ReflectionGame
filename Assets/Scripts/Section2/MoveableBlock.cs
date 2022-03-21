@@ -91,9 +91,9 @@ public class MoveableBlock : InteractableAbstract
 		if ( bma.BoxAtPosition( pos.x, pos.y ) && bma.CanMoveBox( pos.x, pos.y, dir ) )
 		{
 			bma.MoveBox( pos.x, pos.y, dir );
-			if (correspondingBlock != null)
-            {
-				correspondingBlock.TryMoveBox(dir);
+			if ( correspondingBlock != null )
+			{
+				correspondingBlock.TryMoveBox( dir );
 				bma.RefreshMCList();
 			}
 			AudioPlayer.Play( Globals.AudioFiles.Section2.CARDBOARD_SLIDE, Globals.Tags.MAIN_SOURCE );

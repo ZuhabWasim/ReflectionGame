@@ -135,7 +135,7 @@ public class MirrorPlane : MonoBehaviour
 	public void Deactivate()
 	{
 		SetupMirrorCameraPosition();
-		m_mirrorCameraPosition.SetCamera(false);
+		m_mirrorCameraPosition.SetCamera( false );
 		SetOpaqueTexture();
 	}
 
@@ -148,10 +148,10 @@ public class MirrorPlane : MonoBehaviour
 		SetNormalTexture();
 	}
 
-	public void SetCamera(bool state)
+	public void SetCamera( bool state )
 	{
 		// HACK: the following line makes m_mirrorPlane null transform
 		// m_mirrorCameraPosition.enabled = false;
-		m_mirrorCameraPosition.SetCamera(state);
+		m_mirrorCameraPosition.SetCamera( state );
 	}
 }

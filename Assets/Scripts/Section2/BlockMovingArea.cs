@@ -39,23 +39,24 @@ public class BlockMovingArea : MonoBehaviour
 		spaceGrid = new List<List<Transform>>();
 
 		InitGrid();
-		if (mirrorConnector != null) {
+		if ( mirrorConnector != null )
+		{
 			mcList = mirrorConnector.GetComponents<MirrorConnector>();
 		}
 		//PrintBoxGrids();
 	}
 
 	private bool init = false;
-    void Update()
-    {
-        if (!init)
-        {
+	void Update()
+	{
+		if ( !init )
+		{
 			RefreshMCList();
 			init = true;
 		}
-    }
+	}
 
-    public void MoveBox( int x, int y, MoveDirect dir )
+	public void MoveBox( int x, int y, MoveDirect dir )
 	{
 		int targetX = x;
 		int targetY = y;
@@ -199,12 +200,12 @@ public class BlockMovingArea : MonoBehaviour
 	}
 
 	public void RefreshMCList()
-    {
-		if (mirrorConnector != null)
+	{
+		if ( mirrorConnector != null )
 		{
-			for (int i = 0; i < mcList.Length; i++)
+			for ( int i = 0; i < mcList.Length; i++ )
 			{
-				mcList[i].CheckForDeactivateZone();
+				mcList[ i ].CheckForDeactivateZone();
 			}
 		}
 	}

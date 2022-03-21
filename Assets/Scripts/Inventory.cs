@@ -11,7 +11,7 @@ public class Inventory
 	private List<PickupItem> m_items = new List<PickupItem>( empty );
 	private static Inventory m_instance = new Inventory();
 	private int cursor = 2;
-	private InventoryDisplay inventoryDisplay = GameObject.Find(Globals.Misc.UI_Canvas).GetComponent<InventoryDisplay>();
+	private InventoryDisplay inventoryDisplay = GameObject.Find( Globals.Misc.UI_Canvas ).GetComponent<InventoryDisplay>();
 	public static ref Inventory GetInstance()
 	{
 		return ref m_instance;
@@ -33,7 +33,7 @@ public class Inventory
 				item.ActivateItem();
 				inventoryDisplay.addItem( item, pos );
 				inventoryDisplay.showItemName( item.itemName );
-				if (item.itemName.ToLower().Contains("key"))
+				if ( item.itemName.ToLower().Contains( "key" ) )
 				{
 					AudioPlayer.Play( Globals.AudioFiles.General.MUSICBOXKEY_OBTAINED, Globals.Tags.MAIN_SOURCE );
 				}
@@ -120,6 +120,7 @@ public class Inventory
 
 		return "";
 	}
+
 	public PickupItem GetSelectedPickupItem()
 	{
 		if ( m_items[ cursor ] != null )

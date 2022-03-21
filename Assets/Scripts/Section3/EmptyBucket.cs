@@ -23,8 +23,5 @@ public class EmptyBucket : PickupItem
 	{
 		base.OnDrop( dropPostion, isLocal );
 		SetDropTransform();
-		
-		Inventory inventory = Inventory.GetInstance();
-		inventory.DeleteItem( this.itemName );
 	}
 }

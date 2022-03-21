@@ -5,375 +5,379 @@ using UnityEngine;
 // Connector object between two mirrors
 public class MirrorConnector : MonoBehaviour
 {
-    public MirrorPlane presentMirror; // Mirror that is in the regular world
-    public MirrorPlane pastMirror; // Mirror in the past world
+	public MirrorPlane presentMirror; // Mirror that is in the regular world
+	public MirrorPlane pastMirror; // Mirror in the past world
 
-    public float mirrorHeight = 1.0f;
+	public float mirrorHeight = 1.0f;
 
-    [Tooltip("If this mirror can be used to teleport.")]
-    public bool teleportable = false;
-    [Tooltip( "Check this if the player rotation is incorrect on teleport" )]
-    public bool teleportIncorrectRotationFix = false; // this is a hack to get teleport working correctly
+	[Tooltip( "If this mirror can be used to teleport." )]
+	public bool teleportable = false;
+	[Tooltip( "Check this if the player rotation is incorrect on teleport" )]
+	public bool teleportIncorrectRotationFix = false; // this is a hack to get teleport working correctly
 
-    [Tooltip("If the associated mirrors should be active at start. Do not toggle mid-game, it will not work.")]
-    public bool active = true; // Only toggleable in Unity
+	[Tooltip( "If the associated mirrors should be active at start. Do not toggle mid-game, it will not work." )]
+	public bool active = true; // Only toggleable in Unity
 
-    // Mirror interactable interfaces
-    private MirrorInteractable presentInteractable;
-    private MirrorInteractable pastInteractable;
+	// Mirror interactable interfaces
+	private MirrorInteractable presentInteractable;
+	private MirrorInteractable pastInteractable;
 
-    private Transform m_player; // Player transform, programmatically selected and updated
-    private Transform m_playerCamera;
+	private Transform m_player; // Player transform, programmatically selected and updated
+	private Transform m_playerCamera;
 
-    // Textures to render to.
-    private RenderTexture m_presentMirrorTexture;
-    private RenderTexture m_pastMirrorTexture;
+	// Textures to render to.
+	private RenderTexture m_presentMirrorTexture;
+	private RenderTexture m_pastMirrorTexture;
 
-    // Boolean flags for interactability
-    private bool m_active;
-    private bool m_canTeleport = false;
+	// Boolean flags for interactability
+	private bool m_active;
+	private bool m_canTeleport = false;
 
-    [Tooltip("Event which should set this object to become active")]
-    public string makeInteractableEvent = "";
-    [Tooltip("Event which should set this object to become inactive")]
-    public string makeNonInteractableEvent = "";
-    private InteractionIcon interactionIcon;
+	[Tooltip( "Event which should set this object to become active" )]
+	public string makeInteractableEvent = "";
+	[Tooltip( "Event which should set this object to become inactive" )]
+	public string makeNonInteractableEvent = "";
+	private InteractionIcon interactionIcon;
 
-    private GameObject[] deactivateVolumes;
+	private GameObject[] deactivateVolumes;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        if (makeInteractableEvent != string.Empty)
-        {
-            EventManager.Sub(makeInteractableEvent, () => { Activate(); });
-        }
+	// Start is called before the first frame update
+	void Start()
+	{
+		if ( makeInteractableEvent != string.Empty )
+		{
+			EventManager.Sub( makeInteractableEvent, () => { Activate(); } );
+		}
 
-        if (makeNonInteractableEvent != string.Empty)
-        {
-            EventManager.Sub(makeNonInteractableEvent, () => { Deactivate(); });
-        }
+		if ( makeNonInteractableEvent != string.Empty )
+		{
+			EventManager.Sub( makeNonInteractableEvent, () => { Deactivate(); } );
+		}
 
-        deactivateVolumes = GameObject.FindGameObjectsWithTag("MirrorInactiveZone");
+		deactivateVolumes = GameObject.FindGameObjectsWithTag( "MirrorInactiveZone" );
 
-        // There must be a presentMirror on start
-        if (presentMirror == null)
-        {
-            Debug.LogError("No presentMirror in Mirror " + this.name + ", this is a fatal error");
-            return;
-        }
+		// There must be a presentMirror on start
+		if ( presentMirror == null )
+		{
+			Debug.LogError( "No presentMirror in Mirror " + this.name + ", this is a fatal error" );
+			return;
+		}
 
-        if (pastMirror == null)
-        {
-            Debug.LogError("No pastMirror in Mirror " + this.name + ", this is a fatal error");
-            return;
-        }
+		if ( pastMirror == null )
+		{
+			Debug.LogError( "No pastMirror in Mirror " + this.name + ", this is a fatal error" );
+			return;
+		}
 
-        // Find interactables
-        SetupMirrorInteractable(presentMirror, presentInteractable);
-        SetupMirrorInteractable(pastMirror, pastInteractable);
+		// Find interactables
+		SetupMirrorInteractable( presentMirror, presentInteractable );
+		SetupMirrorInteractable( pastMirror, pastInteractable );
 
-        // Find the player
-        try
-        {
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
-            m_player = player.transform;
-            m_playerCamera = player.GetComponentInChildren<Camera>().transform;
-        }
-        catch (UnityException e)
-        {
-            Debug.LogError(e.Message);
-        }
+		// Find the player
+		try
+		{
+			GameObject player = GameObject.FindGameObjectWithTag( "Player" );
+			m_player = player.transform;
+			m_playerCamera = player.GetComponentInChildren<Camera>().transform;
+		}
+		catch ( UnityException e )
+		{
+			Debug.LogError( e.Message );
+		}
 
-        // Create render textures
-        RenderTextureDescriptor textureDescriptor = new RenderTextureDescriptor(512, Mathf.RoundToInt(512*mirrorHeight), RenderTextureFormat.Default);
-        m_presentMirrorTexture = new RenderTexture(textureDescriptor);
-        m_pastMirrorTexture = new RenderTexture(textureDescriptor);
+		// Create render textures
+		RenderTextureDescriptor textureDescriptor = new RenderTextureDescriptor( 512, Mathf.RoundToInt( 512 * mirrorHeight ), RenderTextureFormat.Default );
+		m_presentMirrorTexture = new RenderTexture( textureDescriptor );
+		m_pastMirrorTexture = new RenderTexture( textureDescriptor );
 
-        presentMirror.SetCameraRenderTexture(m_presentMirrorTexture);
-        pastMirror.SetCameraRenderTexture(m_pastMirrorTexture);
+		presentMirror.SetCameraRenderTexture( m_presentMirrorTexture );
+		pastMirror.SetCameraRenderTexture( m_pastMirrorTexture );
 
-        // After setting mirror camera textures, need to set them to render on the mirrors
-        presentMirror.SetMirrorDisplayTexture(m_pastMirrorTexture);
-        pastMirror.SetMirrorDisplayTexture(m_presentMirrorTexture);
+		// After setting mirror camera textures, need to set them to render on the mirrors
+		presentMirror.SetMirrorDisplayTexture( m_pastMirrorTexture );
+		pastMirror.SetMirrorDisplayTexture( m_presentMirrorTexture );
 
-        m_active = active;
-        
-        // Note that on Start, initial configurations of front Mirror handling can be separate from the connector.
-        // Need to account for this and not propagate any unwanted changes.
-        // E.g. Mom1 Mirror B is on but should NOT be teleportable. 
-        if (m_active)
-        {
-            Activate(true);
-        }
-        else
-        {
-            Deactivate(true);
-        }
+		m_active = active;
 
-        interactionIcon = GameObject.Find(Globals.Misc.UI_Canvas).GetComponent<InteractionIcon>();
+		// Note that on Start, initial configurations of front Mirror handling can be separate from the connector.
+		// Need to account for this and not propagate any unwanted changes.
+		// E.g. Mom1 Mirror B is on but should NOT be teleportable. 
+		if ( m_active )
+		{
+			Activate( true );
+		}
+		else
+		{
+			Deactivate( true );
+		}
 
-        EventManager.Sub(Globals.Events.TELEPORT, Swap);
-    }
+		interactionIcon = GameObject.Find( Globals.Misc.UI_Canvas ).GetComponent<InteractionIcon>();
 
-    // Update is called once per frame
-    void Update()
-    {
-        // This needs to be done here because there is no order for Start()
-        if (!m_active)
-        {
-            return;
-        }
+		EventManager.Sub( Globals.Events.TELEPORT, Swap );
+	}
 
-        SetMirrorCameraPositions();
+	// Update is called once per frame
+	void Update()
+	{
+		// This needs to be done here because there is no order for Start()
+		if ( !m_active )
+		{
+			return;
+		}
 
-        // Check if player is in teleport range only if teleportable
-        if (teleportable && InTeleporterRange())
-        {
-            m_canTeleport = true;
-            if (LookingAtTeleporter()) {
-                interactionIcon.ShowReflectionIcon();
-            }
-        }
-        else
-        {
-            m_canTeleport = false;
-        }
-    }
+		SetMirrorCameraPositions();
 
-    public void CheckForDeactivateZone()
-    {
-        for (int i=0; i<deactivateVolumes.Length; i++) {
-            Bounds b = deactivateVolumes[i].GetComponent<Collider>().bounds;
-            if (presentMirror.GetComponent<Renderer>().bounds.Intersects(b)
-            || pastMirror.GetComponent<Renderer>().bounds.Intersects(b)) {
-                Deactivate();
-                return;
-            }
-        }
-        Activate();
-    }
+		// Check if player is in teleport range only if teleportable
+		if ( teleportable && InTeleporterRange() )
+		{
+			m_canTeleport = true;
+			if ( LookingAtTeleporter() )
+			{
+				interactionIcon.ShowReflectionIcon();
+			}
+		}
+		else
+		{
+			m_canTeleport = false;
+		}
+	}
 
-    private void SetMirrorCameraPositions()
-    {
+	public void CheckForDeactivateZone()
+	{
+		for ( int i = 0; i < deactivateVolumes.Length; i++ )
+		{
+			Bounds b = deactivateVolumes[ i ].GetComponent<Collider>().bounds;
+			if ( presentMirror.GetComponent<Renderer>().bounds.Intersects( b )
+			|| pastMirror.GetComponent<Renderer>().bounds.Intersects( b ) )
+			{
+				Deactivate();
+				return;
+			}
+		}
+		Activate();
+	}
 
-        // if (pastMirror == null)
-        // {
-        //     presentMirror.ReflectOverMirror(m_player, m_playerCamera);
-        //     return;
-        // }
+	private void SetMirrorCameraPositions()
+	{
 
-        if (GlobalState.GetVar<bool>("isPresent"))
-        {
-            pastMirror.SetOppositeCameraPosition(m_player, m_playerCamera, presentMirror.transform);
-            presentMirror.ReflectOverMirror(m_player, m_playerCamera);
-        }
-        else
-        {
-            presentMirror.SetOppositeCameraPosition(m_player, m_playerCamera, pastMirror.transform);
-            pastMirror.ReflectOverMirror(m_player, m_playerCamera);
-        }
-    }
+		// if (pastMirror == null)
+		// {
+		//     presentMirror.ReflectOverMirror(m_player, m_playerCamera);
+		//     return;
+		// }
 
-    // Teleports only if m_canTeleport is true
-    public void HandleUserTeleport()
-    {
-        if (!m_canTeleport)
-        {
-            return;
-        }
+		if ( GlobalState.GetVar<bool>( "isPresent" ) )
+		{
+			pastMirror.SetOppositeCameraPosition( m_player, m_playerCamera, presentMirror.transform );
+			presentMirror.ReflectOverMirror( m_player, m_playerCamera );
+		}
+		else
+		{
+			presentMirror.SetOppositeCameraPosition( m_player, m_playerCamera, pastMirror.transform );
+			pastMirror.ReflectOverMirror( m_player, m_playerCamera );
+		}
+	}
 
-        bool teleporting = GlobalState.GetVar<bool>(Globals.Vars.TELEPORTING);
-        if (!teleporting)
-        {
-            GlobalState.SetVar<bool>(Globals.Vars.TELEPORTING, true);
-            StartCoroutine(Teleport());
-        }
-    }
+	// Teleports only if m_canTeleport is true
+	public void HandleUserTeleport()
+	{
+		if ( !m_canTeleport )
+		{
+			return;
+		}
 
-    private bool InTeleporterRange()
-    {
-        if (pastMirror == null || presentMirror == null) // No teleporing if a mirror is missing
-        {
-            return false;
-        }
+		bool teleporting = GlobalState.GetVar<bool>( Globals.Vars.TELEPORTING );
+		if ( !teleporting )
+		{
+			GlobalState.SetVar<bool>( Globals.Vars.TELEPORTING, true );
+			StartCoroutine( Teleport() );
+		}
+	}
 
-        if (presentMirror.isDirty || pastMirror.isDirty) // Do not teleport for dirty mirrors
-        {
-            return false;
-        }
+	private bool InTeleporterRange()
+	{
+		if ( pastMirror == null || presentMirror == null ) // No teleporing if a mirror is missing
+		{
+			return false;
+		}
 
-        if (GlobalState.GetVar<bool>(Globals.Vars.IS_PRESENT_WORLD))
-        {
-            return PlayerInFrontOfMirror(presentMirror.transform);
-        }
-        else
-        {
-            return PlayerInFrontOfMirror(pastMirror.transform);
-        }
-    }
+		if ( presentMirror.isDirty || pastMirror.isDirty ) // Do not teleport for dirty mirrors
+		{
+			return false;
+		}
 
-    private bool PlayerInFrontOfMirror(Transform mirrorTransform)
-    {
-        // Since mirrors can be rotated in arbitrary direction, this uses the dot product definition
-        // and pythogrean theorem to figure out if the player is in front of a mirror in a square
-        // See: https://mathinsight.org/dot_product
+		if ( GlobalState.GetVar<bool>( Globals.Vars.IS_PRESENT_WORLD ) )
+		{
+			return PlayerInFrontOfMirror( presentMirror.transform );
+		}
+		else
+		{
+			return PlayerInFrontOfMirror( pastMirror.transform );
+		}
+	}
 
-        Vector3 mirrorDirection = new Vector3(mirrorTransform.up.x, 0.0f, mirrorTransform.up.z);
+	private bool PlayerInFrontOfMirror( Transform mirrorTransform )
+	{
+		// Since mirrors can be rotated in arbitrary direction, this uses the dot product definition
+		// and pythogrean theorem to figure out if the player is in front of a mirror in a square
+		// See: https://mathinsight.org/dot_product
 
-        Vector3 playerPositionRelative = m_player.position - mirrorTransform.position;
-        playerPositionRelative = new Vector3(playerPositionRelative.x, 0.0f, playerPositionRelative.z);
+		Vector3 mirrorDirection = new Vector3( mirrorTransform.up.x, 0.0f, mirrorTransform.up.z );
 
-        // Projection of player displacement onto mirror direction
-        float adjacent = Vector3.Dot(playerPositionRelative, mirrorDirection.normalized);
+		Vector3 playerPositionRelative = m_player.position - mirrorTransform.position;
+		playerPositionRelative = new Vector3( playerPositionRelative.x, 0.0f, playerPositionRelative.z );
 
-        float playerDist = Vector3.Distance(playerPositionRelative, new Vector3(0.0f, 0.0f, 0.0f));
-        float opposite = playerDist * playerDist - adjacent * adjacent;
-        opposite = Mathf.Sqrt(opposite);
+		// Projection of player displacement onto mirror direction
+		float adjacent = Vector3.Dot( playerPositionRelative, mirrorDirection.normalized );
 
-        return 0.0f <= adjacent && adjacent < Globals.Misc.MAX_INTERACT_DISTANCE
-            && opposite < 1.5f; // TODO: IDK how to get the mirror's width.
-    }
+		float playerDist = Vector3.Distance( playerPositionRelative, new Vector3( 0.0f, 0.0f, 0.0f ) );
+		float opposite = playerDist * playerDist - adjacent * adjacent;
+		opposite = Mathf.Sqrt( opposite );
 
-    private bool LookingAtTeleporter()
-    {
-        if (pastMirror == null || presentMirror == null) // No teleporing if a mirror is missing
-        {
-            return false;
-        }
+		return 0.0f <= adjacent && adjacent < Globals.Misc.MAX_INTERACT_DISTANCE
+			&& opposite < 1.5f; // TODO: IDK how to get the mirror's width.
+	}
 
-        if (GlobalState.GetVar<bool>(Globals.Vars.IS_PRESENT_WORLD))
-        {
-            if (Vector3.Dot(m_playerCamera.forward, presentMirror.transform.up) < 0.0f)
-            {
-                return CheckRayIntersectMirror(presentMirror.gameObject);
-            }
-        }
-        else
-        {
-            if (Vector3.Dot(m_playerCamera.forward, pastMirror.transform.up) < 0.0f)
-            {
-                return CheckRayIntersectMirror(pastMirror.gameObject);
-            }
-        }
+	private bool LookingAtTeleporter()
+	{
+		if ( pastMirror == null || presentMirror == null ) // No teleporing if a mirror is missing
+		{
+			return false;
+		}
 
-        return false;
-    }
+		if ( GlobalState.GetVar<bool>( Globals.Vars.IS_PRESENT_WORLD ) )
+		{
+			if ( Vector3.Dot( m_playerCamera.forward, presentMirror.transform.up ) < 0.0f )
+			{
+				return CheckRayIntersectMirror( presentMirror.gameObject );
+			}
+		}
+		else
+		{
+			if ( Vector3.Dot( m_playerCamera.forward, pastMirror.transform.up ) < 0.0f )
+			{
+				return CheckRayIntersectMirror( pastMirror.gameObject );
+			}
+		}
 
-    private bool CheckRayIntersectMirror(GameObject mirrorObject)
-    {
-        Transform camera = m_playerCamera;
-        RaycastHit hit;
-        if (Physics.Raycast( camera.position, camera.forward, out hit, Globals.Misc.MAX_INTERACT_DISTANCE )
-             && hit.collider.gameObject.Equals( mirrorObject ))
-        {
-            return true;
-        }
-        return false;
-    }
+		return false;
+	}
 
-    public bool CanTeleport()
-    {
-        return m_canTeleport;
-    }
+	private bool CheckRayIntersectMirror( GameObject mirrorObject )
+	{
+		Transform camera = m_playerCamera;
+		RaycastHit hit;
+		if ( Physics.Raycast( camera.position, camera.forward, out hit, Globals.Misc.MAX_INTERACT_DISTANCE )
+			 && hit.collider.gameObject.Equals( mirrorObject ) )
+		{
+			return true;
+		}
+		return false;
+	}
 
-    private Vector3 GetPlayerFwdOnTeleport( Vector3 normal, Vector3 fwd, float relativeRotation, bool isPresent )
-    {
-        // fwd => incidence vector
-        Vector3 reflected = -( fwd - ( 2 * Vector3.Dot( fwd, normal ) * normal ) );
-        if ( isPresent ) // traveling from present to past
-        {
-            relativeRotation = teleportIncorrectRotationFix ? -relativeRotation : relativeRotation;
-        }
-        return Quaternion.AngleAxis( relativeRotation, Vector3.up ) * reflected;
-    }
+	public bool CanTeleport()
+	{
+		return m_canTeleport;
+	}
 
-    public IEnumerator Teleport()
-    {
-        bool present = GlobalState.GetVar<bool>(Globals.Vars.IS_PRESENT_WORLD);
+	private Vector3 GetPlayerFwdOnTeleport( Vector3 normal, Vector3 fwd, float relativeRotation, bool isPresent )
+	{
+		// fwd => incidence vector
+		Vector3 reflected = -( fwd - ( 2 * Vector3.Dot( fwd, normal ) * normal ) );
+		if ( isPresent ) // traveling from present to past
+		{
+			relativeRotation = teleportIncorrectRotationFix ? -relativeRotation : relativeRotation;
+		}
+		return Quaternion.AngleAxis( relativeRotation, Vector3.up ) * reflected;
+	}
 
-        Vector3 mirrorPosition = present ? pastMirror.transform.position : presentMirror.transform.position;
-        m_player.position = mirrorPosition + ( ( present ? pastMirror : presentMirror ).GetMirrorCameraPosition().GetMirrorNormal() * 1.0f );
-        
-        Vector3 mirrorNormal = ( present ? pastMirror : presentMirror ).GetMirrorCameraPosition().GetMirrorNormal();
-        m_player.forward = GetPlayerFwdOnTeleport( mirrorNormal, m_player.forward,
-            Vector3.Angle( presentMirror.GetMirrorCameraPosition().GetMirrorNormal(), pastMirror.GetMirrorCameraPosition().GetMirrorNormal() ), present ).normalized;
+	public IEnumerator Teleport()
+	{
+		bool present = GlobalState.GetVar<bool>( Globals.Vars.IS_PRESENT_WORLD );
 
-        yield return new WaitForSecondsRealtime( Globals.Teleporting.INPUT_LOCK_COOLDOWN );
+		Vector3 mirrorPosition = present ? pastMirror.transform.position : presentMirror.transform.position;
+		m_player.position = mirrorPosition + ( ( present ? pastMirror : presentMirror ).GetMirrorCameraPosition().GetMirrorNormal() * 1.0f );
 
-        GlobalState.SetVar<bool>( Globals.Vars.TELEPORTING, false );
-        EventManager.Fire( Globals.Events.TELEPORT );
+		Vector3 mirrorNormal = ( present ? pastMirror : presentMirror ).GetMirrorCameraPosition().GetMirrorNormal();
+		m_player.forward = GetPlayerFwdOnTeleport( mirrorNormal, m_player.forward,
+			Vector3.Angle( presentMirror.GetMirrorCameraPosition().GetMirrorNormal(), pastMirror.GetMirrorCameraPosition().GetMirrorNormal() ), present ).normalized;
 
-        yield return new WaitForSecondsRealtime( Globals.Teleporting.TELEPORTER_COOLDOWN );
-    }
+		yield return new WaitForSecondsRealtime( Globals.Teleporting.INPUT_LOCK_COOLDOWN );
 
-    // Sets the mirrors/cameras to be active based on IS_PRESENT_WORLD
-    public void Activate(bool onInitialization = false)
-    {
-        m_active = true;
-        
-        // Propagates whether a mirror is teleportable to the Mirror Interactable. ONLY AFTER INITIALIZATION.
-        if ( !onInitialization ) {
-            presentMirror.GetComponent<MirrorInteractable>().setTeleportable(true);
-            pastMirror.GetComponent<MirrorInteractable>().setTeleportable(true);
-        }
-        
-        Swap();
-    }
+		GlobalState.SetVar<bool>( Globals.Vars.TELEPORTING, false );
+		EventManager.Fire( Globals.Events.TELEPORT );
 
-    void Swap()
-    {
-        if (m_active)
-        {
-            bool present = GlobalState.GetVar<bool>(Globals.Vars.IS_PRESENT_WORLD);
-            if (present)
-            {
-                // Need to set the present mirror camera to off, and past mirror texture to off
-                presentMirror.SetCamera(false);
-                presentMirror.SetNormalTexture();
+		yield return new WaitForSecondsRealtime( Globals.Teleporting.TELEPORTER_COOLDOWN );
+	}
 
-                pastMirror.SetOpaqueTexture();
-                pastMirror.SetCamera(true);
-            }
-            else
-            {
-                presentMirror.SetCamera(true);
-                presentMirror.SetOpaqueTexture();
+	// Sets the mirrors/cameras to be active based on IS_PRESENT_WORLD
+	public void Activate( bool onInitialization = false )
+	{
+		m_active = true;
 
-                pastMirror.SetNormalTexture();
-                pastMirror.SetCamera(false);
-            }
-        }
-    }
+		// Propagates whether a mirror is teleportable to the Mirror Interactable. ONLY AFTER INITIALIZATION.
+		if ( !onInitialization )
+		{
+			presentMirror.GetComponent<MirrorInteractable>().setTeleportable( true );
+			pastMirror.GetComponent<MirrorInteractable>().setTeleportable( true );
+		}
 
-    // Disable both of the mirrors (i.e. stops both cameras from working and sets them to inactive texture)
-    public void Deactivate(bool onInitialization = false)
-    {
-        // Propagates whether a mirror is teleportable to the Mirror Interactable. ONLY AFTER INITIALIZATION.
-        if (!onInitialization)
-        {
-            presentMirror.GetComponent<MirrorInteractable>().setTeleportable(false);
-            pastMirror.GetComponent<MirrorInteractable>().setTeleportable(false);
-        }
+		Swap();
+	}
 
-        m_active = false;
-        presentMirror.Deactivate();
-        pastMirror.Deactivate();
-    }
+	void Swap()
+	{
+		if ( m_active )
+		{
+			bool present = GlobalState.GetVar<bool>( Globals.Vars.IS_PRESENT_WORLD );
+			if ( present )
+			{
+				// Need to set the present mirror camera to off, and past mirror texture to off
+				presentMirror.SetCamera( false );
+				presentMirror.SetNormalTexture();
 
-    private void SetupMirrorInteractable(MirrorPlane mirror, MirrorInteractable interactable)
-    {
-        if (mirror != null)
-        {
-            interactable = mirror.GetComponent<MirrorInteractable>();
-            if (interactable != null)
-            {
-                interactable.SetMirrorConnector(this);
-            }
-            else
-            {
-                Debug.LogWarning("Mirror " + mirror.name + " has no MirrorInteractable. This is likely unintentional");
-            }
-        }
-    }
+				pastMirror.SetOpaqueTexture();
+				pastMirror.SetCamera( true );
+			}
+			else
+			{
+				presentMirror.SetCamera( true );
+				presentMirror.SetOpaqueTexture();
+
+				pastMirror.SetNormalTexture();
+				pastMirror.SetCamera( false );
+			}
+		}
+	}
+
+	// Disable both of the mirrors (i.e. stops both cameras from working and sets them to inactive texture)
+	public void Deactivate( bool onInitialization = false )
+	{
+		// Propagates whether a mirror is teleportable to the Mirror Interactable. ONLY AFTER INITIALIZATION.
+		if ( !onInitialization )
+		{
+			presentMirror.GetComponent<MirrorInteractable>().setTeleportable( false );
+			pastMirror.GetComponent<MirrorInteractable>().setTeleportable( false );
+		}
+
+		m_active = false;
+		presentMirror.Deactivate();
+		pastMirror.Deactivate();
+	}
+
+	private void SetupMirrorInteractable( MirrorPlane mirror, MirrorInteractable interactable )
+	{
+		if ( mirror != null )
+		{
+			interactable = mirror.GetComponent<MirrorInteractable>();
+			if ( interactable != null )
+			{
+				interactable.SetMirrorConnector( this );
+			}
+			else
+			{
+				Debug.LogWarning( "Mirror " + mirror.name + " has no MirrorInteractable. This is likely unintentional" );
+			}
+		}
+	}
 }
