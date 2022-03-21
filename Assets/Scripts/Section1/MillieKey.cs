@@ -11,6 +11,7 @@ public class MillieKey : PickupItem
 	protected override void OnUserInteract()
 	{
 		this.gameObject.SetActive( false );
+
 		MusicBox musicBox = GameObject.FindGameObjectWithTag( Globals.Tags.MUSIC_BOX ).GetComponent<MusicBox>();
 		if ( musicBox.discoveredBox )
 		{

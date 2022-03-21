@@ -11,7 +11,7 @@ public class Inventory
 	private List<PickupItem> m_items = new List<PickupItem>( empty );
 	private static Inventory m_instance = new Inventory();
 	private int cursor = 2;
-	private InventoryDisplay inventoryDisplay = GameObject.Find( "UI_Canvas" ).GetComponent<InventoryDisplay>();
+	private InventoryDisplay inventoryDisplay = GameObject.Find( Globals.Misc.UI_Canvas ).GetComponent<InventoryDisplay>();
 	public static ref Inventory GetInstance()
 	{
 		return ref m_instance;
@@ -47,7 +47,6 @@ public class Inventory
 		AudioPlayer.Play( Globals.AudioFiles.General.NON_INTERACTABLE, Globals.Tags.MAIN_SOURCE );
 		return ItemPickupResult.FAIL_INVENTORY_FULL;
 	}
-
 	public void MoveCursor( int newPos )
 	{
 		if ( newPos < 0 )
@@ -63,7 +62,6 @@ public class Inventory
 			cursor = newPos - inventorySize;
 		}
 	}
-
 	public void openInventory()
 	{
 		inventoryDisplay.openInventory();
@@ -99,7 +97,6 @@ public class Inventory
 	{
 		return cursor;
 	}
-
 	public bool DropItem( Vector3 dropPosition )
 	{
 		if ( cursor < m_items.Count )
@@ -114,7 +111,6 @@ public class Inventory
 		Debug.Log( "Tried to drop item from a slot that doesn't have a valid item" );
 		return false;
 	}
-
 	public string GetSelectedItem()
 	{
 		if ( m_items[ cursor ] != null )
@@ -146,7 +142,6 @@ public class Inventory
 
 		return false;
 	}
-
 	public bool DeleteItem( string itemName )
 	{
 		for ( int i = 0; i < inventorySize; i++ )

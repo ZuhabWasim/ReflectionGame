@@ -14,8 +14,8 @@ public class BlockMovingArea : MonoBehaviour
 {
 
 	private float tileWidth;
-	private float tileHeight;
-	private float tilePadding;
+	public Vector3 leftVec;
+	public Vector3 topVec;
 	private int numTilesX;
 	private int numTilesY;
 
@@ -84,6 +84,20 @@ public class BlockMovingArea : MonoBehaviour
 
 		Transform box = spaceGrid[ y ][ x ].transform.GetChild( 0 );
 		box.SetParent( spaceGrid[ targetY ][ targetX ], false );
+		
+		// Check if Mirror A was moved to the final area (row 0, col 2), play audio if so
+		if (targetY == 0 && targetX == 3)
+		{
+			Transform[] ts = box.GetComponentsInChildren<Transform>();
+			foreach (Transform t in ts)
+			{
+				if (t.gameObject.name == "MirrorA")
+				{
+					AudioPlayer.Play(Globals.VoiceLines.Section2.MIRROR_A_RIGHT_SPOT, Globals.Tags.DIALOGUE_SOURCE);
+					break;
+				}
+			}
+		}
 	}
 
 	public bool BoxAtPosition( int x, int y )
@@ -133,9 +147,6 @@ public class BlockMovingArea : MonoBehaviour
 	{
 		int i = 0;
 		int j = 0;
-		float padd = 0;
-		bool paramSetA = false;
-		bool paramSetB = false;
 		foreach ( Transform currRow in transform )
 		{
 			if ( currRow.CompareTag( "MomRow" ) )
@@ -147,18 +158,6 @@ public class BlockMovingArea : MonoBehaviour
 				{
 					if ( child1.CompareTag( "MomSpace" ) )
 					{
-						if ( paramSetA && !paramSetB )
-						{
-							tilePadding = Mathf.Abs( child1.position.x - padd ) - tileWidth;
-							paramSetB = true;
-						}
-						if ( !paramSetA )
-						{
-							tileWidth = child1.GetComponent<Renderer>().bounds.size.x;
-							tileHeight = child1.GetComponent<Renderer>().bounds.size.z;
-							padd = child1.position.x;
-							paramSetA = true;
-						}
 						spaceRow.Add( child1 );
 						if ( child1.childCount > 0 )
 						{
@@ -187,6 +186,15 @@ public class BlockMovingArea : MonoBehaviour
 				i++;
 			}
 		}
+		if ( j > 1 )
+		{
+			leftVec = spaceGrid[0][0].transform.position - spaceGrid[0][1].transform.position;
+		}
+		else
+		{
+			leftVec = new Vector3(-1, 0, 0);
+		}
+		topVec = Quaternion.Euler(0, 90, 0) * leftVec;
 		numTilesX = j;
 		numTilesY = i;
 	}

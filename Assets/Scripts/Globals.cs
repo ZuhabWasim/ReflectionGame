@@ -46,6 +46,17 @@ public class Globals
 		public static string DAD_PUZZLE_1_MILLIE_PAINT = "DadPuzzle1_MillePaint";
 		public static string DAD_PUZZLE_1_BOOKSHELF_SOLVED = "DadPuzzle1_BookshelfSolved";
 		public static string CANVAS_STATE_CHANGE = "CanvasStateChange";
+
+		public static string OBTAINED_SCISSORS = "ObtainedScissors";
+		public static string CUTTING_CLOTHING_RACK = "CuttingClothingRack";
+		public static string SWEPT_DEBRIS = "SweptDebris";
+		public static string MOVE_MIRROR_B = "MoveMirrorB";
+		public static string HAS_MOM_KEY = "HasMomKey";
+		public static string UNBLOCKING_MIRROR_B = "UnblockingMirrorB";
+		public static string BLOCKING_MIRROR_B = "BlockingMirrorB";
+		public static string READ_MOM_NOTE = "ReadMomNote";
+
+
 	}
 
 	public class Tags
@@ -71,6 +82,7 @@ public class Globals
 		public static string MOUSE_Y = "Mouse Y";
 		public static string UI_Canvas = "UI_Canvas";
 		public static string PAINT_BRUSH = "Paint Brush";
+		public static string SCISSOR_PUZZLE = "ScissorPuzzle";
 
 		// For Animations
 		public static string IS_WALKING = "IsWalking";
@@ -95,11 +107,15 @@ public class Globals
 		public static string MIRROR_ITEM = "Mirror";
 		public static string DRAWER_ITEM = "Drawer";
 		public static string NOTE_ITEM = "Note";
+		public static string SCISSORS_ITEM = "Scissors";
+		public static string BROOM_ITEM = "Broom";
 
 		public static string HANDKERCHIEF_ITEM = "Handkerchief";
 		public static string MUSICBOXMILLIE_ITEM = "Millie's Key";
 
 		public static string USE_HANDKERCHIEF = "Use Handkerchief";
+		public static string NOTE_PLACEHOLDER = "This note has not yet been collected.";
+		public static string NOTE_TITLE_PLACEHOLDER = "Unknown Note";
 	}
 
 	public class Vars
@@ -147,6 +163,16 @@ public class Globals
 			public static string HANDKERCHIEF = "handkerchief";
 
 		}
+
+		public class Section2
+		{
+			public static string CUTTING_DRESS = "sfx_scissors_cutting_dress";
+			public static string MOVING_MIRROR = "mirror_b_move_placeholder";
+			public static string SAFE_UNLOCK = "sfx_safe_unlock_open_sequence";
+			public static string SWEEP_DEBRIS = "sfx_broom_sweep_debris";
+			public static string CARDBOARD_SLIDE = "sfx_cardboard_box_slide";
+
+		}
 	}
 
 	public class SoundEffects
@@ -159,7 +185,10 @@ public class Globals
 		{
 			public static string CANT_USE_ITEM = "1.14__hmm_that_doesnt_seem_right";
 			public static string NOT_HOLDING_ANYTHING = "not_holding_anything";
-
+			public static string PLACEHOLDER = "placeholder";
+			public static string PLACEHOLDER_1 = "placeholder1";
+			public static string PLACEHOLDER_2 = "placeholder2";
+			public static string PLACEHOLDER_3 = "placeholder3";
 		}
 		public class Section1
 		{
@@ -176,6 +205,7 @@ public class Globals
 			public static string FILTHY_MIRROR = "1.18__filthy_mirror";
 			public static string CANT_SEE_REFLECTION_ROOM_DARK = "1.20__cant_see_reflection_room_dark";
 			public static string CODE_DIFFERENT = "1.25__code_different";
+			public static string CODE_FLIPPED = "code_flipped";
 
 			public static string HOUSE_FEELS_UNFAMILIAR = "1.28__house_feels_unfamiliar";
 			public static string STILL_CANT_SEE_MYSELF = "1.30__still_cant_see_myself";
@@ -190,6 +220,18 @@ public class Globals
 			public static string I_M_TOO_SMALL = "1.43__i_m_too_small";
 			public static string MOTHERS_NAGGING = "1.48__mothers_nagging";
 			public static string FATHERS_VOICE = "1.49__fathers_voice";
+		}
+
+		public class Section2
+		{
+			public static string CONTAINER_TOO_FAR = "container_too_far";
+			public static string CONTAINER_TOO_HIGH = "container_too_high";
+			public static string LAVISH_CLOTHES = "lavish_clothes";
+			public static string TONE_DOWN = "tone_down";
+			public static string MIRROR_A_RIGHT_SPOT = "mirror_a_right_spot";
+			public static string NO_MORE_OBSTRUCTIONS = "no_more_obstructions";
+			public static string ANOTHER_BOX_BLOCKING = "another_box_blocking";
+			public static string MOM_NOTE = "mom_note";
 		}
 	}
 }
@@ -207,6 +249,7 @@ public enum Keybinds
 	USE_ITEM_KEY = KeyCode.E,
 	DROP_KEY = KeyCode.G,
 	INVENTORY_KEY = KeyCode.LeftShift,
+	ESCAPE_KEY = KeyCode.Escape,
 
 	// This is for debug only, should be removed in release
 	DEBUG_TRIGGER = KeyCode.Alpha0

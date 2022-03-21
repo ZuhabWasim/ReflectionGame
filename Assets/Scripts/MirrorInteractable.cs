@@ -89,4 +89,18 @@ public class MirrorInteractable : InteractableAbstract
 	{
 		m_connector = connector;
 	}
+	public override void OnUseItemUnfiltered()
+	{
+		// Only Teleports if the Mirror Interactable allows it and the Mirror is interactable to begin with.
+		if ( interactable && teleportable )
+		{
+			m_connector.HandleUserTeleport();
+			AudioPlayer.Play( teleportingVoiceLine, Globals.Tags.DIALOGUE_SOURCE );
+			// Also play reflecting sound
+		}
+		else
+		{
+			AudioPlayer.Play( nonTeleportableVoiceLine, Globals.Tags.DIALOGUE_SOURCE );
+		}
+	}
 }
