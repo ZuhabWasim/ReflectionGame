@@ -20,7 +20,6 @@ public class InteractNote : InteractableAbstract
 		pointer = id;
 		InventoryDisplay inventoryDisplay = GameObject.Find( Globals.Misc.UI_Canvas ).GetComponent<InventoryDisplay>();
 		inventoryDisplay.showNewEntryNotice();
-		AudioPlayer.Play( Globals.AudioFiles.General.PAPER_UNRAVEL, Globals.Tags.MAIN_SOURCE );
-		AudioPlayer.Play( Globals.VoiceLines.Section1.MILLE_POV_INTRO, Globals.Tags.DIALOGUE_SOURCE, false );
+		AudioPlayer.Play(Globals.AudioFiles.General.PAPER_UNRAVEL, Globals.Tags.MAIN_SOURCE);
 	}
 }
