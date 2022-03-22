@@ -25,8 +25,8 @@
             "path": "Audio\\Voicelines\\Section1\\no_fusebox"
         },
         {
-            "name": "Handkerchief",
-            "path": "Audio\\Section1\\Handkerchief"
+            "name": "fusebox",
+            "path": "Audio\\Section1\\fusebox"
         },
         {
             "name": "1.49__fathers_voice",
@@ -91,6 +91,10 @@
         {
             "name": "sfx_safe_unlock_open_sequence",
             "path": "Audio\\Section2\\sfx_safe_unlock_open_sequence"
+        },
+        {
+            "name": "handkerchief",
+            "path": "Audio\\Section1\\handkerchief"
         },
         {
             "name": "1.30__still_cant_see_myself",
@@ -239,10 +243,6 @@
         {
             "name": "sfx_cardboard_box_slide",
             "path": "Audio\\Section2\\sfx_cardboard_box_slide"
-        },
-        {
-            "name": "Fusebox",
-            "path": "Audio\\Section1\\Fusebox"
         },
         {
             "name": "footstep_wood",

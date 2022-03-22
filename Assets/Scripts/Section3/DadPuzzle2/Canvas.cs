@@ -21,7 +21,7 @@ public class Canvas : InteractableAbstract
 	protected override void OnStart()
 	{
 		if ( outgoingLight ) m_lightRange = outgoingLight.range;
-		desiredItem = Globals.Misc.PAINT_BRUSH;
+		desiredItem = Globals.Misc.WET_PAINT_BRUSH;
 	}
 
 	protected override void OnUseItem()
