@@ -16,7 +16,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 1
   m_IsActive: 1
 --- !u!4 &794599832605091802
 Transform:
@@ -99,7 +99,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 1
   m_IsActive: 1
 --- !u!4 &7277139300500053627
 Transform:
@@ -288,13 +288,16 @@ MonoBehaviour:
   nonInteractableVoiceLine: {fileID: 0}
   displayPrompt: 1
   acceptItem: 0
+  deleteItem: 0
   itemName: Safe
   myType: 0
+  thisIsAMirror: 0
   openSound: {fileID: 0}
   closeSound: {fileID: 0}
   audioSourceName: 
   closeEvent: 
   openEvent: 
+  needsItem: 
 --- !u!65 &1953244584515802730
 BoxCollider:
   m_ObjectHideFlags: 0
