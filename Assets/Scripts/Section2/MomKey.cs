@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class MomKey : PickupItem
 {
+    void Start()
+    {
+        base.OnStart();    
+    }
+
     protected override void OnUserInteract()
     {
         this.gameObject.SetActive( false );

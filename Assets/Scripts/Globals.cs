@@ -22,6 +22,9 @@ public class Globals
 	public static void RegisterGlobalEventListeners()
 	{
 		EventManager.Sub( Globals.Events.TELEPORT, UpdateWorldOnTeleport );
+
+		EventManager.Sub( Globals.Events.LOCK_MOM_DOOR, DisableMainRooms );
+		EventManager.Sub( Globals.Events.HAS_MOM_KEY, EnableMainRooms );
 	}
 
 	private static void UpdateWorldOnTeleport()
@@ -30,23 +33,39 @@ public class Globals
 		// bool isPresent = GlobalState.GetVar<bool>( Globals.Vars.IS_PRESENT_WORLD );
 	}
 
+	private static void DisableMainRooms()
+	{
+		Debug.Log("Disabling Main Room");
+		EventManager.Fire(Globals.Events.DEACTIVATE_MAIN_ROOM);
+	}
+
+	private static void EnableMainRooms()
+	{
+		Debug.Log("Enabling Main Room");
+		EventManager.Fire(Globals.Events.ACTIVATE_MAIN_ROOM);
+	}
+
+	// All events used by event manager should go here
+	// Do not add spaces between the words of the string, the event system will split it into multiple events
 	public class Events
 	{
-		// All events used by event manager should go here
+		// General events
 		public static string TELEPORT = "teleport";
+		public static string ACTIVATE_MOM_CLOSET = "ActivateMomCloset";
+		public static string DEACTIVATE_MOM_CLOSET = "DeactivateMomCloset";
+		public static string ACTIVATE_DAD_CLOSET = "ActivateDadCloset";
+		public static string DEACTIVATE_DAD_CLOSET = "DeactivateDadCloset";
+		public static string ACTIVATE_MAIN_ROOM = "ActivateMainRoom";
+		public static string DEACTIVATE_MAIN_ROOM = "DeactivateMainRoom";
+
+		// Section 1
 		public static string LIGHTS_TURN_ON = "TurnOnLights";
 		public static string LIGHTS_TURN_OFF = "TurnOffLights";
 		public static string MILLIE_KEY_INTERACT = "MillieKeyInteract";
 		public static string HAS_MILLIE_KEY = "HasMillieKey";
-		public static string LOCK_MOM_DOOR = "LockMomDoor";
-		public static string LOCK_DAD_DOOR = "LockDadDoor";
-		public static string BOOKSHELF_BOOK_PLACED = "BookshelfBookPlaced";
-		public static string BOOKSHELF_BOOK_PICKED_UP = "BookshelfBookPickedUp";
-		public static string PAINT_BRUSH_WET = "PaintBrushWet";
-		public static string DAD_PUZZLE_1_MILLIE_PAINT = "DadPuzzle1_MillePaint";
-		public static string DAD_PUZZLE_1_BOOKSHELF_SOLVED = "DadPuzzle1_BookshelfSolved";
-		public static string CANVAS_STATE_CHANGE = "CanvasStateChange";
 
+		// Section 2
+		public static string LOCK_MOM_DOOR = "LockMomDoor";
 		public static string OBTAINED_SCISSORS = "ObtainedScissors";
 		public static string CUTTING_CLOTHING_RACK = "CuttingClothingRack";
 		public static string SWEPT_DEBRIS = "SweptDebris";
@@ -57,6 +76,14 @@ public class Globals
 		public static string READ_MOM_NOTE = "ReadMomNote";
 
 
+		// Section 3
+		public static string LOCK_DAD_DOOR = "LockDadDoor";
+		public static string BOOKSHELF_BOOK_PLACED = "BookshelfBookPlaced";
+		public static string BOOKSHELF_BOOK_PICKED_UP = "BookshelfBookPickedUp";
+		public static string PAINT_BRUSH_WET = "PaintBrushWet";
+		public static string DAD_PUZZLE_1_MILLIE_PAINT = "DadPuzzle1_MillePaint";
+		public static string DAD_PUZZLE_1_BOOKSHELF_SOLVED = "DadPuzzle1_BookshelfSolved";
+		public static string CANVAS_STATE_CHANGE = "CanvasStateChange";
 	}
 
 	public class Tags
@@ -71,7 +98,9 @@ public class Globals
 		public static string INTERACTABLE_BOOK = "InteractableBook";
 		public static string BOOK_SLOT = "BookSlot";
 		public static string MUSIC_BOX = "MusicBox";
-
+		
+		public static string PRESENT_MOM_DOOR = "PresentMomDoor";
+		public static string PRESENT_DAD_DOOR = "PresentDadDoor";
 	}
 
 	public class Misc

@@ -70,11 +70,17 @@ public class MirrorB : MirrorInteractable
     
     void OnBlockingMirrorB()
     {
-        teleportable = false;
+        if (moved)
+        {
+            teleportable = false;
+        }
     }
     
     void OnUnblockingMirrorB()
     {
-        teleportable = true;
+        if (moved)
+        {
+            teleportable = true;
+        }
     }
 }

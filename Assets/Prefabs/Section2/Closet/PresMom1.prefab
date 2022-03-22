@@ -13219,6 +13219,10 @@ PrefabInstance:
       propertyPath: m_VersionIndex
       value: 354
       objectReference: {fileID: 0}
+    - target: {fileID: 1649749810864722095, guid: 3ad6ca3da0452804d84edfbecf15fee8, type: 3}
+      propertyPath: m_TagString
+      value: PresentMomDoor
+      objectReference: {fileID: 0}
     - target: {fileID: 2055766841604605353, guid: 3ad6ca3da0452804d84edfbecf15fee8, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -13350,7 +13354,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1649749810864722095, guid: 3ad6ca3da0452804d84edfbecf15fee8, type: 3}
   m_PrefabInstance: {fileID: 2994777121704591427}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5752991081212461888
+--- !u!114 &1520322007502422840
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -13359,13 +13363,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 4569609196847714540}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71e0e0319f401c8408104afee3512a10, type: 3}
+  m_Script: {fileID: 11500000, guid: c62f7a00ddc5581499fb5ae6ab3481c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   interactable: 0
-  makeInteractableEvent: TurnOnLights
+  makeInteractableEvent: HasMomKey
   makeNonInteractableEvent: 
-  voiceLine: {fileID: 8300000, guid: e3bc12dbdb5fac542a7dce4ab649a09d, type: 3}
+  voiceLine: {fileID: 0}
   nonInteractableVoiceLine: {fileID: 8300000, guid: 56fec2afa3da0b54b915562f97df9676, type: 3}
   displayPrompt: 1
   acceptItem: 0
@@ -13373,6 +13377,33 @@ MonoBehaviour:
   itemName: Mom's Closet Door
   myType: 0
   thisIsAMirror: 0
+  openSound: {fileID: 0}
+  closeSound: {fileID: 0}
+  audioSourceName: 
+  closeEvent: 
+  openEvent: 
+  needsItem: 
+--- !u!114 &5599946935991266315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4569609196847714540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57cb33a5ebfe4b94fa97cb4b6351b42e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startPosition: {x: 0, y: 0, z: 0}
+  endPostion: {x: 0, y: 0, z: 0}
+  startRotation: {x: 0, y: 0, z: 0}
+  endRotation: {x: 0, y: -90, z: 0}
+  interpolateRotation: 1
+  interpolatePosition: 0
+  loop: 0
+  interpDuration: 0.7
+  triggerMethod: 2
 --- !u!4 &7129405354503157528 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5440112544721598299, guid: 3ad6ca3da0452804d84edfbecf15fee8, type: 3}
