@@ -16,6 +16,9 @@ TagManager:
   - MirrorInactiveZone
   - BookSlot
   - MusicBox
+  - BoxPuzzle
+  - PresentMomDoor
+  - PresentDadDoor
   layers:
   - Default
   - TransparentFX

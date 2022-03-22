@@ -35,14 +35,14 @@ public class Globals
 
 	private static void DisableMainRooms()
 	{
-		GameObject.Find("PastRoom").SetActive(false);
-		GameObject.Find("PresentRoom").SetActive(false);
+		Debug.Log("Disabling Main Room");
+		EventManager.Fire(Globals.Events.DEACTIVATE_MAIN_ROOM);
 	}
 
 	private static void EnableMainRooms()
 	{
-		GameObject.Find("PastRoom").SetActive(true);
-		GameObject.Find("PresentRoom").SetActive(true);
+		Debug.Log("Enabling Main Room");
+		EventManager.Fire(Globals.Events.ACTIVATE_MAIN_ROOM);
 	}
 
 	// All events used by event manager should go here
@@ -51,6 +51,12 @@ public class Globals
 	{
 		// General events
 		public static string TELEPORT = "teleport";
+		public static string ACTIVATE_MOM_CLOSET = "ActivateMomCloset";
+		public static string DEACTIVATE_MOM_CLOSET = "DeactivateMomCloset";
+		public static string ACTIVATE_DAD_CLOSET = "ActivateDadCloset";
+		public static string DEACTIVATE_DAD_CLOSET = "DeactivateDadCloset";
+		public static string ACTIVATE_MAIN_ROOM = "ActivateMainRoom";
+		public static string DEACTIVATE_MAIN_ROOM = "DeactivateMainRoom";
 
 		// Section 1
 		public static string LIGHTS_TURN_ON = "TurnOnLights";
@@ -92,7 +98,9 @@ public class Globals
 		public static string INTERACTABLE_BOOK = "InteractableBook";
 		public static string BOOK_SLOT = "BookSlot";
 		public static string MUSIC_BOX = "MusicBox";
-
+		
+		public static string PRESENT_MOM_DOOR = "PresentMomDoor";
+		public static string PRESENT_DAD_DOOR = "PresentDadDoor";
 	}
 
 	public class Misc

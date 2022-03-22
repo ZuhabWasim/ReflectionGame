@@ -154,6 +154,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9f8fce9d3d5f3419b067df4d534378, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  leftVec: {x: 0, y: 0, z: 0}
+  topVec: {x: 0, y: 0, z: 0}
   mirrorConnector: {fileID: 0}
 --- !u!1 &6672719748919054127
 GameObject:
@@ -9767,6 +9769,7 @@ MonoBehaviour:
   deleteItem: 0
   itemName: 
   myType: 0
+  thisIsAMirror: 0
   bma: {fileID: 3457560044561640731}
   correspondingBlock: {fileID: 0}
 --- !u!1 &9108448122070366271
@@ -10956,7 +10959,9 @@ MonoBehaviour:
   deleteItem: 0
   itemName: Wheel
   myType: 0
+  thisIsAMirror: 0
   img: {fileID: 0}
+  onPickupEvent: 
 --- !u!1001 &840886223497846492
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12458,7 +12463,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1597157112138930233, guid: 1f58c3ce3afce444b96cc63b3395fd24, type: 3}
       propertyPath: m_Name
-      value: MusicBoxKeyMillie
+      value: MusicBoxKeyMom
+      objectReference: {fileID: 0}
+    - target: {fileID: 1597157112138930233, guid: 1f58c3ce3afce444b96cc63b3395fd24, type: 3}
+      propertyPath: m_TagString
+      value: PickupItem
       objectReference: {fileID: 0}
     - target: {fileID: 1597157112138930234, guid: 1f58c3ce3afce444b96cc63b3395fd24, type: 3}
       propertyPath: m_Mesh
@@ -12535,7 +12544,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1597157112138930233, guid: 1f58c3ce3afce444b96cc63b3395fd24, type: 3}
   m_PrefabInstance: {fileID: 7710650097158409203}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &286987609275852306
+--- !u!114 &3980250740663119502
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -12544,20 +12553,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 9019450595063550922}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77650e260da45a54fbad7a52da2ce0b6, type: 3}
+  m_Script: {fileID: 11500000, guid: 02b0610bec2323b4a8418a26a4a982f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   interactable: 1
   makeInteractableEvent: 
   makeNonInteractableEvent: 
-  voiceLine: {fileID: 0}
+  voiceLine: {fileID: 8300000, guid: 33692cb09e75bf449a7aeb2311f61b7f, type: 3}
   nonInteractableVoiceLine: {fileID: 0}
   displayPrompt: 1
   acceptItem: 0
   deleteItem: 0
   itemName: Mom's Key
-  myType: 0
+  myType: 2
+  thisIsAMirror: 0
   img: {fileID: 0}
+  onPickupEvent: 
 --- !u!1001 &8836201371928230188
 PrefabInstance:
   m_ObjectHideFlags: 0

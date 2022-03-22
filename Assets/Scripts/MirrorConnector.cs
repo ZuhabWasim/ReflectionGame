@@ -46,7 +46,7 @@ public class MirrorConnector : MonoBehaviour
 	{
 		if ( makeInteractableEvent != string.Empty )
 		{
-			EventManager.Sub( makeInteractableEvent, () => { Activate(); } );
+			EventManager.Sub( makeInteractableEvent, () => { Activate(true); } );
 		}
 
 		if ( makeNonInteractableEvent != string.Empty )
