@@ -16,12 +16,16 @@ public class BookSlot : InteractableAbstract
 	public BookType currentBook = BookType.INVALID_BOOK;
 	public BookType targetBook;
 	public Vector3 bookPosition;
-
+	
 	private const string WHITE_BOOK = "WhiteBook";
 	private const string RED_BOOK = "RedBook";
 	private const string BLUE_BOOK = "BlueBook";
 	private const string GREEN_BOOK = "GreenBook";
 
+	private const float FLOOR_HEIGHT = 0.27f;
+	private const float BUCKET_HEIGHT = 1.25f;
+	private const float HEIGHT_ERROR = 0.02f;
+	
 	protected override void OnStart()
 	{
 		EventManager.Sub( Globals.Events.BOOKSHELF_BOOK_PICKED_UP, OnBookPickedUp );
@@ -59,13 +63,28 @@ public class BookSlot : InteractableAbstract
 	{
 		Inventory inventory = Inventory.GetInstance();
 		PickupItem selectedItem = inventory.GetSelectedPickupItem();
-		if ( selectedItem != null && selectedItem.gameObject.tag == Globals.Tags.INTERACTABLE_BOOK )
+		
+		if (IsOnBucket())
 		{
-			currentBook = GetBookTypeFromName( selectedItem.gameObject.name );
-			selectedItem.OnDrop( bookPosition, true );
-			inventory.DeleteItem( selectedItem.itemName );
+			if ( selectedItem != null && selectedItem.gameObject.tag == Globals.Tags.INTERACTABLE_BOOK )
+			{
+				currentBook = GetBookTypeFromName( selectedItem.gameObject.name );
+				selectedItem.OnDrop( bookPosition, true );
+				inventory.DeleteItem( selectedItem.itemName );
 
-			EventManager.Fire( Globals.Events.BOOKSHELF_BOOK_PLACED );
+				EventManager.Fire( Globals.Events.BOOKSHELF_BOOK_PLACED );
+			}
 		}
+		else
+		{
+			AudioPlayer.Play(Globals.VoiceLines.General.PLACEHOLDER_3, Globals.Tags.DIALOGUE_SOURCE);
+		}
+
+	}
+
+	public static bool IsOnBucket()
+	{
+		Vector3 playerPosition = GameObject.FindGameObjectWithTag(Globals.Tags.PLAYER).transform.position;
+		return playerPosition.y >= BUCKET_HEIGHT - HEIGHT_ERROR;
 	}
 }

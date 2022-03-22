@@ -19,6 +19,7 @@ TagManager:
   - BoxPuzzle
   - PresentMomDoor
   - PresentDadDoor
+  - PresentDadShelf
   layers:
   - Default
   - TransparentFX

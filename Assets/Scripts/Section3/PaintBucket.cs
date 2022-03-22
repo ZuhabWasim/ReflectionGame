@@ -21,5 +21,6 @@ public class PaintBucket : InteractableAbstract
 	{
 		PaintBrush brush = Inventory.GetInstance().GetSelectedPickupItem().GetComponent<PaintBrush>();
 		brush.paint = paint;
+		brush.itemName = Globals.Misc.WET_PAINT_BRUSH;
 	}
 }

@@ -38,8 +38,10 @@ public class ChangeLightState : MonoBehaviour
 		
 		// Update Voice lines for Present Doors
 		InterpolateInteractableWrapper momWrapper = GameObject.FindGameObjectWithTag( Globals.Tags.PRESENT_MOM_DOOR ).GetComponent<InterpolateInteractableWrapper>();
+		InterpolateInteractableWrapper dadWrapper = GameObject.FindGameObjectWithTag( Globals.Tags.PRESENT_DAD_DOOR ).GetComponent<InterpolateInteractableWrapper>();
 		AudioClip doorLockedSound = Utilities.AssetLoader.GetSFX( Globals.VoiceLines.Section1.LOCKED_FROM_THE_INSIDE );
 		momWrapper.nonInteractableVoiceLine = doorLockedSound;
+		dadWrapper.nonInteractableVoiceLine = doorLockedSound;
 	}
 
 

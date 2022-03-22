@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class EmptyBucket : PickupItem
 {
-	// Start is called before the first frame update
-	protected override void OnStart()
-	{
-	}
-
 	public override void OnUserInteractUnfiltered()
 	{
 		base.OnUserInteract();
@@ -23,5 +18,8 @@ public class EmptyBucket : PickupItem
 	{
 		base.OnDrop( dropPostion, isLocal );
 		SetDropTransform();
+		Inventory inventory = Inventory.GetInstance();
+		PickupItem selectedItem = inventory.GetSelectedPickupItem();
+		inventory.DeleteItem( selectedItem.itemName );
 	}
 }

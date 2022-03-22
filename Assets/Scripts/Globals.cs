@@ -74,16 +74,17 @@ public class Globals
 		public static string UNBLOCKING_MIRROR_B = "UnblockingMirrorB";
 		public static string BLOCKING_MIRROR_B = "BlockingMirrorB";
 		public static string READ_MOM_NOTE = "ReadMomNote";
-
-
+		
 		// Section 3
 		public static string LOCK_DAD_DOOR = "LockDadDoor";
+		public static string LOCK_PAST_DAD_SHELF = "LockPastDadShelf";
 		public static string BOOKSHELF_BOOK_PLACED = "BookshelfBookPlaced";
 		public static string BOOKSHELF_BOOK_PICKED_UP = "BookshelfBookPickedUp";
 		public static string PAINT_BRUSH_WET = "PaintBrushWet";
 		public static string DAD_PUZZLE_1_MILLIE_PAINT = "DadPuzzle1_MillePaint";
 		public static string DAD_PUZZLE_1_BOOKSHELF_SOLVED = "DadPuzzle1_BookshelfSolved";
 		public static string CANVAS_STATE_CHANGE = "CanvasStateChange";
+		public static string HAS_DAD_KEY = "HasDadKey";
 	}
 
 	public class Tags
@@ -101,6 +102,7 @@ public class Globals
 		
 		public static string PRESENT_MOM_DOOR = "PresentMomDoor";
 		public static string PRESENT_DAD_DOOR = "PresentDadDoor";
+		public static string PRESENT_DAD_SHELF = "PresentDadShelf";
 	}
 
 	public class Misc
@@ -111,7 +113,9 @@ public class Globals
 		public static string MOUSE_Y = "Mouse Y";
 		public static string UI_Canvas = "UI_Canvas";
 		public static string PAINT_BRUSH = "Paint Brush";
+		public static string WET_PAINT_BRUSH = "Wet Paint Brush";
 		public static string SCISSOR_PUZZLE = "ScissorPuzzle";
+		public static string EMPTY_BUCKET = "Empty Bucket";
 
 		// For Animations
 		public static string IS_WALKING = "IsWalking";
