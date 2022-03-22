@@ -22,12 +22,27 @@ public class Globals
 	public static void RegisterGlobalEventListeners()
 	{
 		EventManager.Sub( Globals.Events.TELEPORT, UpdateWorldOnTeleport );
+
+		EventManager.Sub( Globals.Events.LOCK_MOM_DOOR, DisableMainRooms );
+		EventManager.Sub( Globals.Events.HAS_MOM_KEY, EnableMainRooms );
 	}
 
 	private static void UpdateWorldOnTeleport()
 	{
 		GlobalState.SetVar<bool>( Globals.Vars.IS_PRESENT_WORLD, !GlobalState.GetVar<bool>( Globals.Vars.IS_PRESENT_WORLD ) );
 		// bool isPresent = GlobalState.GetVar<bool>( Globals.Vars.IS_PRESENT_WORLD );
+	}
+
+	private static void DisableMainRooms()
+	{
+		GameObject.Find("PastRoom").SetActive(false);
+		GameObject.Find("PresentRoom").SetActive(false);
+	}
+
+	private static void EnableMainRooms()
+	{
+		GameObject.Find("PastRoom").SetActive(true);
+		GameObject.Find("PresentRoom").SetActive(true);
 	}
 
 	// All events used by event manager should go here
