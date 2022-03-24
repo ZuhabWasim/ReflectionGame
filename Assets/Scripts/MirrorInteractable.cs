@@ -10,6 +10,10 @@ public class MirrorInteractable : InteractableAbstract
 	public string audioSourceName;
 
 	public bool teleportable;
+
+	// [Tooltip( "This is a canvas. It needs to break some of the rules so that you can teleport" )]
+	// public bool part2Canvas;
+
 	public string makeTeleportableEvent;
 	public string makeNonTeleportableEvent;
 	public AudioClip teleportableVoiceLine;

@@ -16,12 +16,15 @@ public class Canvas : InteractableAbstract
 	public ColorFilter outgoingFilter = null;
 	public GameObject[] activateOnPortal;
 
+	private GameObject m_mirrorPlane;
 	private float m_lightRange;
 
 	protected override void OnStart()
 	{
 		if ( outgoingLight ) m_lightRange = outgoingLight.range;
 		desiredItem = Globals.Misc.WET_PAINT_BRUSH;
+
+		m_mirrorPlane = GetComponentInChildren<MirrorPlane>(true).gameObject; // By default, many canvas mirrors are inactive
 	}
 
 	protected override void OnUseItem()
@@ -30,12 +33,15 @@ public class Canvas : InteractableAbstract
 		switch ( brush.paint )
 		{
 			case PaintType.WHITE:
+				ToClean();
 				SetState( CanvasState.CLEAN );
 				break;
 			case PaintType.REFLECTIVE:
+				ToReflective();
 				SetState( CanvasState.REFLECTIVE );
 				break;
 			case PaintType.PORTAL:
+				ToPortal();
 				SetState( CanvasState.PORTAL );
 				break;
 			case PaintType.NONE:
@@ -79,5 +85,22 @@ public class Canvas : InteractableAbstract
 	{
 		this.outgoingFilter = filter;
 		EventManager.Fire( Globals.Events.CANVAS_STATE_CHANGE );
+	}
+
+	private void ToPortal()
+	{
+		m_mirrorPlane.SetActive(true);
+	}
+
+	private void ToReflective()
+	{
+		// TODO: set the reflective texture
+		m_mirrorPlane.SetActive(false);
+	}
+
+	private void ToClean()
+	{
+		// TODO: set the clean texture
+		m_mirrorPlane.SetActive(false);
 	}
 }

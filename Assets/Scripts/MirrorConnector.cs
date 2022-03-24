@@ -5,7 +5,9 @@ using UnityEngine;
 // Connector object between two mirrors
 public class MirrorConnector : MonoBehaviour
 {
+	[Tooltip( "Present mirror. MUST be set or nothing will work" )]
 	public MirrorPlane presentMirror; // Mirror that is in the regular world
+	[Tooltip( "Past mirror. MUST be set or nothing will work" )]
 	public MirrorPlane pastMirror; // Mirror in the past world
 
 	public float mirrorHeight = 1.0f;
@@ -168,13 +170,17 @@ public class MirrorConnector : MonoBehaviour
 
 		if ( GlobalState.GetVar<bool>( "isPresent" ) )
 		{
-			pastMirror.SetOppositeCameraPosition( m_player, m_playerCamera, presentMirror.transform );
-			presentMirror.ReflectOverMirror( m_player, m_playerCamera );
+			if (pastMirror != null)
+			{
+				pastMirror.SetOppositeCameraPosition( m_player, m_playerCamera, presentMirror.transform );
+			}
 		}
 		else
 		{
-			presentMirror.SetOppositeCameraPosition( m_player, m_playerCamera, pastMirror.transform );
-			pastMirror.ReflectOverMirror( m_player, m_playerCamera );
+			if (presentMirror != null)
+			{
+				presentMirror.SetOppositeCameraPosition( m_player, m_playerCamera, pastMirror.transform );
+			}
 		}
 	}
 
