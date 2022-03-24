@@ -126,6 +126,9 @@ public class MirrorCameraPosition : MonoBehaviour
 	// Sets the camera position based on the opposite camera. Used for the past/present reflections
 	public void SetOppositeCameraPosition( Transform player, Transform playerCamera, Transform otherMirrorPlane )
 	{
+		if (m_mirrorPlaneTransform == null)
+			return;
+
 		Vector3 playerToMirror = otherMirrorPlane.position - player.position; // Relative to the mirror
 
 		// Note: the up/right vectors are in local coordinates
