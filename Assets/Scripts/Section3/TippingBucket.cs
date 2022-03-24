@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TippingBucket : InterpolateInteractableWrapper
@@ -9,6 +10,10 @@ public class TippingBucket : InterpolateInteractableWrapper
 
     private bool toppled = false;
 
+    public AudioClip tippingVoiceLine;
+
+    public GameObject mirrorPast;
+    
     void Update()
     {
         if (!toppled)
@@ -37,7 +42,12 @@ public class TippingBucket : InterpolateInteractableWrapper
 
         interactable = false;
         toppled = true;
-            
+
+        InterpolateTransform itMirror = mirrorPast.GetComponent<InterpolateTransform>();
+        itMirror.TriggerMotion();
+        //mirrorPast.SetActive(true);
+        
+        AudioPlayer.Play(tippingVoiceLine, Globals.Tags.DIALOGUE_SOURCE);
         // Fire event to enable ground mirror.
     }
 }

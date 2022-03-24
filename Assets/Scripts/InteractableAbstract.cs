@@ -29,6 +29,8 @@ public abstract class InteractableAbstract : MonoBehaviour
 	public string makeNonInteractableEvent = "";
 	public AudioClip voiceLine;
 	public AudioClip nonInteractableVoiceLine;
+	public AudioClip nonUseableVoiceLine;
+	public AudioClip useVoiceLine;
 
 	public bool displayPrompt = true;
 	public bool acceptItem = false;
@@ -157,6 +159,10 @@ public abstract class InteractableAbstract : MonoBehaviour
 		if ( desiredItem == objectName )
 		{
 			OnUseItem();
+			if (useVoiceLine != null)
+			{
+				AudioPlayer.Play( useVoiceLine, Globals.Tags.DIALOGUE_SOURCE );
+			}
 			if ( deleteItem )
 			{
 				m_inventory.DeleteItem( desiredItem );
@@ -170,13 +176,27 @@ public abstract class InteractableAbstract : MonoBehaviour
 		// If no item is selected.
 		else if ( objectName == "" )
 		{
-			AudioPlayer.Play( Globals.VoiceLines.General.NOT_HOLDING_ANYTHING, Globals.Tags.DIALOGUE_SOURCE );
+			if (nonUseableVoiceLine != null)
+			{
+				AudioPlayer.Play( nonUseableVoiceLine, Globals.Tags.DIALOGUE_SOURCE );
+			}
+			else
+			{
+				AudioPlayer.Play( Globals.VoiceLines.General.NOT_HOLDING_ANYTHING, Globals.Tags.DIALOGUE_SOURCE );
+			}
 			AudioPlayer.Play( Globals.AudioFiles.General.NON_INTERACTABLE, Globals.Tags.MAIN_SOURCE );
 		}
 		// If the wrong item is selected.
 		else
 		{
-			AudioPlayer.Play( Globals.VoiceLines.General.CANT_USE_ITEM, Globals.Tags.DIALOGUE_SOURCE );
+			if (nonUseableVoiceLine != null)
+			{
+				AudioPlayer.Play( nonUseableVoiceLine, Globals.Tags.DIALOGUE_SOURCE );
+			}
+			else
+			{
+				AudioPlayer.Play( Globals.VoiceLines.General.CANT_USE_ITEM, Globals.Tags.DIALOGUE_SOURCE );
+			}
 			AudioPlayer.Play( Globals.AudioFiles.General.NON_INTERACTABLE, Globals.Tags.MAIN_SOURCE );
 		}
 	}
