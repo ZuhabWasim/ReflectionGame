@@ -41,6 +41,7 @@ public class Canvas : InteractableAbstract
 				SetState( CanvasState.REFLECTIVE );
 				break;
 			case PaintType.PORTAL:
+				ToPortal();
 				SetState( CanvasState.PORTAL );
 				break;
 			case PaintType.NONE:
