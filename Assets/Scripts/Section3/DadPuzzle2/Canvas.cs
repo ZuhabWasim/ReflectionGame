@@ -41,7 +41,6 @@ public class Canvas : InteractableAbstract
 				SetState( CanvasState.REFLECTIVE );
 				break;
 			case PaintType.PORTAL:
-				ToPortal();
 				SetState( CanvasState.PORTAL );
 				break;
 			case PaintType.NONE:
@@ -52,6 +51,7 @@ public class Canvas : InteractableAbstract
 
 	void OnPortal()
 	{
+		ToPortal();
 		foreach ( GameObject obj in activateOnPortal )
 		{
 			obj.SetActive( true );
