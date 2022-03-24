@@ -52,6 +52,7 @@ public class Canvas : InteractableAbstract
 
 	void OnPortal()
 	{
+		ToPortal();
 		foreach ( GameObject obj in activateOnPortal )
 		{
 			obj.SetActive( true );

@@ -4895,6 +4895,7 @@ GameObject:
   - component: {fileID: 7359280856627470063}
   - component: {fileID: 7359280856627470062}
   - component: {fileID: 7359280856627470057}
+  - component: {fileID: 5852815070027867768}
   m_Layer: 0
   m_Name: Spotlight
   m_TagString: Untagged
@@ -6379,6 +6380,29 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &5852815070027867768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7359280856627470056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8e2b1847b7902746a653624f99abf21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactable: 1
+  makeInteractableEvent: 
+  makeNonInteractableEvent: 
+  voiceLine: {fileID: 0}
+  nonInteractableVoiceLine: {fileID: 0}
+  displayPrompt: 1
+  acceptItem: 1
+  deleteItem: 1
+  itemName: Studio Light
+  myType: 0
+  thisIsAMirror: 0
 --- !u!1 &7359280856936141443
 GameObject:
   m_ObjectHideFlags: 0
@@ -9168,6 +9192,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FilledBucket
       objectReference: {fileID: 0}
+    - target: {fileID: 6849076696906550594, guid: 351b18d4a290e0343b1cbf86e7564ef7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8084211429777722080, guid: 351b18d4a290e0343b1cbf86e7564ef7, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -9360,6 +9388,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7359280856936141440}
     m_Modifications:
+    - target: {fileID: 3331100757775074128, guid: d7bf4b424bb08784fb708f9d3500b4a8, type: 3}
+      propertyPath: interactable
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7288405234134925272, guid: d7bf4b424bb08784fb708f9d3500b4a8, type: 3}
       propertyPath: m_Name
       value: Safe
