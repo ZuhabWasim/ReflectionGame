@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -7,6 +8,10 @@ public class BookShelfPuzzle : MonoBehaviour
 {
 
 	public uint numBookSlots = 4;
+	public AudioClip wrongOrderVoiceLine;
+	public AudioClip rightOrderVoiceLine;
+	public AudioClip presentOrderVoiceLine;
+	
 	private List<BookSlot> m_bookslots;
 
 	private const string WHITE_BOOK = "WhiteBook";
@@ -37,21 +42,67 @@ public class BookShelfPuzzle : MonoBehaviour
 
 	void CheckPuzzleSolved()
 	{
+		bool isPastOrder = true;
+		bool isPresentOrder = true;
+		
 		foreach ( BookSlot slot in m_bookslots )
 		{
-			if ( slot.targetBook != slot.currentBook )
+			// If the book is INVALID, the code cannot possibly be correct, we don't check.
+			if (slot.currentBook == BookType.INVALID_BOOK)
 			{
 				return;
 			}
+			// Present code checking.
+			if ( slot.currentBook != slot.targetBook )
+			{
+				isPastOrder = false;
+			}
+			// Past code checking.
+			if (slot.currentBook != slot.incorrectBook)
+			{
+				isPresentOrder = false;
+			} 
 		}
 
-		OnPuzzleSolved();
+		if (isPresentOrder)
+		{
+			// Dialog
+			AudioPlayer.Play(presentOrderVoiceLine, Globals.Tags.DIALOGUE_SOURCE);
+			return;
+		}
+
+		if (isPastOrder)
+		{
+			OnPuzzleSolved();
+			AudioPlayer.Play(rightOrderVoiceLine, Globals.Tags.DIALOGUE_SOURCE);
+			return;
+		}
+		
+		AudioPlayer.Play(wrongOrderVoiceLine, Globals.Tags.DIALOGUE_SOURCE);
 	}
 
 	void OnPuzzleSolved()
 	{
 		Debug.Log( "Bookshelf puzzle solved" );
+		
 		EventManager.Fire( Globals.Events.DAD_PUZZLE_1_BOOKSHELF_SOLVED );
+		
+		// Disables pick up for these books except Alice in Wonderland if the player wants to take it
+		foreach (BookSlot slot in m_bookslots)
+		{
+			slot.interactable = false;
+		}
+		
+		// Disables the pick up for all of these objects via disabling their box colliders.
+		GameObject[] interactableBooks = GameObject.FindGameObjectsWithTag(Globals.Tags.INTERACTABLE_BOOK);
+		foreach (GameObject book in interactableBooks)
+		{
+			PickupItem pickUpScript = book.GetComponent<PickupItem>();
+			if (pickUpScript != null && pickUpScript.itemName != "WhiteBook")
+			{
+				book.GetComponent<BoxCollider>().enabled = false;
+			}
+		}
 	}
 
 	void FixBookTransform( GameObject book )

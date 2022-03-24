@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,7 +16,10 @@ public class BookSlot : InteractableAbstract
 {
 	public BookType currentBook = BookType.INVALID_BOOK;
 	public BookType targetBook;
+	public BookType incorrectBook; // If the player enters the present puzzle
+	
 	public Vector3 bookPosition;
+	public AudioClip missingBookVoiceLine;
 	
 	private const string WHITE_BOOK = "WhiteBook";
 	private const string RED_BOOK = "RedBook";
@@ -66,18 +70,26 @@ public class BookSlot : InteractableAbstract
 		
 		if (IsOnBucket())
 		{
-			if ( selectedItem != null && selectedItem.gameObject.tag == Globals.Tags.INTERACTABLE_BOOK )
+			if ( currentBook == BookType.INVALID_BOOK && 
+			     (selectedItem == null || GetBookTypeFromName( selectedItem.gameObject.name ) == BookType.INVALID_BOOK))
 			{
-				currentBook = GetBookTypeFromName( selectedItem.gameObject.name );
-				selectedItem.OnDrop( bookPosition, true );
-				inventory.DeleteItem( selectedItem.itemName );
+				AudioPlayer.Play(missingBookVoiceLine, Globals.Tags.DIALOGUE_SOURCE);
+			}
+			else
+			{
+				if ( selectedItem != null && selectedItem.gameObject.tag == Globals.Tags.INTERACTABLE_BOOK )
+				{
+					currentBook = GetBookTypeFromName( selectedItem.gameObject.name );
+					selectedItem.OnDrop( bookPosition, true );
+					inventory.DeleteItem( selectedItem.itemName );
 
-				EventManager.Fire( Globals.Events.BOOKSHELF_BOOK_PLACED );
+					EventManager.Fire( Globals.Events.BOOKSHELF_BOOK_PLACED );
+				}
 			}
 		}
 		else
 		{
-			AudioPlayer.Play(Globals.VoiceLines.General.PLACEHOLDER_3, Globals.Tags.DIALOGUE_SOURCE);
+			AudioPlayer.Play(nonInteractableVoiceLine, Globals.Tags.DIALOGUE_SOURCE);
 		}
 
 	}
