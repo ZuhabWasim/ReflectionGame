@@ -24,10 +24,16 @@ public class MirrorCameraPosition : MonoBehaviour
 
 		Renderer mirrorRenderer = m_mirrorPlaneTransform.GetComponent<Renderer>();
 		Vector3 bounds = mirrorRenderer.bounds.size;
-		mirrorWidth = Vector3.Project( bounds, m_mirrorPlaneTransform.right ).magnitude;
-		mirrorHeight = Vector3.Project( bounds, m_mirrorPlaneTransform.forward ).magnitude;
-		//mirrorWidth = Mathf.Abs(m_mirrorPlaneTransform.localScale.x) * 10f;
-		//mirrorHeight = Mathf.Abs(m_mirrorPlaneTransform.localScale.z) * 10f;
+		if (m_mirrorPlaneTransform.GetComponent<MirrorPlane>().onFloor)
+        {
+			//HARDCODED & BAD. WE ONLY HAVE 2 FLOOR MIRRORS SO IDC -VALERIE
+			mirrorWidth = 4.0f;
+			mirrorHeight = 1.35f;
+		} else
+        {
+			mirrorWidth = Vector3.Project(bounds, m_mirrorPlaneTransform.right).magnitude;
+			mirrorHeight = Vector3.Project(bounds, m_mirrorPlaneTransform.forward).magnitude;
+		}
 	}
 
 	public Vector3 GetMirrorNormal()
@@ -35,6 +41,7 @@ public class MirrorCameraPosition : MonoBehaviour
 		return m_defaultMirrorCamFwd;
 	}
 
+	private bool printed = false;
 	// Update is called once per frame
 	void Update()
 	{
@@ -137,13 +144,13 @@ public class MirrorCameraPosition : MonoBehaviour
 		// Fix the camera y position to the player camera
 		if ( m_mirrorPlaneTransform.GetComponent<MirrorPlane>().onFloor )
 		{
-			displacement -= Vector3.Dot( playerToMirror, otherMirrorPlane.forward ) * transform.forward;
+			displacement += Vector3.Dot( playerToMirror, otherMirrorPlane.forward ) * transform.forward;
 			transform.position = displacement + m_mirrorPlaneTransform.position;
 			transform.position = new Vector3( transform.position.x, m_mirrorPlaneTransform.position.y - playerCamera.position.y, transform.position.z );
 		}
 		else
 		{
-			displacement = displacement + Vector3.Dot( playerToMirror, otherMirrorPlane.right ) * transform.right;
+			displacement += Vector3.Dot( playerToMirror, otherMirrorPlane.right ) * transform.right;
 			displacement += Vector3.Dot( playerToMirror, otherMirrorPlane.forward ) * transform.forward;
 			transform.position = displacement + m_mirrorPlaneTransform.position;
 			transform.position = new Vector3( transform.position.x, playerCamera.position.y, transform.position.z );
@@ -231,13 +238,13 @@ public class MirrorCameraPosition : MonoBehaviour
 		//For mirrors on the floor
 		//Using Vertical FOV axis
 
-		float dz = Mathf.Abs( transform.position.z - m_mirrorPlaneTransform.position.z );
-		float dy = Mathf.Abs( transform.position.y - m_mirrorPlaneTransform.position.y );
+		float d = Mathf.Abs( transform.position.y - m_mirrorPlaneTransform.position.y );
 		float dx = Mathf.Abs( transform.position.x - m_mirrorPlaneTransform.position.x );
-		float d = Mathf.Sqrt( dz * dz + dy * dy );
+		float dz = Mathf.Abs(transform.position.z - m_mirrorPlaneTransform.position.z);
+		float d2 = Mathf.Sqrt(dx * dx + dz * dz);
 
-		float hyp = Mathf.Sqrt( ( d * d ) + ( ( mirrorHeight / 2 + dx ) * ( mirrorHeight / 2 + dx ) ) );
-		float h2 = Mathf.Sqrt( ( d * d ) + ( ( dx - ( mirrorHeight / 2 ) ) * ( dx - ( mirrorHeight / 2 ) ) ) );
+		float hyp = Mathf.Sqrt( ( d * d ) + ( ( mirrorHeight / 2 + d2) * ( mirrorHeight / 2 + d2) ) );
+		float h2 = Mathf.Sqrt( ( d * d ) + ( (d2 - ( mirrorHeight / 2 ) ) * (d2 - ( mirrorHeight / 2 ) ) ) );
 		mirrorCam.fieldOfView = Mathf.Rad2Deg * Mathf.Acos( ( ( h2 * h2 ) + ( hyp * hyp ) - ( mirrorHeight * mirrorHeight ) ) / ( 2 * h2 * hyp ) );
 	}
 
