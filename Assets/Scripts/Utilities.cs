@@ -121,13 +121,21 @@ namespace Utilities
 		{
 			foreach ( FileInfo file in dir.GetFiles() )
 			{
-				if ( file.Extension == EXT_META || m_assetPathTable.ContainsKey( file.Name ) ) continue;
-				m_assetPathTable.Add( Path.GetFileNameWithoutExtension( file.Name ),
-					Path.ChangeExtension(
-						file.FullName.Substring( file.FullName.IndexOf( RESOURCES_FOLDER ) + RESOURCES_FOLDER.Length + 1 ),
-						null
-					)
-				);
+				try
+				{
+					if ( file.Extension == EXT_META || m_assetPathTable.ContainsKey( file.Name ) ) continue;
+					m_assetPathTable.Add( Path.GetFileNameWithoutExtension( file.Name ),
+						Path.ChangeExtension(
+							file.FullName.Substring( file.FullName.IndexOf( RESOURCES_FOLDER ) + RESOURCES_FOLDER.Length + 1 ),
+							null
+						)
+					);
+				}
+				catch
+				{
+					Debug.LogWarningFormat( "Failed to add {0} to asset table", file.Name );
+				}
+				
 			}
 
 			foreach ( DirectoryInfo subdir in dir.GetDirectories() )
@@ -150,6 +158,8 @@ namespace Utilities
 			{
 				writer.Write( serializedAssetTable );
 			}
+
+			Debug.Log( "Wrote updated audio_asset_table" );
 		}
 #endif // if UNITY_EDITOR
 
