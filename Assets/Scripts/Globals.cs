@@ -170,6 +170,7 @@ public class Globals
 
 		public static string INTERACTABLES_ENABLED = "interactables_enabled";
 		public static string IS_PRESENT_WORLD = "isPresent";
+		public static string DAD_PUZZLE_2_FINAL_LIGHT_COLOR = "FinalCanvasLightColor";
 	}
 
 	public class Teleporting
