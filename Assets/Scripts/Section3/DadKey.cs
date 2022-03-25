@@ -6,7 +6,8 @@ public class DadKey : PickupItem
 {
     void Start()
     {
-        base.OnStart();    
+        base.OnStart();
+        EventManager.Sub(Globals.Events.UPDATE_MOVEMENT, UpdateMover);
     }
 
     protected override void OnUserInteract()

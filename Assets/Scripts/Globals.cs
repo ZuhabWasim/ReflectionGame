@@ -97,6 +97,9 @@ public class Globals
 		public static string DAD_PUZZLE_1_BOOKSHELF_SOLVED = "DadPuzzle1_BookshelfSolved";
 		public static string CANVAS_STATE_CHANGE = "CanvasStateChange";
 		public static string HAS_DAD_KEY = "HasDadKey";
+		public static string UPDATE_MOVEMENT = "UpdateShelfMover";
+		public static string DAD_PUZZLE_2_LIGHTPUZZLE_SOLVED = "DadPuzzle2_LightPuzzleSolved";
+		
 	}
 
 	public class Tags
@@ -278,6 +281,21 @@ public class Globals
 			public static string NO_MORE_OBSTRUCTIONS = "no_more_obstructions";
 			public static string ANOTHER_BOX_BLOCKING = "another_box_blocking";
 			public static string MOM_NOTE = "mom_note";
+		}
+		
+		public class Section3
+		{
+			public static string JULY_28_LETTER = "secret_room_letter";
+			public static string JULY_28_POV = "positive_pov";
+			public static string WHITE_CANVAS = "white_canvases";
+			public static string REFLECTIVE_CANVAS = "reflective_canvases";
+			public static string CREATE_PORTAL = "reflecting_through_d";
+			public static string AUG_23_LETTER = "august23rdnote";
+			public static string AUG_23_POV = "discourage_millie_letter_pov";
+			public static string NOT_ALL_FILTERS = "light_through_all_filters";
+			public static string ALL_FILTERS = "light_through_all_filters2";
+			public static string SAFE_CODE = "safe_code_unlocked";
+			public static string CANVAS_PAINTING = "canvas_present";
 		}
 	}
 }
