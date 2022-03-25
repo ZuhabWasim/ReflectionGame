@@ -74,6 +74,11 @@ public class CanvasManager : MonoBehaviour
 				pair.past.SetState( CanvasState.PORTAL, notifyChange: false );
 				pair.present.SetState( CanvasState.PORTAL, notifyChange: false );
 			}
+			else if ( ( pair.past.state == CanvasState.PORTAL || pair.present.state == CanvasState.PORTAL ) && pair.past.state != pair.present.state )
+			{
+				if ( pair.past.state == CanvasState.PORTAL ) pair.past.SetState( CanvasState.REFLECTIVE, notifyChange: false );
+				else pair.present.SetState( CanvasState.REFLECTIVE, notifyChange: false );
+			}
 		}
 	}
 
