@@ -157,4 +157,17 @@ public class Inventory
 		// Return false if the deletion of this item was unsuccessful
 		return false;
 	}
+
+	public PickupItem GetItem( string itemName )
+	{
+		foreach ( PickupItem item in m_items )
+		{
+			if ( item && item.itemName == itemName )
+			{
+				return item;
+			}
+		}
+
+		return null;
+	}
 }
