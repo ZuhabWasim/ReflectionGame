@@ -43,6 +43,7 @@ public class BlockMovingArea : MonoBehaviour
 		{
 			mcList = mirrorConnector.GetComponents<MirrorConnector>();
 		}
+		EventManager.Sub( Globals.Events.MOVE_MIRROR_B, () => { RefreshMCList(); });
 		//PrintBoxGrids();
 	}
 
