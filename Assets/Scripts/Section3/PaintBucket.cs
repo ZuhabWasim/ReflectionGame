@@ -12,6 +12,8 @@ public enum PaintType
 public class PaintBucket : InteractableAbstract
 {
 	public PaintType paint = PaintType.NONE;
+	public Texture icon;
+	
 	protected override void OnStart()
 	{
 		desiredItem = Globals.Misc.PAINT_BRUSH;
@@ -22,5 +24,6 @@ public class PaintBucket : InteractableAbstract
 		PaintBrush brush = Inventory.GetInstance().GetSelectedPickupItem().GetComponent<PaintBrush>();
 		brush.paint = paint;
 		brush.itemName = Globals.Misc.WET_PAINT_BRUSH;
+		brush.img = icon;
 	}
 }
