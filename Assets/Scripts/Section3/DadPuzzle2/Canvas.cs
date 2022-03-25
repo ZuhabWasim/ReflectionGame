@@ -28,8 +28,20 @@ public class Canvas : InteractableAbstract
 		desiredItem = Globals.Misc.WET_PAINT_BRUSH;
 
 		m_mirrorPlane = GetComponentInChildren<MirrorPlane>( true ).gameObject; // By default, many canvas mirrors are inactive
+		// TODO: Make it so StudioLight.cs fires an event that turns on the outgoing light of all canvases.
 	}
 
+	protected override void OnUserInteract()
+	{
+		if (state == CanvasState.CLEAN)
+		{
+			AudioPlayer.Play(Globals.VoiceLines.Section3.WHITE_CANVAS, Globals.Tags.DIALOGUE_SOURCE);
+		} else if (state == CanvasState.REFLECTIVE)
+		{
+			AudioPlayer.Play(Globals.VoiceLines.Section3.REFLECTIVE_CANVAS, Globals.Tags.DIALOGUE_SOURCE);
+		}
+	}
+	
 	protected override void OnUseItem()
 	{
 		PaintBrush brush = Inventory.GetInstance().GetSelectedPickupItem().GetComponent<PaintBrush>();
