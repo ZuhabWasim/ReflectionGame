@@ -24,7 +24,7 @@ public class Canvas : InteractableAbstract
 		if ( outgoingLight ) m_lightRange = outgoingLight.range;
 		desiredItem = Globals.Misc.WET_PAINT_BRUSH;
 
-		m_mirrorPlane = GetComponentInChildren<MirrorPlane>(true).gameObject; // By default, many canvas mirrors are inactive
+		m_mirrorPlane = GetComponentInChildren<MirrorPlane>( true ).gameObject; // By default, many canvas mirrors are inactive
 	}
 
 	protected override void OnUseItem()
@@ -37,6 +37,7 @@ public class Canvas : InteractableAbstract
 				SetState( CanvasState.CLEAN );
 				break;
 			case PaintType.REFLECTIVE:
+				if ( state == CanvasState.PORTAL ) return;
 				ToReflective();
 				SetState( CanvasState.REFLECTIVE );
 				break;
@@ -90,18 +91,18 @@ public class Canvas : InteractableAbstract
 
 	private void ToPortal()
 	{
-		m_mirrorPlane.SetActive(true);
+		m_mirrorPlane.SetActive( true );
 	}
 
 	private void ToReflective()
 	{
 		// TODO: set the reflective texture
-		m_mirrorPlane.SetActive(false);
+		m_mirrorPlane.SetActive( false );
 	}
 
 	private void ToClean()
 	{
 		// TODO: set the clean texture
-		m_mirrorPlane.SetActive(false);
+		m_mirrorPlane.SetActive( false );
 	}
 }
