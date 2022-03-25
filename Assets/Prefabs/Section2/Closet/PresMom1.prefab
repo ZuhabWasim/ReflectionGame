@@ -753,7 +753,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2055471315270110717}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1268779369843956331
 MonoBehaviour:
@@ -1488,11 +1488,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1560567616271823808}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.362, y: -0.35625133, z: -4.654}
+  m_LocalPosition: {x: -7.3720007, y: -0.35625106, z: 0.57599545}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3962733809132546171}
+  m_Father: {fileID: 2055471315270110717}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4834469840447804709
@@ -1856,6 +1856,8 @@ MonoBehaviour:
   makeNonInteractableEvent: 
   voiceLine: {fileID: 0}
   nonInteractableVoiceLine: {fileID: 0}
+  nonUseableVoiceLine: {fileID: 0}
+  useVoiceLine: {fileID: 0}
   displayPrompt: 1
   acceptItem: 0
   deleteItem: 0
@@ -3011,38 +3013,6 @@ Transform:
   - {fileID: 3606958131373308461}
   m_Father: {fileID: 6672719749593871650}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2691755170738313327
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3962733809132546171}
-  m_Layer: 0
-  m_Name: Row3
-  m_TagString: MomRow
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3962733809132546171
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2691755170738313327}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.01, y: 0, z: 1.94}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 5389746701279221315}
-  m_Father: {fileID: 9136103087657058420}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2772718693050373929
 GameObject:
@@ -4535,13 +4505,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3664355464972481539}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.362, y: -0.35625133, z: -4.553}
+  m_LocalPosition: {x: -7.3720007, y: -0.35625106, z: -1.2330012}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2263820025482415886}
-  m_Father: {fileID: 1459237422813278624}
-  m_RootOrder: 0
+  m_Father: {fileID: 2055471315270110717}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &80999172301400669
 MonoBehaviour:
@@ -6770,11 +6740,13 @@ MonoBehaviour:
   makeNonInteractableEvent: 
   voiceLine: {fileID: 0}
   nonInteractableVoiceLine: {fileID: 0}
+  nonUseableVoiceLine: {fileID: 0}
+  useVoiceLine: {fileID: 0}
   displayPrompt: 1
   acceptItem: 0
   deleteItem: 0
   itemName: Mirror
-  myType: 0
+  myType: 1
   thisIsAMirror: 0
   bma: {fileID: 4768157690519674229}
   correspondingBlock: {fileID: 0}
@@ -10399,38 +10371,6 @@ Transform:
   m_Father: {fileID: 2337675243877531991}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &7054548912999953306
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1459237422813278624}
-  m_Layer: 0
-  m_Name: Row2
-  m_TagString: MomRow
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1459237422813278624
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7054548912999953306}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.01, y: 0, z: 0.03}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 7647568300865180364}
-  m_Father: {fileID: 9136103087657058420}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7162613200550174717
 GameObject:
   m_ObjectHideFlags: 0
@@ -10899,9 +10839,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 5389746701279221315}
+  - {fileID: 7647568300865180364}
   - {fileID: 5433821027740279322}
   m_Father: {fileID: 9136103087657058420}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7821183235434766330
 GameObject:
@@ -11429,6 +11371,8 @@ MonoBehaviour:
   makeNonInteractableEvent: 
   voiceLine: {fileID: 8300000, guid: 64f1791a5819c554e8506c1fcfd911bc, type: 3}
   nonInteractableVoiceLine: {fileID: 8300000, guid: aa0efe5fa956107468fc04a6d0d09c3f, type: 3}
+  nonUseableVoiceLine: {fileID: 0}
+  useVoiceLine: {fileID: 0}
   displayPrompt: 1
   acceptItem: 0
   deleteItem: 0
@@ -11610,6 +11554,8 @@ MonoBehaviour:
   makeNonInteractableEvent: 
   voiceLine: {fileID: 8300000, guid: 64f1791a5819c554e8506c1fcfd911bc, type: 3}
   nonInteractableVoiceLine: {fileID: 8300000, guid: aa0efe5fa956107468fc04a6d0d09c3f, type: 3}
+  nonUseableVoiceLine: {fileID: 0}
+  useVoiceLine: {fileID: 0}
   displayPrompt: 1
   acceptItem: 0
   deleteItem: 0
@@ -11672,8 +11618,6 @@ Transform:
   m_LocalScale: {x: 0.87506, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3962733809132546171}
-  - {fileID: 1459237422813278624}
   - {fileID: 2055471315270110717}
   m_Father: {fileID: 6460096850194460927}
   m_RootOrder: 0
@@ -11773,6 +11717,10 @@ PrefabInstance:
     - target: {fileID: 6123243600816217313, guid: 649b66a7eae984741ada03fe69b7626b, type: 3}
       propertyPath: m_Name
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6517668403222503928, guid: 649b66a7eae984741ada03fe69b7626b, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6895557694173070939, guid: 649b66a7eae984741ada03fe69b7626b, type: 3}
       propertyPath: m_RootOrder
@@ -12682,6 +12630,8 @@ MonoBehaviour:
   makeNonInteractableEvent: 
   voiceLine: {fileID: 0}
   nonInteractableVoiceLine: {fileID: 0}
+  nonUseableVoiceLine: {fileID: 0}
+  useVoiceLine: {fileID: 0}
   displayPrompt: 1
   acceptItem: 0
   deleteItem: 0
@@ -13371,6 +13321,8 @@ MonoBehaviour:
   makeNonInteractableEvent: 
   voiceLine: {fileID: 0}
   nonInteractableVoiceLine: {fileID: 8300000, guid: 56fec2afa3da0b54b915562f97df9676, type: 3}
+  nonUseableVoiceLine: {fileID: 0}
+  useVoiceLine: {fileID: 0}
   displayPrompt: 1
   acceptItem: 0
   deleteItem: 0
@@ -13622,6 +13574,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6517668403222503928, guid: 649b66a7eae984741ada03fe69b7626b, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6895557694173070939, guid: 649b66a7eae984741ada03fe69b7626b, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -13753,6 +13709,10 @@ PrefabInstance:
     - target: {fileID: 6123243600816217313, guid: 649b66a7eae984741ada03fe69b7626b, type: 3}
       propertyPath: m_Name
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6517668403222503928, guid: 649b66a7eae984741ada03fe69b7626b, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6895557694173070939, guid: 649b66a7eae984741ada03fe69b7626b, type: 3}
       propertyPath: m_RootOrder
