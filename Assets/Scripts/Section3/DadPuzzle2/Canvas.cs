@@ -33,16 +33,13 @@ public class Canvas : InteractableAbstract
 		switch ( brush.paint )
 		{
 			case PaintType.WHITE:
-
 				SetState( CanvasState.CLEAN );
 				break;
 			case PaintType.REFLECTIVE:
 				if ( state == CanvasState.PORTAL ) return;
-				
 				SetState( CanvasState.REFLECTIVE );
 				break;
 			case PaintType.PORTAL:
-				
 				SetState( CanvasState.PORTAL );
 				break;
 			case PaintType.NONE:
@@ -75,23 +72,30 @@ public class Canvas : InteractableAbstract
 
 	public void SetState( CanvasState newState, bool notifyChange = true )
 	{
-		if (newState == CanvasState.CLEAN)
-		{
-			ToClean();
-		}
-		else if (newState == CanvasState.REFLECTIVE)
-		{
-			ToReflective();
-		}else if (newState == CanvasState.PORTAL)
-		{
-			ToPortal();
-		}
-		
+		UpdateMirror( newState );
 		this.state = newState;
 		if ( state == CanvasState.PORTAL ) OnPortal();
 		if ( notifyChange )
 		{
 			EventManager.Fire( Globals.Events.CANVAS_STATE_CHANGE, this.gameObject );
+		}
+	}
+
+	private void UpdateMirror( CanvasState newState )
+	{
+		switch ( newState )
+		{
+			case CanvasState.CLEAN:
+				ToClean();
+				break;
+			case CanvasState.REFLECTIVE:
+				ToReflective();
+				break;
+			case CanvasState.PORTAL:
+				ToPortal();
+				break;
+			default:
+				break;
 		}
 	}
 

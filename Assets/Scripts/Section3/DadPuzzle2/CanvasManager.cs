@@ -35,6 +35,7 @@ public class CanvasManager : MonoBehaviour
 		}
 
 		initialLightSource.enabled = true;
+		GlobalState.AddVar<Color>( Globals.Vars.DAD_PUZZLE_2_FINAL_LIGHT_COLOR, Color.black );
 #if DEBUGGING_LIGHT_TRACE
 		StartCoroutine( TestLightTrace() );
 #else
@@ -122,13 +123,21 @@ public class CanvasManager : MonoBehaviour
 	void TracePath( uint startIndex, bool isPresent, Color incomingLightColor )
 	{
 		// last canvas, light stops here
-		if ( startIndex > m_canvasPairs.Count - 1 ) return;
+		if ( startIndex > m_canvasPairs.Count - 1 )
+		{
+			GlobalState.SetVar<Color>( Globals.Vars.DAD_PUZZLE_2_FINAL_LIGHT_COLOR, incomingLightColor );
+			return;
+		}
 
 		CanvasPair pair = m_canvasPairs[ ( (int)startIndex ) ];
 		Canvas currCanvas = isPresent ? pair.present : pair.past;
 		Canvas otherCanvas = isPresent ? pair.past : pair.present;
 
-		if ( currCanvas.state == CanvasState.CLEAN ) return;
+		if ( currCanvas.state == CanvasState.CLEAN )
+		{
+			GlobalState.SetVar<Color>( Globals.Vars.DAD_PUZZLE_2_FINAL_LIGHT_COLOR, Color.black );
+			return;
+		}
 		else if ( currCanvas.state == CanvasState.PORTAL )
 		{
 			// portal => switch worlds
