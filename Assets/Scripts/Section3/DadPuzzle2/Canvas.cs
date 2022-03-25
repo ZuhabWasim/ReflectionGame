@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public enum CanvasState
@@ -16,9 +17,11 @@ public class Canvas : InteractableAbstract
 	public ColorFilter outgoingFilter = null;
 	public GameObject[] activateOnPortal;
 
+	public MirrorConnector mirrorConnector;
+	
 	private GameObject m_mirrorPlane;
 	private float m_lightRange;
-
+	
 	protected override void OnStart()
 	{
 		if ( outgoingLight ) m_lightRange = outgoingLight.range;
@@ -108,17 +111,18 @@ public class Canvas : InteractableAbstract
 	private void ToPortal()
 	{
 		m_mirrorPlane.SetActive( true );
+		mirrorConnector.Activate();
 	}
 
 	private void ToReflective()
 	{
-		// TODO: set the reflective texture
-		m_mirrorPlane.SetActive( false );
+		m_mirrorPlane.SetActive( true );
+		mirrorConnector.Deactivate();
 	}
 
 	private void ToClean()
 	{
-		// TODO: set the clean texture
+		
 		m_mirrorPlane.SetActive( false );
 	}
 }

@@ -118,6 +118,7 @@ public class CanvasManager : MonoBehaviour
 #if DEBUGGING_LIGHT_TRACE
 		PrintCanvasDebugInfo();
 #endif
+		Debug.Log("Global Colour: " + GlobalState.GetVar<Color>(Globals.Vars.DAD_PUZZLE_2_FINAL_LIGHT_COLOR));
 	}
 
 	void TracePath( uint startIndex, bool isPresent, Color incomingLightColor )
