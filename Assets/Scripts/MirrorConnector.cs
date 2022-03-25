@@ -330,6 +330,34 @@ public class MirrorConnector : MonoBehaviour
 
 		Swap();
 	}
+	
+	// UNUSED: Potential Implementation for Canvas Mirror Activation
+	public void ActivateCanvas()
+	{
+		m_active = true;
+
+		presentMirror.GetComponent<MirrorInteractable>().setTeleportable( true );
+		pastMirror.GetComponent<MirrorInteractable>().setTeleportable( true );
+
+		presentMirror.Activate();
+		pastMirror.Activate();
+	}
+	// UNUSED: Potential Implementation for Canvas Mirror Deactivation
+	public void DeactivateCanvas()
+	{
+		for ( int i = 0; i < deactivateVolumes.Length; i++ )
+		{
+			Bounds b = deactivateVolumes[ i ].GetComponent<Collider>().bounds;
+			if ( presentMirror.GetComponent<Renderer>().bounds.Intersects( b )
+			     || pastMirror.GetComponent<Renderer>().bounds.Intersects( b ) )
+			{
+				Deactivate();
+				return;
+			}
+		}
+		Activate();
+	}
+
 
 	void Swap()
 	{
