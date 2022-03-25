@@ -25,6 +25,8 @@ public class Globals
 
 		EventManager.Sub( Globals.Events.LOCK_MOM_DOOR, DisableMainRooms );
 		EventManager.Sub( Globals.Events.HAS_MOM_KEY, EnableMainRooms );
+
+		EventManager.Sub( Globals.Events.LOCK_PAST_DAD_SHELF, FixBrushOnDad2 );
 	}
 
 	private static void UpdateWorldOnTeleport()
@@ -43,6 +45,16 @@ public class Globals
 	{
 		Debug.Log("Enabling Main Room");
 		EventManager.Fire(Globals.Events.ACTIVATE_MAIN_ROOM);
+	}
+
+	// Changes the paint brush the player enters with from dad1 to dad2 to a reflective one
+	private static void FixBrushOnDad2()
+	{
+		PickupItem item = Inventory.GetInstance().GetItem("Wet Paint Brush");
+		if (item != null)
+		{
+			((PaintBrush)item).paint = PaintType.REFLECTIVE; // this is unsafe but seems ok
+		}
 	}
 
 	// All events used by event manager should go here
