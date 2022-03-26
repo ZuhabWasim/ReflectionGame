@@ -93,6 +93,7 @@ public class PlayerController : MonoBehaviour
 		EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.INTERACT_KEY ), SkipCurrentVoiceline );
 		EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.USE_ITEM_KEY ), HandleDropItem );
 		EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.USE_ITEM_KEY ), HandleUseItemPress );
+		EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.REFLECT_KEY), HandleReflectPress );
 		EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.DROP_KEY ), HandleDrop );
 		EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.INVENTORY_KEY ), HandleOpenInventory );
 		EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.ESCAPE_KEY ), HandleEscape );
@@ -134,7 +135,7 @@ public class PlayerController : MonoBehaviour
 
 		transform.Rotate( Vector3.up * input.x * sensitivity );
 
-		DisplayInteractionPrompts();
+		//DisplayInteractionPrompts();
 		ShowInteractionIcon();
 
 		float scrollDelta = Input.mouseScrollDelta.y;
@@ -303,6 +304,14 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
+	void HandleReflectPress()
+    {
+		if ( targetObject != null && targetObject.interactable && targetObject.WillReflect() )
+        {
+			targetObject.ActivateReflect();
+        }
+    }
+
 	void HandleUseItemPress()
 	{
 		if ( targetObject != null )
@@ -394,18 +403,12 @@ public class PlayerController : MonoBehaviour
 	{
 		if ( targetObject != null )
 		{
-			if ( targetObject.GetItemType() == InteractableAbstract.ItemType.INTERACT )
-			{
-				interactionIcon.ShowEyeIcon();
-			}
-			else
-			{
-				interactionIcon.ShowHandIcon();
-			}
+			interactionIcon.ShowIcons( targetObject.WillAcceptItem(),
+				targetObject.WillDisplayPrompt(), targetObject.WillReflect() );
 		}
 		else
 		{
-			interactionIcon.HideIcon();
+			interactionIcon.HideIcons();
 		}
 	}
 	void HandleDrop()

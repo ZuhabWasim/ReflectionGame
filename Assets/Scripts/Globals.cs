@@ -311,6 +311,7 @@ public enum Keybinds
 {
 	INTERACT_KEY = KeyCode.F,
 	USE_ITEM_KEY = KeyCode.E,
+	REFLECT_KEY = KeyCode.R,
 	DROP_KEY = KeyCode.G,
 	INVENTORY_KEY = KeyCode.LeftShift,
 	ESCAPE_KEY = KeyCode.Escape,

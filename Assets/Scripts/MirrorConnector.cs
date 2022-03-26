@@ -135,7 +135,7 @@ public class MirrorConnector : MonoBehaviour
 			m_canTeleport = true;
 			if ( LookingAtTeleporter() )
 			{
-				interactionIcon.ShowReflectionIcon();
+				//interactionIcon.ShowReflectionIcon();
 			}
 		}
 		else

@@ -257,6 +257,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDirty: 0
+  onFloor: 0
   dirtyMirrorMaterial: {fileID: 0}
   opaqueMirrorMaterial: {fileID: 2100000, guid: 377fddac4eca303409eee8362fcc05e9, type: 2}
 --- !u!114 &8653845728701680328
@@ -276,11 +277,14 @@ MonoBehaviour:
   makeNonInteractableEvent: 
   voiceLine: {fileID: 0}
   nonInteractableVoiceLine: {fileID: 0}
+  nonUseableVoiceLine: {fileID: 0}
+  useVoiceLine: {fileID: 0}
   displayPrompt: 1
-  acceptItem: 1
+  acceptItem: 0
   deleteItem: 0
   itemName: Mirror
   myType: 0
+  thisIsAMirror: 0
   audioSourceName: 
   teleportable: 0
   makeTeleportableEvent: 
