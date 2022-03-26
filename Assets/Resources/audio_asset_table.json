@@ -45,8 +45,8 @@
             "path": "Audio\\Voicelines\\Section1\\1.33__discover_box_first"
         },
         {
-            "name": "1.18__filthy_mirror",
-            "path": "Audio\\Voicelines\\Section1\\1.18__filthy_mirror"
+            "name": "handkerchief",
+            "path": "Audio\\Section1\\handkerchief"
         },
         {
             "name": "cannot_see_this",
@@ -117,6 +117,10 @@
             "path": "Audio\\Voicelines\\Section3\\Temporary2\\note_proximity"
         },
         {
+            "name": "1.18__filthy_mirror",
+            "path": "Audio\\Voicelines\\Section1\\1.18__filthy_mirror"
+        },
+        {
             "name": "pick_up_light",
             "path": "Audio\\Voicelines\\Section3\\Temporary2\\pick_up_light"
         },
@@ -153,8 +157,8 @@
             "path": "Audio\\Ambience\\amb_past_birds_wind_loop"
         },
         {
-            "name": "red_film",
-            "path": "Audio\\Voicelines\\Section3\\Temporary2\\red_film"
+            "name": "fusebox",
+            "path": "Audio\\Section1\\fusebox"
         },
         {
             "name": "placeholder2",
@@ -239,6 +243,10 @@
         {
             "name": "non_interactable",
             "path": "Audio\\General\\non_interactable"
+        },
+        {
+            "name": "cleaning_debris",
+            "path": "Audio\\Voicelines\\Section2\\Temporary\\cleaning_debris"
         },
         {
             "name": "bust_case_present",
@@ -339,6 +347,10 @@
         {
             "name": "1.20__cant_see_reflection_room_dark",
             "path": "Audio\\Voicelines\\Section1\\1.20__cant_see_reflection_room_dark"
+        },
+        {
+            "name": "red_film",
+            "path": "Audio\\Voicelines\\Section3\\Temporary2\\red_film"
         },
         {
             "name": "white_paint_brush",
@@ -473,10 +485,6 @@
             "path": "Audio\\Voicelines\\Section3\\Temporary\\stool_too_high"
         },
         {
-            "name": "Handkerchief",
-            "path": "Audio\\Section1\\Handkerchief"
-        },
-        {
             "name": "sfx_safe_unlock_open_sequence",
             "path": "Audio\\Section2\\sfx_safe_unlock_open_sequence"
         },
@@ -601,8 +609,8 @@
             "path": "Audio\\Voicelines\\Section2\\Temporary\\dress_form_no_wheel"
         },
         {
-            "name": "Fusebox",
-            "path": "Audio\\Section1\\Fusebox"
+            "name": "white_book_3",
+            "path": "Audio\\Voicelines\\Section3\\Temporary\\white_book_3"
         },
         {
             "name": "reflecting_through_d2",
@@ -621,10 +629,6 @@
             "path": "Audio\\Voicelines\\Section1\\1.33__discover_key_first"
         },
         {
-            "name": "white_book_3",
-            "path": "Audio\\Voicelines\\Section3\\Temporary\\white_book_3"
-        },
-        {
             "name": "blank_canvas_a",
             "path": "Audio\\Voicelines\\Section3\\Temporary\\blank_canvas_a"
         },
@@ -641,16 +645,12 @@
             "path": "Audio\\General\\paper_unravel"
         },
         {
-            "name": "cleaning_debris",
-            "path": "Audio\\Voicelines\\Section2\\Temporary\\cleaning_debris"
+            "name": "present_order_books",
+            "path": "Audio\\Voicelines\\Section3\\Temporary\\present_order_books"
         },
         {
             "name": "cant_reach_shelf_past",
             "path": "Audio\\Voicelines\\Section3\\Temporary\\cant_reach_shelf_past"
-        },
-        {
-            "name": "present_order_books",
-            "path": "Audio\\Voicelines\\Section3\\Temporary\\present_order_books"
         },
         {
             "name": "placeholder",
