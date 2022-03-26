@@ -33,6 +33,7 @@ public abstract class InteractableAbstract : MonoBehaviour
 	public AudioClip useVoiceLine;
 
 	public bool displayPrompt = true;
+	protected bool displayReflect = false;
 	public bool acceptItem = false;
 	public bool deleteItem = false;
 	public string itemName;
@@ -129,6 +130,11 @@ public abstract class InteractableAbstract : MonoBehaviour
 		return displayPrompt;
 	}
 
+	public bool WillReflect()
+	{
+		return displayReflect;
+	}
+
 	public bool WillAcceptItem()
 	{
 		return acceptItem;
@@ -152,6 +158,11 @@ public abstract class InteractableAbstract : MonoBehaviour
 		}
 		OnUserInteract();
 	}
+
+	public void ActivateReflect()
+    {
+		OnUserReflect();
+    }
 
 	public void ActivateUseItem( string objectName )
 	{
@@ -202,6 +213,8 @@ public abstract class InteractableAbstract : MonoBehaviour
 	}
 
 	protected virtual void OnUserInteract() { }
+
+	protected virtual void OnUserReflect() { }
 
 	protected virtual void OnUseItem() { }
 

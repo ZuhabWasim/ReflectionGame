@@ -27,6 +27,7 @@ public class MirrorInteractable : InteractableAbstract
 	protected override void OnStart()
 	{
 		thisIsAMirror = true;
+		displayReflect = true;
 		if ( GetComponent<AudioSource>() != null )
 		{
 			m_audioSourceName = audioSourceName == "" ? this.name : audioSourceName;
@@ -79,7 +80,7 @@ public class MirrorInteractable : InteractableAbstract
 		m_connector = connector;
 	}
 	
-	public override void OnUseItemUnfiltered()
+	protected override void OnUserReflect()
 	{
 		// Only Teleports if the Mirror Interactable allows it and the Mirror is interactable to begin with.
 		if ( interactable && teleportable )

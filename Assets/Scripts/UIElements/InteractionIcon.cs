@@ -6,33 +6,26 @@ using UnityEngine.UI;
 public class InteractionIcon : MonoBehaviour
 {
 
-	public Texture reflectionImg;
-	public Texture handImg;
-	public Texture eyeImg;
-	public RawImage iconImg;
-	public GameObject interactionIcon;
+	public GameObject handImg;
+	public GameObject eyeImg;
+	public GameObject reflImg;
 
 	void Start()
 	{
-		interactionIcon.SetActive( false );
+		HideIcons();
 	}
-	public void ShowReflectionIcon()
-	{
-		iconImg.texture = reflectionImg;
-		interactionIcon.SetActive( true );
+
+	public void ShowIcons( bool hand, bool eye, bool refl )
+    {
+		handImg.SetActive( hand );
+		eyeImg.SetActive( eye );
+		reflImg.SetActive( refl );
 	}
-	public void ShowEyeIcon()
+
+	public void HideIcons()
 	{
-		iconImg.texture = eyeImg;
-		interactionIcon.SetActive( true );
-	}
-	public void ShowHandIcon()
-	{
-		iconImg.texture = handImg;
-		interactionIcon.SetActive( true );
-	}
-	public void HideIcon()
-	{
-		interactionIcon.SetActive( false );
+		handImg.SetActive( false );
+		eyeImg.SetActive( false );
+		reflImg.SetActive( false );
 	}
 }

@@ -80,13 +80,13 @@ public class Teleporter : MonoBehaviour
 			Debug.Log( "can teleport" );
 			m_canTeleport = true;
 			bp.showPrompt( Globals.UIStrings.INTERACT_ITEM + Globals.UIStrings.MIRROR_ITEM );
-			interactionIcon.ShowReflectionIcon();
+			//interactionIcon.ShowReflectionIcon();
 		}
 		else
 		{
 			m_canTeleport = false;
 			bp.hidePrompt();
-			interactionIcon.HideIcon();
+			//interactionIcon.HideIcon();
 		}
 	}
 }
