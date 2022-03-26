@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/StartMenu.unity
     guid: a8f0b9959820f0448b04c3cc6f6dd268
+  - enabled: 1
+    path: Assets/Scenes/NewMainColour.unity
+    guid: 112757fb955d6e14f9c4716b2ff349c7
   m_configObjects: {}
