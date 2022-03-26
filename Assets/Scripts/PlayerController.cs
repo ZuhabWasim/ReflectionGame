@@ -1,5 +1,6 @@
 // PREPROCESSOR FLAGS
 #undef TEST_LEVEL // set this to #undef or comment out when running main-level. When defined, all audio stuff is disabled
+#undef USING_ZOOM
 
 using System.Collections;
 using System.Collections.Generic;
@@ -24,8 +25,10 @@ public class PlayerController : MonoBehaviour
 	public float sensitivity = 2.0f;
 	public float zoomThreshold = 1.0f;
 	public int defaultFOV = 70;
+#if USING_ZOOM
 	public int zoomedFOV = 40;
 	private bool m_zoomAnimating = false;
+#endif // if USING_ZOOM
 	private float pitch = 0.0f;
 
 	// Movement vars
@@ -138,10 +141,12 @@ public class PlayerController : MonoBehaviour
 		ShowInteractionIcon();
 
 		float scrollDelta = Input.mouseScrollDelta.y;
+#if USING_ZOOM
 		if ( Mathf.Abs( scrollDelta ) >= zoomThreshold )
 		{
 			HandleZoom( scrollDelta );
 		}
+#endif // if USING_ZOOM
 
 		if ( inventoryOpened )
 		{
@@ -153,6 +158,7 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
+#if USING_ZOOM
 	void HandleZoom( float scrollDelta )
 	{
 		if ( m_zoomAnimating || inventoryOpened ) return;
@@ -186,6 +192,7 @@ public class PlayerController : MonoBehaviour
 
 		m_zoomAnimating = false;
 	}
+#endif // if USING_ZOOM
 
 	public bool IsGrounded()
 	{
@@ -215,10 +222,11 @@ public class PlayerController : MonoBehaviour
 		}
 		m_playerBody.velocity = new Vector3( velocity.x, yVelocity, velocity.z );
 	}
-	
+
 	void HandleEscape()
 	{
-		if ( pauseMenu.IsPaused() ) {
+		if ( pauseMenu.IsPaused() )
+		{
 			pauseMenu.ResumeGame();
 			Cursor.lockState = CursorLockMode.Locked;
 			Cursor.visible = false;
@@ -230,7 +238,7 @@ public class PlayerController : MonoBehaviour
 			Cursor.visible = true;
 		}
 	}
-	
+
 	void SkipCurrentVoiceline()
 	{
 		// user presses INTERACT_KEY without looking at some interactable object => user is trying to skip voiceline
