@@ -13,7 +13,6 @@ public class StudioLight : InteractableAbstract
         desiredItem = "Light Bulb";
         spotLight.range = 0f;
         spotLight.intensity = 0f;
-        Debug.Log("here");
     }
     
     protected override void OnUseItem()

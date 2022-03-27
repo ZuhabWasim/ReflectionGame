@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 // Connector object between two mirrors
 public class MirrorConnector : MonoBehaviour
@@ -303,11 +304,21 @@ public class MirrorConnector : MonoBehaviour
 
 		Vector3 mirrorPosition = present ? pastMirror.transform.position : presentMirror.transform.position;
 		m_player.position = mirrorPosition + ( ( present ? pastMirror : presentMirror ).GetMirrorCameraPosition().GetMirrorNormal() * 1.0f );
-
-		Vector3 mirrorNormal = ( present ? pastMirror : presentMirror ).GetMirrorCameraPosition().GetMirrorNormal();
-		m_player.forward = GetPlayerFwdOnTeleport( mirrorNormal, m_player.forward,
-			Vector3.Angle( presentMirror.GetMirrorCameraPosition().GetMirrorNormal(), pastMirror.GetMirrorCameraPosition().GetMirrorNormal() ), present ).normalized;
-
+		
+		// Get the present and past mirror normals
+		Vector3 thisMirrorNormal = ( present ? presentMirror : pastMirror ).GetMirrorCameraPosition().GetMirrorNormal();
+		Vector3 otherMirrorNormal = ( present ? pastMirror : presentMirror ).GetMirrorCameraPosition().GetMirrorNormal();
+		
+		// Angle between player's forward and the mirror they're looking at.
+		float thisViewingAngle = Vector3.Angle(-thisMirrorNormal, m_player.forward.normalized);
+		Vector3 cross = Vector3.Cross(-thisMirrorNormal, m_player.forward.normalized);
+		// Checks if the angle is negative using cross product
+		if ( cross.y < 0 ) thisViewingAngle = -thisViewingAngle;
+		
+		// Set the player's direction to be the same as the new mirror, but rotate them to match how they were looking
+		// at the previous mirror
+		m_player.forward = Quaternion.AngleAxis(thisViewingAngle, Vector3.up) * otherMirrorNormal;
+		
 		yield return new WaitForSecondsRealtime( Globals.Teleporting.INPUT_LOCK_COOLDOWN );
 
 		GlobalState.SetVar<bool>( Globals.Vars.TELEPORTING, false );
