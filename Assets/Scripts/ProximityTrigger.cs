@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class ProximityTrigger : MonoBehaviour
@@ -18,11 +19,28 @@ public class ProximityTrigger : MonoBehaviour
 
 	private const float TRIGGER_PLAYER_DIST_CHECK_TIME = 0.5f; // in seconds
 	private const float TRIGGER_RESET_DELAY = 3f;
+	
+	public bool active = true;
+	[Tooltip( "Event which should activate this trigger" )]
+	public string makeActivatableEvent = "";
+	[Tooltip( "Event which should deactivate this trigger" )]
+	public string makeDeactivatableEvent = "";
+	
 	void Start()
 	{
+		if ( makeActivatableEvent != string.Empty )
+		{
+			EventManager.Sub( makeActivatableEvent, () => { Active(); } );
+		}
+		if ( makeDeactivatableEvent != string.Empty )
+		{
+			EventManager.Sub( makeDeactivatableEvent, () => { Deactive(); } );
+		}
+		
 		m_player = GameObject.FindGameObjectWithTag( Globals.Tags.PLAYER );
 		sqrdTriggerDist = Mathf.Pow( triggerDistance, 2 );
 		StartCoroutine( MonitorTriggerPlayerDist() );
+		OnStart();
 	}
 
 	float GetSqrdDistToPlayer()
@@ -34,7 +52,7 @@ public class ProximityTrigger : MonoBehaviour
 	{
 		while ( true )
 		{
-			if ( GetSqrdDistToPlayer() <= sqrdTriggerDist )
+			if ( active && GetSqrdDistToPlayer() <= sqrdTriggerDist )
 			{
 				ActivateTrigger();
 				break;
@@ -69,5 +87,25 @@ public class ProximityTrigger : MonoBehaviour
 		{
 			StartCoroutine( ResetTrigger() );
 		}
+		OnActivateTrigger();
 	}
+
+	void Active()
+	{
+		active = true;
+		OnActive();
+	}
+
+	void Deactive()
+	{
+		active = false;
+		OnDeactive();
+	}
+	
+	protected virtual void OnActivateTrigger() { }
+
+	protected virtual void OnActive() { }
+	
+	protected virtual void OnDeactive() { }
+	protected virtual void OnStart() { }
 }
