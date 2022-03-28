@@ -21,5 +21,6 @@ public class InteractNote : InteractableAbstract
 		InventoryDisplay inventoryDisplay = GameObject.Find( Globals.Misc.UI_Canvas ).GetComponent<InventoryDisplay>();
 		inventoryDisplay.showNewEntryNotice();
 		AudioPlayer.Play(Globals.AudioFiles.General.PAPER_UNRAVEL, Globals.Tags.MAIN_SOURCE);
+		EventManager.Fire( InputManager.GetKeyDownEventName( Keybinds.ESCAPE_KEY ) );
 	}
 }

@@ -286,6 +286,9 @@ public class Globals
 			public static string NO_MORE_OBSTRUCTIONS = "no_more_obstructions";
 			public static string ANOTHER_BOX_BLOCKING = "another_box_blocking";
 			public static string MOM_NOTE = "mom_note";
+			public static string CAN_LEAVE_CLOSET = "can_leave_closet";
+			public static string SLID_MIRROR_IN = "slid_the_mirror_in";
+			public static string VISIT_SAFE = "lets_visit_safe";
 		}
 		
 		public class Section3
