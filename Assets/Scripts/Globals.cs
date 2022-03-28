@@ -160,6 +160,8 @@ public class Globals
 
 		public static string HANDKERCHIEF_ITEM = "Handkerchief";
 		public static string MUSICBOXMILLIE_ITEM = "Millie's Key";
+		public static string MUSICBOXMOM_ITEM = "Mom's Key";
+		public static string MUSICBOXDAD_ITEM = "Dad's Key";
 
 		public static string USE_HANDKERCHIEF = "Use Handkerchief";
 		public static string NOTE_PLACEHOLDER = "This note has not yet been collected.";

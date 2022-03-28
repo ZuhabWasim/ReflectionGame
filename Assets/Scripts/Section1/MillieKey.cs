@@ -21,5 +21,6 @@ public class MillieKey : PickupItem
 		{
 			AudioPlayer.Play( voiceLine, Globals.Tags.DIALOGUE_SOURCE );
 		}
+		EventManager.Fire(Globals.Events.HAS_MILLIE_KEY);
 	}
 }
