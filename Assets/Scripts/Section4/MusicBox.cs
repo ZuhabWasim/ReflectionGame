@@ -109,6 +109,7 @@ public class MusicBox : InteractableAbstract
 			if (!HasAllKeys())
 			{
 				AudioPlayer.Play(Globals.VoiceLines.Section4.FIND_ALL_THREE_KEYS, Globals.Tags.DIALOGUE_SOURCE);
+				return;
 			}
 			keys -= 1;
 			inventory.DeleteItem( selectedItem.itemName );
