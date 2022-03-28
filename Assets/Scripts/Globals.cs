@@ -302,6 +302,19 @@ public class Globals
 			public static string SAFE_CODE = "safe_code_unlocked";
 			public static string CANVAS_PAINTING = "canvas_present";
 		}
+
+		public class Section4
+		{
+			public static string MUSIC_BOX_OPENED = "music_box_opened";
+			public static string THATS_ONE = "thats_one";
+			public static string THATS_TWO = "thats_two";
+			public static string THATS_THREE = "thats_three";
+			public static string FIND_ALL_THREE_KEYS = "find_all_three_keys";
+			public static string HAVING_MILLIE_KEY_AUDIO = "has_millie_key";
+			public static string HAVING_MOM_KEY_AUDIO = "has_mom_key";
+			public static string HAVING_DAD_KEY_AUDIO = "has_dad_key";
+			public static string HAVING_ALL_KEYS_AUDIO = "has_all_keys";
+		}
 	}
 }
 

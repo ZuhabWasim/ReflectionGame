@@ -8,10 +8,6 @@ public class MusicBox : InteractableAbstract
 {
 
 	private const string MUSICBOX_AUDIO_SOURCE = "MusicBoxAudioSource";
-	private Inventory m_inventory;
-	public AudioClip millieKeyVoiceline;
-	public AudioClip motherKeyVoiceline;
-	public AudioClip fatherKeyVoiceline;
 	public bool discoveredBox;
 
 	public ProximityTrigger proximityTrigger;
@@ -30,8 +26,7 @@ public class MusicBox : InteractableAbstract
 		EventManager.Sub( Globals.Events.HAS_MILLIE_KEY, OnHavingMillieKey );
 		EventManager.Sub( Globals.Events.HAS_MOM_KEY, OnHavingMomKey );
 		EventManager.Sub( Globals.Events.HAS_DAD_KEY, OnHavingDadKey );
-
-		m_inventory = Inventory.GetInstance();
+		
 		// AudioPlayer.RegisterAudioPlayer(MUSICBOX_AUDIO_SOURCE, GetComponent<AudioSource>());
 
 		discoveredBox = false;
@@ -50,27 +45,27 @@ public class MusicBox : InteractableAbstract
 		// Has all three keys
 		if (HasAllKeys())
 		{
-			Debug.Log("I finally have all of them, i'm nervous to check what's inside, let's use them");
+			AudioPlayer.Play(Globals.VoiceLines.Section4.HAVING_ALL_KEYS_AUDIO, Globals.Tags.DIALOGUE_SOURCE);
 		}
 		// On completing Mom's closet
 		else if (hasMomKey)
 		{
-			Debug.Log("I have mom's key now, now to find dad's key");
+			AudioPlayer.Play(Globals.VoiceLines.Section4.HAVING_MOM_KEY_AUDIO, Globals.Tags.DIALOGUE_SOURCE);
 		}
 		// On completing Dad's closet
 		else if (hasDadKey)
 		{
-			Debug.Log("I have dad's key now, now to find mom's key");
+			AudioPlayer.Play(Globals.VoiceLines.Section4.HAVING_DAD_KEY_AUDIO, Globals.Tags.DIALOGUE_SOURCE);
 		}
 		// Millie's key
 		else if (hasMillieKey)
 		{
-			Debug.Log("I have my key now, let's see if I can use it ");
+			AudioPlayer.Play(Globals.VoiceLines.Section4.HAVING_MILLIE_KEY_AUDIO, Globals.Tags.DIALOGUE_SOURCE);
 		}
 		// Initial interaction dialogue
 		else
 		{
-			Debug.Log("Oh it's my music box");
+			AudioPlayer.Play(Globals.VoiceLines.Section1.ITS_MY_MUSICBOX, Globals.Tags.DIALOGUE_SOURCE);
 		}
 	}
 
@@ -83,7 +78,7 @@ public class MusicBox : InteractableAbstract
 		// Not holding anything
 		if (selectedItem == null)
 		{
-			Debug.Log("Not holding anything");
+			AudioPlayer.Play(Globals.VoiceLines.General.NOT_HOLDING_ANYTHING, Globals.Tags.DIALOGUE_SOURCE);
 			return;
 		}
 		
@@ -92,17 +87,16 @@ public class MusicBox : InteractableAbstract
 		{
 			if (!millieKeyInteracted)
 			{
-				Debug.Log("Oh i forgot the music box needed all three keys, Mine, Mom , and Dad");
-				AudioPlayer.Play( millieKeyVoiceline, Globals.Tags.DIALOGUE_SOURCE );
+				AudioPlayer.Play(Globals.VoiceLines.Section1.BOX_NEEDS_TWO_OTHER_KEYS, Globals.Tags.DIALOGUE_SOURCE);
 				EventManager.Fire( Globals.Events.MILLIE_KEY_INTERACT );
 				millieKeyInteracted = true;
-				Debug.Log( "Initially interacting with the Music Box with Millie's key" );
+				Debug.Log( "Millie Key Interact" );
 				return;
 			}
 
 			if (!HasAllKeys())
 			{
-				Debug.Log("I shouldn't try these until I have all three keys");
+				AudioPlayer.Play(Globals.VoiceLines.Section4.FIND_ALL_THREE_KEYS, Globals.Tags.DIALOGUE_SOURCE);
 				return;
 			}
 			
@@ -114,7 +108,7 @@ public class MusicBox : InteractableAbstract
 		{
 			if (!HasAllKeys())
 			{
-				Debug.Log("I shouldn't try these until I have all three keys");
+				AudioPlayer.Play(Globals.VoiceLines.Section4.FIND_ALL_THREE_KEYS, Globals.Tags.DIALOGUE_SOURCE);
 			}
 			keys -= 1;
 			inventory.DeleteItem( selectedItem.itemName );
@@ -122,19 +116,20 @@ public class MusicBox : InteractableAbstract
 		else
 		{
 			Debug.Log("I can't use this here");
+			AudioPlayer.Play(Globals.VoiceLines.General.CANT_USE_ITEM, Globals.Tags.DIALOGUE_SOURCE);
 			return;
 		}
 		
 		// If we got here, the player used a key.
 		if (keys == 2)
 		{
-			Debug.Log("That's one");// That's one
+			AudioPlayer.Play(Globals.VoiceLines.Section4.THATS_ONE, Globals.Tags.DIALOGUE_SOURCE);
 		} else if (keys == 1)
 		{
-			Debug.Log("That's two");
+			AudioPlayer.Play(Globals.VoiceLines.Section4.THATS_TWO, Globals.Tags.DIALOGUE_SOURCE);
 		} else if (keys == 0)
 		{
-			Debug.Log("That's three");
+			//AudioPlayer.Play(Globals.VoiceLines.Section4.THATS_THREE, Globals.Tags.DIALOGUE_SOURCE, false);
 			OpenMusicBox();
 		}
 		
@@ -143,6 +138,10 @@ public class MusicBox : InteractableAbstract
 	void OpenMusicBox()
 	{
 		Debug.Log("Opening Music Box");
+		AudioPlayer.Play(Globals.VoiceLines.Section4.MUSIC_BOX_OPENED, Globals.Tags.DIALOGUE_SOURCE);
+
+		InterpolateTransform it = GetComponentInChildren<InterpolateTransform>();
+		it.TriggerMotion();
 	}
 
 	void OnLightsTurningOn()
