@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 1341587755088386152}
   - component: {fileID: 4483505966250535520}
   - component: {fileID: 9037436396901012741}
-  - component: {fileID: 4129082236378362543}
   m_Layer: 6
   m_Name: PaintCanvas
   m_TagString: Untagged
@@ -346,31 +345,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
---- !u!114 &4129082236378362543
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1841019864938605629}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7506df5295dde5447abb6f414b6bd0ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactable: 1
-  makeInteractableEvent: 
-  makeNonInteractableEvent: 
-  voiceLine: {fileID: 0}
-  nonInteractableVoiceLine: {fileID: 0}
-  displayPrompt: 1
-  acceptItem: 1
-  deleteItem: 0
-  itemName: Canvas
-  myType: 0
-  thisIsAMirror: 0
-  OnPaintEvent: DadPuzzle1_MilliePaint
-  toActivate: {fileID: 0}
 --- !u!1 &3518663639249560789
 GameObject:
   m_ObjectHideFlags: 0
@@ -530,6 +504,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDirty: 0
+  onFloor: 0
   dirtyMirrorMaterial: {fileID: 2100000, guid: 91ec3cf4f54068440b07abbcf0187835, type: 2}
   opaqueMirrorMaterial: {fileID: 2100000, guid: 377fddac4eca303409eee8362fcc05e9, type: 2}
 --- !u!114 &7078900621343087485
@@ -549,6 +524,8 @@ MonoBehaviour:
   makeNonInteractableEvent: 
   voiceLine: {fileID: 0}
   nonInteractableVoiceLine: {fileID: 0}
+  nonUseableVoiceLine: {fileID: 0}
+  useVoiceLine: {fileID: 0}
   displayPrompt: 1
   acceptItem: 1
   deleteItem: 0

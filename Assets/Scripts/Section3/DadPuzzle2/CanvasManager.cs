@@ -34,8 +34,12 @@ public class CanvasManager : MonoBehaviour
 			m_canvasPairs.Add( new CanvasPair( presentCanvases[ i ], pastCanvases[ i ] ) );
 		}
 
-		initialLightSource.enabled = true;
+		initialLightSource.enabled = false;
 		GlobalState.AddVar<Color>( Globals.Vars.DAD_PUZZLE_2_FINAL_LIGHT_COLOR, Color.black );
+		EventManager.Sub(Globals.Events.DAD_PUZZLE_2_SPOTLIGHT_INSTALLED, () => {
+			initialLightSource.enabled = true;
+			ComputeLightPath();
+		});
 #if DEBUGGING_LIGHT_TRACE
 		StartCoroutine( TestLightTrace() );
 #else
@@ -44,6 +48,7 @@ public class CanvasManager : MonoBehaviour
 #endif
 	}
 
+#if DEBUGGING_LIGHT_TRACE
 	IEnumerator TestLightTrace()
 	{
 		while ( true )
@@ -52,6 +57,7 @@ public class CanvasManager : MonoBehaviour
 			yield return new WaitForSecondsRealtime( 1.0f );
 		}
 	}
+#endif
 
 	void HandleCanvasStateChange( GameObject canvas )
 	{

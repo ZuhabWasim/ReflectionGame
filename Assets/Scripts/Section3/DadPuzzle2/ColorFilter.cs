@@ -41,17 +41,17 @@ public class ColorFilter : MonoBehaviour
 
 	private Color FSubtractive( Color input )
 	{
-		return input - ( factor * color );
+		return Clamp( input - ( factor * color ) );
 	}
 
 	private Color FSet( Color input )
 	{
-		return color;
+		return Clamp( color );
 	}
 
 	private Color FAdditive( Color input )
 	{
-		return input + ( factor * color );
+		return Clamp( input + ( factor * color ) );
 	}
 
 	private Color Abs( Color c )
@@ -60,6 +60,15 @@ public class ColorFilter : MonoBehaviour
 		c.g = Mathf.Abs( c.g );
 		c.b = Mathf.Abs( c.b );
 		c.a = Mathf.Abs( c.a );
+		return c;
+	}
+
+	private Color Clamp( Color c )
+	{
+		c.r = Mathf.Clamp01( c.r );
+		c.g = Mathf.Clamp01( c.g );
+		c.b = Mathf.Clamp01( c.b );
+		c.a = Mathf.Clamp01( c.a );
 		return c;
 	}
 

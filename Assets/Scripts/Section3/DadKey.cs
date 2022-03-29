@@ -4,23 +4,23 @@ using UnityEngine;
 
 public class DadKey : PickupItem
 {
-    void Start()
-    {
-        base.OnStart();
-        EventManager.Sub(Globals.Events.UPDATE_MOVEMENT, UpdateMover);
-    }
+	protected override void OnStart()
+	{
+		base.OnStart();
+		EventManager.Sub( Globals.Events.UPDATE_MOVEMENT, UpdateMover );
+	}
 
-    protected override void OnUserInteract()
-    {
-        this.gameObject.SetActive( false );
-        EventManager.Fire(Globals.Events.HAS_DAD_KEY);
-        UpdateMover();
-    }
-    
-    private void UpdateMover()
-    {
-        InterpolateTransform it = GameObject.FindWithTag(Globals.Tags.PRESENT_DAD_SHELF).GetComponent<InterpolateTransform>();
-        it.startRotation = new Vector3(0, 90, 0);  // To fully open up the closet.
-        it.interpDuration = 2f;
-    }
+	protected override void OnUserInteract()
+	{
+		this.gameObject.SetActive( false );
+		EventManager.Fire( Globals.Events.HAS_DAD_KEY );
+		UpdateMover();
+	}
+
+	private void UpdateMover()
+	{
+		InterpolateTransform it = GameObject.FindWithTag( Globals.Tags.PRESENT_DAD_SHELF ).GetComponent<InterpolateTransform>();
+		it.startRotation = new Vector3( 0, 90, 0 );  // To fully open up the closet.
+		it.interpDuration = 2f;
+	}
 }
