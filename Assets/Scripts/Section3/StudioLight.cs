@@ -6,9 +6,10 @@ public class StudioLight : InteractableAbstract
 {
     /*COMPILERROR*/
     public Light spotLight;
-
+    public AudioClip spotLightOnVoiceLine;
+    
     // Start is called before the first frame update
-    void Start()
+    protected override void OnStart()
     {
         desiredItem = "Light Bulb";
         spotLight.range = 0f;
@@ -19,6 +20,8 @@ public class StudioLight : InteractableAbstract
     {
         spotLight.intensity = 80000;
         spotLight.range = 4.76f;
+        voiceLine = spotLightOnVoiceLine;
+        nonUseableVoiceLine = null;
     }
     
 }

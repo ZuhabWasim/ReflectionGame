@@ -11,7 +11,7 @@ public class EmptyBucket : PickupItem
 
 	private void SetDropTransform()
 	{
-		this.gameObject.transform.eulerAngles = new Vector3( 180, 0, 0 );
+		this.gameObject.transform.eulerAngles = new Vector3( 90, 0, 0 );
 	}
 
 	public override void OnDrop( Vector3 dropPostion, bool isLocal = false )
