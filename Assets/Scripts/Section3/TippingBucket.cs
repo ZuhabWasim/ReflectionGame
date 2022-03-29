@@ -14,6 +14,8 @@ public class TippingBucket : InterpolateInteractableWrapper
 
     public GameObject mirrorPast;
     public GameObject mirrorPresent;
+
+    public GameObject booksOnBustCase;
     
     void Update()
     {
@@ -50,6 +52,8 @@ public class TippingBucket : InterpolateInteractableWrapper
         
         InterpolateTransform itMirrorPresent = mirrorPresent.GetComponent<InterpolateTransform>();
         itMirrorPresent.TriggerMotion();
+
+        booksOnBustCase.GetComponent<InspectableObject>().interactable = false;
         
         AudioPlayer.Play(tippingVoiceLine, Globals.Tags.DIALOGUE_SOURCE);
         // Fire event to enable ground mirror.

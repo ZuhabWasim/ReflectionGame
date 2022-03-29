@@ -16,17 +16,17 @@ public class Candle : ProximityTrigger
         candleLight = GetComponentInChildren<Light>();
         if (!active)
         {
-            candleLight.intensity = 0f;
+            candleLight.enabled = false;
         }
     }
     protected override void OnActive()
     {
-        candleLight.intensity = 40000f;
+        candleLight.enabled = true;
     }
     
     protected override void OnDeactive()
     {
-        candleLight.intensity = 0f;
+        candleLight.enabled = false;
     }
 
     protected override void OnActivateTrigger()

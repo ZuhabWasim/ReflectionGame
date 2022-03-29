@@ -130,7 +130,7 @@ public class Globals
 		public static string PAINT_BRUSH = "Paint Brush";
 		public static string WET_PAINT_BRUSH = "Wet Paint Brush";
 		public static string SCISSOR_PUZZLE = "ScissorPuzzle";
-		public static string EMPTY_BUCKET = "Empty Bucket";
+		public static string EMPTY_BUCKET = "Empty Bucket (E)";
 
 		// For Animations
 		public static string IS_WALKING = "IsWalking";
@@ -157,6 +157,7 @@ public class Globals
 		public static string NOTE_ITEM = "Note";
 		public static string SCISSORS_ITEM = "Scissors";
 		public static string BROOM_ITEM = "Broom";
+		public static string DRAWER_PULL_ITEM = "Drawer Pull";
 
 		public static string HANDKERCHIEF_ITEM = "Handkerchief";
 		public static string MUSICBOXMILLIE_ITEM = "Millie's Key";
@@ -304,6 +305,13 @@ public class Globals
 			public static string ALL_FILTERS = "light_through_all_filters2";
 			public static string SAFE_CODE = "safe_code_unlocked";
 			public static string CANVAS_PAINTING = "canvas_present";
+			public static string ALREADY_BLANK = "already_blank";
+			public static string ALREADY_REFLECTIVE = "already_reflective";
+			public static string NO_NEED_TO_REFLECT = "no_need_to_reflect";
+			public static string TOO_SMALL_CANT_REFLECT = "too_small_cant_reflect";
+			public static string BRUSH_ALREADY_WET = "brush_already_wet";
+			public static string STOOL_TOO_HIGH = "stool_way_too_high";
+			public static string CANT_REACH = "stool_too_high2";
 		}
 
 		public class Section4

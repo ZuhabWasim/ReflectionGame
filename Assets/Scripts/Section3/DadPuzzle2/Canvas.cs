@@ -48,10 +48,20 @@ public class Canvas : InteractableAbstract
 		switch ( brush.paint )
 		{
 			case PaintType.WHITE:
+				if ( state == CanvasState.CLEAN )
+				{
+					AudioPlayer.Play( Globals.VoiceLines.Section3.ALREADY_BLANK, Globals.Tags.DIALOGUE_SOURCE );
+					return;
+				}
 				SetState( CanvasState.CLEAN );
 				break;
 			case PaintType.REFLECTIVE:
-				if ( state == CanvasState.PORTAL ) return;
+				if ( state == CanvasState.REFLECTIVE || state == CanvasState.PORTAL)
+				{
+					AudioPlayer.Play( Globals.VoiceLines.Section3.ALREADY_REFLECTIVE, Globals.Tags.DIALOGUE_SOURCE );
+					return;
+				}
+				//if ( state == CanvasState.PORTAL ) return;
 				SetState( CanvasState.REFLECTIVE );
 				break;
 			case PaintType.PORTAL:

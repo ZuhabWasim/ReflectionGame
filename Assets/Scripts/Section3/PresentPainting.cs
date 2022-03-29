@@ -11,19 +11,20 @@ public class PresentPainting : InteractableAbstract
     
     protected override void OnStart()
     {
-        finalColour = new Color(0.0f, 0.041f, 1.0f, 0.0f);
+        finalColour = new Color(1.9f, 1.9f, 1.9f, 1.000f); // new Color(0.0f, 0.041f, 1.0f, 0.0f);
         EventManager.Sub(Globals.Events.CANVAS_STATE_CHANGE, OnCanvasChange);
     }
     
     protected override void OnUserInteract()
     {
         Color color = GlobalState.GetVar<Color>(Globals.Vars.DAD_PUZZLE_2_FINAL_LIGHT_COLOR);
+        Debug.Log(color);
         if (equalColor(color, Color.black))
         {
             AudioPlayer.Play(Globals.VoiceLines.Section3.CANVAS_PAINTING, Globals.Tags.DIALOGUE_SOURCE);
-        } else if (equalColor(color, finalColour))
+        } else if (additiveColorCheck(color, finalColour))
         {
-            AudioPlayer.Play(Globals.VoiceLines.Section3.SAFE_CODE, Globals.Tags.DIALOGUE_SOURCE, false);
+            AudioPlayer.Play(Globals.VoiceLines.Section3.SAFE_CODE, Globals.Tags.DIALOGUE_SOURCE);
             EventManager.Fire(Globals.Events.DAD_PUZZLE_2_LIGHTPUZZLE_SOLVED);
         }
         else
@@ -36,16 +37,19 @@ public class PresentPainting : InteractableAbstract
     void OnCanvasChange()
     {
         Color color = GlobalState.GetVar<Color>(Globals.Vars.DAD_PUZZLE_2_FINAL_LIGHT_COLOR);
-        if (equalColor(color, finalColour))
+        if (additiveColorCheck(color, finalColour))
         {
             AudioPlayer.Play(Globals.VoiceLines.Section3.ALL_FILTERS, Globals.Tags.DIALOGUE_SOURCE);
         }
-        else if (equalColor(color, Color.black))
-        {
-            AudioPlayer.Play(Globals.VoiceLines.Section3.NOT_ALL_FILTERS, Globals.Tags.DIALOGUE_SOURCE);
-        }
     }
 
+    private bool additiveColorCheck(Color color1, Color color2)
+    {
+        return color1.r >= color2.r - ERROR &&
+               color1.g >= color2.g - ERROR &&
+               color1.b >= color2.b - ERROR;
+    }
+    
     private bool equalColor(Color color1, Color color2)
     {
         return (equalComponent(color1.r, color2.r, ERROR) &&
