@@ -18,30 +18,32 @@ public class Canvas : InteractableAbstract
 	public GameObject[] activateOnPortal;
 
 	public MirrorConnector mirrorConnector;
-	
+
 	private GameObject m_mirrorPlane;
 	private float m_lightRange;
-	
+
 	protected override void OnStart()
 	{
 		if ( outgoingLight ) m_lightRange = outgoingLight.range;
 		desiredItem = Globals.Misc.WET_PAINT_BRUSH;
 
-		m_mirrorPlane = GetComponentInChildren<MirrorPlane>( true ).gameObject; // By default, many canvas mirrors are inactive
+		m_mirrorPlane = GetComponentInChildren<MirrorPlane>( includeInactive: true ).gameObject;
+		// By default, many canvas mirrors are inactive
 		// TODO: Make it so StudioLight.cs fires an event that turns on the outgoing light of all canvases.
 	}
 
 	protected override void OnUserInteract()
 	{
-		if (state == CanvasState.CLEAN)
+		if ( state == CanvasState.CLEAN )
 		{
-			AudioPlayer.Play(Globals.VoiceLines.Section3.WHITE_CANVAS, Globals.Tags.DIALOGUE_SOURCE);
-		} else if (state == CanvasState.REFLECTIVE)
+			AudioPlayer.Play( Globals.VoiceLines.Section3.WHITE_CANVAS, Globals.Tags.DIALOGUE_SOURCE );
+		}
+		else if ( state == CanvasState.REFLECTIVE )
 		{
-			AudioPlayer.Play(Globals.VoiceLines.Section3.REFLECTIVE_CANVAS, Globals.Tags.DIALOGUE_SOURCE);
+			AudioPlayer.Play( Globals.VoiceLines.Section3.REFLECTIVE_CANVAS, Globals.Tags.DIALOGUE_SOURCE );
 		}
 	}
-	
+
 	protected override void OnUseItem()
 	{
 		PaintBrush brush = Inventory.GetInstance().GetSelectedPickupItem().GetComponent<PaintBrush>();
@@ -56,7 +58,7 @@ public class Canvas : InteractableAbstract
 				SetState( CanvasState.CLEAN );
 				break;
 			case PaintType.REFLECTIVE:
-				if ( state == CanvasState.REFLECTIVE || state == CanvasState.PORTAL)
+				if ( state == CanvasState.REFLECTIVE || state == CanvasState.PORTAL )
 				{
 					AudioPlayer.Play( Globals.VoiceLines.Section3.ALREADY_REFLECTIVE, Globals.Tags.DIALOGUE_SOURCE );
 					return;
@@ -144,7 +146,7 @@ public class Canvas : InteractableAbstract
 
 	private void ToClean()
 	{
-		
+
 		m_mirrorPlane.SetActive( false );
 	}
 }

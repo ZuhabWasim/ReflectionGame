@@ -1,3 +1,4 @@
+#undef USING_INTERACTABLE_HIGHLIGHTING
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -47,6 +48,10 @@ public abstract class InteractableAbstract : MonoBehaviour
 		CLOSE
 	}
 	public ItemType myType;
+
+#if USING_INTERACTABLE_HIGHLIGHTING
+	public bool highlightOnLook = true;
+#endif
 
 	private Inventory m_inventory;
 	[HideInInspector]
@@ -160,9 +165,9 @@ public abstract class InteractableAbstract : MonoBehaviour
 	}
 
 	public void ActivateReflect()
-    {
+	{
 		OnUserReflect();
-    }
+	}
 
 	public void ActivateUseItem( string objectName )
 	{
@@ -170,7 +175,7 @@ public abstract class InteractableAbstract : MonoBehaviour
 		if ( desiredItem == objectName )
 		{
 			OnUseItem();
-			if (useVoiceLine != null)
+			if ( useVoiceLine != null )
 			{
 				AudioPlayer.Play( useVoiceLine, Globals.Tags.DIALOGUE_SOURCE );
 			}
@@ -187,7 +192,7 @@ public abstract class InteractableAbstract : MonoBehaviour
 		// If no item is selected.
 		else if ( objectName == "" )
 		{
-			if (nonUseableVoiceLine != null)
+			if ( nonUseableVoiceLine != null )
 			{
 				AudioPlayer.Play( nonUseableVoiceLine, Globals.Tags.DIALOGUE_SOURCE );
 			}
@@ -200,7 +205,7 @@ public abstract class InteractableAbstract : MonoBehaviour
 		// If the wrong item is selected.
 		else
 		{
-			if (nonUseableVoiceLine != null)
+			if ( nonUseableVoiceLine != null )
 			{
 				AudioPlayer.Play( nonUseableVoiceLine, Globals.Tags.DIALOGUE_SOURCE );
 			}
@@ -210,6 +215,23 @@ public abstract class InteractableAbstract : MonoBehaviour
 			}
 			AudioPlayer.Play( Globals.AudioFiles.General.NON_INTERACTABLE, Globals.Tags.MAIN_SOURCE );
 		}
+	}
+
+
+	public void OnUserLooking()
+	{
+#if USING_INTERACTABLE_HIGHLIGHTING
+		if ( !highlightOnLook ) return;
+		this.gameObject.layer = Globals.Misc.HIGHLIGHT_LAYER;
+#endif
+	}
+
+	public void OnUserLookAway()
+	{
+#if USING_INTERACTABLE_HIGHLIGHTING
+		if ( !highlightOnLook ) return;
+		this.gameObject.layer = Globals.Misc.DEFAULT_LAYER;
+#endif
 	}
 
 	protected virtual void OnUserInteract() { }

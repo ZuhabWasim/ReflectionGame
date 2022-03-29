@@ -159,7 +159,7 @@ namespace Utilities
 				writer.Write( serializedAssetTable );
 			}
 
-			Debug.Log( "Wrote updated audio_asset_table" );
+			Debug.LogFormat( "Wrote updated audio_asset_table with {0} asset entries", table.AssetPaths.Count );
 		}
 #endif // if UNITY_EDITOR
 

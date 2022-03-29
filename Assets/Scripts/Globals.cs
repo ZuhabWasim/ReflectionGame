@@ -98,6 +98,7 @@ public class Globals
 		public static string CANVAS_STATE_CHANGE = "CanvasStateChange";
 		public static string HAS_DAD_KEY = "HasDadKey";
 		public static string UPDATE_MOVEMENT = "UpdateShelfMover";
+		public static string DAD_PUZZLE_2_SPOTLIGHT_INSTALLED = "DadPuzzle2_SpotlightInstalled";
 		public static string DAD_PUZZLE_2_LIGHTPUZZLE_SOLVED = "DadPuzzle2_LightPuzzleSolved";
 		
 	}
@@ -122,6 +123,8 @@ public class Globals
 
 	public class Misc
 	{
+		public static int HIGHLIGHT_LAYER = 7;
+		public static int DEFAULT_LAYER = 0;
 		public static string H_AXIS = "Horizontal";
 		public static string V_AXIS = "Vertical";
 		public static string MOUSE_X = "Mouse X";

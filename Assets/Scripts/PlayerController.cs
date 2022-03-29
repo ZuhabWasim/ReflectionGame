@@ -96,7 +96,7 @@ public class PlayerController : MonoBehaviour
 		EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.INTERACT_KEY ), SkipCurrentVoiceline );
 		EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.USE_ITEM_KEY ), HandleDropItem );
 		EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.USE_ITEM_KEY ), HandleUseItemPress );
-		EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.REFLECT_KEY), HandleReflectPress );
+		EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.REFLECT_KEY ), HandleReflectPress );
 		EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.DROP_KEY ), HandleDrop );
 		EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.INVENTORY_KEY ), HandleOpenInventory );
 		EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.ESCAPE_KEY ), HandleEscape );
@@ -313,12 +313,12 @@ public class PlayerController : MonoBehaviour
 	}
 
 	void HandleReflectPress()
-    {
+	{
 		if ( targetObject != null && targetObject.interactable && targetObject.WillReflect() )
-        {
+		{
 			targetObject.ActivateReflect();
-        }
-    }
+		}
+	}
 
 	void HandleUseItemPress()
 	{
@@ -338,7 +338,7 @@ public class PlayerController : MonoBehaviour
 		if ( targetObject ) return;
 		PickupItem inventoryItem = m_inventory.GetSelectedPickupItem();
 
-		if ( !inventoryItem || inventoryItem.itemName != Globals.Misc.EMPTY_BUCKET) return;
+		if ( !inventoryItem || inventoryItem.itemName != Globals.Misc.EMPTY_BUCKET ) return;
 		inventoryItem.OnDrop( this.transform.position + ( this.transform.forward * dropDistance ) + new Vector3( 0, 1, 0 ) );
 	}
 
@@ -361,10 +361,19 @@ public class PlayerController : MonoBehaviour
 			bool hit = Physics.Raycast( playerCamera.position, playerCamera.forward, out hitRes, Globals.Misc.MAX_INTERACT_DISTANCE );
 			if ( hit && hitRes.collider.gameObject.GetComponent<InteractableAbstract>() != null )
 			{
+				if ( targetObject is not null )
+				{
+					targetObject.OnUserLookAway();
+				}
 				targetObject = hitRes.collider.gameObject.GetComponent<InteractableAbstract>();
+				targetObject.OnUserLooking();
 			}
 			else
 			{
+				if ( targetObject is not null )
+				{
+					targetObject.OnUserLookAway();
+				}
 				targetObject = null;
 			}
 

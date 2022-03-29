@@ -1,3 +1,4 @@
+#undef USING_INTERACTABLE_HIGHLIGHTING
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -44,6 +45,10 @@ public class MirrorInteractable : InteractableAbstract
 			EventManager.Sub( makeNonTeleportableEvent, () => { teleportable = false; } );
 		}
 
+#if USING_INTERACTABLE_HIGHLIGHTING
+		highlightOnLook = false;
+#endif
+
 		// IF PENGUINS ARE SO SMART, HOW COME THEY LIVE IN IGLOOS?
 	}
 
@@ -74,12 +79,12 @@ public class MirrorInteractable : InteractableAbstract
 			AudioPlayer.Play( voiceLine, Globals.Tags.DIALOGUE_SOURCE );
 		}
 	}
-	
+
 	public void SetMirrorConnector( MirrorConnector connector )
 	{
 		m_connector = connector;
 	}
-	
+
 	protected override void OnUserReflect()
 	{
 		// Only Teleports if the Mirror Interactable allows it and the Mirror is interactable to begin with.
