@@ -6,7 +6,7 @@ public class Stool : InteractableAbstract
 {
     protected override void OnUserInteract()
     {
-        if ( BookSlot.IsOnBucket() )
+        if ( EmptyBucket.IsOnBucket() )
         {
             AudioPlayer.Play(Globals.VoiceLines.Section3.STOOL_TOO_HIGH, Globals.Tags.DIALOGUE_SOURCE);
         }

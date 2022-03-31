@@ -1333,6 +1333,8 @@ MonoBehaviour:
   makeNonInteractableEvent: 
   voiceLine: {fileID: 0}
   nonInteractableVoiceLine: {fileID: 8300000, guid: 56fec2afa3da0b54b915562f97df9676, type: 3}
+  nonUseableVoiceLine: {fileID: 0}
+  useVoiceLine: {fileID: 0}
   displayPrompt: 1
   acceptItem: 0
   deleteItem: 0
@@ -1344,6 +1346,7 @@ MonoBehaviour:
   audioSourceName: dadSideDrawer2
   closeEvent: 
   openEvent: 
+  onMotionTriggerEvent: 
   needsItem: 
 --- !u!114 &4005657360424369921
 MonoBehaviour:
@@ -1377,7 +1380,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -2210,6 +2213,8 @@ MonoBehaviour:
   makeNonInteractableEvent: 
   voiceLine: {fileID: 8300000, guid: 0be941dd38d8ded4c811914fbfc0ad92, type: 3}
   nonInteractableVoiceLine: {fileID: 0}
+  nonUseableVoiceLine: {fileID: 0}
+  useVoiceLine: {fileID: 0}
   displayPrompt: 1
   acceptItem: 0
   deleteItem: 0
@@ -2217,6 +2222,7 @@ MonoBehaviour:
   myType: 0
   thisIsAMirror: 0
   img: {fileID: 2800000, guid: 152863569722e3e4a89c59935d19e80f, type: 3}
+  onPickupEvent: 
 --- !u!1 &2967157021067228418
 GameObject:
   m_ObjectHideFlags: 0
@@ -3682,6 +3688,8 @@ MonoBehaviour:
   makeNonInteractableEvent: 
   voiceLine: {fileID: 0}
   nonInteractableVoiceLine: {fileID: 8300000, guid: 56fec2afa3da0b54b915562f97df9676, type: 3}
+  nonUseableVoiceLine: {fileID: 0}
+  useVoiceLine: {fileID: 0}
   displayPrompt: 1
   acceptItem: 0
   deleteItem: 0
@@ -3693,6 +3701,7 @@ MonoBehaviour:
   audioSourceName: dadSideDrawer
   closeEvent: 
   openEvent: 
+  onMotionTriggerEvent: 
   needsItem: 
 --- !u!114 &7221390425432475547
 MonoBehaviour:
@@ -3726,7 +3735,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

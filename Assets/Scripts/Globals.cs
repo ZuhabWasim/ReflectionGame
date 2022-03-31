@@ -22,10 +22,20 @@ public class Globals
 	public static void RegisterGlobalEventListeners()
 	{
 		EventManager.Sub( Globals.Events.TELEPORT, UpdateWorldOnTeleport );
-
+		
+		// Mom Closet disabling
 		EventManager.Sub( Globals.Events.LOCK_MOM_DOOR, DisableMainRooms );
 		EventManager.Sub( Globals.Events.HAS_MOM_KEY, EnableMainRooms );
-
+		
+		EventManager.Sub( Globals.Events.LOCK_MOM_DOOR, DisableDadCloset );
+		EventManager.Sub( Globals.Events.HAS_MOM_KEY, EnableDadCloset );
+		
+		// Dad closet disabling
+		EventManager.Sub( Globals.Events.LOCK_DAD_DOOR, DisableMainRooms );
+		EventManager.Sub( Globals.Events.LOCK_DAD_DOOR, DisableMomCloset);
+		EventManager.Sub( Globals.Events.HAS_DAD_KEY, EnableMainRooms );
+		EventManager.Sub( Globals.Events.HAS_DAD_KEY, EnableMomCloset);
+		
 		EventManager.Sub( Globals.Events.LOCK_PAST_DAD_SHELF, FixBrushOnDad2 );
 	}
 
@@ -45,6 +55,30 @@ public class Globals
 	{
 		Debug.Log("Enabling Main Room");
 		EventManager.Fire(Globals.Events.ACTIVATE_MAIN_ROOM);
+	}
+	
+	private static void DisableMomCloset()
+	{
+		Debug.Log("Disabling Mom Closet");
+		EventManager.Fire(Globals.Events.DEACTIVATE_MOM_CLOSET);
+	}
+
+	private static void EnableMomCloset()
+	{
+		Debug.Log("Enabling Mom Closet");
+		EventManager.Fire(Globals.Events.ACTIVATE_MOM_CLOSET);
+	}
+	
+	private static void DisableDadCloset()
+	{
+		Debug.Log("Disabling Dad Closet");
+		EventManager.Fire(Globals.Events.DEACTIVATE_DAD_CLOSET);
+	}
+
+	private static void EnableDadCloset()
+	{
+		Debug.Log("Enabling Dad Closet");
+		EventManager.Fire(Globals.Events.ACTIVATE_DAD_CLOSET);
 	}
 
 	// Changes the paint brush the player enters with from dad1 to dad2 to a reflective one
@@ -75,6 +109,7 @@ public class Globals
 		public static string LIGHTS_TURN_OFF = "TurnOffLights";
 		public static string MILLIE_KEY_INTERACT = "MillieKeyInteract";
 		public static string HAS_MILLIE_KEY = "HasMillieKey";
+		public static string FIRST_TELEPORT = "OnFirstTeleport";
 
 		// Section 2
 		public static string LOCK_MOM_DOOR = "LockMomDoor";
@@ -115,6 +150,7 @@ public class Globals
 		public static string INTERACTABLE_BOOK = "InteractableBook";
 		public static string BOOK_SLOT = "BookSlot";
 		public static string MUSIC_BOX = "MusicBox";
+		public static string PAST_FIREPLACE_MIRROR = "PastFireplaceMirror";
 		
 		public static string PRESENT_MOM_DOOR = "PresentMomDoor";
 		public static string PRESENT_DAD_DOOR = "PresentDadDoor";
@@ -161,6 +197,7 @@ public class Globals
 		public static string SCISSORS_ITEM = "Scissors";
 		public static string BROOM_ITEM = "Broom";
 		public static string DRAWER_PULL_ITEM = "Drawer Pull";
+		public static string ALICE_IN_WONDERLAND = "Alice in Wonderland";
 
 		public static string HANDKERCHIEF_ITEM = "Handkerchief";
 		public static string MUSICBOXMILLIE_ITEM = "Millie's Key";
@@ -211,6 +248,8 @@ public class Globals
 			public static string OBJECT_OBTAINED = "object_obtained";
 			public static string MUSICBOXKEY_OBTAINED = "key_acquired";
 			public static string NON_INTERACTABLE = "non_interactable";
+			public static string OPEN_DRAWER = "open_drawer";
+			public static string CLOSE_DRAWER = "close_drawer";
 		}
 
 		public class Section1

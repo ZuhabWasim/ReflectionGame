@@ -19,6 +19,9 @@ public class MusicBox : InteractableAbstract
 	private int keys = 0;
 
 	private bool millieKeyInteracted;
+
+	public MirrorInteractable pastFireplaceMirror;
+	public MirrorInteractable presentFireplaceMirror;
 	
 	protected override void OnStart()
 	{
@@ -26,6 +29,7 @@ public class MusicBox : InteractableAbstract
 		EventManager.Sub( Globals.Events.HAS_MILLIE_KEY, OnHavingMillieKey );
 		EventManager.Sub( Globals.Events.HAS_MOM_KEY, OnHavingMomKey );
 		EventManager.Sub( Globals.Events.HAS_DAD_KEY, OnHavingDadKey );
+		EventManager.Sub( Globals.Events.FIRST_TELEPORT, OnFirstTeleport );
 		
 		// AudioPlayer.RegisterAudioPlayer(MUSICBOX_AUDIO_SOURCE, GetComponent<AudioSource>());
 
@@ -36,6 +40,9 @@ public class MusicBox : InteractableAbstract
 		hasDadKey = false;
 
 		millieKeyInteracted = false;
+		
+		pastFireplaceMirror = GameObject.FindGameObjectWithTag(Globals.Tags.PAST_FIREPLACE_MIRROR)
+			.GetComponent<MirrorInteractable>();
 	}
 
 	protected override void OnUserInteract()
@@ -162,6 +169,7 @@ public class MusicBox : InteractableAbstract
 		if ( !hasMomKey ) keys += 1;
 		hasMomKey = true;
 		Debug.Log("Keys = " + keys);
+		DisableFireplaceMirrorTeleport();
 	}
 
 	void OnHavingDadKey()
@@ -171,6 +179,24 @@ public class MusicBox : InteractableAbstract
 		Debug.Log("Keys = " + keys);
 	}
 
+	void OnFirstTeleport()
+	{
+		Debug.Log("OnFirstTeleport: " + presentFireplaceMirror);
+		// Removes the initial voice line.
+		if (presentFireplaceMirror != null)
+		{
+			presentFireplaceMirror.teleportingVoiceLine = null;
+		}
+	}
+
+	private void DisableFireplaceMirrorTeleport()
+	{
+		// Player can no longer go into the past after they collect all three keys.
+		if (keys == 3 && presentFireplaceMirror != null)
+		{
+			presentFireplaceMirror.teleportable = false;
+		}
+	}
 	private bool HasAllKeys()
 	{
 		return hasMillieKey && hasDadKey && hasMomKey;

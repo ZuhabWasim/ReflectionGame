@@ -25,6 +25,11 @@ public class ProximityTrigger : MonoBehaviour
 	public string makeActivatableEvent = "";
 	[Tooltip( "Event which should deactivate this trigger" )]
 	public string makeDeactivatableEvent = "";
+
+	[Tooltip("Whether the audio played should be forced (true), or queued (false).")]
+	public bool forceAudio = true;
+
+	private bool onStart = true;
 	
 	void Start()
 	{
@@ -41,6 +46,16 @@ public class ProximityTrigger : MonoBehaviour
 		sqrdTriggerDist = Mathf.Pow( triggerDistance, 2 );
 		StartCoroutine( MonitorTriggerPlayerDist() );
 		OnStart();
+		onStart = false;
+	}
+	
+	void OnEnable()
+	{
+		if (!onStart)
+		{
+			// Ensures proximity coroutines are re-enabled after disabling closets.
+			StartCoroutine( MonitorTriggerPlayerDist() );
+		}
 	}
 
 	float GetSqrdDistToPlayer()
@@ -75,7 +90,7 @@ public class ProximityTrigger : MonoBehaviour
 	{
 		if ( onTriggerClip != null && onTriggerClipSource != string.Empty )
 		{
-			AudioPlayer.Play( onTriggerClip, onTriggerClipSource );
+			AudioPlayer.Play( onTriggerClip, onTriggerClipSource , forceAudio);
 		}
 
 		if ( onTriggerFireEvent != string.Empty )
