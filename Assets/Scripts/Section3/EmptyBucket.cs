@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class EmptyBucket : PickupItem
 {
+	private static float FLOOR_HEIGHT = 0.27f;
+	private static float BUCKET_HEIGHT = 1.25f;
+	private static float HEIGHT_ERROR = 0.02f;
+	
 	public override void OnUserInteractUnfiltered()
 	{
 		base.OnUserInteract();
@@ -21,5 +25,12 @@ public class EmptyBucket : PickupItem
 		Inventory inventory = Inventory.GetInstance();
 		PickupItem selectedItem = inventory.GetSelectedPickupItem();
 		inventory.DeleteItem( selectedItem.itemName );
+	}
+	
+	public static bool IsOnBucket()
+	{
+		Vector3 playerPosition = GameObject.FindGameObjectWithTag(Globals.Tags.PLAYER).transform.position;
+		Debug.Log("playerPosition.y: " + playerPosition.y + " BUCKET_HEIGHT: " + BUCKET_HEIGHT + " HEIGHT_ERROR: " + HEIGHT_ERROR);
+		return playerPosition.y >= BUCKET_HEIGHT - HEIGHT_ERROR;
 	}
 }

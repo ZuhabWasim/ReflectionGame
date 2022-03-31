@@ -68,7 +68,7 @@ public class BookSlot : InteractableAbstract
 		Inventory inventory = Inventory.GetInstance();
 		PickupItem selectedItem = inventory.GetSelectedPickupItem();
 		
-		if (IsOnBucket())
+		if (EmptyBucket.IsOnBucket())
 		{
 			if ( currentBook == BookType.INVALID_BOOK && 
 			     (selectedItem == null || GetBookTypeFromName( selectedItem.gameObject.name ) == BookType.INVALID_BOOK))

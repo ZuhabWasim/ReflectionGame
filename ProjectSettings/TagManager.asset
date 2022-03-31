@@ -20,6 +20,7 @@ TagManager:
   - PresentMomDoor
   - PresentDadDoor
   - PresentDadShelf
+  - PastFireplaceMirror
   layers:
   - Default
   - TransparentFX

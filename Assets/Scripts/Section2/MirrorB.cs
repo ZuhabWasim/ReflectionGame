@@ -45,7 +45,7 @@ public class MirrorB : MirrorInteractable
             pastMover.TriggerMotion();
             presMover.TriggerMotion();
             
-            AudioPlayer.Play( Globals.AudioFiles.Section2.MOVING_MIRROR, Globals.Tags.MAIN_SOURCE); // Not working so use MainSource
+            AudioPlayer.Play( Globals.AudioFiles.Section2.MOVING_MIRROR, Globals.Tags.DIALOGUE_SOURCE, false); // Not working so use MainSource
             
             EventManager.Fire(Globals.Events.MOVE_MIRROR_B);
             

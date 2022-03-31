@@ -12,7 +12,8 @@ public class InterpolateInteractableWrapper : InteractableAbstract
 	public string audioSourceName;
 	public string closeEvent = "";
 	public string openEvent = "";
-
+	public string onMotionTriggerEvent;
+	
 	public string needsItem = "";
 	private string m_audioSource;
 
@@ -72,6 +73,11 @@ public class InterpolateInteractableWrapper : InteractableAbstract
 	{
 		if ( it.ActivateInteractMotion() )
 		{
+			if ( onMotionTriggerEvent != string.Empty )
+			{
+				EventManager.Fire(onMotionTriggerEvent);
+			}
+			
 			if ( myType == ItemType.OPEN )
 			{
 				SetType( ItemType.CLOSE );
