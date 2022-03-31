@@ -183,7 +183,6 @@ public class MusicBox : InteractableAbstract
 
 	void OnFirstTeleport()
 	{
-		Debug.Log("OnFirstTeleport: " + presentFireplaceMirror);
 		// Removes the initial voice line.
 		if (presentFireplaceMirror != null)
 		{
