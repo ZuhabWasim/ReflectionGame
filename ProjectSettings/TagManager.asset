@@ -21,6 +21,7 @@ TagManager:
   - PresentDadDoor
   - PresentDadShelf
   - PastFireplaceMirror
+  - ColourFilter
   layers:
   - Default
   - TransparentFX

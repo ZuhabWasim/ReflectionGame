@@ -70,6 +70,7 @@ public class CanvasManager : MonoBehaviour
 				ComputeLightPath();
 			}
 		}
+		EventManager.Fire(Globals.Events.RECOMPUTED_LIGHT);
 	}
 
 	void PrepareCanvasPairsForLightTrace()

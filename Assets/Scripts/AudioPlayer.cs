@@ -58,11 +58,17 @@ public class AudioPlayer
 		RegisteredAudioPlayer player = (RegisteredAudioPlayer)m_audioPlayers[ targetSource ];
 		if ( force )
 		{
-			ForcePlay( player, clip );
+			if (clip != null)
+			{
+				ForcePlay( player, clip );
+			}
 		}
 		else
 		{
-			player.clipQueue.Enqueue( clip );
+			if (clip != null)
+			{
+				player.clipQueue.Enqueue( clip );
+			}
 		}
 	}
 

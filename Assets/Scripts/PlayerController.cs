@@ -314,7 +314,7 @@ public class PlayerController : MonoBehaviour
 
 	void HandleReflectPress()
 	{
-		if ( targetObject != null && targetObject.interactable && targetObject.WillReflect() )
+		if ( targetObject != null && targetObject.WillReflect() )
 		{
 			targetObject.ActivateReflect();
 		}

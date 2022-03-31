@@ -51,7 +51,7 @@ public class ProximityTrigger : MonoBehaviour
 	
 	void OnEnable()
 	{
-		if (!onStart)
+		if (!onStart && active)
 		{
 			// Ensures proximity coroutines are re-enabled after disabling closets.
 			StartCoroutine( MonitorTriggerPlayerDist() );
@@ -101,6 +101,10 @@ public class ProximityTrigger : MonoBehaviour
 		if ( !triggerOnce )
 		{
 			StartCoroutine( ResetTrigger() );
+		}
+		else
+		{
+			active = false;
 		}
 		OnActivateTrigger();
 	}
