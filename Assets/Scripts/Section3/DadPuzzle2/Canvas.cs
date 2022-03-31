@@ -77,11 +77,12 @@ public class Canvas : InteractableAbstract
 
 	void OnPortal()
 	{
-		ToPortal();
 		foreach ( GameObject obj in activateOnPortal )
 		{
 			obj.SetActive( true );
 		}
+
+		ToPortal();
 	}
 
 	public void DisableLight()
@@ -135,12 +136,14 @@ public class Canvas : InteractableAbstract
 	private void ToPortal()
 	{
 		m_mirrorPlane.SetActive( true );
+		GetComponentInChildren<MirrorPlane>().SetNormalTexture();
 		mirrorConnector.Activate();
 	}
 
 	private void ToReflective()
 	{
 		m_mirrorPlane.SetActive( true );
+		GetComponentInChildren<MirrorPlane>().SetOpaqueTexture();
 		mirrorConnector.Deactivate();
 	}
 

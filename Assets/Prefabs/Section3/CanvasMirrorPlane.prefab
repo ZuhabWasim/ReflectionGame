@@ -319,7 +319,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 06f100fc5428d5a4e8fc81dcea5e7e1a, type: 2}
+  - {fileID: 2100000, guid: 4d42192277d4af649a635edeb9f57c76, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -388,6 +388,8 @@ MonoBehaviour:
   makeNonInteractableEvent: 
   voiceLine: {fileID: 0}
   nonInteractableVoiceLine: {fileID: 0}
+  nonUseableVoiceLine: {fileID: 0}
+  useVoiceLine: {fileID: 0}
   displayPrompt: 1
   acceptItem: 0
   deleteItem: 0
