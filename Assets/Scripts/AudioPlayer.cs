@@ -56,19 +56,19 @@ public class AudioPlayer
 	{
 		Assert.IsTrue( m_audioPlayers.ContainsKey( targetSource ) );
 		RegisteredAudioPlayer player = (RegisteredAudioPlayer)m_audioPlayers[ targetSource ];
+		
+		if (clip == null)
+		{
+			return;
+		}
+
 		if ( force )
 		{
-			if (clip != null)
-			{
-				ForcePlay( player, clip );
-			}
+			ForcePlay( player, clip );
 		}
 		else
 		{
-			if (clip != null)
-			{
-				player.clipQueue.Enqueue( clip );
-			}
+			player.clipQueue.Enqueue( clip );
 		}
 	}
 

@@ -41,9 +41,6 @@ public class MusicBox : InteractableAbstract
 		hasDadKey = false;
 
 		millieKeyInteracted = false;
-		
-		pastFireplaceMirror = GameObject.FindGameObjectWithTag(Globals.Tags.PAST_FIREPLACE_MIRROR)
-			.GetComponent<MirrorInteractable>();
 	}
 
 	protected override void OnUserInteract()
