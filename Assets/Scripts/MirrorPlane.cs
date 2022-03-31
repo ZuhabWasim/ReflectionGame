@@ -16,9 +16,25 @@ public class MirrorPlane : MonoBehaviour
 
 	// Child components of the mirror
 	private MirrorCameraPosition m_mirrorCameraPosition;
+	
+	private bool m_started = false; 
 
 	// Start is called before the first frame update
 	void Start()
+	{
+		if (!m_started)
+		{
+			OnStart();
+		}
+	}
+
+	// Update is called once per frame
+	void Update()
+	{
+
+	}
+
+	public void OnStart()
 	{
 		m_mirrorCameraPosition = GetComponentInChildren( typeof( MirrorCameraPosition ), true ) as MirrorCameraPosition;
 		if ( m_mirrorCameraPosition == null )
@@ -40,12 +56,8 @@ public class MirrorPlane : MonoBehaviour
 		{
 			m_mirrorRenderer.material = m_mirrorMaterial;
 		}
-	}
 
-	// Update is called once per frame
-	void Update()
-	{
-
+		m_started = true;
 	}
 
 	public void SetOpaqueTexture()
@@ -137,6 +149,11 @@ public class MirrorPlane : MonoBehaviour
 		SetupMirrorCameraPosition();
 		m_mirrorCameraPosition.SetCamera( false );
 		SetOpaqueTexture();
+	}
+
+	public bool Started()
+	{
+		return m_started;
 	}
 
 	// IMPORTANT: this is a really unoptimized. Please see MirrorConnector.Activate for a better way

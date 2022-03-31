@@ -21,6 +21,9 @@ public class MirrorConnector : MonoBehaviour
 	[Tooltip( "If the associated mirrors should be active at start. Do not toggle mid-game, it will not work." )]
 	public bool active = true; // Only toggleable in Unity
 
+	[Tooltip( "If this pair of mirrors should be treated as a canvas. Do not toggle mid-game, it will not work." )]
+	public bool canvas = false; // If the mirrors should be treated as canvases
+
 	// Mirror interactable interfaces
 	private MirrorInteractable presentInteractable;
 	private MirrorInteractable pastInteractable;
@@ -86,6 +89,23 @@ public class MirrorConnector : MonoBehaviour
 		catch ( UnityException e )
 		{
 			Debug.LogError( e.Message );
+			return;
+		}
+
+		if ( canvas )
+		{
+			if (!presentMirror.Started())
+			{
+				presentMirror.OnStart();
+			}
+			if (!pastMirror.Started())
+			{
+				pastMirror.OnStart();
+			}
+
+			// Ensure that they're disabled
+			presentMirror.gameObject.SetActive(false);
+			pastMirror.gameObject.SetActive(false);
 		}
 
 		// Create render textures
@@ -375,6 +395,7 @@ public class MirrorConnector : MonoBehaviour
 		if ( m_active )
 		{
 			bool present = GlobalState.GetVar<bool>( Globals.Vars.IS_PRESENT_WORLD );
+
 			if ( present )
 			{
 				// Need to set the present mirror camera to off, and past mirror texture to off
