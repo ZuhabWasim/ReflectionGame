@@ -420,7 +420,7 @@ public class PlayerController : MonoBehaviour
 	{
 		if ( targetObject != null )
 		{
-			interactionIcon.ShowIcons( targetObject.WillAcceptItem(),
+			interactionIcon.ShowIcons( targetObject.GetItemName(), targetObject.WillAcceptItem(),
 				targetObject.WillDisplayPrompt(), targetObject.WillReflect() );
 		}
 		else
