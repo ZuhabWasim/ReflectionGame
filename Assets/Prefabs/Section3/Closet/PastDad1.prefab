@@ -425,6 +425,7 @@ MonoBehaviour:
   audioSourceName: 
   closeEvent: 
   openEvent: 
+  onMotionTriggerEvent: 
   needsItem: 
 --- !u!1 &810233242579437016
 GameObject:
@@ -4225,6 +4226,7 @@ MonoBehaviour:
   audioSourceName: dadClosetShelfPast
   closeEvent: LockPastDadShelf
   openEvent: DadPuzzle1_BookshelfSolved
+  onMotionTriggerEvent: 
   needsItem: 
 --- !u!65 &5688998967700979603
 BoxCollider:
@@ -5675,6 +5677,7 @@ MonoBehaviour:
   audioSourceName: 
   closeEvent: 
   openEvent: 
+  onMotionTriggerEvent: 
   needsItem: 
 --- !u!1 &3559363305050808631
 GameObject:
@@ -13318,6 +13321,7 @@ MonoBehaviour:
   active: 1
   makeActivatableEvent: 
   makeDeactivatableEvent: 
+  forceAudio: 1
 --- !u!1 &7148496665646089594
 GameObject:
   m_ObjectHideFlags: 0
@@ -20432,6 +20436,75 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2610882710769975266, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
   m_PrefabInstance: {fileID: 2777016256384983633}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4371781667519078352
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2946710312542103833}
+    m_Modifications:
+    - target: {fileID: 3796900875977146146, guid: a41e4bdf44931cf45901d94a859d5e79, type: 3}
+      propertyPath: m_Name
+      value: Easel
+      objectReference: {fileID: 0}
+    - target: {fileID: 4610170437434664344, guid: a41e4bdf44931cf45901d94a859d5e79, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4610170437434664344, guid: a41e4bdf44931cf45901d94a859d5e79, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5152996
+      objectReference: {fileID: 0}
+    - target: {fileID: 4610170437434664344, guid: a41e4bdf44931cf45901d94a859d5e79, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.2350134
+      objectReference: {fileID: 0}
+    - target: {fileID: 4610170437434664344, guid: a41e4bdf44931cf45901d94a859d5e79, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 5.789845
+      objectReference: {fileID: 0}
+    - target: {fileID: 4610170437434664344, guid: a41e4bdf44931cf45901d94a859d5e79, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.420615
+      objectReference: {fileID: 0}
+    - target: {fileID: 4610170437434664344, guid: a41e4bdf44931cf45901d94a859d5e79, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.6563234
+      objectReference: {fileID: 0}
+    - target: {fileID: 4610170437434664344, guid: a41e4bdf44931cf45901d94a859d5e79, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.63993955
+      objectReference: {fileID: 0}
+    - target: {fileID: 4610170437434664344, guid: a41e4bdf44931cf45901d94a859d5e79, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7072536
+      objectReference: {fileID: 0}
+    - target: {fileID: 4610170437434664344, guid: a41e4bdf44931cf45901d94a859d5e79, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4610170437434664344, guid: a41e4bdf44931cf45901d94a859d5e79, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.70695996
+      objectReference: {fileID: 0}
+    - target: {fileID: 4610170437434664344, guid: a41e4bdf44931cf45901d94a859d5e79, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4610170437434664344, guid: a41e4bdf44931cf45901d94a859d5e79, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4610170437434664344, guid: a41e4bdf44931cf45901d94a859d5e79, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4610170437434664344, guid: a41e4bdf44931cf45901d94a859d5e79, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a41e4bdf44931cf45901d94a859d5e79, type: 3}
 --- !u!1001 &4695781355161886681
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20693,10 +20766,12 @@ MonoBehaviour:
   audioSourceName: 
   closeEvent: 
   openEvent: 
+  onMotionTriggerEvent: 
   needsItem: 
   tippingVoiceLine: {fileID: 0}
   mirrorPast: {fileID: 0}
   mirrorPresent: {fileID: 0}
+  booksOnBustCase: {fileID: 0}
 --- !u!114 &3945069389926590185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21139,6 +21214,7 @@ MonoBehaviour:
   audioSourceName: dadClosetDoorPast
   closeEvent: LockDadDoor
   openEvent: 
+  onMotionTriggerEvent: 
   needsItem: 
 --- !u!1001 &9153816650721647888
 PrefabInstance:
@@ -21185,19 +21261,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6335494662293074953, guid: b48dbd05a5a53ed46b4461000c600f56, type: 3}
       propertyPath: m_LocalScale.x
-      value: -1
+      value: -0.17271596
+      objectReference: {fileID: 0}
+    - target: {fileID: 6335494662293074953, guid: b48dbd05a5a53ed46b4461000c600f56, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.65014684
       objectReference: {fileID: 0}
     - target: {fileID: 6335494662293074953, guid: b48dbd05a5a53ed46b4461000c600f56, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -51.59
+      value: -51.172
       objectReference: {fileID: 0}
     - target: {fileID: 6335494662293074953, guid: b48dbd05a5a53ed46b4461000c600f56, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.76
+      value: -2.317
       objectReference: {fileID: 0}
     - target: {fileID: 6335494662293074953, guid: b48dbd05a5a53ed46b4461000c600f56, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 10.63
+      value: 10.064
       objectReference: {fileID: 0}
     - target: {fileID: 6335494662293074953, guid: b48dbd05a5a53ed46b4461000c600f56, type: 3}
       propertyPath: m_LocalRotation.w
@@ -21226,6 +21306,14 @@ PrefabInstance:
     - target: {fileID: 6335494662293074953, guid: b48dbd05a5a53ed46b4461000c600f56, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6935243354184985434, guid: b48dbd05a5a53ed46b4461000c600f56, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.29525033
+      objectReference: {fileID: 0}
+    - target: {fileID: 6935243354184985434, guid: b48dbd05a5a53ed46b4461000c600f56, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.456
       objectReference: {fileID: 0}
     - target: {fileID: 7078900621343087485, guid: b48dbd05a5a53ed46b4461000c600f56, type: 3}
       propertyPath: teleportable

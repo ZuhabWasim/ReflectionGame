@@ -12,7 +12,8 @@ public class MusicBox : InteractableAbstract
 
 	public ProximityTrigger proximityTrigger;
 	public GameObject pointLight;
-
+	public AudioClip noReflectAudio;
+	
 	private bool hasMillieKey;
 	private bool hasMomKey;
 	private bool hasDadKey;
@@ -137,7 +138,7 @@ public class MusicBox : InteractableAbstract
 			AudioPlayer.Play(Globals.VoiceLines.Section4.THATS_TWO, Globals.Tags.DIALOGUE_SOURCE);
 		} else if (keys == 0)
 		{
-			//AudioPlayer.Play(Globals.VoiceLines.Section4.THATS_THREE, Globals.Tags.DIALOGUE_SOURCE, false);
+			AudioPlayer.Play(Globals.VoiceLines.Section4.THATS_THREE, Globals.Tags.DIALOGUE_SOURCE);
 			OpenMusicBox();
 		}
 		
@@ -146,7 +147,7 @@ public class MusicBox : InteractableAbstract
 	void OpenMusicBox()
 	{
 		Debug.Log("Opening Music Box");
-		AudioPlayer.Play(Globals.VoiceLines.Section4.MUSIC_BOX_OPENED, Globals.Tags.DIALOGUE_SOURCE);
+		AudioPlayer.Play(Globals.VoiceLines.Section4.MUSIC_BOX_OPENED, Globals.Tags.DIALOGUE_SOURCE, false);
 
 		InterpolateTransform it = GetComponentInChildren<InterpolateTransform>();
 		it.TriggerMotion();
@@ -177,6 +178,7 @@ public class MusicBox : InteractableAbstract
 		if ( !hasDadKey ) keys += 1;
 		hasDadKey = true;
 		Debug.Log("Keys = " + keys);
+		DisableFireplaceMirrorTeleport();
 	}
 
 	void OnFirstTeleport()
@@ -195,6 +197,7 @@ public class MusicBox : InteractableAbstract
 		if (keys == 3 && presentFireplaceMirror != null)
 		{
 			presentFireplaceMirror.teleportable = false;
+			presentFireplaceMirror.nonTeleportableVoiceLine = noReflectAudio;
 		}
 	}
 	private bool HasAllKeys()

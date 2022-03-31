@@ -26,10 +26,6 @@ public class BookSlot : InteractableAbstract
 	private const string BLUE_BOOK = "BlueBook";
 	private const string GREEN_BOOK = "GreenBook";
 
-	private const float FLOOR_HEIGHT = 0.27f;
-	private const float BUCKET_HEIGHT = 1.25f;
-	private const float HEIGHT_ERROR = 0.02f;
-	
 	protected override void OnStart()
 	{
 		EventManager.Sub( Globals.Events.BOOKSHELF_BOOK_PICKED_UP, OnBookPickedUp );
@@ -92,11 +88,5 @@ public class BookSlot : InteractableAbstract
 			AudioPlayer.Play(nonInteractableVoiceLine, Globals.Tags.DIALOGUE_SOURCE);
 		}
 
-	}
-
-	public static bool IsOnBucket()
-	{
-		Vector3 playerPosition = GameObject.FindGameObjectWithTag(Globals.Tags.PLAYER).transform.position;
-		return playerPosition.y >= BUCKET_HEIGHT - HEIGHT_ERROR;
 	}
 }

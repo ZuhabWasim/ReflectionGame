@@ -131,6 +131,7 @@ public class Globals
 		public static string DAD_PUZZLE_1_MILLIE_PAINT = "DadPuzzle1_MillePaint";
 		public static string DAD_PUZZLE_1_BOOKSHELF_SOLVED = "DadPuzzle1_BookshelfSolved";
 		public static string CANVAS_STATE_CHANGE = "CanvasStateChange";
+		public static string RECOMPUTED_LIGHT = "RECOMPUTED_LIGHT";
 		public static string HAS_DAD_KEY = "HasDadKey";
 		public static string UPDATE_MOVEMENT = "UpdateShelfMover";
 		public static string DAD_PUZZLE_2_SPOTLIGHT_INSTALLED = "DadPuzzle2_SpotlightInstalled";
@@ -151,6 +152,7 @@ public class Globals
 		public static string BOOK_SLOT = "BookSlot";
 		public static string MUSIC_BOX = "MusicBox";
 		public static string PAST_FIREPLACE_MIRROR = "PastFireplaceMirror";
+		public static string COLOUR_FILTER = "ColourFilter";
 		
 		public static string PRESENT_MOM_DOOR = "PresentMomDoor";
 		public static string PRESENT_DAD_DOOR = "PresentDadDoor";
