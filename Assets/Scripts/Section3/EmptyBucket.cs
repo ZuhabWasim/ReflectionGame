@@ -30,7 +30,6 @@ public class EmptyBucket : PickupItem
 	public static bool IsOnBucket()
 	{
 		Vector3 playerPosition = GameObject.FindGameObjectWithTag(Globals.Tags.PLAYER).transform.position;
-		Debug.Log("playerPosition.y: " + playerPosition.y + " BUCKET_HEIGHT: " + BUCKET_HEIGHT + " HEIGHT_ERROR: " + HEIGHT_ERROR);
 		return playerPosition.y >= BUCKET_HEIGHT - HEIGHT_ERROR;
 	}
 }
