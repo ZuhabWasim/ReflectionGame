@@ -1,3 +1,4 @@
+#undef DEBUGGING_AUDIO_SRC
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,10 +9,17 @@ struct RegisteredAudioPlayer
 	public readonly AudioSource src;
 	public Queue<AudioClip> clipQueue;
 
+#if DEBUGGING_AUDIO_SRC
+	public bool debugging;
+#endif // if DEBUGGING_AUDIO_SRC
+
 	public RegisteredAudioPlayer( AudioSource source )
 	{
 		src = source;
 		clipQueue = new Queue<AudioClip>();
+#if DEBUGGING_AUDIO_SRC
+		debugging = false;
+#endif // if DEBUGGING_AUDIO_SRC
 	}
 }
 
@@ -83,8 +91,24 @@ public class AudioPlayer
 		while ( true )
 		{
 			yield return new WaitUntil( () => { return player.clipQueue.Count > 0 && !player.src.isPlaying; } );
+#if DEBUGGING_AUDIO_SRC
+			if ( player.debugging )
+			{
+				// add debug logs and other stuff here if debugging
+			}
+#endif // if DEBUGGING_AUDIO_SRC
 			player.src.clip = player.clipQueue.Dequeue();
 			player.src.Play();
 		}
+	}
+
+
+	public static void EnableDebuggingForSrc( string targetSource )
+	{
+#if DEBUGGING_AUDIO_SRC
+		Assert.IsTrue( m_audioPlayers.ContainsKey( targetSource ) );
+		RegisteredAudioPlayer player = (RegisteredAudioPlayer)m_audioPlayers[ targetSource ];
+		player.debugging = true;
+#endif // if DEBUGGING_AUDIO_SRC
 	}
 }

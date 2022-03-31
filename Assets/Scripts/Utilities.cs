@@ -85,8 +85,6 @@ namespace Utilities
 			{
 				yield return coroutine.Current;
 			}
-
-			Destroy( gameObject );
 		}
 	}
 
