@@ -6,20 +6,18 @@ using UnityEngine.UI;
 public class InventoryDisplay : MonoBehaviour
 {
 	public GameObject inventoryBar;
-	public GameObject inventoryIcon;
+	public GameObject holdingItem;
 	// Start is called before the first frame update
 	void Start()
 	{
 		inventoryBar.SetActive( false );
-		GameObject text = inventoryBar.transform.GetChild( 3 ).gameObject;
+		holdingItem.SetActive( false );
+		GameObject text = inventoryBar.transform.GetChild( 2 ).gameObject;
 		text.SetActive( false );
-		GameObject journalNotice = inventoryBar.transform.GetChild( 4 ).GetChild(1).gameObject;
-		journalNotice.SetActive( false );
 	}
 	public void openInventory()
 	{
 		inventoryBar.SetActive( true );
-		inventoryIcon.SetActive( false );
 	}
 	public void CloseInventory()
 	{
@@ -45,24 +43,13 @@ public class InventoryDisplay : MonoBehaviour
 	}
 	public void showItemName( string itemName )
 	{
-		GameObject text = inventoryBar.transform.GetChild( 3 ).gameObject;
+		GameObject text = inventoryBar.transform.GetChild( 2 ).gameObject;
 		text.SetActive( true );
 		text.transform.GetComponent<Text>().text = itemName;
 	}
 	public void hideItemName()
 	{
-		GameObject text = inventoryBar.transform.GetChild( 3 ).gameObject;
+		GameObject text = inventoryBar.transform.GetChild( 2 ).gameObject;
 		text.SetActive( false );
-	}
-	public void showNewEntryNotice()
-	{
-		Debug.Log("showing notice");
-		GameObject journalNotice = inventoryBar.transform.GetChild( 4 ).GetChild(1).gameObject;
-		journalNotice.SetActive( true );
-	}
-	public void hideNewEntryNotice()
-	{
-		GameObject journalNotice = inventoryBar.transform.GetChild( 4 ).GetChild(1).gameObject;
-		journalNotice.SetActive( false );
 	}
 }
