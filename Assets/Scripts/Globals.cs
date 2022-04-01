@@ -388,6 +388,7 @@ public enum Keybinds
 	DROP_KEY = KeyCode.G,
 	INVENTORY_KEY = KeyCode.LeftShift,
 	ESCAPE_KEY = KeyCode.Escape,
+	TAB_KEY = KeyCode.Tab,
 
 	// This is for debug only, should be removed in release
 	DEBUG_TRIGGER = KeyCode.Alpha0

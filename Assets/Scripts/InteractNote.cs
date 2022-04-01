@@ -6,19 +6,22 @@ public class InteractNote : InteractableAbstract
 {
 
 	public int id;
-	public TextAsset noteText;
-	public static InteractNote[] journal = { null, null, null, null, null };
-	public static int journalSize = 5;
+	public Texture noteText;
+	public static List<InteractNote> journal = new List<InteractNote>();
 	public static int pointer = 0;
 	public string title;
 	public string onReadFireEvent;
 
 	protected override void OnUserInteract()
 	{
-		journal[ id ] = this;
+		if ( pointer == 0 )
+		{
+			journal.Add( null );
+		} 
+		journal.Add(this);
 		this.gameObject.SetActive( false );
-		pointer = id;
+		pointer += 1;
 		AudioPlayer.Play( Globals.AudioFiles.General.PAPER_UNRAVEL, Globals.Tags.MAIN_SOURCE );
-		EventManager.Fire( InputManager.GetKeyDownEventName( Keybinds.ESCAPE_KEY ) );
+		EventManager.Fire( InputManager.GetKeyDownEventName( Keybinds.TAB_KEY ) );
 	}
 }
