@@ -314,7 +314,7 @@ public class PlayerController : MonoBehaviour
 
 	void HandleReflectPress()
 	{
-		if ( targetObject != null && targetObject.interactable && targetObject.WillReflect() )
+		if ( targetObject != null && targetObject.WillReflect() )
 		{
 			targetObject.ActivateReflect();
 		}
@@ -420,7 +420,7 @@ public class PlayerController : MonoBehaviour
 	{
 		if ( targetObject != null )
 		{
-			interactionIcon.ShowIcons( targetObject.WillAcceptItem(),
+			interactionIcon.ShowIcons( targetObject.GetItemName(), targetObject.WillAcceptItem(),
 				targetObject.WillDisplayPrompt(), targetObject.WillReflect() );
 		}
 		else

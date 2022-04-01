@@ -87,18 +87,19 @@ public class BookShelfPuzzle : MonoBehaviour
 		
 		EventManager.Fire( Globals.Events.DAD_PUZZLE_1_BOOKSHELF_SOLVED );
 		
-		// Disables pick up for these books except Alice in Wonderland if the player wants to take it
+		// Disables the pick up for all of these objects via disabling their box colliders.
 		foreach (BookSlot slot in m_bookslots)
 		{
 			slot.interactable = false;
 		}
 		
+		// Disables pick up for these books except Alice in Wonderland if the player wants to take it
 		// Disables the pick up for all of these objects via disabling their box colliders.
 		GameObject[] interactableBooks = GameObject.FindGameObjectsWithTag(Globals.Tags.INTERACTABLE_BOOK);
 		foreach (GameObject book in interactableBooks)
 		{
 			PickupItem pickUpScript = book.GetComponent<PickupItem>();
-			if (pickUpScript != null && pickUpScript.itemName != "WhiteBook")
+			if (pickUpScript != null && pickUpScript.itemName != Globals.UIStrings.ALICE_IN_WONDERLAND)
 			{
 				book.GetComponent<BoxCollider>().enabled = false;
 			}
