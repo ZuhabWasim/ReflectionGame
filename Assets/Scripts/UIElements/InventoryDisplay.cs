@@ -23,6 +23,16 @@ public class InventoryDisplay : MonoBehaviour
 	{
 		inventoryBar.SetActive( false );
 	}
+	public void showHoldingItem( PickupItem item )
+	{
+		RawImage img = holdingItem.GetComponent<RawImage>();
+		img.texture = item.img;
+		holdingItem.SetActive( true );
+	}
+	public void hideHoldingItem()
+	{
+		holdingItem.SetActive( false );
+	}
 	public void addItem( PickupItem item, int idx )
 	{
 		GameObject slot = inventoryBar.transform.GetChild( 1 ).GetChild( idx ).gameObject;
