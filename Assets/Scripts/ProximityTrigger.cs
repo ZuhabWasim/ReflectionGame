@@ -19,6 +19,7 @@ public class ProximityTrigger : MonoBehaviour
 
 	private const float TRIGGER_PLAYER_DIST_CHECK_TIME = 0.5f; // in seconds
 	private const float TRIGGER_RESET_DELAY = 3f;
+	public float triggerResetDelay = 3f;
 	
 	public bool active = true;
 	[Tooltip( "Event which should activate this trigger" )]
@@ -65,9 +66,9 @@ public class ProximityTrigger : MonoBehaviour
 
 	IEnumerator MonitorTriggerPlayerDist()
 	{
-		while ( true )
+		while ( active )
 		{
-			if ( active && GetSqrdDistToPlayer() <= sqrdTriggerDist )
+			if ( GetSqrdDistToPlayer() <= sqrdTriggerDist )
 			{
 				ActivateTrigger();
 				break;
@@ -81,7 +82,7 @@ public class ProximityTrigger : MonoBehaviour
 	{
 		// reset trigger after player leaves the trigger zone
 		yield return new WaitUntil( () => { return GetSqrdDistToPlayer() > sqrdTriggerDist; } );
-		yield return new WaitForSecondsRealtime( TRIGGER_RESET_DELAY );
+		yield return new WaitForSecondsRealtime( triggerResetDelay );
 
 		StartCoroutine( MonitorTriggerPlayerDist() );
 	}
@@ -112,6 +113,7 @@ public class ProximityTrigger : MonoBehaviour
 	void Active()
 	{
 		active = true;
+		StartCoroutine( MonitorTriggerPlayerDist() );
 		OnActive();
 	}
 
