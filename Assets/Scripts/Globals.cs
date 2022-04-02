@@ -199,6 +199,7 @@ public class Globals
 		public static string SCISSORS_ITEM = "Scissors";
 		public static string BROOM_ITEM = "Broom";
 		public static string DRAWER_PULL_ITEM = "Drawer Pull";
+		public static string CROWBAR_ITEM = "Crowbar";
 		public static string ALICE_IN_WONDERLAND = "Alice in Wonderland";
 
 		public static string HANDKERCHIEF_ITEM = "Handkerchief";

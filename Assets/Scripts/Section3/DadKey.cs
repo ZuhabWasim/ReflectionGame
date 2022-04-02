@@ -4,17 +4,11 @@ using UnityEngine;
 
 public class DadKey : PickupItem
 {
-	protected override void OnStart()
-	{
-		base.OnStart();
-		EventManager.Sub( Globals.Events.UPDATE_MOVEMENT, UpdateMover );
-	}
-
+	
 	protected override void OnUserInteract()
 	{
 		this.gameObject.SetActive( false );
 		EventManager.Fire( Globals.Events.HAS_DAD_KEY );
-		UpdateMover();
 	}
 
 	private void UpdateMover()
