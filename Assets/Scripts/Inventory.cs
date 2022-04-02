@@ -32,8 +32,11 @@ public class Inventory
 				m_items[ pos ] = item;
 				item.ActivateItem();
 				inventoryDisplay.addItem( item, pos );
-				inventoryDisplay.showItemName( item.itemName );
-				inventoryDisplay.showHoldingItem( item );
+				if ( cursor == pos ) // If the player doesn't have an item selected, show this new item.
+				{
+					inventoryDisplay.showItemName( item.itemName );
+					inventoryDisplay.showHoldingItem( item );	
+				}
 				if ( item.itemName.ToLower().Contains( "key" ) )
 				{
 					AudioPlayer.Play( Globals.AudioFiles.General.MUSICBOXKEY_OBTAINED, Globals.Tags.MAIN_SOURCE );
