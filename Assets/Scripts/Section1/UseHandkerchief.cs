@@ -49,6 +49,8 @@ public class UseHandkerchief : MirrorInteractable
 		AudioPlayer.Play( soundEffect, MIRROR_AUDIO_SOURCE );
 		AudioPlayer.Play( cleanMirrorVoiceline, Globals.Tags.DIALOGUE_SOURCE );
 
+		EventManager.Fire( Globals.Events.DONE_CLEAN_MIRROR );
+
 		if ( m_dirtyMirror != null )
 		{
 			m_dirtyMirror.CleanMirror();

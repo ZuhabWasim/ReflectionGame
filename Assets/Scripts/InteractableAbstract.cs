@@ -39,6 +39,10 @@ public abstract class InteractableAbstract : MonoBehaviour
 	public bool deleteItem = false;
 	public string itemName;
 	protected string desiredItem = "";
+
+	public string firstInteractEvent;
+	bool firstInteracted;
+
 	public enum ItemType
 	{
 		INTERACT,
@@ -72,7 +76,10 @@ public abstract class InteractableAbstract : MonoBehaviour
 
 		m_inventory = Inventory.GetInstance();
 
+		firstInteracted = (firstInteractEvent == string.Empty);
+
 		OnStart();
+		
 	}
 
 	public void SetType( ItemType typeIn )
@@ -156,6 +163,12 @@ public abstract class InteractableAbstract : MonoBehaviour
 			}
 			return;
 		}
+
+		if (!firstInteracted)
+        {
+			EventManager.Fire(firstInteractEvent);
+			firstInteracted = true;
+        }
 
 		if ( voiceLine != null )
 		{

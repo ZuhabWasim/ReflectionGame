@@ -105,8 +105,13 @@ public class Globals
 		public static string DEACTIVATE_MAIN_ROOM = "DeactivateMainRoom";
 
 		// Section 1
-		public static string LIGHTS_TURN_ON = "TurnOnLights";
 		public static string LIGHTS_TURN_OFF = "TurnOffLights";
+		public static string GO_ENTER_CODE = "GoEnterCode";
+		//public static string OPEN_FUSEBOX = "OpenFusebox";
+		public static string GO_CLEAN_MIRROR = "GoCleanMirror";
+		public static string DONE_CLEAN_MIRROR = "DoneCleanMirror";
+		public static string DONE_INVESTIGATE = "DoneInvestigate";
+		public static string LIGHTS_TURN_ON = "TurnOnLights";
 		public static string MILLIE_KEY_INTERACT = "MillieKeyInteract";
 		public static string HAS_MILLIE_KEY = "HasMillieKey";
 		public static string FIRST_TELEPORT = "OnFirstTeleport";
@@ -212,7 +217,15 @@ public class Globals
 		public static string NOTE_TITLE_PLACEHOLDER = "Unknown Note";
 
 		// Objectives
-		public static string OBJECTIVE_TURN_ON_POWER = "Turn on the power";
+		public static string OBJECTIVE_TURN_ON_POWER = "Turn on the lights";
+			public static string SUB_OBJ_INVESTIGATE_ROOM = "Search the room for clues";
+			//public static string SUB_OBJ_INVESTIGATE_BOX = "Investigate the fusebox";
+			public static string SUB_OBJ_FIND_BOX_CODE = "Find the code and enter it at the fusebox";
+			//public static string SUB_OBJ_FIND_HANDKERCHIEF = "Find something to clean the vanity mirror";
+			public static string SUB_OBJ_FIND_CLEAN_MIRROR = "Clean the vanity mirror";
+
+		public static string OBJECTIVE_FIND_TWO_KEYS = "Find 2 more music box keys";
+		public static string OBJECTIVE_FIND_ONE_KEY = "Find the final music box key";
 	}
 
 	public class Vars
