@@ -372,9 +372,11 @@ MonoBehaviour:
   nonUseableVoiceLine: {fileID: 0}
   useVoiceLine: {fileID: 0}
   displayPrompt: 1
+  isPickup: 0
   acceptItem: 1
   deleteItem: 0
   itemName: 
+  firstInteractEvent: 
   myType: 0
   thisIsAMirror: 0
   state: 0
@@ -3711,9 +3713,11 @@ MonoBehaviour:
   nonUseableVoiceLine: {fileID: 0}
   useVoiceLine: {fileID: 0}
   displayPrompt: 1
+  isPickup: 0
   acceptItem: 1
   deleteItem: 0
   itemName: 
+  firstInteractEvent: 
   myType: 0
   thisIsAMirror: 0
   state: 0
@@ -4378,9 +4382,11 @@ MonoBehaviour:
   nonUseableVoiceLine: {fileID: 0}
   useVoiceLine: {fileID: 0}
   displayPrompt: 1
+  isPickup: 0
   acceptItem: 0
   deleteItem: 0
   itemName: Paint Brush
+  firstInteractEvent: 
   myType: 2
   thisIsAMirror: 0
   img: {fileID: 0}
@@ -6755,9 +6761,11 @@ MonoBehaviour:
   nonUseableVoiceLine: {fileID: 0}
   useVoiceLine: {fileID: 0}
   displayPrompt: 1
+  isPickup: 0
   acceptItem: 1
   deleteItem: 1
   itemName: Studio Light
+  firstInteractEvent: 
   myType: 0
   thisIsAMirror: 0
   spotLight: {fileID: 0}
@@ -9036,9 +9044,11 @@ MonoBehaviour:
   nonUseableVoiceLine: {fileID: 0}
   useVoiceLine: {fileID: 0}
   displayPrompt: 1
+  isPickup: 0
   acceptItem: 1
   deleteItem: 0
   itemName: 
+  firstInteractEvent: 
   myType: 0
   thisIsAMirror: 0
   state: 0
@@ -9406,6 +9416,26 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1117099564480075450, guid: 1f5ff812795ef0f4f84f86102acaf3c1, type: 3}
+      propertyPath: title
+      value: July 28th
+      objectReference: {fileID: 0}
+    - target: {fileID: 1117099564480075450, guid: 1f5ff812795ef0f4f84f86102acaf3c1, type: 3}
+      propertyPath: itemName
+      value: July 28th
+      objectReference: {fileID: 0}
+    - target: {fileID: 1117099564480075450, guid: 1f5ff812795ef0f4f84f86102acaf3c1, type: 3}
+      propertyPath: noteText
+      value: 
+      objectReference: {fileID: 2800000, guid: f8fdf5f97108100409ea66b6a72a266c, type: 3}
+    - target: {fileID: 1117099564480075450, guid: 1f5ff812795ef0f4f84f86102acaf3c1, type: 3}
+      propertyPath: letterAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: 4a73c1d25f20911448df28bfb1db0358, type: 3}
+    - target: {fileID: 1117099564480075450, guid: 1f5ff812795ef0f4f84f86102acaf3c1, type: 3}
+      propertyPath: responseAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: abd914895ac11e84088262c8818e9132, type: 3}
     - target: {fileID: 1117099564480075459, guid: 1f5ff812795ef0f4f84f86102acaf3c1, type: 3}
       propertyPath: m_Name
       value: Note
@@ -9608,9 +9638,11 @@ MonoBehaviour:
   nonUseableVoiceLine: {fileID: 0}
   useVoiceLine: {fileID: 0}
   displayPrompt: 1
+  isPickup: 0
   acceptItem: 1
   deleteItem: 0
   itemName: 
+  firstInteractEvent: 
   myType: 0
   thisIsAMirror: 0
   paint: 2

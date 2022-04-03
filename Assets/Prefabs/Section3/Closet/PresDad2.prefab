@@ -955,9 +955,11 @@ MonoBehaviour:
   nonUseableVoiceLine: {fileID: 0}
   useVoiceLine: {fileID: 0}
   displayPrompt: 1
+  isPickup: 0
   acceptItem: 0
   deleteItem: 0
   itemName: Dad's Key
+  firstInteractEvent: 
   myType: 2
   thisIsAMirror: 0
   img: {fileID: 0}
@@ -12524,9 +12526,11 @@ MonoBehaviour:
   nonUseableVoiceLine: {fileID: 0}
   useVoiceLine: {fileID: 0}
   displayPrompt: 1
+  isPickup: 0
   acceptItem: 0
   deleteItem: 0
   itemName: Light Bulb
+  firstInteractEvent: 
   myType: 2
   thisIsAMirror: 0
   img: {fileID: 0}
@@ -13638,9 +13642,11 @@ MonoBehaviour:
   nonUseableVoiceLine: {fileID: 0}
   useVoiceLine: {fileID: 0}
   displayPrompt: 1
+  isPickup: 0
   acceptItem: 1
   deleteItem: 0
   itemName: 
+  firstInteractEvent: 
   myType: 0
   thisIsAMirror: 0
   state: 0
@@ -13665,6 +13671,7 @@ MonoBehaviour:
   onTriggerClip: {fileID: 8300000, guid: 66d84c5d324356b43b5734e32b12c2d0, type: 3}
   onTriggerClipSource: DialogueSource
   onTriggerFireEvent: 
+  triggerResetDelay: 3
   active: 1
   makeActivatableEvent: 
   makeDeactivatableEvent: 
@@ -18925,9 +18932,11 @@ MonoBehaviour:
   nonUseableVoiceLine: {fileID: 0}
   useVoiceLine: {fileID: 0}
   displayPrompt: 1
+  isPickup: 0
   acceptItem: 1
   deleteItem: 0
   itemName: 
+  firstInteractEvent: 
   myType: 0
   thisIsAMirror: 0
   state: 0
@@ -19669,9 +19678,11 @@ MonoBehaviour:
   nonUseableVoiceLine: {fileID: 0}
   useVoiceLine: {fileID: 0}
   displayPrompt: 1
+  isPickup: 0
   acceptItem: 1
   deleteItem: 0
   itemName: 
+  firstInteractEvent: 
   myType: 0
   thisIsAMirror: 0
   state: 0
@@ -19764,6 +19775,30 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1117099564480075450, guid: 1f5ff812795ef0f4f84f86102acaf3c1, type: 3}
+      propertyPath: title
+      value: August 23rd
+      objectReference: {fileID: 0}
+    - target: {fileID: 1117099564480075450, guid: 1f5ff812795ef0f4f84f86102acaf3c1, type: 3}
+      propertyPath: itemName
+      value: August 23rd
+      objectReference: {fileID: 0}
+    - target: {fileID: 1117099564480075450, guid: 1f5ff812795ef0f4f84f86102acaf3c1, type: 3}
+      propertyPath: noteText
+      value: 
+      objectReference: {fileID: 2800000, guid: e694b3840acb60d489d7e2017e67f122, type: 3}
+    - target: {fileID: 1117099564480075450, guid: 1f5ff812795ef0f4f84f86102acaf3c1, type: 3}
+      propertyPath: voiceLine
+      value: 
+      objectReference: {fileID: 8300000, guid: f8cf27458dfd3a846a5ff6dde331edd5, type: 3}
+    - target: {fileID: 1117099564480075450, guid: 1f5ff812795ef0f4f84f86102acaf3c1, type: 3}
+      propertyPath: letterAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: 52583395f636e2246a2be77611a7468c, type: 3}
+    - target: {fileID: 1117099564480075450, guid: 1f5ff812795ef0f4f84f86102acaf3c1, type: 3}
+      propertyPath: responseAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: d5af3dcfc92be5644b93224757d8b222, type: 3}
     - target: {fileID: 1117099564480075459, guid: 1f5ff812795ef0f4f84f86102acaf3c1, type: 3}
       propertyPath: m_Name
       value: Note
@@ -20542,9 +20577,11 @@ MonoBehaviour:
   nonUseableVoiceLine: {fileID: 0}
   useVoiceLine: {fileID: 0}
   displayPrompt: 1
+  isPickup: 0
   acceptItem: 1
   deleteItem: 0
   itemName: 
+  firstInteractEvent: 
   myType: 0
   thisIsAMirror: 0
   paint: 1

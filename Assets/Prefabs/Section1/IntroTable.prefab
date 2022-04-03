@@ -220,6 +220,7 @@ MonoBehaviour:
   nonUseableVoiceLine: {fileID: 0}
   useVoiceLine: {fileID: 0}
   displayPrompt: 1
+  isPickup: 0
   acceptItem: 0
   deleteItem: 0
   itemName: Drawer
@@ -1419,6 +1420,7 @@ MonoBehaviour:
   nonUseableVoiceLine: {fileID: 0}
   useVoiceLine: {fileID: 0}
   displayPrompt: 1
+  isPickup: 0
   acceptItem: 0
   deleteItem: 0
   itemName: Handkerchief
@@ -2338,23 +2340,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 966ab03b8728dd54a86d1608185e3f25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactable: 0
+  interactable: 1
   makeInteractableEvent: 
   makeNonInteractableEvent: 
-  voiceLine: {fileID: 8300000, guid: 64f1791a5819c554e8506c1fcfd911bc, type: 3}
+  voiceLine: {fileID: 0}
   nonInteractableVoiceLine: {fileID: 0}
   nonUseableVoiceLine: {fileID: 0}
   useVoiceLine: {fileID: 0}
   displayPrompt: 1
+  isPickup: 0
   acceptItem: 0
   deleteItem: 0
   itemName: Note
   firstInteractEvent: 
   myType: 0
   thisIsAMirror: 0
-  id: 0
-  noteText: {fileID: 0}
-  title: 
+  title: Johnson's Letter
+  noteText: {fileID: 2800000, guid: ed52f22a13a890b49bff10eb34b485fa, type: 3}
+  letterAudio: {fileID: 8300000, guid: 933892ba7d42d8d4db8cb142e3279f4b, type: 3}
+  responseAudio: {fileID: 8300000, guid: abb65333d7345074ea6ca589cc4c9734, type: 3}
   onReadFireEvent: 
 --- !u!1 &7077006183986395089
 GameObject:
