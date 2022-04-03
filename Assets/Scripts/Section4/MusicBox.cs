@@ -93,6 +93,7 @@ public class MusicBox : InteractableAbstract
 			if (!millieKeyInteracted)
 			{
 				AudioPlayer.Play(Globals.VoiceLines.Section1.BOX_NEEDS_TWO_OTHER_KEYS, Globals.Tags.DIALOGUE_SOURCE);
+				AudioPlayer.Play(Globals.VoiceLines.Section1.FIREPLACE_TURN_ON, Globals.Tags.DIALOGUE_SOURCE, false);
 				EventManager.Fire( Globals.Events.MILLIE_KEY_INTERACT );
 				millieKeyInteracted = true;
 				Debug.Log( "Millie Key Interact" );

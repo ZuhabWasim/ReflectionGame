@@ -59,7 +59,7 @@ public class BookSlot : InteractableAbstract
 		}
 	}
 
-	protected override void OnUserInteract()
+	public override void OnUseItemUnfiltered()
 	{
 		Inventory inventory = Inventory.GetInstance();
 		PickupItem selectedItem = inventory.GetSelectedPickupItem();

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using UnityEditor;
 using UnityEngine;
 
 // Singleton Class, should not be instantiated!! Use Inventory.GetInstance instead
@@ -51,6 +52,14 @@ public class Inventory
 		AudioPlayer.Play( Globals.AudioFiles.General.NON_INTERACTABLE, Globals.Tags.MAIN_SOURCE );
 		return ItemPickupResult.FAIL_INVENTORY_FULL;
 	}
+
+	public void RefreshItem( PickupItem item )
+	{
+		inventoryDisplay.addItem( item, cursor );
+		inventoryDisplay.showItemName( item.itemName );
+		inventoryDisplay.showHoldingItem( item );	
+	}
+	
 	public void MoveCursor( int newPos )
 	{
 		if ( newPos < 0 )

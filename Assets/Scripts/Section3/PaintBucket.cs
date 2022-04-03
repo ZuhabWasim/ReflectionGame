@@ -21,9 +21,12 @@ public class PaintBucket : InteractableAbstract
 
 	protected override void OnUseItem()
 	{
-		PaintBrush brush = Inventory.GetInstance().GetSelectedPickupItem().GetComponent<PaintBrush>();
+		Inventory inventory = Inventory.GetInstance();
+		PickupItem item = inventory.GetSelectedPickupItem();
+		PaintBrush brush = item.GetComponent<PaintBrush>();
 		brush.paint = paint;
 		brush.itemName = Globals.Misc.WET_PAINT_BRUSH;
 		brush.img = icon;
+		inventory.RefreshItem( item );
 	}
 }

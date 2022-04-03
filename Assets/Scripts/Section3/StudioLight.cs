@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class StudioLight : InteractableAbstract
 {
-    /*COMPILERROR*/
     public Light spotLight;
     public AudioClip spotLightOnVoiceLine;
     
@@ -17,6 +16,7 @@ public class StudioLight : InteractableAbstract
     protected override void OnUseItem()
     {
         EventManager.Fire( Globals.Events.DAD_PUZZLE_2_SPOTLIGHT_INSTALLED );
+        EventManager.Fire( Globals.Events.RECOMPUTED_LIGHT );
         voiceLine = spotLightOnVoiceLine;
         nonUseableVoiceLine = null;
     }

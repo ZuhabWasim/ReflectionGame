@@ -327,6 +327,7 @@ public class Globals
 			public static string DISCOVER_KEY_FIRST = "1.33__discover_key_first";
 			public static string DISCOVER_KEY_FIRST__OH_THERE_IT_IS = "1.35__discover_key_first__oh_there_it_is";
 			public static string BOX_NEEDS_TWO_OTHER_KEYS = "1.36__box_needs_two_other_keys";
+			public static string FIREPLACE_TURN_ON = "fireplace_turn_on";
 
 			public static string IS_THE_MIRROR_GLOWING = "1.38__is_the_mirror_glowing";
 			public static string WHY_AM_I_SO_SMALL = "1.42__why_am_i_so_small";
