@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class WhiteBook : PickupItem
 {
-	public InteractNote hiddenNote;
+	public InteractNote[] hiddenNotes;
 	public AudioClip onFirstPickupVoiceLine;
 	public AudioClip onPuzzleSolvedVoiceLine;
+	
 	private bool puzzleSolved;
 	private bool onFirstPickup;
 
@@ -26,6 +27,10 @@ public class WhiteBook : PickupItem
 		{
 			AudioPlayer.Play( onFirstPickupVoiceLine, Globals.Tags.DIALOGUE_SOURCE );
 			// call the hidden note to be picked up.
+			foreach (InteractNote note in hiddenNotes)
+			{
+				note.AddNote();
+			}
 			onFirstPickup = false;
 		}
 		else if ( puzzleSolved )

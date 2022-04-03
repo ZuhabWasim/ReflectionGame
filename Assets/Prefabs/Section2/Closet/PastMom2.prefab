@@ -49,7 +49,6 @@ GameObject:
   - component: {fileID: 2321112388877373032}
   - component: {fileID: 7771727650758300797}
   - component: {fileID: 3160182379831073340}
-  - component: {fileID: 5332927676652675966}
   m_Layer: 0
   m_Name: MomNote
   m_TagString: Interactable
@@ -400,43 +399,17 @@ MonoBehaviour:
   nonUseableVoiceLine: {fileID: 0}
   useVoiceLine: {fileID: 0}
   displayPrompt: 1
+  isPickup: 1
   acceptItem: 0
   deleteItem: 0
-  itemName: 
+  itemName: September 6th
+  firstInteractEvent: 
   myType: 0
   thisIsAMirror: 0
-  id: 1
-  noteText: {fileID: 4900000, guid: 89d3b09e0e3f44df974424f0df25db8a, type: 3}
   title: September 6th
-  onReadFireEvent: ReadMomNote
---- !u!114 &5332927676652675966
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1555081476081588577}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3d487e4ce0e2314d993844bc0e8d9b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactable: 1
-  makeInteractableEvent: 
-  makeNonInteractableEvent: 
-  voiceLine: {fileID: 0}
-  nonInteractableVoiceLine: {fileID: 0}
-  nonUseableVoiceLine: {fileID: 0}
-  useVoiceLine: {fileID: 0}
-  displayPrompt: 1
-  acceptItem: 0
-  deleteItem: 0
-  itemName: Mom's Note
-  myType: 0
-  thisIsAMirror: 0
-  id: 1
-  noteText: {fileID: 4900000, guid: 89d3b09e0e3f44df974424f0df25db8a, type: 3}
-  title: September 6th
+  noteText: {fileID: 2800000, guid: 182349cde4de80c41b8edbba005d45a2, type: 3}
+  letterAudio: {fileID: 8300000, guid: 27a760a75f55b3c40b3124e897e3c40b, type: 3}
+  responseAudio: {fileID: 0}
   onReadFireEvent: ReadMomNote
 --- !u!1 &2244936312497121569
 GameObject:
@@ -3114,9 +3087,11 @@ MonoBehaviour:
   nonUseableVoiceLine: {fileID: 0}
   useVoiceLine: {fileID: 0}
   displayPrompt: 1
+  isPickup: 0
   acceptItem: 0
   deleteItem: 0
   itemName: Box
+  firstInteractEvent: 
   myType: 1
   thisIsAMirror: 0
   bma: {fileID: 3549029090781362658}
@@ -3525,9 +3500,11 @@ MonoBehaviour:
   nonUseableVoiceLine: {fileID: 0}
   useVoiceLine: {fileID: 0}
   displayPrompt: 1
+  isPickup: 0
   acceptItem: 0
   deleteItem: 0
   itemName: Safe Code
+  firstInteractEvent: 
   myType: 0
   thisIsAMirror: 0
   img: {fileID: 0}
@@ -3897,9 +3874,11 @@ MonoBehaviour:
   nonUseableVoiceLine: {fileID: 0}
   useVoiceLine: {fileID: 0}
   displayPrompt: 1
+  isPickup: 0
   acceptItem: 0
   deleteItem: 0
   itemName: Safe Cover
+  firstInteractEvent: 
   myType: 0
   thisIsAMirror: 0
 --- !u!1 &7566776973025497636
@@ -6381,9 +6360,11 @@ MonoBehaviour:
   nonUseableVoiceLine: {fileID: 0}
   useVoiceLine: {fileID: 0}
   displayPrompt: 1
+  isPickup: 0
   acceptItem: 0
   deleteItem: 0
   itemName: Mom's Key
+  firstInteractEvent: 
   myType: 0
   thisIsAMirror: 0
   img: {fileID: 0}

@@ -357,10 +357,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 966ab03b8728dd54a86d1608185e3f25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactable: 0
+  interactable: 1
   makeInteractableEvent: 
+  makeNonInteractableEvent: 
+  voiceLine: {fileID: 0}
+  nonInteractableVoiceLine: {fileID: 0}
+  nonUseableVoiceLine: {fileID: 0}
+  useVoiceLine: {fileID: 0}
   displayPrompt: 1
+  isPickup: 1
   acceptItem: 0
+  deleteItem: 0
   itemName: Note
+  firstInteractEvent: 
   myType: 0
-  voiceLine: {fileID: 8300000, guid: 64f1791a5819c554e8506c1fcfd911bc, type: 3}
+  thisIsAMirror: 0
+  title: 
+  noteText: {fileID: 0}
+  letterAudio: {fileID: 0}
+  responseAudio: {fileID: 0}
+  onReadFireEvent: 
