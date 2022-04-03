@@ -48,6 +48,7 @@ public class PlayerController : MonoBehaviour
 	private ButtonPromptDisplay bp2;
 	private InteractionIcon interactionIcon;
 	private PauseMenu pauseMenu;
+	private JournalDisplay journalDisplay;
 	private AudioSource m_footstepSource;
 
 	//public float pickupDistance = 2.0f;
@@ -71,6 +72,7 @@ public class PlayerController : MonoBehaviour
 		bp2 = GameObject.Find( Globals.Misc.UI_Canvas ).GetComponents<ButtonPromptDisplay>()[ 1 ];
 		interactionIcon = GameObject.Find( Globals.Misc.UI_Canvas ).GetComponent<InteractionIcon>();
 		pauseMenu = GameObject.Find( Globals.Misc.UI_Canvas ).GetComponent<PauseMenu>();
+		journalDisplay = GameObject.Find( Globals.Misc.UI_Canvas ).GetComponent<JournalDisplay>();
 		m_footstepSource = GameObject.Find( FOOTSTEP_AUDIO_SOURCE_NAME ).GetComponent<AudioSource>();
 
 		RegisterEventListeners();
@@ -100,6 +102,7 @@ public class PlayerController : MonoBehaviour
 		// EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.DROP_KEY ), HandleDrop );
 		EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.INVENTORY_KEY ), HandleOpenInventory );
 		EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.ESCAPE_KEY ), HandleEscape );
+		EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.TAB_KEY ), HandleJournalKey );
 
 		// keyup events
 		EventManager.Sub( InputManager.GetKeyUpEventName( Keybinds.INVENTORY_KEY ), HandleCloseInventory );
@@ -120,7 +123,7 @@ public class PlayerController : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		if ( !pauseMenu.IsPaused() )
+		if ( !pauseMenu.IsPaused() && !journalDisplay.IsOpened() )
 		{
 			HandleMouseInput();
 			HandleKeyboardInput();
@@ -232,11 +235,27 @@ public class PlayerController : MonoBehaviour
 			Cursor.lockState = CursorLockMode.Locked;
 			Cursor.visible = false;
 		}
+		else if ( journalDisplay.IsOpened() )
+		{
+			journalDisplay.CloseJournal();
+		}
 		else
 		{
 			pauseMenu.PauseGame();
 			Cursor.lockState = CursorLockMode.Confined;
 			Cursor.visible = true;
+		}
+	}
+
+	void HandleJournalKey()
+	{
+		if ( !pauseMenu.IsPaused() && !journalDisplay.IsOpened())
+		{
+			journalDisplay.OpenJournal();
+		}
+		else if ( journalDisplay.IsOpened() )
+		{
+			journalDisplay.CloseJournal();
 		}
 	}
 
@@ -344,8 +363,11 @@ public class PlayerController : MonoBehaviour
 
 	void HandleOpenInventory()
 	{
-		m_inventory.openInventory();
-		inventoryOpened = true;
+		if ( !pauseMenu.IsPaused() && !journalDisplay.IsOpened())
+		{
+			m_inventory.openInventory();
+			inventoryOpened = true;
+		}
 	}
 	void HandleCloseInventory()
 	{

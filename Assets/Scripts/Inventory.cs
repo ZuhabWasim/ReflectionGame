@@ -32,7 +32,11 @@ public class Inventory
 				m_items[ pos ] = item;
 				item.ActivateItem();
 				inventoryDisplay.addItem( item, pos );
-				inventoryDisplay.showItemName( item.itemName );
+				if ( cursor == pos ) // If the player doesn't have an item selected, show this new item.
+				{
+					inventoryDisplay.showItemName( item.itemName );
+					inventoryDisplay.showHoldingItem( item );	
+				}
 				if ( item.itemName.ToLower().Contains( "key" ) )
 				{
 					AudioPlayer.Play( Globals.AudioFiles.General.MUSICBOXKEY_OBTAINED, Globals.Tags.MAIN_SOURCE );
@@ -69,10 +73,12 @@ public class Inventory
 		{
 			PickupItem item = m_items[ cursor ];
 			inventoryDisplay.showItemName( item.itemName );
+			inventoryDisplay.showHoldingItem( item );
 		}
 		else
 		{
 			inventoryDisplay.hideItemName();
+			inventoryDisplay.hideHoldingItem();
 		}
 	}
 	public void CloseInventory()
@@ -87,10 +93,12 @@ public class Inventory
 		{
 			PickupItem item = m_items[ cursor ];
 			inventoryDisplay.showItemName( item.itemName );
+			inventoryDisplay.showHoldingItem( item );
 		}
 		else
 		{
 			inventoryDisplay.hideItemName();
+			inventoryDisplay.hideHoldingItem();
 		}
 	}
 	public int GetCursor()
@@ -106,6 +114,7 @@ public class Inventory
 			m_items[ cursor ] = null;
 			inventoryDisplay.dropItem( cursor );
 			inventoryDisplay.hideItemName();
+			inventoryDisplay.hideHoldingItem();
 			return true;
 		}
 		Debug.Log( "Tried to drop item from a slot that doesn't have a valid item" );
@@ -151,6 +160,8 @@ public class Inventory
 				// Delete item after using it
 				m_items[ cursor ] = null;
 				inventoryDisplay.dropItem( cursor );
+				inventoryDisplay.hideItemName();
+				inventoryDisplay.hideHoldingItem();
 				return true;
 			}
 		}
