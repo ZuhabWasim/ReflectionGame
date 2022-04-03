@@ -12,6 +12,8 @@ public class PickupItem : InteractableAbstract
 	protected override void OnStart()
 	{
 		myType = ItemType.PICKUP;
+		displayPrompt = false;
+		isPickup = true;
 		m_id = _id++;
 	}
 
