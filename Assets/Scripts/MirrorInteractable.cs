@@ -1,4 +1,4 @@
-#undef USING_INTERACTABLE_HIGHLIGHTING
+#define USING_INTERACTABLE_HIGHLIGHTING
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
