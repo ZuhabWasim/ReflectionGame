@@ -312,22 +312,10 @@ public class PlayerController : MonoBehaviour
 
 	void HandleInteractPress()
 	{
-		if ( targetObject != null )
+		if ( targetObject != null && targetObject.GetItemType() != InteractableAbstract.ItemType.PICKUP )
 		{
 			targetObject.OnUserInteractUnfiltered();
-			if ( targetObject.GetItemType() == InteractableAbstract.ItemType.PICKUP )
-			{
-				PickupItem item = (PickupItem)targetObject;
-				ItemPickupResult res = Inventory.GetInstance().PickupItem( ref item );
-				if ( res != ItemPickupResult.SUCCESS )
-				{
-					Debug.Log( "Inventory failed to store item" );
-				}
-			}
-			else
-			{
-				targetObject.ActivateItem();
-			}
+			targetObject.ActivateItem();
 		}
 	}
 
@@ -341,6 +329,17 @@ public class PlayerController : MonoBehaviour
 
 	void HandleUseItemPress()
 	{
+		if (targetObject.WillAcceptItem() && targetObject.GetItemType() == InteractableAbstract.ItemType.PICKUP)
+		{
+			targetObject.ActivateItem();
+			PickupItem item = (PickupItem)targetObject;
+			ItemPickupResult res = Inventory.GetInstance().PickupItem(ref item);
+			if (res != ItemPickupResult.SUCCESS)
+			{
+				Debug.Log("Inventory failed to store item");
+			}
+		}
+
 		if ( targetObject != null )
 		{
 			targetObject.OnUseItemUnfiltered();

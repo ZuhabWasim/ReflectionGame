@@ -34,6 +34,7 @@ public abstract class InteractableAbstract : MonoBehaviour
 	public AudioClip useVoiceLine;
 
 	public bool displayPrompt = true;
+	public bool isPickup = false;
 	protected bool displayReflect = false;
 	public bool acceptItem = false;
 	public bool deleteItem = false;
@@ -139,7 +140,7 @@ public abstract class InteractableAbstract : MonoBehaviour
 
 	public bool WillDisplayPrompt()
 	{
-		return displayPrompt;
+		return displayPrompt && !isPickup;
 	}
 
 	public bool WillReflect()
@@ -149,7 +150,7 @@ public abstract class InteractableAbstract : MonoBehaviour
 
 	public bool WillAcceptItem()
 	{
-		return acceptItem;
+		return acceptItem || isPickup;
 	}
 
 	public void ActivateItem()
