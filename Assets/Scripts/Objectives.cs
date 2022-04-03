@@ -71,9 +71,9 @@ public class Objectives
 	static List<Objective> m_objectives = new List<Objective>();
 
 	[RuntimeInitializeOnLoadMethod]
-	static void InitObjectives()
+	static void PopulateObjectives()
 	{
-		m_objectives.Add( new Objective( Globals.UIStrings.OBJECTIVE_TURN_ON_POWER, completeEvent: Globals.Events.LIGHTS_TURN_ON, isActive: true ) );
+		InitObjectives.InitAllObjectives(m_objectives);
 	}
 
 	public static Objective GetCurrentObjective()

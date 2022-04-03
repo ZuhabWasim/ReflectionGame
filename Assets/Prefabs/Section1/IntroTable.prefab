@@ -223,6 +223,7 @@ MonoBehaviour:
   acceptItem: 0
   deleteItem: 0
   itemName: Drawer
+  firstInteractEvent: 
   myType: 3
   thisIsAMirror: 0
   openSound: {fileID: 8300000, guid: bd1069cb393949a4ba69a5314490bfa2, type: 3}
@@ -230,6 +231,7 @@ MonoBehaviour:
   audioSourceName: IntroTableDesk
   closeEvent: 
   openEvent: 
+  onMotionTriggerEvent: 
   needsItem: 
 --- !u!114 &7077006183084530751
 MonoBehaviour:
@@ -1420,10 +1422,11 @@ MonoBehaviour:
   acceptItem: 0
   deleteItem: 0
   itemName: Handkerchief
+  firstInteractEvent: 
   myType: 0
   thisIsAMirror: 0
   img: {fileID: 2800000, guid: 18ac8ea28e700b747b9d5c5c4427f4fc, type: 3}
-  onPickupEvent: 
+  onPickupEvent: GoCleanMirror
 --- !u!1 &7077006183106151820
 GameObject:
   m_ObjectHideFlags: 0
@@ -2346,6 +2349,7 @@ MonoBehaviour:
   acceptItem: 0
   deleteItem: 0
   itemName: Note
+  firstInteractEvent: 
   myType: 0
   thisIsAMirror: 0
   id: 0
