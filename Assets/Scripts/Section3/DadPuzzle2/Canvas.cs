@@ -29,7 +29,6 @@ public class Canvas : InteractableAbstract
 
 		m_mirrorPlane = GetComponentInChildren<MirrorPlane>( includeInactive: true ).gameObject;
 		// By default, many canvas mirrors are inactive
-		// TODO: Make it so StudioLight.cs fires an event that turns on the outgoing light of all canvases.
 	}
 
 	protected override void OnUserInteract()
