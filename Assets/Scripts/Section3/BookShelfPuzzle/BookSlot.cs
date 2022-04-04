@@ -8,7 +8,7 @@ public enum BookType
 	WHITE_BOOK = 0,
 	RED_BOOK,
 	BLUE_BOOK,
-	GREEN_BOOK,
+	YELLOW_BOOK,
 	INVALID_BOOK = -1
 }
 
@@ -17,14 +17,14 @@ public class BookSlot : InteractableAbstract
 	public BookType currentBook = BookType.INVALID_BOOK;
 	public BookType targetBook;
 	public BookType incorrectBook; // If the player enters the present puzzle
-	
+
 	public Vector3 bookPosition;
 	public AudioClip missingBookVoiceLine;
-	
+
 	private const string WHITE_BOOK = "WhiteBook";
 	private const string RED_BOOK = "RedBook";
 	private const string BLUE_BOOK = "BlueBook";
-	private const string GREEN_BOOK = "GreenBook";
+	private const string YELLOW_BOOK = "YellowBook";
 
 	protected override void OnStart()
 	{
@@ -41,8 +41,8 @@ public class BookSlot : InteractableAbstract
 				return BookType.RED_BOOK;
 			case BLUE_BOOK:
 				return BookType.BLUE_BOOK;
-			case GREEN_BOOK:
-				return BookType.GREEN_BOOK;
+			case YELLOW_BOOK:
+				return BookType.YELLOW_BOOK;
 			default:
 				return BookType.INVALID_BOOK;
 		}
@@ -63,13 +63,13 @@ public class BookSlot : InteractableAbstract
 	{
 		Inventory inventory = Inventory.GetInstance();
 		PickupItem selectedItem = inventory.GetSelectedPickupItem();
-		
-		if (EmptyBucket.IsOnBucket())
+
+		if ( EmptyBucket.IsOnBucket() )
 		{
-			if ( currentBook == BookType.INVALID_BOOK && 
-			     (selectedItem == null || GetBookTypeFromName( selectedItem.gameObject.name ) == BookType.INVALID_BOOK))
+			if ( currentBook == BookType.INVALID_BOOK &&
+				 ( selectedItem == null || GetBookTypeFromName( selectedItem.gameObject.name ) == BookType.INVALID_BOOK ) )
 			{
-				AudioPlayer.Play(missingBookVoiceLine, Globals.Tags.DIALOGUE_SOURCE);
+				AudioPlayer.Play( missingBookVoiceLine, Globals.Tags.DIALOGUE_SOURCE );
 			}
 			else
 			{
@@ -85,7 +85,7 @@ public class BookSlot : InteractableAbstract
 		}
 		else
 		{
-			AudioPlayer.Play(nonInteractableVoiceLine, Globals.Tags.DIALOGUE_SOURCE);
+			AudioPlayer.Play( nonInteractableVoiceLine, Globals.Tags.DIALOGUE_SOURCE );
 		}
 
 	}

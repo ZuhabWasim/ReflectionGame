@@ -11,34 +11,35 @@ public class Fork
 	public string output_event;
 	bool[] tracker;
 
-	public Fork(string[] i, string o)
-    {
+	public Fork( string[] i, string o )
+	{
 		num_inputs = i.Length;
 		output_event = o;
-		tracker = new bool[num_inputs];
-		for (int j=0; j< num_inputs; j++)
-        {
-			tracker[j] = false;
+		tracker = new bool[ num_inputs ];
+		for ( int j = 0; j < num_inputs; j++ )
+		{
+			tracker[ j ] = false;
 			int n = j;
-			EventManager.Sub(i[j], () => { UpdateTracker(n); });
-        }
+			EventManager.Sub( i[ j ], () => { UpdateTracker( n ); } );
+		}
 	}
 
-	void UpdateTracker(int n)
-    {
-		tracker.SetValue(true, n);
-		if (ForkComplete())
-        {
-			EventManager.Fire(output_event);
+	void UpdateTracker( int n )
+	{
+		tracker.SetValue( true, n );
+		if ( ForkComplete() )
+		{
+			EventManager.Fire( output_event );
 		}
-		Debug.Log(tracker);
-    }
+		Debug.Log( tracker );
+	}
 
 	bool ForkComplete()
 	{
-		for (int j = 0; j < num_inputs; j++)
+		for ( int j = 0; j < num_inputs; j++ )
 		{
-			if (!tracker[j]) {
+			if ( !tracker[ j ] )
+			{
 				return false;
 			}
 		}
@@ -57,9 +58,9 @@ public static class ForkList
 		forks = new List<Fork>();
 
 		// (GO_CLEAN_MIRROR && GO_ENTER_CODE) => DONE_INVESTIGATE
-		forks.Add(new Fork(new string[] { Globals.Events.GO_CLEAN_MIRROR,
-			Globals.Events.GO_ENTER_CODE }, 
-			Globals.Events.DONE_INVESTIGATE));
+		forks.Add( new Fork( new string[] { Globals.Events.GO_CLEAN_MIRROR,
+			Globals.Events.GO_ENTER_CODE },
+			Globals.Events.DONE_INVESTIGATE ) );
 
 	}
 
