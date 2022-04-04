@@ -22,10 +22,12 @@ public class Canvas : InteractableAbstract
 	private GameObject m_mirrorPlane;
 	private float m_lightRange;
 
+	public AudioClip onPaintVoiceLine;
+
 	protected override void OnStart()
 	{
 		if ( outgoingLight ) m_lightRange = outgoingLight.range;
-		desiredItem = Globals.Misc.WET_PAINT_BRUSH;
+		//desiredItem = Globals.Misc.WET_PAINT_BRUSH;
 
 		m_mirrorPlane = GetComponentInChildren<MirrorPlane>( includeInactive: true ).gameObject;
 		// By default, many canvas mirrors are inactive
@@ -41,42 +43,77 @@ public class Canvas : InteractableAbstract
 		{
 			AudioPlayer.Play( Globals.VoiceLines.Section3.REFLECTIVE_CANVAS, Globals.Tags.DIALOGUE_SOURCE );
 		}
+
+		if (voiceLine != null)
+		{
+			AudioPlayer.Play( voiceLine, Globals.Tags.DIALOGUE_SOURCE );
+		}
 	}
 
 	protected override void OnUseItem()
 	{
-		PaintBrush brush = Inventory.GetInstance().GetSelectedPickupItem().GetComponent<PaintBrush>();
-		switch ( brush.paint )
+		// If this was OnUseItemUnfiltered, the default OnUseItem() method in PlayerController overrides this dialogue
+		// But since this override OnUseItem(), I need to write all the cases of what to do here.
+		// I need desiredItem = "" so I can do checking on multiple brushes.
+		PickupItem item = Inventory.GetInstance().GetSelectedPickupItem();
+		if (item == null)
+		{
+			AudioPlayer.Play( Globals.VoiceLines.General.NOT_HOLDING_ANYTHING, Globals.Tags.DIALOGUE_SOURCE );
+			AudioPlayer.Play( Globals.AudioFiles.General.NON_INTERACTABLE, Globals.Tags.MAIN_SOURCE );
+			return;
+		}
+		
+		PaintBrush brush = item.GetComponent<PaintBrush>();
+		if (brush == null)
+		{
+			AudioPlayer.Play( Globals.VoiceLines.General.CANT_USE_ITEM, Globals.Tags.DIALOGUE_SOURCE );
+			AudioPlayer.Play( Globals.AudioFiles.General.NON_INTERACTABLE, Globals.Tags.MAIN_SOURCE );
+			return;
+		}
+
+		switch (brush.paint)
 		{
 			case PaintType.WHITE:
-				if ( state == CanvasState.CLEAN )
+				if (state == CanvasState.CLEAN)
 				{
-					AudioPlayer.Play( Globals.VoiceLines.Section3.ALREADY_BLANK, Globals.Tags.DIALOGUE_SOURCE );
+					AudioPlayer.Play(Globals.VoiceLines.Section3.ALREADY_BLANK, Globals.Tags.DIALOGUE_SOURCE);
+					AudioPlayer.Play(Globals.AudioFiles.General.NON_INTERACTABLE, Globals.Tags.MAIN_SOURCE);
 					return;
 				}
-				SetState( CanvasState.CLEAN );
+
+				SetState(CanvasState.CLEAN);
 				break;
 			case PaintType.REFLECTIVE:
-				if ( state == CanvasState.REFLECTIVE || state == CanvasState.PORTAL )
+				if (state == CanvasState.REFLECTIVE || state == CanvasState.PORTAL)
 				{
-					AudioPlayer.Play( Globals.VoiceLines.Section3.ALREADY_REFLECTIVE, Globals.Tags.DIALOGUE_SOURCE );
+					AudioPlayer.Play(Globals.VoiceLines.Section3.ALREADY_REFLECTIVE, Globals.Tags.DIALOGUE_SOURCE);
+					AudioPlayer.Play(Globals.AudioFiles.General.NON_INTERACTABLE, Globals.Tags.MAIN_SOURCE);
 					return;
 				}
-				//if ( state == CanvasState.PORTAL ) return;
-				SetState( CanvasState.REFLECTIVE );
+
+				SetState(CanvasState.REFLECTIVE);
 				break;
 			case PaintType.PORTAL:
-				SetState( CanvasState.PORTAL );
+				SetState(CanvasState.PORTAL);
+				if (useVoiceLine != null)
+				{
+					AudioPlayer.Play(onPaintVoiceLine, Globals.Tags.DIALOGUE_SOURCE);
+				}
+				// Set the state of the brush to Reflective (one-time use)
+				brush.paint = PaintType.REFLECTIVE;
 				break;
 			case PaintType.NONE:
+				AudioPlayer.Play( Globals.VoiceLines.General.CANT_USE_ITEM, Globals.Tags.DIALOGUE_SOURCE );
+				AudioPlayer.Play( Globals.AudioFiles.General.NON_INTERACTABLE, Globals.Tags.MAIN_SOURCE );
+				break;
 			default:
 				return;
 		}
 	}
 
-	public void PaintWhite()
+	public void Paint()
     {
-		OnUseItem();
+	    OnUseItem();
 	}
 
 	void OnPortal()
@@ -111,6 +148,7 @@ public class Canvas : InteractableAbstract
 		{
 			EventManager.Fire( Globals.Events.CANVAS_STATE_CHANGE, this.gameObject );
 		}
+		// Play painting sound
 	}
 
 	private void UpdateMirror( CanvasState newState )
