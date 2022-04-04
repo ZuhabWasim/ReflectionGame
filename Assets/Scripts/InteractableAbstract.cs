@@ -40,6 +40,8 @@ public abstract class InteractableAbstract : MonoBehaviour
 	public string firstInteractEvent;
 	bool firstInteracted;
 
+	private int originalLayer;
+
 	public enum ItemType
 	{
 		INTERACT,
@@ -81,6 +83,7 @@ public abstract class InteractableAbstract : MonoBehaviour
 
 		m_inventory = Inventory.GetInstance();
 
+		originalLayer = gameObject.layer;
 		firstInteracted = ( firstInteractEvent == string.Empty );
 
 		OnStart();
@@ -261,7 +264,7 @@ public abstract class InteractableAbstract : MonoBehaviour
 	{
 #if USING_INTERACTABLE_HIGHLIGHTING
 		if ( !highlightOnLook ) return;
-		ApplyLayer( this.gameObject, Globals.Misc.DEFAULT_LAYER, this.highlightChildObjects );
+		ApplyLayer( this.gameObject, originalLayer, this.highlightChildObjects );
 #endif
 	}
 
