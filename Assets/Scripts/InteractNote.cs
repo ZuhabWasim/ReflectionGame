@@ -16,6 +16,9 @@ public class InteractNote : InteractableAbstract
 
 	public string onReadFireEvent = "";
 	
+	[Tooltip( "Whether the player will hear Millie's response to the letter when playing back." )]
+	public bool playbackResponse = false;
+	
 	public override void OnUseItemUnfiltered()
 	{
 		AddNote();
@@ -30,6 +33,15 @@ public class InteractNote : InteractableAbstract
 		EventManager.Fire( InputManager.GetKeyDownEventName( Keybinds.TAB_KEY ) );
 	}
 
+	public void PlaybackAudio()
+	{
+		AudioPlayer.Play( letterAudio, Globals.Tags.DIALOGUE_SOURCE );
+		if (playbackResponse)
+		{
+			AudioPlayer.Play( responseAudio, Globals.Tags.DIALOGUE_SOURCE, false );
+		}
+	}
+	
 	public void AddNote()
 	{
 		if ( pointer == 0 )
