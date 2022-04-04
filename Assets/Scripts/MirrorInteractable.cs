@@ -11,6 +11,7 @@ public class MirrorInteractable : InteractableAbstract
 	public string audioSourceName;
 
 	public bool teleportable;
+	public bool paintable;
 
 	// [Tooltip( "This is a canvas. It needs to break some of the rules so that you can teleport" )]
 	// public bool part2Canvas;
@@ -29,6 +30,12 @@ public class MirrorInteractable : InteractableAbstract
 	{
 		thisIsAMirror = true;
 		displayReflect = true;
+		if (paintable)
+        {
+			acceptItem = true;
+		}
+
+
 		if ( GetComponent<AudioSource>() != null )
 		{
 			m_audioSourceName = audioSourceName == "" ? this.name : audioSourceName;
@@ -97,6 +104,13 @@ public class MirrorInteractable : InteractableAbstract
 		else
 		{
 			AudioPlayer.Play( nonTeleportableVoiceLine, Globals.Tags.DIALOGUE_SOURCE );
+		}
+	}
+
+	protected override void OnUseItem()
+	{
+		if (paintable) {
+			this.transform.parent.GetComponent<Canvas>().PaintWhite();
 		}
 	}
 }
