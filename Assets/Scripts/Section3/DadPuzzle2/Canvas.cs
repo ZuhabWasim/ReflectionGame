@@ -74,6 +74,11 @@ public class Canvas : InteractableAbstract
 		}
 	}
 
+	public void PaintWhite()
+    {
+		OnUseItem();
+	}
+
 	void OnPortal()
 	{
 		foreach ( GameObject obj in activateOnPortal )

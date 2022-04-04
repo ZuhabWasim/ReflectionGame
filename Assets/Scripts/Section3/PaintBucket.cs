@@ -25,7 +25,12 @@ public class PaintBucket : InteractableAbstract
 		PickupItem item = inventory.GetSelectedPickupItem();
 		PaintBrush brush = item.GetComponent<PaintBrush>();
 		brush.paint = paint;
-		brush.itemName = Globals.Misc.WET_PAINT_BRUSH;
+		if (paint == PaintType.WHITE) {
+			brush.itemName = Globals.Misc.WHITE_PAINT_BRUSH;
+		} else
+        {
+			brush.itemName = Globals.Misc.WET_PAINT_BRUSH;
+		}
 		brush.img = icon;
 		inventory.RefreshItem( item );
 	}

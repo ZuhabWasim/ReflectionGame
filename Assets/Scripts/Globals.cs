@@ -174,7 +174,8 @@ public class Globals
 		public static string MOUSE_Y = "Mouse Y";
 		public static string UI_Canvas = "UI_Canvas";
 		public static string PAINT_BRUSH = "Paint Brush";
-		public static string WET_PAINT_BRUSH = "Wet Paint Brush";
+		public static string WET_PAINT_BRUSH = "Reflective Paint Brush";
+		public static string WHITE_PAINT_BRUSH = "White Paint Brush";
 		public static string SCISSOR_PUZZLE = "ScissorPuzzle";
 		public static string EMPTY_BUCKET = "Empty Bucket (E)";
 
