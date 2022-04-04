@@ -367,10 +367,6 @@ MonoBehaviour:
   interactable: 1
   makeInteractableEvent: 
   makeNonInteractableEvent: 
-  voiceLine: {fileID: 0}
-  nonInteractableVoiceLine: {fileID: 0}
-  nonUseableVoiceLine: {fileID: 0}
-  useVoiceLine: {fileID: 0}
   displayPrompt: 1
   isPickup: 0
   acceptItem: 1
@@ -378,7 +374,13 @@ MonoBehaviour:
   itemName: 
   firstInteractEvent: 
   myType: 0
+  highlightOnLook: 1
+  highlightChildObjects: 0
   thisIsAMirror: 0
+  voiceLine: {fileID: 0}
+  nonInteractableVoiceLine: {fileID: 0}
+  nonUseableVoiceLine: {fileID: 0}
+  useVoiceLine: {fileID: 0}
   state: 0
   outgoingLight: {fileID: 8401946269663406995}
   outgoingFilter: {fileID: 0}
@@ -3708,10 +3710,6 @@ MonoBehaviour:
   interactable: 1
   makeInteractableEvent: 
   makeNonInteractableEvent: 
-  voiceLine: {fileID: 0}
-  nonInteractableVoiceLine: {fileID: 0}
-  nonUseableVoiceLine: {fileID: 0}
-  useVoiceLine: {fileID: 0}
   displayPrompt: 1
   isPickup: 0
   acceptItem: 1
@@ -3719,7 +3717,13 @@ MonoBehaviour:
   itemName: 
   firstInteractEvent: 
   myType: 0
+  highlightOnLook: 1
+  highlightChildObjects: 0
   thisIsAMirror: 0
+  voiceLine: {fileID: 0}
+  nonInteractableVoiceLine: {fileID: 0}
+  nonUseableVoiceLine: {fileID: 0}
+  useVoiceLine: {fileID: 0}
   state: 0
   outgoingLight: {fileID: 7867251613798414735}
   outgoingFilter: {fileID: 0}
@@ -4377,10 +4381,6 @@ MonoBehaviour:
   interactable: 1
   makeInteractableEvent: 
   makeNonInteractableEvent: 
-  voiceLine: {fileID: 0}
-  nonInteractableVoiceLine: {fileID: 0}
-  nonUseableVoiceLine: {fileID: 0}
-  useVoiceLine: {fileID: 0}
   displayPrompt: 1
   isPickup: 0
   acceptItem: 0
@@ -4388,7 +4388,13 @@ MonoBehaviour:
   itemName: Paint Brush
   firstInteractEvent: 
   myType: 2
+  highlightOnLook: 1
+  highlightChildObjects: 0
   thisIsAMirror: 0
+  voiceLine: {fileID: 0}
+  nonInteractableVoiceLine: {fileID: 0}
+  nonUseableVoiceLine: {fileID: 0}
+  useVoiceLine: {fileID: 0}
   img: {fileID: 0}
   onPickupEvent: 
 --- !u!1 &5899167279971133799
@@ -6756,10 +6762,6 @@ MonoBehaviour:
   interactable: 1
   makeInteractableEvent: 
   makeNonInteractableEvent: 
-  voiceLine: {fileID: 0}
-  nonInteractableVoiceLine: {fileID: 0}
-  nonUseableVoiceLine: {fileID: 0}
-  useVoiceLine: {fileID: 0}
   displayPrompt: 1
   isPickup: 0
   acceptItem: 1
@@ -6767,7 +6769,13 @@ MonoBehaviour:
   itemName: Studio Light
   firstInteractEvent: 
   myType: 0
+  highlightOnLook: 1
+  highlightChildObjects: 0
   thisIsAMirror: 0
+  voiceLine: {fileID: 0}
+  nonInteractableVoiceLine: {fileID: 0}
+  nonUseableVoiceLine: {fileID: 0}
+  useVoiceLine: {fileID: 0}
   spotLight: {fileID: 0}
   spotLightOnVoiceLine: {fileID: 0}
 --- !u!1 &7359280856936141443
@@ -9039,10 +9047,6 @@ MonoBehaviour:
   interactable: 1
   makeInteractableEvent: 
   makeNonInteractableEvent: 
-  voiceLine: {fileID: 0}
-  nonInteractableVoiceLine: {fileID: 0}
-  nonUseableVoiceLine: {fileID: 0}
-  useVoiceLine: {fileID: 0}
   displayPrompt: 1
   isPickup: 0
   acceptItem: 1
@@ -9050,7 +9054,13 @@ MonoBehaviour:
   itemName: 
   firstInteractEvent: 
   myType: 0
+  highlightOnLook: 1
+  highlightChildObjects: 0
   thisIsAMirror: 0
+  voiceLine: {fileID: 0}
+  nonInteractableVoiceLine: {fileID: 0}
+  nonUseableVoiceLine: {fileID: 0}
+  useVoiceLine: {fileID: 0}
   state: 0
   outgoingLight: {fileID: 4868105378858172655}
   outgoingFilter: {fileID: 0}
@@ -9633,10 +9643,6 @@ MonoBehaviour:
   interactable: 1
   makeInteractableEvent: 
   makeNonInteractableEvent: 
-  voiceLine: {fileID: 0}
-  nonInteractableVoiceLine: {fileID: 0}
-  nonUseableVoiceLine: {fileID: 0}
-  useVoiceLine: {fileID: 0}
   displayPrompt: 1
   isPickup: 0
   acceptItem: 1
@@ -9644,7 +9650,13 @@ MonoBehaviour:
   itemName: 
   firstInteractEvent: 
   myType: 0
+  highlightOnLook: 1
+  highlightChildObjects: 0
   thisIsAMirror: 0
+  voiceLine: {fileID: 0}
+  nonInteractableVoiceLine: {fileID: 0}
+  nonUseableVoiceLine: {fileID: 0}
+  useVoiceLine: {fileID: 0}
   paint: 2
   icon: {fileID: 0}
 --- !u!4 &8633379557177852307 stripped
@@ -9728,6 +9740,10 @@ PrefabInstance:
     - target: {fileID: 3796900875977146146, guid: a41e4bdf44931cf45901d94a859d5e79, type: 3}
       propertyPath: m_Name
       value: Easel (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3796900875977146146, guid: a41e4bdf44931cf45901d94a859d5e79, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4610170437434664344, guid: a41e4bdf44931cf45901d94a859d5e79, type: 3}
       propertyPath: m_RootOrder
