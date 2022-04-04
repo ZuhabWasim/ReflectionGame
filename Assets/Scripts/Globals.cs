@@ -36,7 +36,6 @@ public class Globals
 		EventManager.Sub( Globals.Events.HAS_DAD_KEY, EnableMainRooms );
 		EventManager.Sub( Globals.Events.HAS_DAD_KEY, EnableMomCloset);
 		
-		EventManager.Sub( Globals.Events.LOCK_PAST_DAD_SHELF, FixBrushOnDad2 );
 	}
 
 	private static void UpdateWorldOnTeleport()
@@ -79,16 +78,6 @@ public class Globals
 	{
 		Debug.Log("Enabling Dad Closet");
 		EventManager.Fire(Globals.Events.ACTIVATE_DAD_CLOSET);
-	}
-
-	// Changes the paint brush the player enters with from dad1 to dad2 to a reflective one
-	private static void FixBrushOnDad2()
-	{
-		PickupItem item = Inventory.GetInstance().GetItem("Wet Paint Brush");
-		if (item != null)
-		{
-			((PaintBrush)item).paint = PaintType.REFLECTIVE; // this is unsafe but seems ok
-		}
 	}
 
 	// All events used by event manager should go here
@@ -174,7 +163,8 @@ public class Globals
 		public static string MOUSE_Y = "Mouse Y";
 		public static string UI_Canvas = "UI_Canvas";
 		public static string PAINT_BRUSH = "Paint Brush";
-		public static string WET_PAINT_BRUSH = "Wet Paint Brush";
+		public static string WET_PAINT_BRUSH = "Reflective Paint Brush";
+		public static string WHITE_PAINT_BRUSH = "White Paint Brush";
 		public static string SCISSOR_PUZZLE = "ScissorPuzzle";
 		public static string EMPTY_BUCKET = "Empty Bucket (E)";
 

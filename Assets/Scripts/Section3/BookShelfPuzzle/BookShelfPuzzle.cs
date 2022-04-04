@@ -11,11 +11,11 @@ public class BookShelfPuzzle : MonoBehaviour
 	public AudioClip wrongOrderVoiceLine;
 	public AudioClip rightOrderVoiceLine;
 	public AudioClip presentOrderVoiceLine;
-	
+
 	private List<BookSlot> m_bookslots;
 
 	private const string WHITE_BOOK = "WhiteBook";
-	private const string GREEN_BOOK = "GreenBook";
+	private const string YELLOW_BOOK = "YellowBook";
 
 	void Start()
 	{
@@ -44,11 +44,11 @@ public class BookShelfPuzzle : MonoBehaviour
 	{
 		bool isPastOrder = true;
 		bool isPresentOrder = true;
-		
+
 		foreach ( BookSlot slot in m_bookslots )
 		{
 			// If the book is INVALID, the code cannot possibly be correct, we don't check.
-			if (slot.currentBook == BookType.INVALID_BOOK)
+			if ( slot.currentBook == BookType.INVALID_BOOK )
 			{
 				return;
 			}
@@ -58,48 +58,48 @@ public class BookShelfPuzzle : MonoBehaviour
 				isPastOrder = false;
 			}
 			// Past code checking.
-			if (slot.currentBook != slot.incorrectBook)
+			if ( slot.currentBook != slot.incorrectBook )
 			{
 				isPresentOrder = false;
-			} 
+			}
 		}
 
-		if (isPresentOrder)
+		if ( isPresentOrder )
 		{
 			// Dialog
-			AudioPlayer.Play(presentOrderVoiceLine, Globals.Tags.DIALOGUE_SOURCE);
+			AudioPlayer.Play( presentOrderVoiceLine, Globals.Tags.DIALOGUE_SOURCE );
 			return;
 		}
 
-		if (isPastOrder)
+		if ( isPastOrder )
 		{
 			OnPuzzleSolved();
-			AudioPlayer.Play(rightOrderVoiceLine, Globals.Tags.DIALOGUE_SOURCE);
+			AudioPlayer.Play( rightOrderVoiceLine, Globals.Tags.DIALOGUE_SOURCE );
 			return;
 		}
-		
-		AudioPlayer.Play(wrongOrderVoiceLine, Globals.Tags.DIALOGUE_SOURCE);
+
+		AudioPlayer.Play( wrongOrderVoiceLine, Globals.Tags.DIALOGUE_SOURCE );
 	}
 
 	void OnPuzzleSolved()
 	{
 		Debug.Log( "Bookshelf puzzle solved" );
-		
+
 		EventManager.Fire( Globals.Events.DAD_PUZZLE_1_BOOKSHELF_SOLVED );
-		
+
 		// Disables the pick up for all of these objects via disabling their box colliders.
-		foreach (BookSlot slot in m_bookslots)
+		foreach ( BookSlot slot in m_bookslots )
 		{
 			slot.interactable = false;
 		}
-		
+
 		// Disables pick up for these books except Alice in Wonderland if the player wants to take it
 		// Disables the pick up for all of these objects via disabling their box colliders.
-		GameObject[] interactableBooks = GameObject.FindGameObjectsWithTag(Globals.Tags.INTERACTABLE_BOOK);
-		foreach (GameObject book in interactableBooks)
+		GameObject[] interactableBooks = GameObject.FindGameObjectsWithTag( Globals.Tags.INTERACTABLE_BOOK );
+		foreach ( GameObject book in interactableBooks )
 		{
 			PickupItem pickUpScript = book.GetComponent<PickupItem>();
-			if (pickUpScript != null && pickUpScript.itemName != Globals.UIStrings.ALICE_IN_WONDERLAND)
+			if ( pickUpScript != null && pickUpScript.itemName != Globals.UIStrings.ALICE_IN_WONDERLAND )
 			{
 				book.GetComponent<BoxCollider>().enabled = false;
 			}

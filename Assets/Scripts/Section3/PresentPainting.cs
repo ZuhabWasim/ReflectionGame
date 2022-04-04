@@ -26,7 +26,8 @@ public class PresentPainting : InteractableAbstract
     
     private const string RED_FILTER = "RedFilter";
     private const string BLUE_FILTER = "BlueFilter";
-    private const string YELLOW_FILTER = "GreenFilter";
+    private const string GREEN_FILTER = "GreenFilter";
+    private const string YELLOW_FILTER = "YellowFilter";
     
     protected override void OnStart()
     {
@@ -110,6 +111,8 @@ public class PresentPainting : InteractableAbstract
             case BLUE_FILTER:
                 return 2;
             case YELLOW_FILTER:
+                return 1;
+            case GREEN_FILTER:
                 return 1;
             default:
                 return 0;

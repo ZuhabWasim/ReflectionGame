@@ -1,4 +1,4 @@
-#undef USING_INTERACTABLE_HIGHLIGHTING
+#define USING_INTERACTABLE_HIGHLIGHTING
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -28,10 +28,6 @@ public abstract class InteractableAbstract : MonoBehaviour
 	[Tooltip( "Event which should set this object to become interactable" )]
 	public string makeInteractableEvent = "";
 	public string makeNonInteractableEvent = "";
-	public AudioClip voiceLine;
-	public AudioClip nonInteractableVoiceLine;
-	public AudioClip nonUseableVoiceLine;
-	public AudioClip useVoiceLine;
 
 	public bool displayPrompt = true;
 	public bool isPickup = false;
@@ -44,6 +40,8 @@ public abstract class InteractableAbstract : MonoBehaviour
 	public string firstInteractEvent;
 	bool firstInteracted;
 
+	private int originalLayer;
+
 	public enum ItemType
 	{
 		INTERACT,
@@ -55,12 +53,20 @@ public abstract class InteractableAbstract : MonoBehaviour
 	public ItemType myType;
 
 #if USING_INTERACTABLE_HIGHLIGHTING
+	[Header( "Object Highlighting" )]
 	public bool highlightOnLook = true;
+	public bool highlightChildObjects = false;
 #endif
 
 	private Inventory m_inventory;
 	[HideInInspector]
 	public bool thisIsAMirror = false;
+
+	[Header( "Audio" )]
+	public AudioClip voiceLine;
+	public AudioClip nonInteractableVoiceLine;
+	public AudioClip nonUseableVoiceLine;
+	public AudioClip useVoiceLine;
 
 
 	public void Start()
@@ -77,10 +83,11 @@ public abstract class InteractableAbstract : MonoBehaviour
 
 		m_inventory = Inventory.GetInstance();
 
-		firstInteracted = (firstInteractEvent == string.Empty);
+		originalLayer = gameObject.layer;
+		firstInteracted = ( firstInteractEvent == string.Empty );
 
 		OnStart();
-		
+
 	}
 
 	public void SetType( ItemType typeIn )
@@ -165,11 +172,11 @@ public abstract class InteractableAbstract : MonoBehaviour
 			return;
 		}
 
-		if (!firstInteracted)
-        {
-			EventManager.Fire(firstInteractEvent);
+		if ( !firstInteracted )
+		{
+			EventManager.Fire( firstInteractEvent );
 			firstInteracted = true;
-        }
+		}
 
 		if ( voiceLine != null )
 		{
@@ -232,11 +239,24 @@ public abstract class InteractableAbstract : MonoBehaviour
 	}
 
 
+#if USING_INTERACTABLE_HIGHLIGHTING
+	private void ApplyLayer( GameObject obj, int layer, bool applyToChildren = false )
+	{
+		obj.layer = layer;
+		if ( !applyToChildren ) return;
+
+		foreach ( Transform child in obj.transform )
+		{
+			ApplyLayer( child.gameObject, layer, applyToChildren );
+		}
+	}
+#endif // if USING_INTERACTABLE_HIGHLIGHTING
+
 	public void OnUserLooking()
 	{
 #if USING_INTERACTABLE_HIGHLIGHTING
 		if ( !highlightOnLook ) return;
-		this.gameObject.layer = Globals.Misc.HIGHLIGHT_LAYER;
+		ApplyLayer( this.gameObject, Globals.Misc.HIGHLIGHT_LAYER, this.highlightChildObjects );
 #endif
 	}
 
@@ -244,7 +264,7 @@ public abstract class InteractableAbstract : MonoBehaviour
 	{
 #if USING_INTERACTABLE_HIGHLIGHTING
 		if ( !highlightOnLook ) return;
-		this.gameObject.layer = Globals.Misc.DEFAULT_LAYER;
+		ApplyLayer( this.gameObject, originalLayer, this.highlightChildObjects );
 #endif
 	}
 
