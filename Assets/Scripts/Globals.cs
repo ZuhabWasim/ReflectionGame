@@ -84,7 +84,7 @@ public class Globals
 	// Changes the paint brush the player enters with from dad1 to dad2 to a reflective one
 	private static void FixBrushOnDad2()
 	{
-		PickupItem item = Inventory.GetInstance().GetItem("Wet Paint Brush");
+		PickupItem item = Inventory.GetInstance().GetItem(Globals.Misc.WET_PAINT_BRUSH);
 		if (item != null)
 		{
 			((PaintBrush)item).paint = PaintType.REFLECTIVE; // this is unsafe but seems ok
