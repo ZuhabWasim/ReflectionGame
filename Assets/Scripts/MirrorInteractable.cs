@@ -107,10 +107,10 @@ public class MirrorInteractable : InteractableAbstract
 		}
 	}
 
-	protected override void OnUseItem()
+	public override void OnUseItemUnfiltered()
 	{
 		if (paintable) {
-			this.transform.parent.GetComponent<Canvas>().PaintWhite();
+			this.transform.parent.GetComponent<Canvas>().Paint();
 		}
 	}
 }
