@@ -57,6 +57,18 @@ public class JournalDisplay : MonoBehaviour
         title.transform.GetComponent<Text>().text = note.title;
         content.transform.GetComponent<RawImage>().texture = note.noteText;
     }
+    public void PlayAudioLeft()
+    {
+        int leftId = index * 2;
+        AudioClip letterAudio = InteractNote.journal[leftId].letterAudio;
+		AudioPlayer.Play( letterAudio, Globals.Tags.DIALOGUE_SOURCE );
+    }
+    public void PlayAudioRight()
+    {
+        int rightId = index * 2 + 1;
+        AudioClip letterAudio = InteractNote.journal[rightId].letterAudio;
+		AudioPlayer.Play( letterAudio, Globals.Tags.DIALOGUE_SOURCE );
+    }
     private void ShowPage()
     {
         int leftId = index * 2;
