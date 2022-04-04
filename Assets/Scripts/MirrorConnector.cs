@@ -109,7 +109,7 @@ public class MirrorConnector : MonoBehaviour
 		}
 
 		// Create render textures
-		RenderTextureDescriptor textureDescriptor = new RenderTextureDescriptor( 512, Mathf.RoundToInt( 512 * mirrorHeight ), RenderTextureFormat.Default );
+		RenderTextureDescriptor textureDescriptor = new RenderTextureDescriptor( Mathf.RoundToInt( 512 / mirrorHeight ), 512, RenderTextureFormat.Default );
 		m_presentMirrorTexture = new RenderTexture( textureDescriptor );
 		m_pastMirrorTexture = new RenderTexture( textureDescriptor );
 
