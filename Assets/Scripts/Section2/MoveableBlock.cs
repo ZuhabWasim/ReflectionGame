@@ -82,6 +82,18 @@ public class MoveableBlock : InteractableAbstract
 				EventManager.Fire(Globals.Events.UNBLOCKING_MIRROR_B);
 			}
 		}
+		// Easter egg
+		if (achieved && bma.transform.name == Globals.Misc.MIRROR_C_PAST_TILES)
+		{
+			if (bma.BoxAtPosition(2, 0)) // If Mirror C is blocking the hidden Laci drawers
+			{
+				EventManager.Fire(Globals.Events.BLOCKING_SECRET_LACIS);
+			}
+			else
+			{
+				EventManager.Fire(Globals.Events.UNBLOCKING_SECRET_LACIS);
+			}
+		}
 	}
 
 	bool TryMoveBox( MoveDirect dir )
