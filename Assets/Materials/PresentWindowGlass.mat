@@ -154,7 +154,7 @@ Material:
     - _DoubleSidedNormalMode: 1
     - _DstBlend: 1
     - _EmissiveColorMode: 1
-    - _EmissiveExposureWeight: 0.97
+    - _EmissiveExposureWeight: 0.926
     - _EmissiveIntensity: 1
     - _EmissiveIntensityUnit: 0
     - _EnableBlendModePreserveSpecularLighting: 1
