@@ -95,10 +95,7 @@ public class Canvas : InteractableAbstract
 				break;
 			case PaintType.PORTAL:
 				SetState(CanvasState.PORTAL);
-				if (useVoiceLine != null)
-				{
-					AudioPlayer.Play(onPaintVoiceLine, Globals.Tags.DIALOGUE_SOURCE);
-				}
+				AudioPlayer.Play(onPaintVoiceLine, Globals.Tags.DIALOGUE_SOURCE);
 				// Set the state of the brush to Reflective (one-time use)
 				brush.paint = PaintType.REFLECTIVE;
 				break;

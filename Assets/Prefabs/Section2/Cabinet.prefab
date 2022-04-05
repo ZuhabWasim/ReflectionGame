@@ -148,16 +148,20 @@ MonoBehaviour:
   interactable: 1
   makeInteractableEvent: 
   makeNonInteractableEvent: 
+  displayPrompt: 1
+  isPickup: 0
+  acceptItem: 0
+  deleteItem: 0
+  itemName: Cabinet
+  firstInteractEvent: 
+  myType: 3
+  highlightOnLook: 1
+  highlightChildObjects: 1
+  thisIsAMirror: 0
   voiceLine: {fileID: 0}
   nonInteractableVoiceLine: {fileID: 0}
   nonUseableVoiceLine: {fileID: 0}
   useVoiceLine: {fileID: 0}
-  displayPrompt: 1
-  acceptItem: 0
-  deleteItem: 0
-  itemName: Cabinet
-  myType: 3
-  thisIsAMirror: 0
   openSound: {fileID: 0}
   closeSound: {fileID: 0}
   audioSourceName: 
@@ -666,16 +670,20 @@ MonoBehaviour:
   interactable: 1
   makeInteractableEvent: 
   makeNonInteractableEvent: 
+  displayPrompt: 1
+  isPickup: 0
+  acceptItem: 0
+  deleteItem: 0
+  itemName: Cabinet
+  firstInteractEvent: 
+  myType: 3
+  highlightOnLook: 1
+  highlightChildObjects: 1
+  thisIsAMirror: 0
   voiceLine: {fileID: 0}
   nonInteractableVoiceLine: {fileID: 0}
   nonUseableVoiceLine: {fileID: 0}
   useVoiceLine: {fileID: 0}
-  displayPrompt: 1
-  acceptItem: 0
-  deleteItem: 0
-  itemName: Cabinet
-  myType: 3
-  thisIsAMirror: 0
   openSound: {fileID: 0}
   closeSound: {fileID: 0}
   audioSourceName: 
@@ -1733,16 +1741,20 @@ MonoBehaviour:
   interactable: 1
   makeInteractableEvent: 
   makeNonInteractableEvent: 
+  displayPrompt: 1
+  isPickup: 0
+  acceptItem: 0
+  deleteItem: 0
+  itemName: Cabinet
+  firstInteractEvent: 
+  myType: 3
+  highlightOnLook: 1
+  highlightChildObjects: 1
+  thisIsAMirror: 0
   voiceLine: {fileID: 0}
   nonInteractableVoiceLine: {fileID: 0}
   nonUseableVoiceLine: {fileID: 0}
   useVoiceLine: {fileID: 0}
-  displayPrompt: 1
-  acceptItem: 0
-  deleteItem: 0
-  itemName: Cabinet
-  myType: 3
-  thisIsAMirror: 0
   openSound: {fileID: 0}
   closeSound: {fileID: 0}
   audioSourceName: 
