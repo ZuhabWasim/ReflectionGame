@@ -950,10 +950,6 @@ MonoBehaviour:
   interactable: 1
   makeInteractableEvent: 
   makeNonInteractableEvent: 
-  voiceLine: {fileID: 0}
-  nonInteractableVoiceLine: {fileID: 0}
-  nonUseableVoiceLine: {fileID: 0}
-  useVoiceLine: {fileID: 0}
   displayPrompt: 1
   isPickup: 0
   acceptItem: 0
@@ -961,7 +957,13 @@ MonoBehaviour:
   itemName: Dad's Key
   firstInteractEvent: 
   myType: 2
+  highlightOnLook: 1
+  highlightChildObjects: 0
   thisIsAMirror: 0
+  voiceLine: {fileID: 0}
+  nonInteractableVoiceLine: {fileID: 0}
+  nonUseableVoiceLine: {fileID: 0}
+  useVoiceLine: {fileID: 0}
   img: {fileID: 0}
   onPickupEvent: HasDadKey
 --- !u!1 &1451930728738167397
@@ -3227,7 +3229,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6672719750143343709}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: -89.73, y: -44.726, z: 0}
 --- !u!114 &6624079822780709246
 MonoBehaviour:
@@ -12521,10 +12523,6 @@ MonoBehaviour:
   interactable: 1
   makeInteractableEvent: 
   makeNonInteractableEvent: 
-  voiceLine: {fileID: 0}
-  nonInteractableVoiceLine: {fileID: 0}
-  nonUseableVoiceLine: {fileID: 0}
-  useVoiceLine: {fileID: 0}
   displayPrompt: 1
   isPickup: 0
   acceptItem: 0
@@ -12532,7 +12530,13 @@ MonoBehaviour:
   itemName: Light Bulb
   firstInteractEvent: 
   myType: 2
+  highlightOnLook: 1
+  highlightChildObjects: 0
   thisIsAMirror: 0
+  voiceLine: {fileID: 0}
+  nonInteractableVoiceLine: {fileID: 0}
+  nonUseableVoiceLine: {fileID: 0}
+  useVoiceLine: {fileID: 0}
   img: {fileID: 0}
   onPickupEvent: 
 --- !u!1 &2288491077041302485
@@ -13637,10 +13641,6 @@ MonoBehaviour:
   interactable: 1
   makeInteractableEvent: 
   makeNonInteractableEvent: 
-  voiceLine: {fileID: 0}
-  nonInteractableVoiceLine: {fileID: 0}
-  nonUseableVoiceLine: {fileID: 0}
-  useVoiceLine: {fileID: 0}
   displayPrompt: 1
   isPickup: 0
   acceptItem: 1
@@ -13648,12 +13648,19 @@ MonoBehaviour:
   itemName: 
   firstInteractEvent: 
   myType: 0
+  highlightOnLook: 1
+  highlightChildObjects: 0
   thisIsAMirror: 0
+  voiceLine: {fileID: 0}
+  nonInteractableVoiceLine: {fileID: 0}
+  nonUseableVoiceLine: {fileID: 0}
+  useVoiceLine: {fileID: 0}
   state: 0
   outgoingLight: {fileID: 192381868977718729}
   outgoingFilter: {fileID: 0}
   activateOnPortal: []
   mirrorConnector: {fileID: 0}
+  onPaintVoiceLine: {fileID: 0}
 --- !u!114 &6451862595459837066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13704,13 +13711,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4806428177840510987}
-  m_LocalRotation: {x: -0, y: -0.70422107, z: -0, w: 0.7099808}
-  m_LocalPosition: {x: -52.953, y: -4.245, z: 19.689}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0.6532815, y: 0.27059808, z: -0.27059808, w: 0.6532815}
+  m_LocalPosition: {x: 1.0166863, y: 2.0994148, z: 0.29600006}
+  m_LocalScale: {x: 1.2589146, y: 1, z: 1.2589142}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6672719750143343709}
-  m_RootOrder: 8
+  m_Father: {fileID: 6672719749532151871}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -89.533, z: 0}
 --- !u!114 &7652347416139012323
 MonoBehaviour:
@@ -16405,7 +16412,7 @@ Transform:
   m_Children:
   - {fileID: 3134944400210739443}
   m_Father: {fileID: 6672719750143343709}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: -45, z: 0}
 --- !u!114 &8160059368844396968
 MonoBehaviour:
@@ -16980,7 +16987,8 @@ Transform:
   m_LocalPosition: {x: -51.359, y: -3.949, z: 19.831}
   m_LocalScale: {x: 1, y: 0.58867, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 206960134016640803}
   m_Father: {fileID: 6672719750143343709}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 134.533}
@@ -18550,7 +18558,6 @@ Transform:
   - {fileID: 13962693373215520}
   - {fileID: 5671637107487458648}
   - {fileID: 4781767386163022898}
-  - {fileID: 206960134016640803}
   - {fileID: 7231640945458746488}
   - {fileID: 8364638694048102814}
   - {fileID: 600744351503886594}
@@ -18927,10 +18934,6 @@ MonoBehaviour:
   interactable: 1
   makeInteractableEvent: 
   makeNonInteractableEvent: 
-  voiceLine: {fileID: 0}
-  nonInteractableVoiceLine: {fileID: 0}
-  nonUseableVoiceLine: {fileID: 0}
-  useVoiceLine: {fileID: 0}
   displayPrompt: 1
   isPickup: 0
   acceptItem: 1
@@ -18938,12 +18941,19 @@ MonoBehaviour:
   itemName: 
   firstInteractEvent: 
   myType: 0
+  highlightOnLook: 1
+  highlightChildObjects: 0
   thisIsAMirror: 0
+  voiceLine: {fileID: 0}
+  nonInteractableVoiceLine: {fileID: 0}
+  nonUseableVoiceLine: {fileID: 0}
+  useVoiceLine: {fileID: 0}
   state: 0
   outgoingLight: {fileID: 4175476143321189658}
   outgoingFilter: {fileID: 0}
   activateOnPortal: []
   mirrorConnector: {fileID: 0}
+  onPaintVoiceLine: {fileID: 0}
 --- !u!1 &8021624221663886596
 GameObject:
   m_ObjectHideFlags: 0
@@ -18980,7 +18990,7 @@ Transform:
   m_Children:
   - {fileID: 1913706899105771917}
   m_Father: {fileID: 6672719750143343709}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
 --- !u!114 &8849955613705928766
 MonoBehaviour:
@@ -19673,10 +19683,6 @@ MonoBehaviour:
   interactable: 1
   makeInteractableEvent: 
   makeNonInteractableEvent: 
-  voiceLine: {fileID: 0}
-  nonInteractableVoiceLine: {fileID: 0}
-  nonUseableVoiceLine: {fileID: 0}
-  useVoiceLine: {fileID: 0}
   displayPrompt: 1
   isPickup: 0
   acceptItem: 1
@@ -19684,12 +19690,19 @@ MonoBehaviour:
   itemName: 
   firstInteractEvent: 
   myType: 0
+  highlightOnLook: 1
+  highlightChildObjects: 0
   thisIsAMirror: 0
+  voiceLine: {fileID: 0}
+  nonInteractableVoiceLine: {fileID: 0}
+  nonUseableVoiceLine: {fileID: 0}
+  useVoiceLine: {fileID: 0}
   state: 0
   outgoingLight: {fileID: 7637232143364780316}
   outgoingFilter: {fileID: 0}
   activateOnPortal: []
   mirrorConnector: {fileID: 0}
+  onPaintVoiceLine: {fileID: 0}
 --- !u!1001 &233202660738397253
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19883,7 +19896,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2215743510574651301, guid: 710e9dc3450ea0143984f569a0be718e, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2215743510574651301, guid: 710e9dc3450ea0143984f569a0be718e, type: 3}
       propertyPath: m_LocalScale.x
@@ -20455,7 +20468,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3684091140819219090, guid: 351b18d4a290e0343b1cbf86e7564ef7, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 3684091140819219090, guid: 351b18d4a290e0343b1cbf86e7564ef7, type: 3}
       propertyPath: m_LocalScale.x
@@ -20572,10 +20585,6 @@ MonoBehaviour:
   interactable: 1
   makeInteractableEvent: 
   makeNonInteractableEvent: 
-  voiceLine: {fileID: 0}
-  nonInteractableVoiceLine: {fileID: 0}
-  nonUseableVoiceLine: {fileID: 0}
-  useVoiceLine: {fileID: 0}
   displayPrompt: 1
   isPickup: 0
   acceptItem: 1
@@ -20583,7 +20592,13 @@ MonoBehaviour:
   itemName: 
   firstInteractEvent: 
   myType: 0
+  highlightOnLook: 1
+  highlightChildObjects: 0
   thisIsAMirror: 0
+  voiceLine: {fileID: 0}
+  nonInteractableVoiceLine: {fileID: 0}
+  nonUseableVoiceLine: {fileID: 0}
+  useVoiceLine: {fileID: 0}
   paint: 1
   icon: {fileID: 0}
 --- !u!4 &5581302749866274638 stripped
