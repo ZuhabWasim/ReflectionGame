@@ -410,10 +410,6 @@ MonoBehaviour:
   interactable: 1
   makeInteractableEvent: 
   makeNonInteractableEvent: 
-  voiceLine: {fileID: 0}
-  nonInteractableVoiceLine: {fileID: 0}
-  nonUseableVoiceLine: {fileID: 0}
-  useVoiceLine: {fileID: 0}
   displayPrompt: 1
   isPickup: 0
   acceptItem: 0
@@ -421,7 +417,13 @@ MonoBehaviour:
   itemName: Glass Cabinet
   firstInteractEvent: 
   myType: 3
+  highlightOnLook: 1
+  highlightChildObjects: 0
   thisIsAMirror: 0
+  voiceLine: {fileID: 0}
+  nonInteractableVoiceLine: {fileID: 0}
+  nonUseableVoiceLine: {fileID: 0}
+  useVoiceLine: {fileID: 0}
   openSound: {fileID: 0}
   closeSound: {fileID: 0}
   audioSourceName: 
@@ -778,10 +780,6 @@ MonoBehaviour:
   interactable: 1
   makeInteractableEvent: 
   makeNonInteractableEvent: 
-  voiceLine: {fileID: 0}
-  nonInteractableVoiceLine: {fileID: 0}
-  nonUseableVoiceLine: {fileID: 0}
-  useVoiceLine: {fileID: 0}
   displayPrompt: 1
   isPickup: 0
   acceptItem: 0
@@ -789,7 +787,13 @@ MonoBehaviour:
   itemName: RedBook
   firstInteractEvent: 
   myType: 2
+  highlightOnLook: 1
+  highlightChildObjects: 0
   thisIsAMirror: 0
+  voiceLine: {fileID: 0}
+  nonInteractableVoiceLine: {fileID: 0}
+  nonUseableVoiceLine: {fileID: 0}
+  useVoiceLine: {fileID: 0}
   img: {fileID: 0}
   onPickupEvent: 
 --- !u!65 &6731673056229442515
@@ -3870,10 +3874,6 @@ MonoBehaviour:
   interactable: 1
   makeInteractableEvent: 
   makeNonInteractableEvent: LockPastDadShelf
-  voiceLine: {fileID: 8300000, guid: 64f1791a5819c554e8506c1fcfd911bc, type: 3}
-  nonInteractableVoiceLine: {fileID: 8300000, guid: aa0efe5fa956107468fc04a6d0d09c3f, type: 3}
-  nonUseableVoiceLine: {fileID: 0}
-  useVoiceLine: {fileID: 0}
   displayPrompt: 1
   isPickup: 0
   acceptItem: 0
@@ -3881,7 +3881,13 @@ MonoBehaviour:
   itemName: Center Book Shelf
   firstInteractEvent: 
   myType: 3
+  highlightOnLook: 1
+  highlightChildObjects: 0
   thisIsAMirror: 0
+  voiceLine: {fileID: 8300000, guid: 64f1791a5819c554e8506c1fcfd911bc, type: 3}
+  nonInteractableVoiceLine: {fileID: 8300000, guid: aa0efe5fa956107468fc04a6d0d09c3f, type: 3}
+  nonUseableVoiceLine: {fileID: 0}
+  useVoiceLine: {fileID: 0}
   openSound: {fileID: 0}
   closeSound: {fileID: 0}
   audioSourceName: dadClosetShelfPast
@@ -4444,10 +4450,6 @@ MonoBehaviour:
   interactable: 1
   makeInteractableEvent: 
   makeNonInteractableEvent: 
-  voiceLine: {fileID: 0}
-  nonInteractableVoiceLine: {fileID: 0}
-  nonUseableVoiceLine: {fileID: 0}
-  useVoiceLine: {fileID: 0}
   displayPrompt: 1
   isPickup: 0
   acceptItem: 0
@@ -4455,7 +4457,13 @@ MonoBehaviour:
   itemName: Books
   firstInteractEvent: 
   myType: 0
+  highlightOnLook: 1
+  highlightChildObjects: 0
   thisIsAMirror: 0
+  voiceLine: {fileID: 0}
+  nonInteractableVoiceLine: {fileID: 0}
+  nonUseableVoiceLine: {fileID: 0}
+  useVoiceLine: {fileID: 0}
   currentBook: 3
   targetBook: 2
   incorrectBook: 0
@@ -5213,10 +5221,6 @@ MonoBehaviour:
   interactable: 1
   makeInteractableEvent: 
   makeNonInteractableEvent: 
-  voiceLine: {fileID: 0}
-  nonInteractableVoiceLine: {fileID: 0}
-  nonUseableVoiceLine: {fileID: 0}
-  useVoiceLine: {fileID: 0}
   displayPrompt: 1
   isPickup: 0
   acceptItem: 0
@@ -5224,7 +5228,13 @@ MonoBehaviour:
   itemName: Books
   firstInteractEvent: 
   myType: 0
+  highlightOnLook: 1
+  highlightChildObjects: 0
   thisIsAMirror: 0
+  voiceLine: {fileID: 0}
+  nonInteractableVoiceLine: {fileID: 0}
+  nonUseableVoiceLine: {fileID: 0}
+  useVoiceLine: {fileID: 0}
   currentBook: 2
   targetBook: 3
   incorrectBook: 0
@@ -5327,10 +5337,6 @@ MonoBehaviour:
   interactable: 1
   makeInteractableEvent: 
   makeNonInteractableEvent: 
-  voiceLine: {fileID: 8300000, guid: 6396036ed1800e349951aff7072d4d04, type: 3}
-  nonInteractableVoiceLine: {fileID: 0}
-  nonUseableVoiceLine: {fileID: 0}
-  useVoiceLine: {fileID: 0}
   displayPrompt: 1
   isPickup: 0
   acceptItem: 0
@@ -5338,7 +5344,13 @@ MonoBehaviour:
   itemName: Glass Cabinet
   firstInteractEvent: 
   myType: 3
+  highlightOnLook: 1
+  highlightChildObjects: 0
   thisIsAMirror: 0
+  voiceLine: {fileID: 8300000, guid: 6396036ed1800e349951aff7072d4d04, type: 3}
+  nonInteractableVoiceLine: {fileID: 0}
+  nonUseableVoiceLine: {fileID: 0}
+  useVoiceLine: {fileID: 0}
   openSound: {fileID: 0}
   closeSound: {fileID: 0}
   audioSourceName: 
@@ -5542,10 +5554,6 @@ MonoBehaviour:
   interactable: 1
   makeInteractableEvent: 
   makeNonInteractableEvent: 
-  voiceLine: {fileID: 0}
-  nonInteractableVoiceLine: {fileID: 0}
-  nonUseableVoiceLine: {fileID: 0}
-  useVoiceLine: {fileID: 0}
   displayPrompt: 1
   isPickup: 0
   acceptItem: 0
@@ -5553,7 +5561,13 @@ MonoBehaviour:
   itemName: WhiteBook
   firstInteractEvent: 
   myType: 2
+  highlightOnLook: 1
+  highlightChildObjects: 0
   thisIsAMirror: 0
+  voiceLine: {fileID: 0}
+  nonInteractableVoiceLine: {fileID: 0}
+  nonUseableVoiceLine: {fileID: 0}
+  useVoiceLine: {fileID: 0}
   img: {fileID: 0}
   onPickupEvent: BookshelfBookPickedUp
   hiddenNotes:
@@ -8960,10 +8974,6 @@ MonoBehaviour:
   interactable: 1
   makeInteractableEvent: 
   makeNonInteractableEvent: 
-  voiceLine: {fileID: 0}
-  nonInteractableVoiceLine: {fileID: 0}
-  nonUseableVoiceLine: {fileID: 0}
-  useVoiceLine: {fileID: 0}
   displayPrompt: 1
   isPickup: 0
   acceptItem: 0
@@ -8971,7 +8981,13 @@ MonoBehaviour:
   itemName: GreenBook
   firstInteractEvent: 
   myType: 2
+  highlightOnLook: 1
+  highlightChildObjects: 0
   thisIsAMirror: 0
+  voiceLine: {fileID: 0}
+  nonInteractableVoiceLine: {fileID: 0}
+  nonUseableVoiceLine: {fileID: 0}
+  useVoiceLine: {fileID: 0}
   img: {fileID: 0}
   onPickupEvent: 
 --- !u!65 &8663836054568672754
@@ -13189,10 +13205,6 @@ MonoBehaviour:
   interactable: 1
   makeInteractableEvent: 
   makeNonInteractableEvent: 
-  voiceLine: {fileID: 0}
-  nonInteractableVoiceLine: {fileID: 0}
-  nonUseableVoiceLine: {fileID: 0}
-  useVoiceLine: {fileID: 0}
   displayPrompt: 1
   isPickup: 0
   acceptItem: 0
@@ -13200,7 +13212,13 @@ MonoBehaviour:
   itemName: BlueBook
   firstInteractEvent: 
   myType: 2
+  highlightOnLook: 1
+  highlightChildObjects: 0
   thisIsAMirror: 0
+  voiceLine: {fileID: 0}
+  nonInteractableVoiceLine: {fileID: 0}
+  nonUseableVoiceLine: {fileID: 0}
+  useVoiceLine: {fileID: 0}
   img: {fileID: 0}
   onPickupEvent: 
 --- !u!1 &7168523943588587654
@@ -14986,10 +15004,6 @@ MonoBehaviour:
   interactable: 1
   makeInteractableEvent: 
   makeNonInteractableEvent: 
-  voiceLine: {fileID: 0}
-  nonInteractableVoiceLine: {fileID: 0}
-  nonUseableVoiceLine: {fileID: 0}
-  useVoiceLine: {fileID: 0}
   displayPrompt: 1
   isPickup: 0
   acceptItem: 0
@@ -14997,7 +15011,13 @@ MonoBehaviour:
   itemName: Books
   firstInteractEvent: 
   myType: 0
+  highlightOnLook: 1
+  highlightChildObjects: 0
   thisIsAMirror: 0
+  voiceLine: {fileID: 0}
+  nonInteractableVoiceLine: {fileID: 0}
+  nonUseableVoiceLine: {fileID: 0}
+  useVoiceLine: {fileID: 0}
   currentBook: 1
   targetBook: 0
   incorrectBook: 0
@@ -16378,10 +16398,6 @@ MonoBehaviour:
   interactable: 1
   makeInteractableEvent: 
   makeNonInteractableEvent: 
-  voiceLine: {fileID: 0}
-  nonInteractableVoiceLine: {fileID: 0}
-  nonUseableVoiceLine: {fileID: 0}
-  useVoiceLine: {fileID: 0}
   displayPrompt: 1
   isPickup: 0
   acceptItem: 0
@@ -16389,7 +16405,13 @@ MonoBehaviour:
   itemName: Books
   firstInteractEvent: 
   myType: 0
+  highlightOnLook: 1
+  highlightChildObjects: 0
   thisIsAMirror: 0
+  voiceLine: {fileID: 0}
+  nonInteractableVoiceLine: {fileID: 0}
+  nonUseableVoiceLine: {fileID: 0}
+  useVoiceLine: {fileID: 0}
   currentBook: -1
   targetBook: 1
   incorrectBook: 0
@@ -16429,7 +16451,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3115233329416677853
 Transform:
   m_ObjectHideFlags: 0
@@ -16443,7 +16465,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3315899156268618026}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5085799158462102950
 MonoBehaviour:
@@ -16824,10 +16846,6 @@ MonoBehaviour:
   interactable: 1
   makeInteractableEvent: 
   makeNonInteractableEvent: 
-  voiceLine: {fileID: 0}
-  nonInteractableVoiceLine: {fileID: 0}
-  nonUseableVoiceLine: {fileID: 0}
-  useVoiceLine: {fileID: 0}
   displayPrompt: 1
   isPickup: 0
   acceptItem: 0
@@ -16835,7 +16853,13 @@ MonoBehaviour:
   itemName: Paint Brush
   firstInteractEvent: 
   myType: 2
+  highlightOnLook: 1
+  highlightChildObjects: 0
   thisIsAMirror: 0
+  voiceLine: {fileID: 0}
+  nonInteractableVoiceLine: {fileID: 0}
+  nonUseableVoiceLine: {fileID: 0}
+  useVoiceLine: {fileID: 0}
   img: {fileID: 0}
   onPickupEvent: 
 --- !u!65 &5940834646591494243
@@ -19770,10 +19794,6 @@ MonoBehaviour:
   interactable: 1
   makeInteractableEvent: 
   makeNonInteractableEvent: 
-  voiceLine: {fileID: 0}
-  nonInteractableVoiceLine: {fileID: 0}
-  nonUseableVoiceLine: {fileID: 0}
-  useVoiceLine: {fileID: 0}
   displayPrompt: 0
   isPickup: 0
   acceptItem: 1
@@ -19781,7 +19801,13 @@ MonoBehaviour:
   itemName: Paint Bucket
   firstInteractEvent: 
   myType: 0
+  highlightOnLook: 1
+  highlightChildObjects: 0
   thisIsAMirror: 0
+  voiceLine: {fileID: 0}
+  nonInteractableVoiceLine: {fileID: 0}
+  nonUseableVoiceLine: {fileID: 0}
+  useVoiceLine: {fileID: 0}
   paint: 3
   icon: {fileID: 0}
 --- !u!1001 &892510479004237458
@@ -19930,6 +19956,54 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1124547222508452303}
     m_Modifications:
+    - target: {fileID: 338157740021974020, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1088968558399253063, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1322726225605103188, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1345881091520750723, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1533625251113184448, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1605420177280217541, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1712625927358770152, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1811589297912473459, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1904702449724853535, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075969002187623939, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2108816358645253800, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2220137386421361153, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2610882710769975266, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -20002,9 +20076,105 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2744350308438900480, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2808350483131071148, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3244697057281355458, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3858133594418312305, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4215658353794140853, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4296003015658064523, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4830111389194405475, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234778406150449184, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5799818484994582927, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5908433809472713634, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5976813343324040871, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6130779681039656676, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6188548856633248819, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6446589691536529510, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6556508051742524623, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6590510995424332900, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6762080978738728824, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6817727206156379412, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7007640574578505931, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7038145501915823463, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7691614709846240421, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8203842499417712959, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8229123305710466582, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8946145438466115820, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9023075052110842066, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
@@ -20013,6 +20183,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2610882710769975266, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
   m_PrefabInstance: {fileID: 1431627609091064472}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2226955662110298698
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 3315899156268618026}
+    m_Modifications:
+    - target: {fileID: 4715123538670676456, guid: 58c218a1f5aa72240892452f94031341, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4715123538670676456, guid: 58c218a1f5aa72240892452f94031341, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.79523367
+      objectReference: {fileID: 0}
+    - target: {fileID: 4715123538670676456, guid: 58c218a1f5aa72240892452f94031341, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.4081624
+      objectReference: {fileID: 0}
+    - target: {fileID: 4715123538670676456, guid: 58c218a1f5aa72240892452f94031341, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.5301734
+      objectReference: {fileID: 0}
+    - target: {fileID: 4715123538670676456, guid: 58c218a1f5aa72240892452f94031341, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9238001
+      objectReference: {fileID: 0}
+    - target: {fileID: 4715123538670676456, guid: 58c218a1f5aa72240892452f94031341, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4715123538670676456, guid: 58c218a1f5aa72240892452f94031341, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.3828753
+      objectReference: {fileID: 0}
+    - target: {fileID: 4715123538670676456, guid: 58c218a1f5aa72240892452f94031341, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4715123538670676456, guid: 58c218a1f5aa72240892452f94031341, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4715123538670676456, guid: 58c218a1f5aa72240892452f94031341, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4715123538670676456, guid: 58c218a1f5aa72240892452f94031341, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5342583404904592210, guid: 58c218a1f5aa72240892452f94031341, type: 3}
+      propertyPath: m_Name
+      value: Brush
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 58c218a1f5aa72240892452f94031341, type: 3}
 --- !u!1001 &2258210570334599904
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20275,6 +20502,54 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1124547222508452303}
     m_Modifications:
+    - target: {fileID: 338157740021974020, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1088968558399253063, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1322726225605103188, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1345881091520750723, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1533625251113184448, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1605420177280217541, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1712625927358770152, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1811589297912473459, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1904702449724853535, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075969002187623939, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2108816358645253800, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2220137386421361153, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2610882710769975266, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -20347,9 +20622,105 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2744350308438900480, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2808350483131071148, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3244697057281355458, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3858133594418312305, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4215658353794140853, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4296003015658064523, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4830111389194405475, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234778406150449184, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5799818484994582927, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5908433809472713634, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5976813343324040871, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6130779681039656676, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6188548856633248819, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6446589691536529510, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6556508051742524623, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6590510995424332900, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6762080978738728824, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6817727206156379412, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7007640574578505931, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7038145501915823463, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7691614709846240421, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8203842499417712959, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8229123305710466582, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8946145438466115820, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9023075052110842066, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
+      propertyPath: m_Mesh
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ff96e875eea03f459b43055c729d9bc, type: 3}
@@ -20673,10 +21044,6 @@ MonoBehaviour:
   interactable: 1
   makeInteractableEvent: 
   makeNonInteractableEvent: 
-  voiceLine: {fileID: 8300000, guid: aa0efe5fa956107468fc04a6d0d09c3f, type: 3}
-  nonInteractableVoiceLine: {fileID: 8300000, guid: 5031b3a27dc40b64eb3a370dfeb66983, type: 3}
-  nonUseableVoiceLine: {fileID: 0}
-  useVoiceLine: {fileID: 0}
   displayPrompt: 1
   isPickup: 0
   acceptItem: 0
@@ -20684,7 +21051,13 @@ MonoBehaviour:
   itemName: Small Filled Bucket
   firstInteractEvent: 
   myType: 0
+  highlightOnLook: 1
+  highlightChildObjects: 0
   thisIsAMirror: 0
+  voiceLine: {fileID: 8300000, guid: aa0efe5fa956107468fc04a6d0d09c3f, type: 3}
+  nonInteractableVoiceLine: {fileID: 8300000, guid: 5031b3a27dc40b64eb3a370dfeb66983, type: 3}
+  nonUseableVoiceLine: {fileID: 0}
+  useVoiceLine: {fileID: 0}
   openSound: {fileID: 0}
   closeSound: {fileID: 0}
   audioSourceName: 
@@ -21349,10 +21722,6 @@ MonoBehaviour:
   interactable: 1
   makeInteractableEvent: 
   makeNonInteractableEvent: LockDadDoor
-  voiceLine: {fileID: 0}
-  nonInteractableVoiceLine: {fileID: 8300000, guid: 3dc06ab266a21c34eb6e7943b4a2af0f, type: 3}
-  nonUseableVoiceLine: {fileID: 0}
-  useVoiceLine: {fileID: 0}
   displayPrompt: 1
   isPickup: 0
   acceptItem: 0
@@ -21360,7 +21729,13 @@ MonoBehaviour:
   itemName: Dad's Closet Door
   firstInteractEvent: 
   myType: 3
+  highlightOnLook: 1
+  highlightChildObjects: 0
   thisIsAMirror: 0
+  voiceLine: {fileID: 0}
+  nonInteractableVoiceLine: {fileID: 8300000, guid: 3dc06ab266a21c34eb6e7943b4a2af0f, type: 3}
+  nonUseableVoiceLine: {fileID: 0}
+  useVoiceLine: {fileID: 0}
   openSound: {fileID: 0}
   closeSound: {fileID: 0}
   audioSourceName: dadClosetDoorPast
@@ -21508,10 +21883,6 @@ MonoBehaviour:
   interactable: 1
   makeInteractableEvent: 
   makeNonInteractableEvent: 
-  voiceLine: {fileID: 0}
-  nonInteractableVoiceLine: {fileID: 0}
-  nonUseableVoiceLine: {fileID: 0}
-  useVoiceLine: {fileID: 0}
   displayPrompt: 1
   isPickup: 0
   acceptItem: 1
@@ -21519,10 +21890,17 @@ MonoBehaviour:
   itemName: 
   firstInteractEvent: 
   myType: 0
+  highlightOnLook: 1
+  highlightChildObjects: 0
   thisIsAMirror: 0
+  voiceLine: {fileID: 0}
+  nonInteractableVoiceLine: {fileID: 0}
+  nonUseableVoiceLine: {fileID: 0}
+  useVoiceLine: {fileID: 0}
   state: 0
   outgoingLight: {fileID: 0}
   outgoingFilter: {fileID: 0}
   activateOnPortal:
   - {fileID: 2924164764029151655}
   mirrorConnector: {fileID: 0}
+  onPaintVoiceLine: {fileID: 0}
