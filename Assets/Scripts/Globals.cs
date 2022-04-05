@@ -115,6 +115,8 @@ public class Globals
 		public static string UNBLOCKING_MIRROR_B = "UnblockingMirrorB";
 		public static string BLOCKING_MIRROR_B = "BlockingMirrorB";
 		public static string READ_MOM_NOTE = "ReadMomNote";
+		public static string BLOCKING_SECRET_LACIS = "BlockingSecretLacis";
+		public static string UNBLOCKING_SECRET_LACIS = "UnblockingSecretLacis";
 		
 		// Section 3
 		public static string LOCK_DAD_DOOR = "LockDadDoor";
@@ -166,6 +168,7 @@ public class Globals
 		public static string WET_PAINT_BRUSH = "Reflective Paint Brush";
 		public static string WHITE_PAINT_BRUSH = "White Paint Brush";
 		public static string SCISSOR_PUZZLE = "ScissorPuzzle";
+		public static string MIRROR_C_PAST_TILES = "MirrorCPastTiles";
 		public static string EMPTY_BUCKET = "Empty Bucket (E)";
 
 		// For Animations
