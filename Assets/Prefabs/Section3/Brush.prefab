@@ -150,7 +150,7 @@ MonoBehaviour:
   isPickup: 0
   acceptItem: 0
   deleteItem: 0
-  itemName: Paint Brush
+  itemName: Dry Paint Brush
   firstInteractEvent: 
   myType: 2
   highlightOnLook: 1

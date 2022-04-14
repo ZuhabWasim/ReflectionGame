@@ -22525,6 +22525,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3315899156268618026}
     m_Modifications:
+    - target: {fileID: 2003515915111410583, guid: 58c218a1f5aa72240892452f94031341, type: 3}
+      propertyPath: itemName
+      value: Dry Paint Brush
+      objectReference: {fileID: 0}
     - target: {fileID: 4715123538670676456, guid: 58c218a1f5aa72240892452f94031341, type: 3}
       propertyPath: m_RootOrder
       value: 3

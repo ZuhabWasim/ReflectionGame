@@ -4,6 +4,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -354,6 +355,10 @@ public class PlayerController : MonoBehaviour
 
 	void HandleDropItem()
 	{
+		// Check if the player is picking up an item, don't place a bucket down if so, it's annoying
+		PickupItem pickupItemScript = targetObject as PickupItem;
+		if ( pickupItemScript ) return;
+		
 		PickupItem inventoryItem = m_inventory.GetSelectedPickupItem();
 		// To make this better, we can give PickUpItem a boolean for 'canDrop', everything aside from the bucket would be false
 		if ( !inventoryItem || inventoryItem.itemName != Globals.Misc.EMPTY_BUCKET ) return;
