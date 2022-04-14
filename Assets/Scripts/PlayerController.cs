@@ -18,7 +18,6 @@ public class PlayerController : MonoBehaviour
 	private const float PRESENT_HEIGHT = 1.5f;
 	private const float PAST_HEIGHT = 1.0f;
 	private const float RAYCAST_RATE = 10f; // how many raycasts to do per sec
-	private const float DROP_DISTANCE_ERROR = 0.3f; // how many raycasts to do per sec
 
 	// ===== CONSTANTS END ===
 
@@ -340,6 +339,10 @@ public class PlayerController : MonoBehaviour
 			{
 				Debug.Log("Inventory failed to store item");
 			}
+			else
+			{
+				targetObject.gameObject.SetActive(false);
+			}
 		}
 
 		if ( targetObject != null )
@@ -363,16 +366,11 @@ public class PlayerController : MonoBehaviour
 		// To make this better, we can give PickUpItem a boolean for 'canDrop', everything aside from the bucket would be false
 		if ( !inventoryItem || inventoryItem.itemName != Globals.Misc.EMPTY_BUCKET ) return;
 		
-		float minDropDistance = dropDistance;
-		// Drop the bucket right before the object they're looking at to make sure the bucket doesn't glitch away.
-		RaycastHit hitRes;
-		bool hit = Physics.Raycast( playerCamera.position, playerCamera.forward, out hitRes, dropDistance );
-		if (hit)
-		{
-			minDropDistance = Vector3.Distance(playerCamera.position, new Vector3(hitRes.point.x, playerCamera.position.y, hitRes.point.z));
-			minDropDistance -= DROP_DISTANCE_ERROR; // Error for walls;
-		}
-		inventoryItem.OnDrop( this.transform.position + ( this.transform.forward * minDropDistance ) + new Vector3( 0, 1, 0 ) );
+		/*// Spawn the bucket right below the player, prop the player on top of the bucket, if they fall, they can climb back up.
+		this.transform.position = this.transform.position + new Vector3(0, EmptyBucket.BUCKET_HEIGHT + 0.2f, 0);
+		inventoryItem.OnDrop(new Vector3( this.transform.position.x , EmptyBucket.BUCKET_HEIGHT / 2 + 0.1f, this.transform.position.z ) );*/
+		// Drops the item at eye level of the player. Note that empty bucket now handles it's dropping logic.
+		inventoryItem.OnDrop( this.transform.position + ( this.transform.forward * dropDistance ) + new Vector3( 0, 1, 0 ) );
 	}
 
 	void HandleOpenInventory()

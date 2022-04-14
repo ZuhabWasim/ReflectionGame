@@ -261,7 +261,7 @@ Material:
     - _EmissiveColor: {r: 0, g: 0, b: 0, a: 1}
     - _EmissiveColorLDR: {r: 0, g: 0, b: 0, a: 1}
     - _HighlightColor: {r: 1, g: 0, b: 0, a: 0}
-    - _Highlight_Color: {r: 0, g: 0.5660378, b: 0.09988898, a: 0}
+    - _Highlight_Color: {r: 0.11347455, g: 0.3207547, b: 0.1499194, a: 0}
     - _InvPrimScale: {r: 1, g: 1, b: 0, a: 0}
     - _IridescenceThicknessRemap: {r: 0, g: 1, b: 0, a: 0}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
