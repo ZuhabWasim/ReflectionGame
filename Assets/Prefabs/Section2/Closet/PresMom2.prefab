@@ -10058,6 +10058,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2759196541857450954, guid: 06e0a25586690d04f9e53909ce8a6df0, type: 3}
+      propertyPath: audioSourceName
+      value: LaciDrawerAB2
+      objectReference: {fileID: 0}
     - target: {fileID: 2813195457471132248, guid: 06e0a25586690d04f9e53909ce8a6df0, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -10122,6 +10126,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8130155695089606911, guid: 06e0a25586690d04f9e53909ce8a6df0, type: 3}
+      propertyPath: audioSourceName
+      value: LaciDrawerAB3
+      objectReference: {fileID: 0}
     - target: {fileID: 8302463622289948273, guid: 06e0a25586690d04f9e53909ce8a6df0, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -10137,6 +10145,10 @@ PrefabInstance:
     - target: {fileID: 8442020463382770494, guid: 06e0a25586690d04f9e53909ce8a6df0, type: 3}
       propertyPath: m_Name
       value: SquareDrawer
+      objectReference: {fileID: 0}
+    - target: {fileID: 8499522678673233801, guid: 06e0a25586690d04f9e53909ce8a6df0, type: 3}
+      propertyPath: audioSourceName
+      value: LaciDrawerAB1
       objectReference: {fileID: 0}
     - target: {fileID: 9107338713447426436, guid: 06e0a25586690d04f9e53909ce8a6df0, type: 3}
       propertyPath: m_RootOrder

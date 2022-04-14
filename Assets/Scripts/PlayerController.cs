@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
 	private const float PRESENT_HEIGHT = 1.5f;
 	private const float PAST_HEIGHT = 1.0f;
 	private const float RAYCAST_RATE = 10f; // how many raycasts to do per sec
+	private const float DROP_DISTANCE_ERROR = 0.3f; // how many raycasts to do per sec
 
 	// ===== CONSTANTS END ===
 
@@ -353,11 +354,20 @@ public class PlayerController : MonoBehaviour
 
 	void HandleDropItem()
 	{
-		if ( targetObject ) return;
 		PickupItem inventoryItem = m_inventory.GetSelectedPickupItem();
-
+		// To make this better, we can give PickUpItem a boolean for 'canDrop', everything aside from the bucket would be false
 		if ( !inventoryItem || inventoryItem.itemName != Globals.Misc.EMPTY_BUCKET ) return;
-		inventoryItem.OnDrop( this.transform.position + ( this.transform.forward * dropDistance ) + new Vector3( 0, 1, 0 ) );
+		
+		float minDropDistance = dropDistance;
+		// Drop the bucket right before the object they're looking at to make sure the bucket doesn't glitch away.
+		RaycastHit hitRes;
+		bool hit = Physics.Raycast( playerCamera.position, playerCamera.forward, out hitRes, dropDistance );
+		if (hit)
+		{
+			minDropDistance = Vector3.Distance(playerCamera.position, new Vector3(hitRes.point.x, playerCamera.position.y, hitRes.point.z));
+			minDropDistance -= DROP_DISTANCE_ERROR; // Error for walls;
+		}
+		inventoryItem.OnDrop( this.transform.position + ( this.transform.forward * minDropDistance ) + new Vector3( 0, 1, 0 ) );
 	}
 
 	void HandleOpenInventory()
