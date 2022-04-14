@@ -19,7 +19,6 @@ public class PickupItem : InteractableAbstract
 
 	protected override void OnUserInteract()
 	{
-		this.gameObject.SetActive( false );
 		if ( onPickupEvent == string.Empty ) return;
 		EventManager.Fire( onPickupEvent, this.gameObject );
 	}
