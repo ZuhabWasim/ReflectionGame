@@ -167,8 +167,8 @@ public class Inventory
 			if ( m_items[ i ] != null && m_items[ i ].itemName == itemName )
 			{
 				// Delete item after using it
-				m_items[ cursor ] = null;
-				inventoryDisplay.dropItem( cursor );
+				m_items[ i ] = null;
+				inventoryDisplay.dropItem( i );
 				inventoryDisplay.hideItemName();
 				inventoryDisplay.hideHoldingItem();
 				return true;
