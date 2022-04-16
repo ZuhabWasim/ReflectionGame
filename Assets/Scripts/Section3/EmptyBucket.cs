@@ -32,8 +32,12 @@ public class EmptyBucket : PickupItem
 		Vector3 floorHeight = (GlobalState.GetVar<bool>("isPresent")) ? Vector3.zero : new Vector3(0, FLOOR_HEIGHT, 0);
 
 		// Note that BUCKET_HEIGHT includes the past floor height
-		player.transform.position = player.transform.position + new Vector3(0, EmptyBucket.BUCKET_HEIGHT + 0.2f, 0);
-		Vector3 newDropPosition = new Vector3(player.transform.position.x, EmptyBucket.BUCKET_HEIGHT / 2 + 0.1f, player.transform.position.z);
+		Vector3 playerCurrentPos = player.transform.position;
+		Vector3 newDropPosition = new Vector3(playerCurrentPos.x, 
+			playerCurrentPos.y + EmptyBucket.BUCKET_HEIGHT / 2 + HEIGHT_ERROR, playerCurrentPos.z);
+		player.transform.position += new Vector3(0, EmptyBucket.BUCKET_HEIGHT + HEIGHT_ERROR + 0.1f, 0);
+		// player.transform.position = player.transform.position + new Vector3(0, EmptyBucket.BUCKET_HEIGHT + 0.2f, 0);
+		// Vector3 newDropPosition = new Vector3(player.transform.position.x, EmptyBucket.BUCKET_HEIGHT / 2 + 0.15f, player.transform.position.z);
 		
 		// Drop the item with this specific drop position.
 		base.OnDrop( newDropPosition, isLocal );

@@ -9,12 +9,10 @@ public class DadKey : PickupItem
 	{
 		this.gameObject.SetActive( false );
 		EventManager.Fire( Globals.Events.HAS_DAD_KEY );
-	}
-
-	private void UpdateMover()
-	{
-		InterpolateTransform it = GameObject.FindWithTag( Globals.Tags.PRESENT_DAD_SHELF ).GetComponent<InterpolateTransform>();
-		it.startRotation = new Vector3( 0, 90, 0 );  // To fully open up the closet.
-		it.interpDuration = 2f;
+		
+		// Delete brushes from inventory. 
+		Inventory inventory = Inventory.GetInstance();
+		inventory.DeleteItem(Globals.Misc.WET_PAINT_BRUSH);
+		inventory.DeleteItem(Globals.Misc.WHITE_PAINT_BRUSH);
 	}
 }
