@@ -41,6 +41,7 @@ public class EmptyBucket : PickupItem
 		
 		// Drop the item with this specific drop position.
 		base.OnDrop( newDropPosition, isLocal );
+		this.GetComponent<Rigidbody>().useGravity = true;
 		
 		// Stop playing the line if the player already heard it twice
 		if (repeated)
