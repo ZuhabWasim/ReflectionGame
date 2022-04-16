@@ -9,6 +9,11 @@ public class PickupItem : InteractableAbstract
 	public Texture img;
 	public string onPickupEvent;
 
+	public static void OnExit()
+	{
+		_id = 0;
+	}
+
 	protected override void OnStart()
 	{
 		myType = ItemType.PICKUP;

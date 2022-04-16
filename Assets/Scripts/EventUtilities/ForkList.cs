@@ -52,8 +52,7 @@ public static class ForkList
 {
 	static List<Fork> forks;
 
-	[RuntimeInitializeOnLoadMethod]
-	static void InitForks()
+	public static void InitForks()
 	{
 		forks = new List<Fork>();
 
@@ -64,4 +63,8 @@ public static class ForkList
 
 	}
 
+	public static void OnExit()
+	{
+		forks.Clear();
+	}
 }

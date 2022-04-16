@@ -8,7 +8,7 @@ public class StartMenu : MonoBehaviour
 
 	public void onClickStart()
 	{
-		SceneManager.LoadScene( 1 );
+		SceneManager.LoadScene( Globals.MAIN_SCENE );
 	}
 	public void onClickQuit()
 	{

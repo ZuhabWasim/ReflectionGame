@@ -1,10 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Globals
 {
-	[RuntimeInitializeOnLoadMethod]
+	[RuntimeInitializeOnLoadMethod( RuntimeInitializeLoadType.BeforeSceneLoad )]
+	public static void RegisterOnSceneLoadCallback()
+	{
+		SceneManager.sceneLoaded += ( Scene s, LoadSceneMode mode ) =>
+		{
+			if ( s.buildIndex != MAIN_SCENE )
+			{
+				return;
+			}
+
+			Debug.Log( "calling on scene loaded callbacks" );
+			RegisterGlobalStateVars();
+			RegisterGlobalEventListeners();
+			Objectives.PopulateObjectives();
+			ForkList.InitForks();
+		};
+	}
+
 	public static void RegisterGlobalStateVars()
 	{
 		// All global state var should be initialized here
@@ -18,24 +36,29 @@ public class Globals
 		Debug.Log( "Loaded global state vars" );
 	}
 
-	[RuntimeInitializeOnLoadMethod]
 	public static void RegisterGlobalEventListeners()
 	{
 		EventManager.Sub( Globals.Events.TELEPORT, UpdateWorldOnTeleport );
-		
+
 		// Mom Closet disabling
 		EventManager.Sub( Globals.Events.LOCK_MOM_DOOR, DisableMainRooms );
 		EventManager.Sub( Globals.Events.HAS_MOM_KEY, EnableMainRooms );
-		
+
 		EventManager.Sub( Globals.Events.LOCK_MOM_DOOR, DisableDadCloset );
 		EventManager.Sub( Globals.Events.HAS_MOM_KEY, EnableDadCloset );
-		
+
 		// Dad closet disabling
 		EventManager.Sub( Globals.Events.LOCK_DAD_DOOR, DisableMainRooms );
-		EventManager.Sub( Globals.Events.LOCK_DAD_DOOR, DisableMomCloset);
+		EventManager.Sub( Globals.Events.LOCK_DAD_DOOR, DisableMomCloset );
 		EventManager.Sub( Globals.Events.HAS_DAD_KEY, EnableMainRooms );
-		EventManager.Sub( Globals.Events.HAS_DAD_KEY, EnableMomCloset);
-		
+		EventManager.Sub( Globals.Events.HAS_DAD_KEY, EnableMomCloset );
+
+		EventManager.Sub( Globals.Events.GAME_RESTART, AudioPlayer.OnExit );
+		EventManager.Sub( Globals.Events.GAME_RESTART, PickupItem.OnExit );
+		EventManager.Sub( Globals.Events.GAME_RESTART, Objectives.OnExit );
+		EventManager.Sub( Globals.Events.GAME_RESTART, InteractNote.OnExit );
+		EventManager.Sub( Globals.Events.GAME_RESTART, GlobalState.OnExit );
+		EventManager.Sub( Globals.Events.GAME_RESTART, ForkList.OnExit );
 	}
 
 	private static void UpdateWorldOnTeleport()
@@ -46,39 +69,42 @@ public class Globals
 
 	private static void DisableMainRooms()
 	{
-		Debug.Log("Disabling Main Room");
-		EventManager.Fire(Globals.Events.DEACTIVATE_MAIN_ROOM);
+		Debug.Log( "Disabling Main Room" );
+		EventManager.Fire( Globals.Events.DEACTIVATE_MAIN_ROOM );
 	}
 
 	private static void EnableMainRooms()
 	{
-		Debug.Log("Enabling Main Room");
-		EventManager.Fire(Globals.Events.ACTIVATE_MAIN_ROOM);
+		Debug.Log( "Enabling Main Room" );
+		EventManager.Fire( Globals.Events.ACTIVATE_MAIN_ROOM );
 	}
-	
+
 	private static void DisableMomCloset()
 	{
-		Debug.Log("Disabling Mom Closet");
-		EventManager.Fire(Globals.Events.DEACTIVATE_MOM_CLOSET);
+		Debug.Log( "Disabling Mom Closet" );
+		EventManager.Fire( Globals.Events.DEACTIVATE_MOM_CLOSET );
 	}
 
 	private static void EnableMomCloset()
 	{
-		Debug.Log("Enabling Mom Closet");
-		EventManager.Fire(Globals.Events.ACTIVATE_MOM_CLOSET);
+		Debug.Log( "Enabling Mom Closet" );
+		EventManager.Fire( Globals.Events.ACTIVATE_MOM_CLOSET );
 	}
-	
+
 	private static void DisableDadCloset()
 	{
-		Debug.Log("Disabling Dad Closet");
-		EventManager.Fire(Globals.Events.DEACTIVATE_DAD_CLOSET);
+		Debug.Log( "Disabling Dad Closet" );
+		EventManager.Fire( Globals.Events.DEACTIVATE_DAD_CLOSET );
 	}
 
 	private static void EnableDadCloset()
 	{
-		Debug.Log("Enabling Dad Closet");
-		EventManager.Fire(Globals.Events.ACTIVATE_DAD_CLOSET);
+		Debug.Log( "Enabling Dad Closet" );
+		EventManager.Fire( Globals.Events.ACTIVATE_DAD_CLOSET );
 	}
+
+	public static int MAIN_SCENE = 1;
+	public static int MENU_SCENE = 0;
 
 	// All events used by event manager should go here
 	// Do not add spaces between the words of the string, the event system will split it into multiple events
@@ -92,6 +118,7 @@ public class Globals
 		public static string DEACTIVATE_DAD_CLOSET = "DeactivateDadCloset";
 		public static string ACTIVATE_MAIN_ROOM = "ActivateMainRoom";
 		public static string DEACTIVATE_MAIN_ROOM = "DeactivateMainRoom";
+		public static string GAME_RESTART = "GAME_RESTART";
 
 		// Section 1
 		public static string LIGHTS_TURN_OFF = "TurnOffLights";
@@ -117,7 +144,7 @@ public class Globals
 		public static string READ_MOM_NOTE = "ReadMomNote";
 		public static string BLOCKING_SECRET_LACIS = "BlockingSecretLacis";
 		public static string UNBLOCKING_SECRET_LACIS = "UnblockingSecretLacis";
-		
+
 		// Section 3
 		public static string LOCK_DAD_DOOR = "LockDadDoor";
 		public static string LOCK_PAST_DAD_SHELF = "LockPastDadShelf";
@@ -132,7 +159,7 @@ public class Globals
 		public static string UPDATE_MOVEMENT = "UpdateShelfMover";
 		public static string DAD_PUZZLE_2_SPOTLIGHT_INSTALLED = "DadPuzzle2_SpotlightInstalled";
 		public static string DAD_PUZZLE_2_LIGHTPUZZLE_SOLVED = "DadPuzzle2_LightPuzzleSolved";
-		
+
 	}
 
 	public class Tags
@@ -149,7 +176,7 @@ public class Globals
 		public static string MUSIC_BOX = "MusicBox";
 		public static string PAST_FIREPLACE_MIRROR = "PastFireplaceMirror";
 		public static string COLOUR_FILTER = "ColourFilter";
-		
+
 		public static string PRESENT_MOM_DOOR = "PresentMomDoor";
 		public static string PRESENT_DAD_DOOR = "PresentDadDoor";
 		public static string PRESENT_DAD_SHELF = "PresentDadShelf";
@@ -211,11 +238,11 @@ public class Globals
 
 		// Objectives
 		public static string OBJECTIVE_TURN_ON_POWER = "Turn on the lights";
-			public static string SUB_OBJ_INVESTIGATE_ROOM = "Search the room for clues";
-			//public static string SUB_OBJ_INVESTIGATE_BOX = "Investigate the fusebox";
-			public static string SUB_OBJ_FIND_BOX_CODE = "Find the code and enter it at the fusebox";
-			//public static string SUB_OBJ_FIND_HANDKERCHIEF = "Find something to clean the vanity mirror";
-			public static string SUB_OBJ_FIND_CLEAN_MIRROR = "Clean the vanity mirror";
+		public static string SUB_OBJ_INVESTIGATE_ROOM = "Search the room for clues";
+		//public static string SUB_OBJ_INVESTIGATE_BOX = "Investigate the fusebox";
+		public static string SUB_OBJ_FIND_BOX_CODE = "Find the code and enter it at the fusebox";
+		//public static string SUB_OBJ_FIND_HANDKERCHIEF = "Find something to clean the vanity mirror";
+		public static string SUB_OBJ_FIND_CLEAN_MIRROR = "Clean the vanity mirror";
 
 		public static string OBJECTIVE_FIND_TWO_KEYS = "Find 2 more music box keys";
 		public static string OBJECTIVE_FIND_ONE_KEY = "Find the final music box key";
@@ -343,7 +370,7 @@ public class Globals
 			public static string SLID_MIRROR_IN = "slid_the_mirror_in";
 			public static string VISIT_SAFE = "lets_visit_safe";
 		}
-		
+
 		public class Section3
 		{
 			public static string JULY_28_LETTER = "secret_room_letter";

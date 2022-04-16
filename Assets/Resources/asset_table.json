@@ -37,8 +37,8 @@
             "path": "Audio\\Voicelines\\Section1\\1.15__0_hmm_1"
         },
         {
-            "name": "spillage_past",
-            "path": "Audio\\Voicelines\\Section3\\Temporary\\spillage_past"
+            "name": "find_all_three_keys",
+            "path": "Audio\\Voicelines\\Section4\\find_all_three_keys"
         },
         {
             "name": "its_so_dark_in_here",
@@ -57,8 +57,8 @@
             "path": "Audio\\Voicelines\\Section1\\1.33__discover_box_first"
         },
         {
-            "name": "handkerchief",
-            "path": "Audio\\Section1\\handkerchief"
+            "name": "1.18__filthy_mirror",
+            "path": "Audio\\Voicelines\\Section1\\1.18__filthy_mirror"
         },
         {
             "name": "cannot_see_this",
@@ -131,10 +131,6 @@
         {
             "name": "note_proximity",
             "path": "Audio\\Voicelines\\Section3\\Temporary2\\note_proximity"
-        },
-        {
-            "name": "1.18__filthy_mirror",
-            "path": "Audio\\Voicelines\\Section1\\1.18__filthy_mirror"
         },
         {
             "name": "pick_up_light",
@@ -509,10 +505,6 @@
             "path": "Audio\\Voicelines\\Section2\\Temporary\\safe_combination"
         },
         {
-            "name": "has_millie_key",
-            "path": "Audio\\Voicelines\\Section4\\has_millie_key"
-        },
-        {
             "name": "white_paint_use",
             "path": "Audio\\Voicelines\\Section3\\Temporary2\\white_paint_use"
         },
@@ -581,8 +573,8 @@
             "path": "Audio\\Voicelines\\Section2\\Temporary\\mom_note"
         },
         {
-            "name": "find_all_three_keys",
-            "path": "Audio\\Voicelines\\Section4\\find_all_three_keys"
+            "name": "has_millie_key",
+            "path": "Audio\\Voicelines\\Section4\\has_millie_key"
         },
         {
             "name": "container_too_far",
@@ -607,6 +599,10 @@
         {
             "name": "dress_form_no_wheel",
             "path": "Audio\\Voicelines\\Section2\\Temporary\\dress_form_no_wheel"
+        },
+        {
+            "name": "Handkerchief",
+            "path": "Audio\\Section1\\Handkerchief"
         },
         {
             "name": "sfx_safe_unlock_open_sequence",
@@ -749,8 +745,8 @@
             "path": "Audio\\Voicelines\\Section2\\Temporary\\drawer_pull_staircase"
         },
         {
-            "name": "white_book_3",
-            "path": "Audio\\Voicelines\\Section3\\Temporary\\white_book_3"
+            "name": "Fusebox",
+            "path": "Audio\\Section1\\Fusebox"
         },
         {
             "name": "2.107.two_days_david_gone",
@@ -777,6 +773,10 @@
             "path": "Audio\\Voicelines\\Section1\\1.33__discover_key_first"
         },
         {
+            "name": "white_book_3",
+            "path": "Audio\\Voicelines\\Section3\\Temporary\\white_book_3"
+        },
+        {
             "name": "blank_canvas_a",
             "path": "Audio\\Voicelines\\Section3\\Temporary\\blank_canvas_a"
         },
@@ -785,8 +785,8 @@
             "path": "Audio\\Voicelines\\Section4\\lets_go_back_music_box"
         },
         {
-            "name": "fusebox",
-            "path": "Audio\\Section1\\fusebox"
+            "name": "spillage_past",
+            "path": "Audio\\Voicelines\\Section3\\Temporary\\spillage_past"
         },
         {
             "name": "paper_unravel",

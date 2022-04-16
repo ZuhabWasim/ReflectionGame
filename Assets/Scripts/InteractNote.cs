@@ -52,4 +52,10 @@ public class InteractNote : InteractableAbstract
 		this.gameObject.SetActive( false );
 		pointer += 1;
 	}
+
+	public static void OnExit()
+	{
+		pointer = 0;
+		journal.Clear();
+	}
 }

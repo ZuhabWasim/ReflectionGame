@@ -42,6 +42,7 @@ public class InputManager : MonoBehaviour
 		Keybinds[] keybinds = (Keybinds[])System.Enum.GetValues( typeof( Keybinds ) );
 		foreach ( Keybinds key in keybinds )
 		{
+			if ( m_registeredKeybinds.Contains( key ) ) continue;
 			RegisteredKeybind k = new RegisteredKeybind( (KeyCode)key );
 			m_registeredKeybinds.Add( key, k );
 		}
