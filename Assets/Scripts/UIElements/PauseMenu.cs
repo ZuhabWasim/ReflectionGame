@@ -9,14 +9,22 @@ public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenu;
     private bool isPaused;
+    private bool objectiveOn;
+    public GameObject objectives;
     void Start()
     {
         pauseMenu.SetActive(false);
         isPaused = false;
+        objectiveOn = false;
     }
     public bool IsPaused()
     {
         return isPaused;
+    }
+    public void ToggleObjectives()
+    {
+        objectiveOn = !objectiveOn;
+        objectives.SetActive(objectiveOn);
     }
     public void PauseGame()
     {
