@@ -25,8 +25,8 @@ public class MirrorConnector : MonoBehaviour
 	public bool canvas = false; // If the mirrors should be treated as canvases
 
 	// Mirror interactable interfaces
-	private MirrorInteractable presentInteractable;
-	private MirrorInteractable pastInteractable;
+	private MirrorInteractable m_presentInteractable;
+	private MirrorInteractable m_pastInteractable;
 
 	private Transform m_player; // Player transform, programmatically selected and updated
 	private Transform m_playerCamera;
@@ -76,8 +76,8 @@ public class MirrorConnector : MonoBehaviour
 		}
 
 		// Find interactables
-		SetupMirrorInteractable( presentMirror, presentInteractable );
-		SetupMirrorInteractable( pastMirror, pastInteractable );
+		SetupMirrorInteractable( presentMirror, m_presentInteractable );
+		SetupMirrorInteractable( pastMirror, m_pastInteractable );
 
 		// Find the player
 		try
@@ -163,6 +163,43 @@ public class MirrorConnector : MonoBehaviour
 		{
 			m_canTeleport = false;
 		}
+	}
+
+	private void OnDestroy()
+	{
+		// Remove mirror planes
+		if (presentMirror)
+		{
+			Destroy(presentMirror);
+		}
+		if (pastMirror)
+		{
+			Destroy(pastMirror);
+		}
+
+		// Remove interactables
+		if (m_presentInteractable)
+		{
+			Destroy(m_presentInteractable);
+		}
+		if (m_pastInteractable)
+		{
+			Destroy(m_pastInteractable);
+		}
+
+		// Remove render textures
+		if (m_presentMirrorTexture)
+		{
+			m_presentMirrorTexture.Release();
+			Destroy(m_presentMirrorTexture);
+		}
+
+		if (m_pastMirrorTexture)
+		{
+			m_pastMirrorTexture.Release();
+			Destroy(m_pastMirrorTexture);
+		}
+		
 	}
 
 	public void CheckForDeactivateZone()
