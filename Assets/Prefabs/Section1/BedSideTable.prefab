@@ -1331,16 +1331,20 @@ MonoBehaviour:
   interactable: 0
   makeInteractableEvent: TurnOnLights
   makeNonInteractableEvent: 
+  displayPrompt: 1
+  isPickup: 0
+  acceptItem: 0
+  deleteItem: 0
+  itemName: Drawer
+  firstInteractEvent: 
+  myType: 3
+  highlightOnLook: 1
+  highlightChildObjects: 1
+  thisIsAMirror: 0
   voiceLine: {fileID: 0}
   nonInteractableVoiceLine: {fileID: 8300000, guid: 56fec2afa3da0b54b915562f97df9676, type: 3}
   nonUseableVoiceLine: {fileID: 0}
   useVoiceLine: {fileID: 0}
-  displayPrompt: 1
-  acceptItem: 0
-  deleteItem: 0
-  itemName: Drawer
-  myType: 3
-  thisIsAMirror: 0
   openSound: {fileID: 8300000, guid: bd1069cb393949a4ba69a5314490bfa2, type: 3}
   closeSound: {fileID: 8300000, guid: e7b8b07a39fb7dd4a9b0d58885cdde24, type: 3}
   audioSourceName: dadSideDrawer2
@@ -1381,7 +1385,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2211,16 +2215,20 @@ MonoBehaviour:
   interactable: 1
   makeInteractableEvent: 
   makeNonInteractableEvent: 
+  displayPrompt: 1
+  isPickup: 0
+  acceptItem: 0
+  deleteItem: 0
+  itemName: Millie's Key
+  firstInteractEvent: 
+  myType: 0
+  highlightOnLook: 1
+  highlightChildObjects: 0
+  thisIsAMirror: 0
   voiceLine: {fileID: 8300000, guid: 0be941dd38d8ded4c811914fbfc0ad92, type: 3}
   nonInteractableVoiceLine: {fileID: 0}
   nonUseableVoiceLine: {fileID: 0}
   useVoiceLine: {fileID: 0}
-  displayPrompt: 1
-  acceptItem: 0
-  deleteItem: 0
-  itemName: Millie's Key
-  myType: 0
-  thisIsAMirror: 0
   img: {fileID: 2800000, guid: 152863569722e3e4a89c59935d19e80f, type: 3}
   onPickupEvent: 
 --- !u!1 &2967157021067228418
@@ -3686,16 +3694,20 @@ MonoBehaviour:
   interactable: 0
   makeInteractableEvent: TurnOnLights
   makeNonInteractableEvent: 
+  displayPrompt: 1
+  isPickup: 0
+  acceptItem: 0
+  deleteItem: 0
+  itemName: Drawer
+  firstInteractEvent: 
+  myType: 3
+  highlightOnLook: 1
+  highlightChildObjects: 1
+  thisIsAMirror: 0
   voiceLine: {fileID: 0}
   nonInteractableVoiceLine: {fileID: 8300000, guid: 56fec2afa3da0b54b915562f97df9676, type: 3}
   nonUseableVoiceLine: {fileID: 0}
   useVoiceLine: {fileID: 0}
-  displayPrompt: 1
-  acceptItem: 0
-  deleteItem: 0
-  itemName: Drawer
-  myType: 3
-  thisIsAMirror: 0
   openSound: {fileID: 8300000, guid: bd1069cb393949a4ba69a5314490bfa2, type: 3}
   closeSound: {fileID: 8300000, guid: e7b8b07a39fb7dd4a9b0d58885cdde24, type: 3}
   audioSourceName: dadSideDrawer
@@ -3736,7 +3748,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0

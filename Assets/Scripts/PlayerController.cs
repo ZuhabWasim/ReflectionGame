@@ -4,6 +4,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -338,6 +339,10 @@ public class PlayerController : MonoBehaviour
 			{
 				Debug.Log("Inventory failed to store item");
 			}
+			else
+			{
+				targetObject.gameObject.SetActive(false);
+			}
 		}
 
 		if ( targetObject != null )
@@ -353,10 +358,18 @@ public class PlayerController : MonoBehaviour
 
 	void HandleDropItem()
 	{
-		if ( targetObject ) return;
+		// Check if the player is picking up an item, don't place a bucket down if so, it's annoying
+		PickupItem pickupItemScript = targetObject as PickupItem;
+		if ( pickupItemScript ) return;
+		
 		PickupItem inventoryItem = m_inventory.GetSelectedPickupItem();
-
+		// To make this better, we can give PickUpItem a boolean for 'canDrop', everything aside from the bucket would be false
 		if ( !inventoryItem || inventoryItem.itemName != Globals.Misc.EMPTY_BUCKET ) return;
+		
+		/*// Spawn the bucket right below the player, prop the player on top of the bucket, if they fall, they can climb back up.
+		this.transform.position = this.transform.position + new Vector3(0, EmptyBucket.BUCKET_HEIGHT + 0.2f, 0);
+		inventoryItem.OnDrop(new Vector3( this.transform.position.x , EmptyBucket.BUCKET_HEIGHT / 2 + 0.1f, this.transform.position.z ) );*/
+		// Drops the item at eye level of the player. Note that empty bucket now handles it's dropping logic.
 		inventoryItem.OnDrop( this.transform.position + ( this.transform.forward * dropDistance ) + new Vector3( 0, 1, 0 ) );
 	}
 

@@ -191,7 +191,7 @@ public class Globals
 		public static string MOUSE_X = "Mouse X";
 		public static string MOUSE_Y = "Mouse Y";
 		public static string UI_Canvas = "UI_Canvas";
-		public static string PAINT_BRUSH = "Paint Brush";
+		public static string PAINT_BRUSH = "Dry Paint Brush";
 		public static string WET_PAINT_BRUSH = "Reflective Paint Brush";
 		public static string WHITE_PAINT_BRUSH = "White Paint Brush";
 		public static string SCISSOR_PUZZLE = "ScissorPuzzle";
@@ -203,7 +203,7 @@ public class Globals
 		public static string IS_BACKING_UP = "IsBackingUp";
 		public static string IS_JUMPING = "IsJumping";
 		public static string IS_INTERACTING = "IsInteracting";
-		public static float MAX_INTERACT_DISTANCE = 3f;
+		public static float MAX_INTERACT_DISTANCE = 3.5f;
 		public static float DEFAULT_PROXIMITY_TRIGGER_DIST = 3.5f;
 	}
 

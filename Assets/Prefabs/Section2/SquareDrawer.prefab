@@ -3908,16 +3908,20 @@ MonoBehaviour:
   interactable: 1
   makeInteractableEvent: 
   makeNonInteractableEvent: 
+  displayPrompt: 1
+  isPickup: 0
+  acceptItem: 0
+  deleteItem: 0
+  itemName: Laci Drawer
+  firstInteractEvent: 
+  myType: 3
+  highlightOnLook: 1
+  highlightChildObjects: 1
+  thisIsAMirror: 0
   voiceLine: {fileID: 0}
   nonInteractableVoiceLine: {fileID: 0}
   nonUseableVoiceLine: {fileID: 0}
   useVoiceLine: {fileID: 0}
-  displayPrompt: 1
-  acceptItem: 0
-  deleteItem: 0
-  itemName: Laci Drawer
-  myType: 3
-  thisIsAMirror: 0
   openSound: {fileID: 8300000, guid: bd1069cb393949a4ba69a5314490bfa2, type: 3}
   closeSound: {fileID: 8300000, guid: e7b8b07a39fb7dd4a9b0d58885cdde24, type: 3}
   audioSourceName: LaciDrawerAB
@@ -6287,16 +6291,20 @@ MonoBehaviour:
   interactable: 1
   makeInteractableEvent: 
   makeNonInteractableEvent: 
+  displayPrompt: 1
+  isPickup: 0
+  acceptItem: 0
+  deleteItem: 0
+  itemName: Laci Drawer
+  firstInteractEvent: 
+  myType: 3
+  highlightOnLook: 1
+  highlightChildObjects: 1
+  thisIsAMirror: 0
   voiceLine: {fileID: 0}
   nonInteractableVoiceLine: {fileID: 0}
   nonUseableVoiceLine: {fileID: 0}
   useVoiceLine: {fileID: 0}
-  displayPrompt: 1
-  acceptItem: 0
-  deleteItem: 0
-  itemName: Laci Drawer
-  myType: 3
-  thisIsAMirror: 0
   openSound: {fileID: 8300000, guid: bd1069cb393949a4ba69a5314490bfa2, type: 3}
   closeSound: {fileID: 8300000, guid: e7b8b07a39fb7dd4a9b0d58885cdde24, type: 3}
   audioSourceName: LaciDrawerAB
@@ -9450,16 +9458,20 @@ MonoBehaviour:
   interactable: 1
   makeInteractableEvent: 
   makeNonInteractableEvent: 
+  displayPrompt: 1
+  isPickup: 0
+  acceptItem: 0
+  deleteItem: 0
+  itemName: Laci Drawer
+  firstInteractEvent: 
+  myType: 3
+  highlightOnLook: 1
+  highlightChildObjects: 1
+  thisIsAMirror: 0
   voiceLine: {fileID: 0}
   nonInteractableVoiceLine: {fileID: 0}
   nonUseableVoiceLine: {fileID: 0}
   useVoiceLine: {fileID: 0}
-  displayPrompt: 1
-  acceptItem: 0
-  deleteItem: 0
-  itemName: Laci Drawer
-  myType: 3
-  thisIsAMirror: 0
   openSound: {fileID: 8300000, guid: bd1069cb393949a4ba69a5314490bfa2, type: 3}
   closeSound: {fileID: 8300000, guid: e7b8b07a39fb7dd4a9b0d58885cdde24, type: 3}
   audioSourceName: LaciDrawerAB
