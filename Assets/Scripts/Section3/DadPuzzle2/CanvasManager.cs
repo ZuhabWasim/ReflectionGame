@@ -36,10 +36,11 @@ public class CanvasManager : MonoBehaviour
 
 		initialLightSource.enabled = false;
 		GlobalState.AddVar<Color>( Globals.Vars.DAD_PUZZLE_2_FINAL_LIGHT_COLOR, Color.black );
-		EventManager.Sub(Globals.Events.DAD_PUZZLE_2_SPOTLIGHT_INSTALLED, () => {
+		EventManager.Sub( Globals.Events.DAD_PUZZLE_2_SPOTLIGHT_INSTALLED, () =>
+		{
 			initialLightSource.enabled = true;
 			ComputeLightPath();
-		});
+		} );
 #if DEBUGGING_LIGHT_TRACE
 		StartCoroutine( TestLightTrace() );
 #else
@@ -70,7 +71,7 @@ public class CanvasManager : MonoBehaviour
 				ComputeLightPath();
 			}
 		}
-		EventManager.Fire(Globals.Events.RECOMPUTED_LIGHT);
+		EventManager.Fire( Globals.Events.RECOMPUTED_LIGHT );
 	}
 
 	void PrepareCanvasPairsForLightTrace()
@@ -121,7 +122,11 @@ public class CanvasManager : MonoBehaviour
 			return;
 		}
 
-		TracePath( 0, false, initialLightSource.color );
+		ColorFilter initialFilter = filters[ 0 ];
+		Color outgoingColor = initialFilter.FilterColor( initialLightSource.color );
+		// need to add delta so light stops at surface
+		initialLightSource.range = ( initialFilter.transform.position - initialLightSource.transform.position ).magnitude - 0.5f;
+		TracePath( 0, false, outgoingColor );
 #if DEBUGGING_LIGHT_TRACE
 		PrintCanvasDebugInfo();
 #endif
