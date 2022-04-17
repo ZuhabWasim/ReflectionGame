@@ -18,6 +18,11 @@ public class Inventory
 		return ref m_instance;
 	}
 
+	public static void InitInventory()
+	{
+		Inventory.m_instance = new Inventory();
+	}
+
 	public ItemPickupResult PickupItem( ref PickupItem item )
 	{
 		if ( item == null )
