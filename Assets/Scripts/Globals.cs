@@ -20,6 +20,8 @@ public class Globals
 			RegisterGlobalEventListeners();
 			Objectives.PopulateObjectives();
 			ForkList.InitForks();
+			Inventory.InitInventory();
+			InteractNote.InitJournal();
 		};
 	}
 
