@@ -68,7 +68,7 @@ namespace Utilities
 			m_coroutineRunner.AddComponent<CoroutineRunner>();
 		}
 
-		public static void RunCoroutine( IEnumerator coroutine )
+		public static Coroutine RunCoroutine( IEnumerator coroutine )
 		{
 			if ( m_coroutineRunner == null )
 			{
@@ -76,7 +76,17 @@ namespace Utilities
 			}
 
 			CoroutineRunner runner = m_coroutineRunner.GetComponent<CoroutineRunner>();
-			runner.StartCoroutine( runner.MonitorRunning( coroutine ) );
+			return runner.StartCoroutine( runner.MonitorRunning( coroutine ) );
+		}
+
+		public static void StopRunningCoroutine( Coroutine routine )
+		{
+			if ( m_coroutineRunner == null )
+			{
+				return;
+			}
+
+			m_coroutineRunner.GetComponent<CoroutineRunner>().StopCoroutine( routine );
 		}
 
 		IEnumerator MonitorRunning( IEnumerator coroutine )
@@ -96,7 +106,7 @@ namespace Utilities
 		private static string SFX_ROOT_FOLDER = "Audio";
 		private static string EXT_META = ".meta";
 		// JSON meta-data filenames
-		private static string AUDIO_ASSET_TABLE_FILENAME = "audio_asset_table";
+		private static string ASSET_TABLE_FILENAME = "asset_table";
 		private static Hashtable m_loadedAssetCache = new Hashtable();
 		private static Hashtable m_assetPathTable = new Hashtable();
 
@@ -108,9 +118,9 @@ namespace Utilities
 			AddAssetsAtDir( audioDir );
 			// Update serialized table while in editor to make sure we have the latest version of the asset table. Prod
 			// build will rely on this table to search and load assets
-			WriteAssetTableToJSON( Path.Combine( RESOURCES_FOLDER, AUDIO_ASSET_TABLE_FILENAME ) );
+			WriteAssetTableToJSON( Path.Combine( RESOURCES_FOLDER, ASSET_TABLE_FILENAME ) );
 #else
-            LoadAssetTableFromJSON( AUDIO_ASSET_TABLE_FILENAME );
+            LoadAssetTableFromJSON( ASSET_TABLE_FILENAME );
 #endif // if UNITY_EDITOR
 		}
 
@@ -133,7 +143,7 @@ namespace Utilities
 				{
 					Debug.LogWarningFormat( "Failed to add {0} to asset table", file.Name );
 				}
-				
+
 			}
 
 			foreach ( DirectoryInfo subdir in dir.GetDirectories() )
@@ -157,7 +167,7 @@ namespace Utilities
 				writer.Write( serializedAssetTable );
 			}
 
-			Debug.LogFormat( "Wrote updated audio_asset_table with {0} asset entries", table.AssetPaths.Count );
+			Debug.LogFormat( "Wrote updated asset_table with {0} asset entries", table.AssetPaths.Count );
 		}
 #endif // if UNITY_EDITOR
 

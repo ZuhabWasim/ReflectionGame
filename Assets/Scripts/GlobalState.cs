@@ -41,4 +41,9 @@ public class GlobalState
 			Debug.LogWarningFormat( "Tried to update global state var {0} that doesn't exist, ignoring..", name );
 		}
 	}
+
+	public static void OnExit()
+	{
+		m_globalVars.Clear();
+	}
 }

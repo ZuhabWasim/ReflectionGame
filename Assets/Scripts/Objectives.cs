@@ -10,6 +10,7 @@ public class Objective
 	public bool isActive { get; set; }
 	public readonly List<Objective> subObjectives;
 	private float activateTime = 0.0f; // can give player some time before the objective shows up
+	public Coroutine activationDelayCoroutine { get; private set; }
 
 	public Objective( string desc, string activateEv = "", string completeEvent = "", bool isActive = false, float postActivateDelay = 0.0f )
 	{
@@ -19,12 +20,12 @@ public class Objective
 		this.activateTime = postActivateDelay;
 		this.subObjectives = new List<Objective>();
 
-		if ( isActive ) Utilities.CoroutineRunner.RunCoroutine( ActivateObjective() );
+		if ( isActive ) activationDelayCoroutine = Utilities.CoroutineRunner.RunCoroutine( ActivateObjective() );
 		else if ( activateEvent != string.Empty )
 		{
 			EventManager.Sub( activateEvent, () =>
 			{
-				Utilities.CoroutineRunner.RunCoroutine( ActivateObjective() );
+				activationDelayCoroutine = Utilities.CoroutineRunner.RunCoroutine( ActivateObjective() );
 			} );
 		}
 
@@ -56,6 +57,7 @@ public class Objective
 	public void OnActivated()
 	{
 		Debug.LogFormat( "New Objective: {0}", description );
+		activationDelayCoroutine = null;
 	}
 
 	private IEnumerator ActivateObjective()
@@ -70,10 +72,9 @@ public class Objectives
 {
 	static List<Objective> m_objectives = new List<Objective>();
 
-	[RuntimeInitializeOnLoadMethod]
-	static void PopulateObjectives()
+	public static void PopulateObjectives()
 	{
-		InitObjectives.InitAllObjectives(m_objectives);
+		InitObjectives.InitAllObjectives( m_objectives );
 	}
 
 	public static Objective GetCurrentObjective()
@@ -85,5 +86,21 @@ public class Objectives
 		}
 
 		return null;
+	}
+
+	public static void OnExit()
+	{
+		foreach ( Objective objective in m_objectives )
+		{
+			objective.isActive = false;
+			if ( objective.activationDelayCoroutine is null )
+			{
+				continue;
+			}
+			Utilities.CoroutineRunner.StopRunningCoroutine( objective.activationDelayCoroutine );
+		}
+
+		m_objectives.Clear();
+		// PopulateObjectives should be called when the game starts again
 	}
 }

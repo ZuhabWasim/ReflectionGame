@@ -1,4 +1,5 @@
 #undef DEBUGGING_AUDIO_SRC
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,7 @@ struct RegisteredAudioPlayer
 {
 	public readonly AudioSource src;
 	public Queue<AudioClip> clipQueue;
+	public Coroutine queueHandler;
 
 #if DEBUGGING_AUDIO_SRC
 	public bool debugging;
@@ -17,6 +19,7 @@ struct RegisteredAudioPlayer
 	{
 		src = source;
 		clipQueue = new Queue<AudioClip>();
+		queueHandler = null;
 #if DEBUGGING_AUDIO_SRC
 		debugging = false;
 #endif // if DEBUGGING_AUDIO_SRC
@@ -38,7 +41,18 @@ public class AudioPlayer
 
 		RegisteredAudioPlayer player = new RegisteredAudioPlayer( source );
 		m_audioPlayers.Add( identifier, player );
-		Utilities.CoroutineRunner.RunCoroutine( HandleAudioPlayer( player ) );
+		player.queueHandler = Utilities.CoroutineRunner.RunCoroutine( HandleAudioPlayer( player ) );
+	}
+
+	public static void OnExit()
+	{
+		foreach ( DictionaryEntry kv in m_audioPlayers )
+		{
+			RegisteredAudioPlayer source = (RegisteredAudioPlayer)kv.Value;
+			if ( source.queueHandler is null ) continue;
+			Utilities.CoroutineRunner.StopRunningCoroutine( source.queueHandler );
+		}
+		m_audioPlayers.Clear();
 	}
 
 	public static void Play( string audioFile, string targetSource, bool force = true )
@@ -56,8 +70,8 @@ public class AudioPlayer
 	{
 		Assert.IsTrue( m_audioPlayers.ContainsKey( targetSource ) );
 		RegisteredAudioPlayer player = (RegisteredAudioPlayer)m_audioPlayers[ targetSource ];
-		
-		if (clip == null)
+
+		if ( clip == null )
 		{
 			return;
 		}
@@ -107,7 +121,6 @@ public class AudioPlayer
 			player.src.Play();
 		}
 	}
-
 
 	public static void EnableDebuggingForSrc( string targetSource )
 	{

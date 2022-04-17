@@ -101,4 +101,10 @@ public class EventManager : MonoBehaviour
 
 		( (List<System.Action<GameObject>>)m_arglessListeners[ ev ] ).Remove( callback );
 	}
+
+	public static void OnExit()
+	{
+		m_argListeners.Clear();
+		m_arglessListeners.Clear();
+	}
 }
