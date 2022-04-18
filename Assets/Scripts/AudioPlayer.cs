@@ -146,6 +146,7 @@ public class AudioPlayer
 
 	private static void DisplaySubtitleForClip( AudioClip clip )
 	{
+		if ( !subtitlesEnabled ) return;
 		TextAsset subtitleFile = Utilities.AssetLoader.GetSubtitle( clip.name ); // audioFile's sub has the same name
 		if ( subtitleFile )
 		{
