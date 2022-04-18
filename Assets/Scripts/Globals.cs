@@ -328,35 +328,34 @@ public class Globals
 		}
 		public class Section1
 		{
-			public static string DARK_IN_HERE = "1.03__dark_in_here";
-			public static string TOO_DARK_TO_SEE = "1.04__too_dark_to_see";
-			public static string DOOR_AM_I_LOCKED_IN = "1.05__door_am_i_locked_in";
-			public static string DOOR_NOT_BUDGING = "1.05__door_am_i_locked_in_short";
-			public static string LOCKED_FROM_THE_INSIDE = "1.06__locked_from_the_inside";
-
-			public static string JOHNSON_LETTER = "1.11__johnson_letter";
-			public static string MILLE_POV_INTRO = "1.12__mille_pov_intro";
-			public static string HMM_THAT_DOESNT_SEEM_RIGHT = "1.14__hmm_that_doesnt_seem_right";
-			public static string HMM_CODE = "1.15__0_hmm_1";
-			public static string FILTHY_MIRROR = "1.18__filthy_mirror";
-			public static string CANT_SEE_REFLECTION_ROOM_DARK = "1.20__cant_see_reflection_room_dark";
-			public static string CODE_DIFFERENT = "1.25__code_different";
-			public static string CODE_FLIPPED = "code_flipped";
-
-			public static string HOUSE_FEELS_UNFAMILIAR = "1.28__house_feels_unfamiliar";
-			public static string STILL_CANT_SEE_MYSELF = "1.30__still_cant_see_myself";
-			public static string ITS_MY_MUSICBOX = "1.32__its_my_musicbox";
-			public static string DISCOVER_BOX_FIRST = "1.33__discover_box_first";
-			public static string DISCOVER_KEY_FIRST = "1.33__discover_key_first";
-			public static string DISCOVER_KEY_FIRST__OH_THERE_IT_IS = "1.35__discover_key_first__oh_there_it_is";
-			public static string BOX_NEEDS_TWO_OTHER_KEYS = "1.36__box_needs_two_other_keys";
 			public static string FIREPLACE_TURN_ON = "fireplace_turn_on";
-
-			public static string IS_THE_MIRROR_GLOWING = "1.38__is_the_mirror_glowing";
-			public static string WHY_AM_I_SO_SMALL = "1.42__why_am_i_so_small";
-			public static string I_M_TOO_SMALL = "1.43__i_m_too_small";
-			public static string MOTHERS_NAGGING = "1.48__mothers_nagging";
-			public static string FATHERS_VOICE = "1.49__fathers_voice";
+			
+			public static string DARK_IN_HERE = "1.003.why_is_it_so_dark";
+			public static string TOO_DARK_TO_SEE = "1.004.too_dark_should_turn_on_light";
+			public static string DOOR_AM_I_LOCKED_IN = "1.005.am_i_locked_in";
+			public static string DOOR_NOT_BUDGING = "1.005.am_i_locked_in_short";
+			public static string LOCKED_FROM_THE_INSIDE = "1.006.locked_from_inside";
+			
+			public static string MILLE_POV_INTRO = "1.012.after_johnson_letter";
+			public static string HMM_THAT_DOESNT_SEEM_RIGHT = "1.014.doesn_t_seem_right";
+			public static string HMM_CODE = "1.015.can_t_make_out_code";
+			public static string FILTHY_MIRROR = "1.018.filthy_mirror";
+			public static string CANT_SEE_REFLECTION_ROOM_DARK = "1.020.can_t_see_reflection";
+			public static string CODE_DIFFERENT = "1.025.is_that_the_code";
+			
+			public static string HOUSE_FEELS_UNFAMILIAR = "1.028.has_it_been_20_years";
+			public static string STILL_CANT_SEE_MYSELF = "1.030.still_can_t_see_myself";
+			public static string ITS_MY_MUSICBOX = "1.032.oh_it_s_my_music_box";
+			public static string DISCOVER_KEY_FIRST = "1.033.discover_key_first";
+			public static string DISCOVER_BOX_FIRST = "1.033.discover_music_box_first";
+			public static string DISCOVER_KEY_FIRST__OH_THERE_IT_IS = "1.035.oh_there_it_is";
+			public static string BOX_NEEDS_TWO_OTHER_KEYS = "1.036.forgot_needs_two_other_keys";
+			
+			public static string IS_THE_MIRROR_GLOWING = "1.038.mirrorr_glowing";
+			public static string WHY_AM_I_SO_SMALL = "1.042.why_am_i_so_small";
+			public static string I_M_TOO_SMALL = "1.043.i_m_too_small";
+			public static string MOTHERS_NAGGING = "1.048.can_hear_mother_s_nagging";
+			public static string FATHERS_VOICE = "1.049.haven_t_heard_father_s_voice_in_so_long";
 		}
 
 		public class Section2

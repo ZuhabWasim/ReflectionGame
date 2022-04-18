@@ -49,7 +49,7 @@ public class Fusebox : MonoBehaviour
 			EventManager.Fire( Globals.Events.LIGHTS_TURN_ON, this.gameObject );
 		} else if (wrongButReversed)
 		{
-			AudioPlayer.Play(Globals.VoiceLines.Section1.CODE_FLIPPED, Globals.Tags.DIALOGUE_SOURCE);
+			AudioPlayer.Play(Globals.VoiceLines.Section1.HMM_THAT_DOESNT_SEEM_RIGHT, Globals.Tags.DIALOGUE_SOURCE);
 		}
 	}
 
