@@ -379,8 +379,9 @@ public class Globals
 	{
 		public class General
 		{
-			public static string CANT_USE_ITEM = "1.14__hmm_that_doesnt_seem_right";
-			public static string NOT_HOLDING_ANYTHING = "not_holding_anything";
+			public static string CANT_USE_ITEM = "extra.1.066.i_dont_think_i_can_use_this_here";
+			public static string NOT_HOLDING_ANYTHING = "extra.1.065.not_holding_anything";
+			public static string CAN_USE_THIS_HERE = "extra.1.066.i_dont_think_i_can_use_this_here";
 			public static string PLACEHOLDER = "placeholder";
 			public static string PLACEHOLDER_1 = "placeholder1";
 			public static string PLACEHOLDER_2 = "placeholder2";
@@ -388,21 +389,17 @@ public class Globals
 		}
 		public class Section1
 		{
-			public static string FIREPLACE_TURN_ON = "fireplace_turn_on";
-			
 			public static string DARK_IN_HERE = "1.003.why_is_it_so_dark";
 			public static string TOO_DARK_TO_SEE = "1.004.too_dark_should_turn_on_light";
 			public static string DOOR_AM_I_LOCKED_IN = "1.005.am_i_locked_in";
 			public static string DOOR_NOT_BUDGING = "1.005.am_i_locked_in_short";
 			public static string LOCKED_FROM_THE_INSIDE = "1.006.locked_from_inside";
-			
 			public static string MILLE_POV_INTRO = "1.012.after_johnson_letter";
 			public static string HMM_THAT_DOESNT_SEEM_RIGHT = "1.014.doesn_t_seem_right";
 			public static string HMM_CODE = "1.015.can_t_make_out_code";
 			public static string FILTHY_MIRROR = "1.018.filthy_mirror";
 			public static string CANT_SEE_REFLECTION_ROOM_DARK = "1.020.can_t_see_reflection";
 			public static string CODE_DIFFERENT = "1.025.is_that_the_code";
-			
 			public static string HOUSE_FEELS_UNFAMILIAR = "1.028.has_it_been_20_years";
 			public static string STILL_CANT_SEE_MYSELF = "1.030.still_can_t_see_myself";
 			public static string ITS_MY_MUSICBOX = "1.032.oh_it_s_my_music_box";
@@ -410,12 +407,25 @@ public class Globals
 			public static string DISCOVER_BOX_FIRST = "1.033.discover_music_box_first";
 			public static string DISCOVER_KEY_FIRST__OH_THERE_IT_IS = "1.035.oh_there_it_is";
 			public static string BOX_NEEDS_TWO_OTHER_KEYS = "1.036.forgot_needs_two_other_keys";
-			
 			public static string IS_THE_MIRROR_GLOWING = "1.038.mirrorr_glowing";
 			public static string WHY_AM_I_SO_SMALL = "1.042.why_am_i_so_small";
 			public static string I_M_TOO_SMALL = "1.043.i_m_too_small";
 			public static string MOTHERS_NAGGING = "1.048.can_hear_mother_s_nagging";
 			public static string FATHERS_VOICE = "1.049.haven_t_heard_father_s_voice_in_so_long";
+			
+			public static string WOAH_WHAT_JUST_HAPPENED_TO_THE_MIRROR = "extra.1.054.woah_what_just_happened_to_the_mirror";
+			public static string HM_THAT_DOESN_T_SEEM_RIGHT = "extra.1.055.hm_that_doesn_t_seem_right";
+			public static string AM_I_IN_THE_PAST = "extra.1.056.am_i_in_the_past";
+			public static string GREAT_AGAIN = "extra.1.057.great_again";
+			public static string LIGHTS_ARE_ALREADY_ON = "extra.1.058.lights_are_already_on";
+			public static string MOTHER_S_VANITY_SET = "extra.1.059.mother_s_vanity_set";
+			public static string COMPLETE_CODE = "extra.1.060.complete_code";
+			public static string ROOMS_LOOKS_EMPTY = "extra.1.061.rooms_looks_empty";
+			public static string FATHER_LOVED_TO_READ = "extra.1.062.father_loved_to_read";
+			public static string SOUND_OF_THE_RAIN = "extra.1.063.sound_of_the_rain";
+			public static string GOLDEN_LIGHT = "extra.1.064.golden_light";
+			public static string NOT_HOLDING_ANYTHING = "extra.1.065.not_holding_anything";
+			public static string I_DONT_THINK_I_CAN_USE_THIS_HERE = "extra.1.066.i_dont_think_i_can_use_this_here";
 		}
 
 		public class Section2
