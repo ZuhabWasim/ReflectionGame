@@ -30,8 +30,8 @@ public class ObjectivesText : MonoBehaviour
             }
         } else
         {
-            CurrObjective.text = "ERROR";
-            SubObjectiveList.text = "no active objective";
+            CurrObjective.text = "";
+            SubObjectiveList.text = "";
         }
     }
 }

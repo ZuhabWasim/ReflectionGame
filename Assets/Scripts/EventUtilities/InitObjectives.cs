@@ -33,7 +33,7 @@ public static class InitObjectives
 	static Objective InitSection11Objectives()
 	{
 		Objective ob_main = new Objective(Globals.UIStrings.OBJECTIVE_EXPLORE, activateEv: Globals.Events.LIGHTS_TURN_ON, completeEvent: Globals.Events.FIRST_TELEPORT);
-		ob_main.AddSubObjective(new Objective(Globals.UIStrings.SUB_OBJ_MUSIC_KEY1, activateEv: Globals.Events.HAS_MILLIE_KEY, completeEvent: Globals.Events.MILLIE_KEY_INTERACT));
+		ob_main.AddSubObjective(new Objective(Globals.UIStrings.SUB_OBJ_MUSIC_KEY1, activateEv: Globals.Events.GO_CHECK_MUSIC_BOX, completeEvent: Globals.Events.MILLIE_KEY_INTERACT));
 		ob_main.AddSubObjective(new Objective(Globals.UIStrings.SUB_OBJ_CHECK_MIRROR, activateEv: Globals.Events.MILLIE_KEY_INTERACT, completeEvent: Globals.Events.FIRST_TELEPORT));
 		return ob_main;
 	}
@@ -89,7 +89,7 @@ public static class InitObjectives
 
 	static Objective InitSection22Objectives()
 	{
-		Objective ob_main = new Objective(Globals.UIStrings.OBJECTIVE_FIND_ONE_KEY, activateEv: Globals.Events.PICKUP_EITHER_KEY, completeEvent: Globals.Events.PICKUP_BOTH_KEY );
+		Objective ob_main = new Objective(Globals.UIStrings.OBJECTIVE_FIND_ONE_KEY, activateEv: Globals.Events.PICKUP_EITHER_KEY, completeEvent: Globals.Events.EXIT_BOTH);
 		ob_main.AddSubObjective(new Objective(Globals.UIStrings.SUB_OBJ_INVESTIGATE_MOM_CLOSET, completeEvent: Globals.Events.LOCK_MOM_DOOR, isActive: true));
 		ob_main.AddSubObjective(new Objective(Globals.UIStrings.SUB_OBJ_INVESTIGATE_DAD_CLOSET, completeEvent: Globals.Events.LOCK_DAD_DOOR, isActive: true));
 		return ob_main;
@@ -98,7 +98,7 @@ public static class InitObjectives
 	
 	static Objective InitSection4Objectives()
 	{
-		Objective ob_main = new Objective(Globals.UIStrings.OBJECTIVE_USE_KEYS, activateEv: Globals.Events.PICKUP_BOTH_KEY);
+		Objective ob_main = new Objective(Globals.UIStrings.OBJECTIVE_USE_KEYS, activateEv: Globals.Events.EXIT_BOTH);
 		return ob_main;
 	}
 

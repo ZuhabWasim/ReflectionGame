@@ -66,6 +66,11 @@ public static class ForkList
 			Globals.Events.HAS_DAD_KEY },
 			Globals.Events.PICKUP_BOTH_KEY));
 
+		// (EXIT_MOM && EXIT_DAD) => EXIT_BOTH
+		forks.Add(new Fork(new string[] { Globals.Events.EXIT_DAD,
+			Globals.Events.EXIT_MOM },
+			Globals.Events.EXIT_BOTH));
+
 		// (LOCK_MOM_DOOR || LOCK_DAD_DOOR) => LOCK_EITHER_DOOR
 		EventManager.Sub(Globals.Events.LOCK_MOM_DOOR, () => { EventManager.Fire(Globals.Events.LOCK_EITHER_DOOR); });
 		EventManager.Sub(Globals.Events.LOCK_DAD_DOOR, () => { EventManager.Fire(Globals.Events.LOCK_EITHER_DOOR); });
@@ -73,6 +78,9 @@ public static class ForkList
 		// (HAS_MOM_KEY || HAS_DAD_KEY) => PICKUP_EITHER_KEY
 		EventManager.Sub(Globals.Events.HAS_MOM_KEY, () => { EventManager.Fire(Globals.Events.PICKUP_EITHER_KEY); });
 		EventManager.Sub(Globals.Events.HAS_DAD_KEY, () => { EventManager.Fire(Globals.Events.PICKUP_EITHER_KEY); });
+
+		// HAS_MILLIE_KEY => GO_CHECK_MUSIC_BOX
+		EventManager.Sub(Globals.Events.HAS_MILLIE_KEY, () => { EventManager.Fire(Globals.Events.GO_CHECK_MUSIC_BOX); });
 
 	}
 

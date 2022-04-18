@@ -152,7 +152,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Beat the game
+  m_Text: 
 --- !u!1 &406780559014531030
 GameObject:
   m_ObjectHideFlags: 0
@@ -2333,7 +2333,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: -LLLLL
+  m_Text: 
 --- !u!1 &3001901148864237361
 GameObject:
   m_ObjectHideFlags: 0
