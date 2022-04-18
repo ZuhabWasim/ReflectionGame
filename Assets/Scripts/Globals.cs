@@ -172,6 +172,10 @@ public class Globals
 		public static string GO_CHECK_MUSIC_BOX = "GoCheckBox";
 
 		public static string MOM_AT_SECOND_PART = "AtMomPartTwo";
+		public static string NEED_SCISSORS = "NeedScissors";
+		public static string NEED_BROOM = "NeedBroom";
+		public static string NEED_WHEEL = "NeedWheel";
+		public static string USED_WHEEL = "UsedWheel";
 		public static string EXIT_MOM = "ExitedMomCloset";
 
 		public static string EXIT_DAD = "ExitedDadCloset";

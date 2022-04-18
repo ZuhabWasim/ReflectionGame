@@ -8428,7 +8428,7 @@ MonoBehaviour:
   nonUseableVoiceLine: {fileID: 0}
   useVoiceLine: {fileID: 0}
   img: {fileID: 0}
-  onPickupEvent: 
+  onPickupEvent: NeedWheel
 --- !u!1001 &65917014879071320
 PrefabInstance:
   m_ObjectHideFlags: 0
