@@ -6161,7 +6161,7 @@ MonoBehaviour:
   acceptItem: 1
   deleteItem: 1
   itemName: Studio Light
-  firstInteractEvent: 
+  firstInteractEvent: NeedBulb
   myType: 0
   highlightOnLook: 1
   highlightChildObjects: 0
@@ -9552,6 +9552,10 @@ PrefabInstance:
     - target: {fileID: 2003515915111410583, guid: 58c218a1f5aa72240892452f94031341, type: 3}
       propertyPath: voiceLine
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2003515915111410583, guid: 58c218a1f5aa72240892452f94031341, type: 3}
+      propertyPath: onPickupEvent
+      value: NeedBrushTwo
       objectReference: {fileID: 0}
     - target: {fileID: 4715123538670676456, guid: 58c218a1f5aa72240892452f94031341, type: 3}
       propertyPath: m_RootOrder

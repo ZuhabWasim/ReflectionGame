@@ -12539,7 +12539,7 @@ MonoBehaviour:
   nonUseableVoiceLine: {fileID: 0}
   useVoiceLine: {fileID: 0}
   img: {fileID: 0}
-  onPickupEvent: 
+  onPickupEvent: NeedBulb
 --- !u!1 &1875797635595889238
 GameObject:
   m_ObjectHideFlags: 0
@@ -19912,6 +19912,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6672719750143343709}
     m_Modifications:
+    - target: {fileID: 3331100757775074128, guid: d7bf4b424bb08784fb708f9d3500b4a8, type: 3}
+      propertyPath: firstInteractEvent
+      value: NeedDadSafeCode
+      objectReference: {fileID: 0}
     - target: {fileID: 5294320099289110465, guid: d7bf4b424bb08784fb708f9d3500b4a8, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -20200,7 +20204,7 @@ MonoBehaviour:
   acceptItem: 1
   deleteItem: 0
   itemName: 
-  firstInteractEvent: 
+  firstInteractEvent: NeedBrushTwo
   myType: 0
   highlightOnLook: 1
   highlightChildObjects: 1

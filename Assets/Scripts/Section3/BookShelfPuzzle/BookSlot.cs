@@ -85,6 +85,7 @@ public class BookSlot : InteractableAbstract
 		}
 		else
 		{
+			EventManager.Fire( Globals.Events.NEED_STEP );
 			AudioPlayer.Play( nonInteractableVoiceLine, Globals.Tags.DIALOGUE_SOURCE );
 		}
 

@@ -24973,7 +24973,7 @@ MonoBehaviour:
   acceptItem: 1
   deleteItem: 0
   itemName: Paint Bucket
-  firstInteractEvent: 
+  firstInteractEvent: NeedBrushOne
   myType: 0
   highlightOnLook: 1
   highlightChildObjects: 1
@@ -25759,6 +25759,10 @@ PrefabInstance:
     - target: {fileID: 2003515915111410583, guid: 58c218a1f5aa72240892452f94031341, type: 3}
       propertyPath: itemName
       value: Dry Paint Brush
+      objectReference: {fileID: 0}
+    - target: {fileID: 2003515915111410583, guid: 58c218a1f5aa72240892452f94031341, type: 3}
+      propertyPath: onPickupEvent
+      value: NeedBrushOne
       objectReference: {fileID: 0}
     - target: {fileID: 4715123538670676456, guid: 58c218a1f5aa72240892452f94031341, type: 3}
       propertyPath: m_RootOrder
@@ -28161,7 +28165,7 @@ MonoBehaviour:
   acceptItem: 1
   deleteItem: 0
   itemName: 
-  firstInteractEvent: 
+  firstInteractEvent: NeedPaintCanvas
   myType: 0
   highlightOnLook: 1
   highlightChildObjects: 0
