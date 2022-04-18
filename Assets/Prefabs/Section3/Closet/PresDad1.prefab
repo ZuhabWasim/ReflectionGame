@@ -15725,7 +15725,7 @@ MonoBehaviour:
   nonUseableVoiceLine: {fileID: 0}
   useVoiceLine: {fileID: 0}
   img: {fileID: 0}
-  onPickupEvent: 
+  onPickupEvent: NeedStep
 --- !u!64 &7022639021759282325
 MeshCollider:
   m_ObjectHideFlags: 0

@@ -67,16 +67,15 @@ public static class InitObjectives
 	{
 		//TODO replace active & complete events
 		Objective ob_main = new Objective(Globals.UIStrings.OBJECTIVE_FIND_DADS_KEY, activateEv: Globals.Events.LOCK_DAD_DOOR, completeEvent: Globals.Events.HAS_DAD_KEY);
-		ob_main.AddSubObjective(new Objective(Globals.UIStrings.SUB_OBJ_BRUSH, activateEv: Globals.Events.LOCK_MOM_DOOR, completeEvent: Globals.Events.FIRST_TELEPORT));
-		ob_main.AddSubObjective(new Objective(Globals.UIStrings.SUB_OBJ_PAINT, activateEv: Globals.Events.LOCK_MOM_DOOR, completeEvent: Globals.Events.FIRST_TELEPORT));
-		ob_main.AddSubObjective(new Objective(Globals.UIStrings.SUB_OBJ_FIND_BOOK, activateEv: Globals.Events.LOCK_MOM_DOOR, completeEvent: Globals.Events.FIRST_TELEPORT));
-		ob_main.AddSubObjective(new Objective(Globals.UIStrings.SUB_OBJ_FIND_STEP, activateEv: Globals.Events.LOCK_MOM_DOOR, completeEvent: Globals.Events.FIRST_TELEPORT));
-		ob_main.AddSubObjective(new Objective(Globals.UIStrings.SUB_OBJ_FIND_BOOK_CODE, activateEv: Globals.Events.LOCK_MOM_DOOR, completeEvent: Globals.Events.FIRST_TELEPORT));
-		ob_main.AddSubObjective(new Objective(Globals.UIStrings.SUB_OBJ_EXPLORE2, activateEv: Globals.Events.LOCK_MOM_DOOR, completeEvent: Globals.Events.FIRST_TELEPORT));
-		ob_main.AddSubObjective(new Objective(Globals.UIStrings.SUB_OBJ_BRUSH2, activateEv: Globals.Events.LOCK_MOM_DOOR, completeEvent: Globals.Events.FIRST_TELEPORT));
-		ob_main.AddSubObjective(new Objective(Globals.UIStrings.SUB_OBJ_TURN_ON_PROJECTOR, activateEv: Globals.Events.LOCK_MOM_DOOR, completeEvent: Globals.Events.FIRST_TELEPORT));
-		ob_main.AddSubObjective(new Objective(Globals.UIStrings.SUB_OBJ_SOLVE_PUZZLE, activateEv: Globals.Events.LOCK_MOM_DOOR, completeEvent: Globals.Events.FIRST_TELEPORT));
-		ob_main.AddSubObjective(new Objective(Globals.UIStrings.SUB_OBJ_USE_SAFE, activateEv: Globals.Events.LOCK_MOM_DOOR, completeEvent: Globals.Events.HAS_DAD_KEY));
+		ob_main.AddSubObjective(new Objective(Globals.UIStrings.SUB_OBJ_BRUSH, activateEv: Globals.Events.NEED_BRUSH1, completeEvent: Globals.Events.BRUSH_WET_REFL));
+		ob_main.AddSubObjective(new Objective(Globals.UIStrings.SUB_OBJ_PAINT, activateEv: Globals.Events.NEED_PAINT_CANVAS, completeEvent: Globals.Events.CANVAS_STATE_CHANGE));
+		ob_main.AddSubObjective(new Objective(Globals.UIStrings.SUB_OBJ_FIND_STEP, activateEv: Globals.Events.NEED_STEP, completeEvent: Globals.Events.BOOKSHELF_BOOK_PLACED));
+		ob_main.AddSubObjective(new Objective(Globals.UIStrings.SUB_OBJ_FIND_BOOK_CODE, activateEv: Globals.Events.NEED_BOOK_CODE, completeEvent: Globals.Events.DAD_PUZZLE_1_BOOKSHELF_SOLVED));
+		ob_main.AddSubObjective(new Objective(Globals.UIStrings.SUB_OBJ_EXPLORE2, activateEv: Globals.Events.DAD_PUZZLE_1_BOOKSHELF_SOLVED, completeEvent: Globals.Events.DONE_DAD_EXPLORE));
+		ob_main.AddSubObjective(new Objective(Globals.UIStrings.SUB_OBJ_BRUSH2, activateEv: Globals.Events.NEED_BRUSH2, completeEvent: Globals.Events.BRUSH_WET_WHITE));
+		ob_main.AddSubObjective(new Objective(Globals.UIStrings.SUB_OBJ_TURN_ON_PROJECTOR, activateEv: Globals.Events.NEED_BULB, completeEvent: Globals.Events.DAD_PUZZLE_2_SPOTLIGHT_INSTALLED));
+		ob_main.AddSubObjective(new Objective(Globals.UIStrings.SUB_OBJ_USE_SAFE2, activateEv: Globals.Events.NEED_DAD_SAFE_CODE, completeEvent: Globals.Events.HAS_DAD_KEY));
+		ob_main.AddSubObjective(new Objective(Globals.UIStrings.SUB_OBJ_SOLVE_PUZZLE, activateEv: Globals.Events.SOLVE_DAD_PUZZLE, completeEvent: Globals.Events.DAD_PUZZLE_2_LIGHTPUZZLE_SOLVED));
 		return ob_main;
 	}
 

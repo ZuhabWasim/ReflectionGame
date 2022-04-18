@@ -178,6 +178,17 @@ public class Globals
 		public static string USED_WHEEL = "UsedWheel";
 		public static string EXIT_MOM = "ExitedMomCloset";
 
+		public static string NEED_BRUSH1 = "NeedBrushOne";
+		public static string NEED_PAINT_CANVAS = "NeedPaintCanvas";
+		public static string NEED_STEP = "NeedStep";
+		public static string NEED_BOOK_CODE = "NeedBookCode";
+		public static string NEED_BRUSH2 = "NeedBrushTwo";
+		public static string BRUSH_WET_REFL = "BrushWetRefl";
+		public static string BRUSH_WET_WHITE = "BrushWetWhite";
+		public static string NEED_BULB = "NeedBulb";
+		public static string DONE_DAD_EXPLORE = "DoneDadExplore";
+		public static string SOLVE_DAD_PUZZLE = "SolveDadPuzzle";
+		public static string NEED_DAD_SAFE_CODE = "NeedDadSafeCode";
 		public static string EXIT_DAD = "ExitedDadCloset";
 
 	}
@@ -293,7 +304,7 @@ public class Globals
 			public static string SUB_OBJ_BRUSH2 = "Apply white paint to the second paint brush";
 			public static string SUB_OBJ_TURN_ON_PROJECTOR = "Turn on the light projector";
 			public static string SUB_OBJ_SOLVE_PUZZLE = "Direct the light through each filter with the paint brushes";
-			//public static string SUB_OBJ_USE_SAFE = "Find and enter the code for the safe";
+			public static string SUB_OBJ_USE_SAFE2 = "Enter the code for the safe";
 
 		public static string OBJECTIVE_LEAVE_DAD = "Leave Dad's closet";
 

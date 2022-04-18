@@ -27,9 +27,11 @@ public class PaintBucket : InteractableAbstract
 		brush.paint = paint;
 		if (paint == PaintType.WHITE) {
 			brush.itemName = Globals.Misc.WHITE_PAINT_BRUSH;
+			EventManager.Fire( Globals.Events.BRUSH_WET_WHITE );
 		} else
         {
 			brush.itemName = Globals.Misc.WET_PAINT_BRUSH;
+			EventManager.Fire( Globals.Events.BRUSH_WET_REFL );
 		}
 		brush.img = icon;
 		inventory.RefreshItem( item );

@@ -21,10 +21,13 @@ public class ObjectivesText : MonoBehaviour
         {
             CurrObjective.text = "-" + ob.description;
             SubObjectiveList.text = "";
-            foreach (Objective sob in ob.subObjectives)
+            int activeCount = 0;
+            for (int i = 0; i < ob.subObjectives.Count && activeCount < 3; i++)
             {
+                Objective sob = ob.subObjectives[i];
                 if (sob.isActive)
                 {
+                    activeCount++;
                     SubObjectiveList.text += "-" + sob.description + "\n";
                 }
             }
