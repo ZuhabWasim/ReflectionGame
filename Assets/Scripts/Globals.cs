@@ -468,6 +468,28 @@ public class Globals
 			public static string FINALLY_I_CAN_LEAVE = "2.134.finally_i_can_leave";
 			public static string CHANGES_IN_PAST_AFFECT_PRESENT = "2.144.changes_in_past_affect_present";
 			public static string IS_IT_MOVING_IN_PRESENT = "2.145.is_it_moving_in_present";
+			
+			public static string DEBRIS_TOUGHER_TIME = "extra.2.147.debris_tougher_time";
+			public static string ANOTHER_BOX_BLOCKING_MY_WAY = "extra.2.148.another_box_blocking_my_way";
+			public static string BUNCH_OF_BOXES_BLOCKING_THE_WAY = "extra.2.149.bunch_of_boxes_blocking_the_way";
+			//public static string I_THINK_I_CAN_LEAVE_THE_CLOSET_NOW = "extra.2.150.i_think_i_can_leave_the_closet_now";
+			public static string LET_S_CLEAN_THIS_UP_MOTHER_ALWAYS_HATED_MESSES = "extra.2.151.let_s_clean_this_up_mother_always_hated_messes";
+			public static string MIRROR_SEEMS_CLOUDY = "extra.2.152.mirror_seems_cloudy";
+			public static string MOTHER_CURSE_BREAKING_THINGS = "extra.2.153.mother_curse_breaking_things";
+			public static string I_NEED_TO_GET_A_LITTLE_CLOSER = "extra.2.154.i_need_to_get_a_little_closer";
+			public static string GLASS_CONTAINER_TOO_HIGH = "extra.2.155.glass_container_too_high";
+			public static string I_NEED_SCISSORS = "extra.2.157.i_need_scissors";
+			public static string I_THINK_I_KNOW_THE_SAFE_CODE_NOW = "extra.2.158.i_think_i_know_the_safe_code_now";
+			public static string THIS_MUST_BE_THE_SAME_ROOM = "extra.2.159.this_must_be_the_same_room";
+			public static string NO_MORE_OBSTRUCTIONS = "extra.2.160.no_more_obstructions";
+			public static string REFLECTION_TAKES_ME_BACK = "extra.2.161.reflection_takes_me_back";
+			public static string RAILS_ATTACHED_TO_MIRROR = "extra.2.162.rails_attached_to_mirror";
+			public static string SEEM_TO_BE_A_WAY_THROUGH = "extra.2.164.seem_to_be_a_way_through";
+			public static string SUMMIT_OF_BOOKSHELF = "extra.2.165.summit_of_bookshelf";
+			public static string ROOM_LOOKS_OLDER = "extra.2.166.room_looks_older";
+			public static string MOTHER_S_RAPACIOUSNESS = "extra.2.167.mother_s_rapaciousness";
+			public static string DRAWER_BLOCKING_ME_FROM_SAFE = "extra.2.168.drawer_blocking_me_from_safe";
+			public static string I_THINK_I_CAN_LEAVE_THE_CLOSET_NOW = "extra.2.169.i_think_i_can_leave_the_closet_now";
 		}
 
 		public class Section3
