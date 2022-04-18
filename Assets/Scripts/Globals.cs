@@ -167,6 +167,9 @@ public class Globals
 		public static string LOCK_EITHER_DOOR = "LockEitherDoor";
 		public static string PICKUP_EITHER_KEY = "PickupEitherKey";
 		public static string PICKUP_BOTH_KEY = "PickupBothKey";
+		public static string EXIT_BOTH = "ExitedBothClosets";
+
+		public static string GO_CHECK_MUSIC_BOX = "GoCheckBox";
 
 		public static string MOM_AT_SECOND_PART = "AtMomPartTwo";
 		public static string EXIT_MOM = "ExitedMomCloset";
