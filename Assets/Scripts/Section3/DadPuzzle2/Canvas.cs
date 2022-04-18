@@ -37,11 +37,11 @@ public class Canvas : InteractableAbstract
 	{
 		if ( state == CanvasState.CLEAN )
 		{
-			AudioPlayer.Play( Globals.VoiceLines.Section3.WHITE_CANVAS, Globals.Tags.DIALOGUE_SOURCE );
+			AudioPlayer.Play( Globals.VoiceLines.Section3.I_BET_I_COULD_PAINT_ON_THESE_WITH_SOMETHING, Globals.Tags.DIALOGUE_SOURCE );
 		}
 		else if ( state == CanvasState.REFLECTIVE )
 		{
-			AudioPlayer.Play( Globals.VoiceLines.Section3.REFLECTIVE_CANVAS, Globals.Tags.DIALOGUE_SOURCE );
+			AudioPlayer.Play( Globals.VoiceLines.Section3.DO_I_STILL_HAVE_BRUSH, Globals.Tags.DIALOGUE_SOURCE );
 		}
 
 		if (voiceLine != null)
@@ -76,7 +76,7 @@ public class Canvas : InteractableAbstract
 			case PaintType.WHITE:
 				if (state == CanvasState.CLEAN)
 				{
-					AudioPlayer.Play(Globals.VoiceLines.Section3.ALREADY_BLANK, Globals.Tags.DIALOGUE_SOURCE);
+					AudioPlayer.Play(Globals.VoiceLines.Section3.CANVAS_ALREADY_BLANK, Globals.Tags.DIALOGUE_SOURCE);
 					AudioPlayer.Play(Globals.AudioFiles.General.NON_INTERACTABLE, Globals.Tags.MAIN_SOURCE);
 					return;
 				}
@@ -86,7 +86,7 @@ public class Canvas : InteractableAbstract
 			case PaintType.REFLECTIVE:
 				if (state == CanvasState.REFLECTIVE || state == CanvasState.PORTAL)
 				{
-					AudioPlayer.Play(Globals.VoiceLines.Section3.ALREADY_REFLECTIVE, Globals.Tags.DIALOGUE_SOURCE);
+					AudioPlayer.Play(Globals.VoiceLines.Section3.CANVAS_ALREADY_REFLECTIVE, Globals.Tags.DIALOGUE_SOURCE);
 					AudioPlayer.Play(Globals.AudioFiles.General.NON_INTERACTABLE, Globals.Tags.MAIN_SOURCE);
 					return;
 				}
