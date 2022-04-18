@@ -8,11 +8,11 @@ public class Stool : InteractableAbstract
     {
         if ( EmptyBucket.IsOnBucket() )
         {
-            AudioPlayer.Play(Globals.VoiceLines.Section3.STOOL_TOO_HIGH, Globals.Tags.DIALOGUE_SOURCE);
+            AudioPlayer.Play(Globals.VoiceLines.Section3.STILL_TOO_HIGH_USE_BUCKET, Globals.Tags.DIALOGUE_SOURCE);
         }
         else
         {
-            AudioPlayer.Play(Globals.VoiceLines.Section3.CANT_REACH, Globals.Tags.DIALOGUE_SOURCE);
+            AudioPlayer.Play(Globals.VoiceLines.Section3.CANT_REACH_IRONIC, Globals.Tags.DIALOGUE_SOURCE);
         }
     }
 }

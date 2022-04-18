@@ -41,15 +41,15 @@ public class PresentPainting : InteractableAbstract
         int filtersLit = getFilterLights();
         if (filtersLit == 0)
         {
-            AudioPlayer.Play(Globals.VoiceLines.Section3.CANVAS_PAINTING, Globals.Tags.DIALOGUE_SOURCE);
+            AudioPlayer.Play(Globals.VoiceLines.Section3.FAINT_LINES_HERE, Globals.Tags.DIALOGUE_SOURCE);
         } else if (filtersLit == FILTER_COUNT)
         {
-            AudioPlayer.Play(Globals.VoiceLines.Section3.SAFE_CODE, Globals.Tags.DIALOGUE_SOURCE);
+            AudioPlayer.Play(Globals.VoiceLines.Section3.CODE_WAS_IN_PAINTING, Globals.Tags.DIALOGUE_SOURCE);
             EventManager.Fire(Globals.Events.DAD_PUZZLE_2_LIGHTPUZZLE_SOLVED);
         }
         else
         {
-            AudioPlayer.Play(Globals.VoiceLines.Section3.NOT_ALL_FILTERS, Globals.Tags.DIALOGUE_SOURCE);
+            AudioPlayer.Play(Globals.VoiceLines.Section3.AMAZING_BUT_INCOMPLETE, Globals.Tags.DIALOGUE_SOURCE);
         }
     }
 
@@ -58,7 +58,7 @@ public class PresentPainting : InteractableAbstract
         int filtersLit = getFilterLights();
         if (filtersLit == FILTER_COUNT)
         {
-            AudioPlayer.Play(Globals.VoiceLines.Section3.ALL_FILTERS, Globals.Tags.DIALOGUE_SOURCE, false);
+            AudioPlayer.Play(Globals.VoiceLines.Section3.THAT_WORKED, Globals.Tags.DIALOGUE_SOURCE, false);
         }
     }
     
