@@ -6278,6 +6278,14 @@ PrefabInstance:
       propertyPath: startRotation.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2593824506917230527, guid: 46413c144f3086d4ea53fdc5885cd693, type: 3}
+      propertyPath: firstInteractEvent
+      value: NeedWheel
+      objectReference: {fileID: 0}
+    - target: {fileID: 2593824506917230527, guid: 46413c144f3086d4ea53fdc5885cd693, type: 3}
+      propertyPath: onMotionTriggerEvent
+      value: UsedWheel
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46413c144f3086d4ea53fdc5885cd693, type: 3}
 --- !u!4 &1349771213104134930 stripped

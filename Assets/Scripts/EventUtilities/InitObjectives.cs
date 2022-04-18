@@ -48,13 +48,12 @@ public static class InitObjectives
 
 	static Objective InitSection2Objectives()
 	{
-		//TODO replace active & complete events
 		Objective ob_main = new Objective(Globals.UIStrings.OBJECTIVE_FIND_MOMS_KEY, activateEv: Globals.Events.LOCK_MOM_DOOR, completeEvent: Globals.Events.HAS_MOM_KEY);
-		ob_main.AddSubObjective(new Objective(Globals.UIStrings.SUB_OBJ_GET_TO_SECOND, activateEv: Globals.Events.LOCK_MOM_DOOR, completeEvent: Globals.Events.FIRST_TELEPORT));
-		ob_main.AddSubObjective(new Objective(Globals.UIStrings.SUB_OBJ_FIND_SCISSORS, activateEv: Globals.Events.MILLIE_KEY_INTERACT, completeEvent: Globals.Events.FIRST_TELEPORT));
-		ob_main.AddSubObjective(new Objective(Globals.UIStrings.SUB_OBJ_FIND_BROOM, activateEv: Globals.Events.MILLIE_KEY_INTERACT, completeEvent: Globals.Events.FIRST_TELEPORT));
-		ob_main.AddSubObjective(new Objective(Globals.UIStrings.SUB_OBJ_MOM_USE_WHEEL, activateEv: Globals.Events.MILLIE_KEY_INTERACT, completeEvent: Globals.Events.FIRST_TELEPORT));
-		ob_main.AddSubObjective(new Objective(Globals.UIStrings.SUB_OBJ_USE_SAFE, activateEv: Globals.Events.MILLIE_KEY_INTERACT, completeEvent: Globals.Events.HAS_MOM_KEY));
+		ob_main.AddSubObjective(new Objective(Globals.UIStrings.SUB_OBJ_GET_TO_SECOND, activateEv: Globals.Events.LOCK_MOM_DOOR, completeEvent: Globals.Events.MOM_AT_SECOND_PART));
+		ob_main.AddSubObjective(new Objective(Globals.UIStrings.SUB_OBJ_FIND_SCISSORS, activateEv: Globals.Events.NEED_SCISSORS, completeEvent: Globals.Events.CUTTING_CLOTHING_RACK));
+		ob_main.AddSubObjective(new Objective(Globals.UIStrings.SUB_OBJ_FIND_BROOM, activateEv: Globals.Events.NEED_BROOM, completeEvent: Globals.Events.SWEPT_DEBRIS));
+		ob_main.AddSubObjective(new Objective(Globals.UIStrings.SUB_OBJ_MOM_USE_WHEEL, activateEv: Globals.Events.NEED_WHEEL, completeEvent: Globals.Events.USED_WHEEL));
+		ob_main.AddSubObjective(new Objective(Globals.UIStrings.SUB_OBJ_USE_SAFE, activateEv: Globals.Events.MOM_AT_SECOND_PART, completeEvent: Globals.Events.HAS_MOM_KEY));
 		return ob_main;
 	}
 
