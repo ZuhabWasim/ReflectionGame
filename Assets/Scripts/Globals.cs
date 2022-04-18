@@ -163,6 +163,34 @@ public class Globals
 		public static string DAD_PUZZLE_2_SPOTLIGHT_INSTALLED = "DadPuzzle2_SpotlightInstalled";
 		public static string DAD_PUZZLE_2_LIGHTPUZZLE_SOLVED = "DadPuzzle2_LightPuzzleSolved";
 
+		// Objective-related
+		public static string LOCK_EITHER_DOOR = "LockEitherDoor";
+		public static string PICKUP_EITHER_KEY = "PickupEitherKey";
+		public static string PICKUP_BOTH_KEY = "PickupBothKey";
+		public static string EXIT_BOTH = "ExitedBothClosets";
+
+		public static string GO_CHECK_MUSIC_BOX = "GoCheckBox";
+
+		public static string MOM_AT_SECOND_PART = "AtMomPartTwo";
+		public static string NEED_SCISSORS = "NeedScissors";
+		public static string NEED_BROOM = "NeedBroom";
+		public static string NEED_WHEEL = "NeedWheel";
+		public static string USED_WHEEL = "UsedWheel";
+		public static string EXIT_MOM = "ExitedMomCloset";
+
+		public static string NEED_BRUSH1 = "NeedBrushOne";
+		public static string NEED_PAINT_CANVAS = "NeedPaintCanvas";
+		public static string NEED_STEP = "NeedStep";
+		public static string NEED_BOOK_CODE = "NeedBookCode";
+		public static string NEED_BRUSH2 = "NeedBrushTwo";
+		public static string BRUSH_WET_REFL = "BrushWetRefl";
+		public static string BRUSH_WET_WHITE = "BrushWetWhite";
+		public static string NEED_BULB = "NeedBulb";
+		public static string DONE_DAD_EXPLORE = "DoneDadExplore";
+		public static string SOLVE_DAD_PUZZLE = "SolveDadPuzzle";
+		public static string NEED_DAD_SAFE_CODE = "NeedDadSafeCode";
+		public static string EXIT_DAD = "ExitedDadCloset";
+
 	}
 
 	public class Tags
@@ -241,14 +269,46 @@ public class Globals
 
 		// Objectives
 		public static string OBJECTIVE_TURN_ON_POWER = "Turn on the lights";
-		public static string SUB_OBJ_INVESTIGATE_ROOM = "Search the room for clues";
-		//public static string SUB_OBJ_INVESTIGATE_BOX = "Investigate the fusebox";
-		public static string SUB_OBJ_FIND_BOX_CODE = "Find the code and enter it at the fusebox";
-		//public static string SUB_OBJ_FIND_HANDKERCHIEF = "Find something to clean the vanity mirror";
-		public static string SUB_OBJ_FIND_CLEAN_MIRROR = "Clean the vanity mirror";
+			public static string SUB_OBJ_INVESTIGATE_ROOM = "Search the room for clues";
+			//public static string SUB_OBJ_INVESTIGATE_BOX = "Investigate the fusebox";
+			public static string SUB_OBJ_FIND_BOX_CODE = "Find the code and enter it at the fusebox";
+			//public static string SUB_OBJ_FIND_HANDKERCHIEF = "Find something to clean the vanity mirror";
+			public static string SUB_OBJ_FIND_CLEAN_MIRROR = "Clean the vanity mirror";
+
+		public static string OBJECTIVE_EXPLORE = "Explore the bedroom";
+			public static string SUB_OBJ_MUSIC_KEY1 = "Use music box key on music box above the fireplace";
+			public static string SUB_OBJ_CHECK_MIRROR = "Investigate the fireplace mirror";
 
 		public static string OBJECTIVE_FIND_TWO_KEYS = "Find 2 more music box keys";
+			public static string SUB_OBJ_INVESTIGATE_MOM_CLOSET = "Search Mom's closet in the past";
+			public static string SUB_OBJ_INVESTIGATE_DAD_CLOSET = "Search Dad's closet in the past";
+
+		public static string OBJECTIVE_FIND_MOMS_KEY = "Find Mom's music box key";
+			public static string SUB_OBJ_FIND_SCISSORS = "Use scissors to cut the dresses";
+			public static string SUB_OBJ_FIND_BROOM = "Use a broom to clear the debris";
+			public static string SUB_OBJ_GET_TO_SECOND = "Find a way to get to the second half of the closet";
+			public static string SUB_OBJ_MOM_USE_WHEEL = "Find and use a wheel to repair the dress form";
+			public static string SUB_OBJ_USE_SAFE = "Find and enter the code for the safe";
+			
+		public static string OBJECTIVE_LEAVE_MOM = "Leave Mom's closet";
+
 		public static string OBJECTIVE_FIND_ONE_KEY = "Find the final music box key";
+
+		public static string OBJECTIVE_FIND_DADS_KEY = "Find Dad's music box key";
+			public static string SUB_OBJ_BRUSH = "Apply paint to a paint brush";
+			public static string SUB_OBJ_PAINT = "Paint the blank canvas";
+			public static string SUB_OBJ_FIND_BOOK = "Find the missing book";
+			public static string SUB_OBJ_FIND_STEP = "Find a way to reach the bookshelf";
+			public static string SUB_OBJ_FIND_BOOK_CODE = "Find the correct order of the books on the shelf";
+			public static string SUB_OBJ_EXPLORE2 = "Explore the secret room";
+			public static string SUB_OBJ_BRUSH2 = "Apply white paint to the second paint brush";
+			public static string SUB_OBJ_TURN_ON_PROJECTOR = "Turn on the light projector";
+			public static string SUB_OBJ_SOLVE_PUZZLE = "Direct the light through each filter with the paint brushes";
+			public static string SUB_OBJ_USE_SAFE2 = "Enter the code for the safe";
+
+		public static string OBJECTIVE_LEAVE_DAD = "Leave Dad's closet";
+
+		public static string OBJECTIVE_USE_KEYS = "Use the keys on the music box";
 	}
 
 	public class Vars

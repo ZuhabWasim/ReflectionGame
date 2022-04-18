@@ -15725,7 +15725,7 @@ MonoBehaviour:
   nonUseableVoiceLine: {fileID: 0}
   useVoiceLine: {fileID: 0}
   img: {fileID: 0}
-  onPickupEvent: 
+  onPickupEvent: NeedStep
 --- !u!64 &7022639021759282325
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -18257,7 +18257,7 @@ MonoBehaviour:
   acceptItem: 0
   deleteItem: 0
   itemName: Dad's Closet Door
-  firstInteractEvent: 
+  firstInteractEvent: ExitedDadCloset
   myType: 0
   highlightOnLook: 1
   highlightChildObjects: 0
