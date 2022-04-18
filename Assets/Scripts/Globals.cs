@@ -472,26 +472,6 @@ public class Globals
 
 		public class Section3
 		{
-			/*public static string JULY_28_LETTER = "secret_room_letter";
-			public static string JULY_28_POV = "positive_pov";
-			public static string WHITE_CANVAS = "white_canvases";
-			public static string REFLECTIVE_CANVAS = "reflective_canvases";
-			public static string CREATE_PORTAL = "reflecting_through_d";
-			public static string AUG_23_LETTER = "august23rdnote";
-			public static string AUG_23_POV = "discourage_millie_letter_pov";
-			public static string NOT_ALL_FILTERS = "3.160.doesn_t_seem_right";
-			public static string ALL_FILTERS = "3.160.that_worked";
-			public static string SAFE_CODE = "3.163.code_was_in_painting";
-			public static string CANVAS_PAINTING = "3.139.faint_lines_here";
-			public static string ALREADY_BLANK = "already_blank";
-			public static string ALREADY_REFLECTIVE = "already_reflective";
-			public static string NO_NEED_TO_REFLECT = "no_need_to_reflect";
-			public static string TOO_SMALL_CANT_REFLECT = "too_small_cant_reflect";
-			public static string BRUSH_ALREADY_WET = "brush_already_wet";
-			public static string STOOL_TOO_HIGH = "stool_way_too_high";
-			
-			public static string CANT_REACH = "3.074.cant_reach_ironic";*/
-			
 			public static string FRESH_COAT_OF_PAINT = "3.003.fresh_coat_of_paint";
 			public static string AM_I_LOCKED_IN = "3.004.am_i_locked_in";
 			public static string BLANK_CANVAS_RARE_SIGHT = "3.008.blank_canvas_rare_sight";

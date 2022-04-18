@@ -5,6 +5,8 @@ using UnityEngine;
 public class PresentShelf : InteractableAbstract
 {
     private InterpolateTransform mover = null;
+
+    public AudioClip crowbarClip;
     
     // Start is called before the first frame update
     protected override void OnStart()
@@ -29,5 +31,6 @@ public class PresentShelf : InteractableAbstract
     {
         mover.startRotation = new Vector3( 0, 90, 0 );  // To fully open up the closet.
         mover.interpDuration = 2f;
+        nonUseableVoiceLine = crowbarClip;
     }
 }
