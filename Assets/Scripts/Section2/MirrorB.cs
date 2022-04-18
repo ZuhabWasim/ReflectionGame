@@ -30,6 +30,7 @@ public class MirrorB : MirrorInteractable
             if ( isBoxBlockingMirror() )
             {
                 AudioPlayer.Play( Globals.VoiceLines.Section2.CAN_T_GO_THROUGH_THIS_WAY, Globals.Tags.DIALOGUE_SOURCE );
+                AudioPlayer.Play( Globals.VoiceLines.Section2.CAN_I_MOVE_THIS, Globals.Tags.DIALOGUE_SOURCE , false);
             }
             else
             {
@@ -45,7 +46,7 @@ public class MirrorB : MirrorInteractable
             pastMover.TriggerMotion();
             presMover.TriggerMotion();
             
-            AudioPlayer.Play( Globals.AudioFiles.Section2.MOVING_MIRROR, Globals.Tags.DIALOGUE_SOURCE, false); // Not working so use MainSource
+            AudioPlayer.Play( Globals.VoiceLines.Section2.IS_IT_MOVING_IN_PRESENT, Globals.Tags.DIALOGUE_SOURCE);
             
             EventManager.Fire(Globals.Events.MOVE_MIRROR_B);
             
