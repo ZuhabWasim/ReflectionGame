@@ -18,7 +18,10 @@ public class InteractNote : InteractableAbstract
 	
 	[Tooltip( "Whether the player will hear Millie's response to the letter when playing back." )]
 	public bool playbackResponse = false;
-	
+	public static void InitJournal()
+	{
+		journal = new List<InteractNote>();
+	}
 	public override void OnUseItemUnfiltered()
 	{
 		AddNote();

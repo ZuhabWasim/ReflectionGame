@@ -20,6 +20,8 @@ public class Globals
 			RegisterGlobalEventListeners();
 			Objectives.PopulateObjectives();
 			ForkList.InitForks();
+			Inventory.InitInventory();
+			InteractNote.InitJournal();
 		};
 	}
 
@@ -32,7 +34,8 @@ public class Globals
 		// Teleporting variables
 		GlobalState.AddVar<bool>( Globals.Vars.TELEPORTING, false );
 		GlobalState.AddVar<bool>( Globals.Vars.CAN_TELEPORT, false );
-
+		
+		Time.timeScale = 1f;
 		Debug.Log( "Loaded global state vars" );
 	}
 
