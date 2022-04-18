@@ -420,17 +420,54 @@ public class Globals
 
 		public class Section2
 		{
-			public static string CONTAINER_TOO_FAR = "container_too_far";
-			public static string CONTAINER_TOO_HIGH = "container_too_high";
-			public static string LAVISH_CLOTHES = "lavish_clothes";
-			public static string TONE_DOWN = "tone_down";
-			public static string MIRROR_A_RIGHT_SPOT = "mirror_a_right_spot";
-			public static string NO_MORE_OBSTRUCTIONS = "no_more_obstructions";
-			public static string ANOTHER_BOX_BLOCKING = "another_box_blocking";
-			public static string MOM_NOTE = "mom_note";
-			public static string CAN_LEAVE_CLOSET = "can_leave_closet";
-			public static string SLID_MIRROR_IN = "slid_the_mirror_in";
-			public static string VISIT_SAFE = "lets_visit_safe";
+			public static string EXPENSIVE_GOWNS = "2.003.woah_expensive_gowns";
+			public static string AM_I_LOCKED_IN = "2.004.am_i_locked_in";
+			public static string TOO_HEAVY_EASY = "2.005.gowns_too_heavy_to_move";
+			public static string SEWING_TOOLS_KEPT_HIGH_UP = "2.010.sewing_tools_kept_high_up";
+			public static string THESE_LOOK_SHARP_ENOUGH = "2.014.these_look_sharp_enough";
+			public static string CAN_T_REACH_MIRROR = "2.016.can_t_reach_mirror";
+			public static string MOTHER_S_GOING_TO_SCOLD_ME = "2.017.mother_s_going_to_scold_me";
+			public static string CAN_T_BELIEVE_I_DID_THAT = "2.022.can_t_believe_i_did_that";
+			public static string ANOTHER_MIRROR = "2.026.another_mirror";
+			public static string CAN_T_GO_THROUGH_THIS_WAY = "2.027.can_t_go_through_this_way";
+			public static string LOOK_AT_ALL_THESE_BOOKS = "2.027.look_at_all_these_books";
+			public static string FATHER_READ_TO_ME_NOT_SEEN_BOOK_YET = "2.028.father_read_to_me_not_seen_book_yet";
+			public static string PASSAGE_ON_OTHER_SIDE = "2.028.passage_on_other_side";
+			public static string CAN_I_MOVE_THIS = "2.029.can_i_move_this";
+			public static string FATHER_READ_BOOK_FOUND_WHITE_BOOK_ALREADY = "2.029.father_read_book_found_white_book_already";
+			public static string MIRROR_HAS_BEEN_MOVED_MANY_TIMES = "2.031.mirror_has_been_moved_many_times";
+			public static string STUFF_IN_THE_WAY = "2.032.stuff_in_the_way";
+			public static string CLEAR_DEBRIS = "2.035.clear_debris";
+			public static string THAT_SHOULD_DO_IT = "2.039.that_should_do_it";
+			public static string I_CAN_MOVE_THROUGH_IT_NOW = "2.040.i_can_move_through_it_now";
+			public static string THUMP_GOOD_HEAVENS = "2.053.thump_good_heavens";
+			public static string STILL_TOO_HIGH = "2.057.still_too_high";
+			public static string THIS_COULD_WORK_BUT = "2.059.this_could_work_but";
+			public static string EASY_WAY_OUT = "2.061.easy_way_out";
+			public static string ONLY_WAY_FORWARD_IS_THROUGH_MIRROR = "2.062.only_way_forward_is_through_mirror";
+			public static string MIRROR_DOUBLE_SIDED = "2.065.mirror_double_sided";
+			public static string IT_S_ON_WHEELS = "2.066.it_s_on_wheels";
+			public static string MOTHER_S_OLD_SAFE = "2.071.mother_s_old_safe";
+			public static string LOCKED = "2.072.locked";
+			public static string LET_S_SEE_WHERE_THIS_LEADS = "2.077.let_s_see_where_this_leads";
+			public static string NOTE_OVER_THERE = "2.080.note_over_there";
+			public static string IT_WON_T_ROLL_FOUND_WHEEL_ALREADY = "2.081.it_won_t_roll_found_wheel_already";
+			public static string IT_WON_T_ROLL_HAVEN_T_FOUND_WHEEL_YET = "2.081.it_won_t_roll_haven_t_found_wheel_yet";
+			public static string BLOCKED = "2.087.blocked";
+			public static string I_CAN_MOVE_DRESS_FORM_NOW = "2.090.i_can_move_dress_form_now";
+			public static string THIS_LOOKS_IMPORTANT = "2.091.this_looks_important";
+			public static string MOTHER_SEEMED_COLD_AND_STERN = "2.094.mother_seemed_cold_and_stern";
+			public static string THAT_SHOULD_DO_IT_MOVE = "2.104.that_should_do_it";
+			public static string PERFECT = "2.105.perfect";
+			public static string TRY_USING_BIRTH_YEAR = "2.117.try_using_birth_year";
+			public static string FEELS_LIKE_I_SHOULDN_T_BE_HERE = "2.124.feels_like_i_shouldn_t_be_here";
+			public static string OBTAINED_MOTHER_KEY = "2.125.obtained_mother_key";
+			public static string A_DRAWER_PULL = "2.126.a_drawer_pull";
+			public static string CAN_T_TRAVEL_THROUGH_MIRRORS_ANYMORE = "2.131.can_t_travel_through_mirrors_anymore";
+			public static string USE_DRAWER_PULL = "2.133.use_drawer_pull";
+			public static string FINALLY_I_CAN_LEAVE = "2.134.finally_i_can_leave";
+			public static string CHANGES_IN_PAST_AFFECT_PRESENT = "2.144.changes_in_past_affect_present";
+			public static string IS_IT_MOVING_IN_PRESENT = "2.145.is_it_moving_in_present";
 		}
 
 		public class Section3
