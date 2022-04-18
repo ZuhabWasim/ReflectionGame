@@ -592,15 +592,17 @@ public class Globals
 
 		public class Section4
 		{
-			public static string MUSIC_BOX_OPENED = "music_box_opened";
 			public static string THATS_ONE = "thats_one";
-			public static string THATS_TWO = "thats_two";
-			public static string THATS_THREE = "thats_three";
-			public static string FIND_ALL_THREE_KEYS = "find_all_three_keys";
-			public static string HAVING_MILLIE_KEY_AUDIO = "has_millie_key";
-			public static string HAVING_MOM_KEY_AUDIO = "has_mom_key";
-			public static string HAVING_DAD_KEY_AUDIO = "has_dad_key";
-			public static string HAVING_ALL_KEYS_AUDIO = "has_all_keys";
+
+			public static string ALL_THREE_KEYS = "4.004.all_three_keys";
+			public static string HAVE_MY_KEY_NOW = "extra.4.035.have_my_key_now";
+			public static string FOUND_MOTHERS_KEY_LOOK_FOR_FATHERS = "extra.4.037.found_mothers_key_look_for_fathers";
+			public static string WAIT_FOR_ALL_THREE_KEYS = "extra.4.038.wait_for_all_three_keys";
+			public static string OBTAINED_FATHERS_KEY_MOTHER_KEY_LEFT = "extra.4.039.obtained_fathers_key_mother_key_left";
+			public static string THATS_TWO = "extra.4.041.thats_two";
+			public static string THATS_THREE = "extra.4.042.thats_three";
+			public static string IT_OPENED = "extra.4.044.it_opened";
+			public static string GO_BACK_TO_MUSIC_BOX = "extra.4.045.go_back_to_music_box";
 		}
 	}
 }
