@@ -1,0 +1,1 @@
+It seems like I can only move through the canvases that are painted in both timelines. The others will only reflect.
