@@ -29,7 +29,7 @@ struct RegisteredAudioPlayer
 public class AudioPlayer
 {
 	private static Hashtable m_audioPlayers = new Hashtable();
-	private static System.Action<string> SubtitleDisplayFunc = ( string text ) =>
+	private static System.Action<string, float> SubtitleDisplayFunc = ( string text, float duration ) =>
 	{
 		Debug.Log( text );
 	};
@@ -110,7 +110,7 @@ public class AudioPlayer
 			player.src.Stop();
 		}
 		player.src.Play();
-		DisplaySubtitleForClip( clip.name );
+		DisplaySubtitleForClip( clip );
 	}
 
 	static IEnumerator HandleAudioPlayer( RegisteredAudioPlayer player )
@@ -126,7 +126,7 @@ public class AudioPlayer
 #endif // if DEBUGGING_AUDIO_SRC
 			player.src.clip = player.clipQueue.Dequeue();
 			player.src.Play();
-			DisplaySubtitleForClip( player.src.clip.name );
+			DisplaySubtitleForClip( player.src.clip );
 		}
 	}
 
@@ -139,17 +139,17 @@ public class AudioPlayer
 #endif // if DEBUGGING_AUDIO_SRC
 	}
 
-	public static void SetSubtitleDisplayCallback( System.Action<string> callback )
+	public static void SetSubtitleDisplayCallback( System.Action<string, float> callback )
 	{
 		SubtitleDisplayFunc = callback;
 	}
 
-	private static void DisplaySubtitleForClip( string audioFile )
+	private static void DisplaySubtitleForClip( AudioClip clip )
 	{
-		TextAsset subtitleFile = Utilities.AssetLoader.GetSubtitle( audioFile ); // audioFile's sub has the same name
+		TextAsset subtitleFile = Utilities.AssetLoader.GetSubtitle( clip.name ); // audioFile's sub has the same name
 		if ( subtitleFile )
 		{
-			SubtitleDisplayFunc( subtitleFile.text );
+			SubtitleDisplayFunc( subtitleFile.text, clip.length );
 		}
 	}
 }
