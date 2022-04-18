@@ -29,11 +29,11 @@ public class MirrorB : MirrorInteractable
             // If the box is still blocking Mirror B, don't let the player teleport just yet.
             if ( isBoxBlockingMirror() )
             {
-                AudioPlayer.Play( Globals.VoiceLines.Section2.ANOTHER_BOX_BLOCKING, Globals.Tags.DIALOGUE_SOURCE );
+                AudioPlayer.Play( Globals.VoiceLines.Section2.CAN_T_GO_THROUGH_THIS_WAY, Globals.Tags.DIALOGUE_SOURCE );
             }
             else
             {
-                AudioPlayer.Play( Globals.VoiceLines.Section2.NO_MORE_OBSTRUCTIONS, Globals.Tags.DIALOGUE_SOURCE );
+                AudioPlayer.Play( Globals.VoiceLines.Section2.I_CAN_MOVE_THROUGH_IT_NOW, Globals.Tags.DIALOGUE_SOURCE );
                 teleportable = true;
             }
         }
