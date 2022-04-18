@@ -29,6 +29,12 @@ struct RegisteredAudioPlayer
 public class AudioPlayer
 {
 	private static Hashtable m_audioPlayers = new Hashtable();
+	private static System.Action<string> SubtitleDisplayFunc = ( string text ) =>
+	{
+		Debug.Log( text );
+	};
+
+	public static bool subtitlesEnabled { get; set; } = false;
 
 	public static void RegisterAudioPlayer( string identifier, AudioSource source )
 	{
@@ -104,6 +110,7 @@ public class AudioPlayer
 			player.src.Stop();
 		}
 		player.src.Play();
+		DisplaySubtitleForClip( clip.name );
 	}
 
 	static IEnumerator HandleAudioPlayer( RegisteredAudioPlayer player )
@@ -119,6 +126,7 @@ public class AudioPlayer
 #endif // if DEBUGGING_AUDIO_SRC
 			player.src.clip = player.clipQueue.Dequeue();
 			player.src.Play();
+			DisplaySubtitleForClip( player.src.clip.name );
 		}
 	}
 
@@ -129,5 +137,19 @@ public class AudioPlayer
 		RegisteredAudioPlayer player = (RegisteredAudioPlayer)m_audioPlayers[ targetSource ];
 		player.debugging = true;
 #endif // if DEBUGGING_AUDIO_SRC
+	}
+
+	public static void SetSubtitleDisplayCallback( System.Action<string> callback )
+	{
+		SubtitleDisplayFunc = callback;
+	}
+
+	private static void DisplaySubtitleForClip( string audioFile )
+	{
+		TextAsset subtitleFile = Utilities.AssetLoader.GetSubtitle( audioFile ); // audioFile's sub has the same name
+		if ( subtitleFile )
+		{
+			SubtitleDisplayFunc( subtitleFile.text );
+		}
 	}
 }
