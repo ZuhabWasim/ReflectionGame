@@ -34,7 +34,7 @@ public class AudioPlayer
 		Debug.Log( text );
 	};
 
-	public static bool subtitlesEnabled { get; set; } = false;
+	public static bool subtitlesEnabled { get; set; } = true;
 
 	public static void RegisterAudioPlayer( string identifier, AudioSource source )
 	{
