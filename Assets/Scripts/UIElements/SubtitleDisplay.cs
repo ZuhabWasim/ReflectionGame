@@ -7,6 +7,7 @@ public class SubtitleDisplay : MonoBehaviour
 {
 
     public Text SubText;
+    public static bool showSubs;
 
     private bool displayingText;
     private float timer;
@@ -14,6 +15,7 @@ public class SubtitleDisplay : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        showSubs = true;
         displayingText = false;
         timer = 0.0f;
         
@@ -37,9 +39,15 @@ public class SubtitleDisplay : MonoBehaviour
 
     void DisplaySubtitle(string text, float dur)
     {
-        SubText.text = text;
-
-        timer = dur;
         displayingText = true;
+        timer = dur;
+
+        if (showSubs)
+        {
+            SubText.text = text;
+        } else
+        {
+            SubText.text = "";
+        }
     }
 }
