@@ -987,6 +987,7 @@ GameObject:
   - component: {fileID: 7054450047505388112}
   - component: {fileID: 223640045795955314}
   - component: {fileID: 1502036421564666057}
+  - component: {fileID: 6395268027492260081}
   m_Layer: 5
   m_Name: UI_Canvas
   m_TagString: Untagged
@@ -1021,6 +1022,7 @@ RectTransform:
   - {fileID: 120419290608800241}
   - {fileID: 4674372969745350280}
   - {fileID: 7127846375732866612}
+  - {fileID: 4912314611122683779}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1232,6 +1234,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrObjective: {fileID: 4238002900276808664}
   SubObjectiveList: {fileID: 7205436023393716779}
+--- !u!114 &6395268027492260081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584394267137091324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73921fb117bc2b944ab0d6d780187475, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  img: {fileID: 3974666009933543788}
+  defFadeTime: 3
 --- !u!1 &1584394267790239773
 GameObject:
   m_ObjectHideFlags: 0
@@ -1527,11 +1543,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Mother was so organized later in life. After father had disappeared she
-    became distant and stern \u2026 boxed herself up, just like how she boxed up
-    the\ngowns she used to proudly flaunt. The last I remember she kept her sewing
-    tools up high on a shelf. She said it was so I couldn't hurt myself,\nbut I reckon
-    it was because she didn't want me touching her things."
+  m_Text: Subtitle
 --- !u!114 &736723966352621540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2976,6 +2988,82 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &3812689227152614847
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4912314611122683779}
+  - component: {fileID: 4854371238853770021}
+  - component: {fileID: 3974666009933543788}
+  m_Layer: 5
+  m_Name: BlackRect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &4912314611122683779
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3812689227152614847}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1584394267137091313}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 2114.234, y: 1180.8455}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &4854371238853770021
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3812689227152614847}
+  m_CullTransparentMesh: 1
+--- !u!114 &3974666009933543788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3812689227152614847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &3920156507071904132
 GameObject:
   m_ObjectHideFlags: 0

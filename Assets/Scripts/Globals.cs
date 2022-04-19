@@ -222,6 +222,7 @@ public class Globals
 		public static string MOUSE_X = "Mouse X";
 		public static string MOUSE_Y = "Mouse Y";
 		public static string UI_Canvas = "UI_Canvas";
+		public static string Canvas = "Canvas";
 		public static string PAINT_BRUSH = "Dry Paint Brush";
 		public static string WET_PAINT_BRUSH = "Reflective Paint Brush";
 		public static string WHITE_PAINT_BRUSH = "White Paint Brush";

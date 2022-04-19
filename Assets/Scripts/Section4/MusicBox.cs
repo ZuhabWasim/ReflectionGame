@@ -150,6 +150,15 @@ public class MusicBox : InteractableAbstract
 
 		InterpolateTransform it = GetComponentInChildren<InterpolateTransform>();
 		it.TriggerMotion();
+
+		GameObject.Find(Globals.Misc.UI_Canvas).GetComponent<FadeToBlack>().StartFadeOut(PlayFinalCutscene);
+	}
+
+	void PlayFinalCutscene()
+    {
+		//TODO right now this just takes the player back to the main menu
+		//Instead, it should play final cutscene.
+		GameObject.Find(Globals.Misc.UI_Canvas).GetComponent<PauseMenu>().ExitGame();
 	}
 
 	void OnLightsTurningOn()

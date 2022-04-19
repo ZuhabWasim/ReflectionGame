@@ -8,7 +8,11 @@ public class StartMenu : MonoBehaviour
 
 	public void onClickStart()
 	{
-		SceneManager.LoadScene( Globals.MAIN_SCENE );
+		GameObject.Find(Globals.Misc.Canvas).GetComponent<FadeToBlack>().StartFadeOut(onFadeOut);
+	}
+	public void onFadeOut()
+    {
+		SceneManager.LoadScene(Globals.MAIN_SCENE);
 	}
 	public void onClickQuit()
 	{
