@@ -10,12 +10,14 @@ public class PauseMenu : MonoBehaviour
 	public GameObject pauseMenu;
 	private bool isPaused;
 	private bool objectiveOn;
+	private bool subtitleOn;
 	public GameObject objectives;
 	void Start()
 	{
 		pauseMenu.SetActive( false );
 		isPaused = false;
 		objectiveOn = false;
+		subtitleOn = true;
 	}
 	public bool IsPaused()
 	{
@@ -25,6 +27,11 @@ public class PauseMenu : MonoBehaviour
 	{
 		objectiveOn = !objectiveOn;
 		objectives.SetActive( objectiveOn );
+	}
+	public void ToggleSubtitles()
+	{
+		subtitleOn = !subtitleOn;
+		SubtitleDisplay.showSubs = subtitleOn;
 	}
 	public void PauseGame()
 	{
