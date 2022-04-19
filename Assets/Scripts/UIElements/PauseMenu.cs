@@ -54,6 +54,8 @@ public class PauseMenu : MonoBehaviour
 		SceneManager.LoadScene( Globals.MENU_SCENE );
 		EventManager.Fire( Globals.Events.GAME_RESTART );
 		Cleanup();
+		Time.timeScale = 1f;
+		Cursor.lockState = CursorLockMode.Confined;
 	}
 
 	private void Cleanup()

@@ -150,7 +150,18 @@ public class MusicBox : InteractableAbstract
 
 		InterpolateTransform it = GetComponentInChildren<InterpolateTransform>();
 		it.TriggerMotion();
-
+		
+		// Stop all audio sources, preferably gradually.
+		AudioPlayer.StopCurrentClip(Globals.Tags.MAIN_SOURCE);
+		AudioPlayer.StopCurrentClip(Globals.Tags.AMBIENCE_SOURCE);
+		
+		// Stop the player movement
+		PlayerController player = GameObject.FindGameObjectWithTag(Globals.Tags.PLAYER).GetComponent<PlayerController>();
+		player.speed = 0f;
+		player.sensitivity = 0f;
+		
+		// Fade out at the speed it takes for the last two dialogue lines to play
+		GameObject.Find(Globals.Misc.UI_Canvas).GetComponent<FadeToBlack>().defFadeTime = 5;
 		GameObject.Find(Globals.Misc.UI_Canvas).GetComponent<FadeToBlack>().StartFadeOut(PlayFinalCutscene);
 	}
 
