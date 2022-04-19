@@ -167,39 +167,16 @@ public class MirrorConnector : MonoBehaviour
 
 	private void OnDestroy()
 	{
-		// Remove mirror planes
-		if (presentMirror)
-		{
-			Destroy(presentMirror);
-		}
-		if (pastMirror)
-		{
-			Destroy(pastMirror);
-		}
-
-		// Remove interactables
-		if (m_presentInteractable)
-		{
-			Destroy(m_presentInteractable);
-		}
-		if (m_pastInteractable)
-		{
-			Destroy(m_pastInteractable);
-		}
-
 		// Remove render textures
 		if (m_presentMirrorTexture)
 		{
 			m_presentMirrorTexture.Release();
-			Destroy(m_presentMirrorTexture);
 		}
 
 		if (m_pastMirrorTexture)
 		{
 			m_pastMirrorTexture.Release();
-			Destroy(m_pastMirrorTexture);
 		}
-		
 	}
 
 	public void CheckForDeactivateZone()

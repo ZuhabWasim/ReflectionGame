@@ -57,11 +57,6 @@ public class MirrorCameraPosition : MonoBehaviour
 		}
 	}
 
-	private void OnDestroy()
-	{
-		Destroy(mirrorCam);	
-	}
-
 	private float GetNearClipPlane()
 	{
 

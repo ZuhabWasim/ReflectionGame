@@ -34,18 +34,6 @@ public class MirrorPlane : MonoBehaviour
 
 	}
 
-	private void OnDestroy()
-	{
-		Destroy(dirtyMirrorMaterial);
-		Destroy(opaqueMirrorMaterial);
-		
-		Destroy(m_mirrorRenderer);
-		Destroy(m_mirrorMaterial);
-		Destroy(m_originalMaterial);
-
-		Destroy(m_mirrorCameraPosition);
-	}
-
 	public void OnStart()
 	{
 		m_mirrorCameraPosition = GetComponentInChildren( typeof( MirrorCameraPosition ), true ) as MirrorCameraPosition;
