@@ -13,6 +13,7 @@ public class Wheel : PickupItem
     {
         base.OnStart();
         EventManager.Sub(Globals.Events.NEED_WHEEL, UpdateWheelClip);
+        EventManager.Sub(Globals.Events.USED_WHEEL, RemoveWheelClips);
     }
 
     void UpdateWheelClip()
@@ -20,6 +21,13 @@ public class Wheel : PickupItem
         voiceLine = wheelClipFormFound;
     }
 
+    void RemoveWheelClips()
+    {
+        InterpolateInteractableWrapper dressFormIIW = dressForm.GetComponent<InterpolateInteractableWrapper>();
+        dressFormIIW.voiceLine = null;
+        dressFormIIW.nonUseableVoiceLine = null;
+    }
+    
     protected override void OnUserInteract()
     {
         InterpolateInteractableWrapper dressFormIIW = dressForm.GetComponent<InterpolateInteractableWrapper>();
