@@ -304,7 +304,7 @@ public class Globals
 			public static string SUB_OBJ_EXPLORE2 = "Explore the secret room";
 			public static string SUB_OBJ_BRUSH2 = "Apply white paint to the second paint brush";
 			public static string SUB_OBJ_TURN_ON_PROJECTOR = "Turn on the light projector";
-			public static string SUB_OBJ_SOLVE_PUZZLE = "Direct the light through each filter with the paint brushes";
+			public static string SUB_OBJ_SOLVE_PUZZLE = "Direct light through all filters to present photo with brushes";
 			public static string SUB_OBJ_USE_SAFE2 = "Enter the code for the safe";
 
 		public static string OBJECTIVE_LEAVE_DAD = "Leave Dad's closet";

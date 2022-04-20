@@ -6,6 +6,10 @@ public class StudioLight : InteractableAbstract
 {
     public Light spotLight;
     public AudioClip spotLightOnVoiceLine;
+
+    public GameObject lense;
+
+    public Material glowingMaterial;
     
     // Start is called before the first frame update
     protected override void OnStart()
@@ -19,6 +23,7 @@ public class StudioLight : InteractableAbstract
         EventManager.Fire( Globals.Events.RECOMPUTED_LIGHT );
         voiceLine = spotLightOnVoiceLine;
         nonUseableVoiceLine = null;
+        lense.GetComponent<Renderer>().material = glowingMaterial;
     }
     
 }
