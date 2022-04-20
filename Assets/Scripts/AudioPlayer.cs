@@ -99,6 +99,7 @@ public class AudioPlayer
 		if ( player.src.isPlaying )
 		{
 			player.src.Stop();
+			EventManager.Fire( Globals.Events.SKIP_SUBTITLE );
 		}
 	}
 

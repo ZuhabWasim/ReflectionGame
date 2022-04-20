@@ -21,6 +21,7 @@ public class SubtitleDisplay : MonoBehaviour
         
         SubText.text = "";
         AudioPlayer.SetSubtitleDisplayCallback(DisplaySubtitle);
+        EventManager.Sub( Globals.Events.SKIP_SUBTITLE, SkipSubtitle );
     }
 
     // Update is called once per frame
@@ -35,6 +36,11 @@ public class SubtitleDisplay : MonoBehaviour
                 SubText.text = "";
             }
         }
+    }
+
+    void SkipSubtitle()
+    {
+        timer = 0.0f;
     }
 
     void DisplaySubtitle(string text, float dur)

@@ -121,6 +121,7 @@ public class Globals
 		public static string DEACTIVATE_DAD_CLOSET = "DeactivateDadCloset";
 		public static string ACTIVATE_MAIN_ROOM = "ActivateMainRoom";
 		public static string DEACTIVATE_MAIN_ROOM = "DeactivateMainRoom";
+		public static string SKIP_SUBTITLE = "SkipSubtitle";
 		public static string GAME_RESTART = "GAME_RESTART";
 
 		// Section 1
