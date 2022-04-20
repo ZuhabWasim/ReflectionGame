@@ -106,6 +106,7 @@ public class Globals
 		EventManager.Fire( Globals.Events.ACTIVATE_DAD_CLOSET );
 	}
 
+	public static int ENDING_SCENE = 2;
 	public static int MAIN_SCENE = 1;
 	public static int MENU_SCENE = 0;
 

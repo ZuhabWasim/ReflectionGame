@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Experimental.GlobalIllumination;
 
 public class MusicBox : InteractableAbstract
@@ -232,7 +233,9 @@ public class MusicBox : InteractableAbstract
     {
 		//TODO right now this just takes the player back to the main menu
 		//Instead, it should play final cutscene.
-		GameObject.Find(Globals.Misc.UI_Canvas).GetComponent<PauseMenu>().ExitGame();
+		SceneManager.LoadScene( Globals.ENDING_SCENE );
+		Time.timeScale = 1f;
+		Cursor.lockState = CursorLockMode.Confined;
 	}
 
 	void OnLightsTurningOn()
