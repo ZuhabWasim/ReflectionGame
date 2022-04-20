@@ -301,7 +301,7 @@ public class PlayerController : MonoBehaviour
 				{
 					m_footstepSource.pitch = 0.85f;
 				}
-				m_footstepSource.PlayOneShot( m_footstepSource.clip );
+				m_footstepSource.PlayOneShot( footstepSound );
 				stepCounter = FOOT_STEP_INTERVAL;
 			}
 			else
