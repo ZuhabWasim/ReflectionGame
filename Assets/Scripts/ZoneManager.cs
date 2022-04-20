@@ -7,11 +7,13 @@ public class ZoneManager : MonoBehaviour
 
 	private Zone[] zones;
 	private Zone m_activeZone;
+	private List<ZoneStateData> m_activeZoneStates = new List<ZoneStateData>();
 	private const float ACTIVE_ZONE_REFRESH_RATE = 3;
 
 	void Start()
 	{
 		zones = GameObject.FindObjectsOfType<Zone>();
+		Debug.LogFormat( "Collected {0} zones", zones.Length );
 		StartCoroutine( UpdateActiveZone() );
 	}
 
@@ -27,15 +29,29 @@ public class ZoneManager : MonoBehaviour
 
 	public Zone GetCurrentPlayerZone()
 	{
+		m_activeZoneStates.Clear();
 		foreach ( Zone zone in zones )
 		{
 			if ( zone.IsPlayerInside() )
 			{
-				return zone;
+				m_activeZoneStates.Add( zone.GetZoneState() );
 			}
 		}
 
-		return null;
+		if ( m_activeZoneStates.Count == 0 )
+		{
+			return null;
+		}
+
+		// get the last entered zone
+		m_activeZoneStates.Sort(
+			( ZoneStateData a, ZoneStateData b ) =>
+			{
+				return b.entryTime.CompareTo( a.entryTime );
+			}
+		);
+
+		return m_activeZoneStates[ 0 ].zone;
 	}
 
 	public AudioClip GetCurrentFootstepSound()
