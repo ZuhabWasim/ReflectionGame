@@ -27,14 +27,14 @@ public class GlassBox : InterpolateInteractableWrapper
 		// Millie's not high enough to reach the box.
 		if ( playerPosition.y < ALLOWABLE_BOX_HEIGHT - ALLOWABLE_ERROR )
 		{
-			AudioPlayer.Play( Globals.VoiceLines.Section2.CONTAINER_TOO_HIGH, Globals.Tags.DIALOGUE_SOURCE );
+			AudioPlayer.Play( Globals.VoiceLines.Section2.CAN_T_REACH_MIRROR, Globals.Tags.DIALOGUE_SOURCE );
 			return false;
 		}
 		
 		// Millie is high enough but needs to get a bit closer.
 		if ( distance > ALLOWABLE_DISTANCE + ALLOWABLE_ERROR )
 		{
-			AudioPlayer.Play( Globals.VoiceLines.Section2.CONTAINER_TOO_FAR, Globals.Tags.DIALOGUE_SOURCE );
+			AudioPlayer.Play( Globals.VoiceLines.Section2.CAN_T_REACH_MIRROR, Globals.Tags.DIALOGUE_SOURCE );
 			return false;
 		}
 		

@@ -94,7 +94,7 @@ public class BlockMovingArea : MonoBehaviour
 			{
 				if (t.gameObject.name == "MirrorA")
 				{
-					AudioPlayer.Play(Globals.VoiceLines.Section2.SLID_MIRROR_IN, Globals.Tags.DIALOGUE_SOURCE);
+					AudioPlayer.Play(Globals.VoiceLines.Section2.THIS_COULD_WORK_BUT, Globals.Tags.DIALOGUE_SOURCE);
 					break;
 				}
 			}

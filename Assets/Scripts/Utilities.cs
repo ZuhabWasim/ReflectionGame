@@ -42,6 +42,8 @@ struct SerializedAssetPathTableEntry
 	public string name;
 	[SerializeField]
 	public string path;
+	[SerializeField]
+	public string type;
 }
 
 [System.Serializable]
@@ -49,6 +51,19 @@ struct SerializedAssetPathTable
 {
 	[SerializeField]
 	public List<SerializedAssetPathTableEntry> AssetPaths;
+}
+
+// need to include type in key to avoid collision with same names but diff types
+struct AssetTableKey
+{
+	public string name;
+	public System.Type type;
+
+	public AssetTableKey( string name, System.Type type )
+	{
+		this.name = name;
+		this.type = type;
+	}
 }
 
 namespace Utilities
@@ -104,11 +119,18 @@ namespace Utilities
 		private static string ASSETS_FOLDER = "Assets";
 		private static string RESOURCES_FOLDER = "Resources";
 		private static string SFX_ROOT_FOLDER = "Audio";
+		private static string SUBTITLE_ROOT_FOLDER = "Subtitles";
 		private static string EXT_META = ".meta";
 		// JSON meta-data filenames
 		private static string ASSET_TABLE_FILENAME = "asset_table";
 		private static Hashtable m_loadedAssetCache = new Hashtable();
 		private static Hashtable m_assetPathTable = new Hashtable();
+
+		private static Hashtable m_extToTypeTable = new Hashtable() {
+			{ ".mp3", typeof( AudioClip ) },
+			{ ".wav", typeof( AudioClip ) },
+			{ ".txt", typeof( TextAsset ) }
+		};
 
 		[RuntimeInitializeOnLoadMethod]
 		public static void BuildAssetPathTable()
@@ -116,11 +138,14 @@ namespace Utilities
 #if UNITY_EDITOR
 			DirectoryInfo audioDir = new DirectoryInfo( JoinPath( ASSETS_FOLDER, RESOURCES_FOLDER, SFX_ROOT_FOLDER ) );
 			AddAssetsAtDir( audioDir );
+
+			DirectoryInfo subsDir = new DirectoryInfo( JoinPath( ASSETS_FOLDER, RESOURCES_FOLDER, SUBTITLE_ROOT_FOLDER ) );
+			AddAssetsAtDir( subsDir );
 			// Update serialized table while in editor to make sure we have the latest version of the asset table. Prod
 			// build will rely on this table to search and load assets
 			WriteAssetTableToJSON( Path.Combine( RESOURCES_FOLDER, ASSET_TABLE_FILENAME ) );
 #else
-            LoadAssetTableFromJSON( ASSET_TABLE_FILENAME );
+			LoadAssetTableFromJSON( ASSET_TABLE_FILENAME );
 #endif // if UNITY_EDITOR
 		}
 
@@ -132,11 +157,11 @@ namespace Utilities
 				try
 				{
 					if ( file.Extension == EXT_META || m_assetPathTable.ContainsKey( file.Name ) ) continue;
-					m_assetPathTable.Add( Path.GetFileNameWithoutExtension( file.Name ),
+					m_assetPathTable.Add( new AssetTableKey( Path.GetFileNameWithoutExtension( file.Name ), GetTypeFromExt( file.Extension ) ),
 						Path.ChangeExtension(
-							file.FullName.Substring( file.FullName.IndexOf( RESOURCES_FOLDER ) + RESOURCES_FOLDER.Length + 1 ),
-							null
-						)
+								file.FullName.Substring( file.FullName.IndexOf( RESOURCES_FOLDER ) + RESOURCES_FOLDER.Length + 1 ),
+								null
+							)
 					);
 				}
 				catch
@@ -158,7 +183,8 @@ namespace Utilities
 			SerializedAssetPathTable table = new SerializedAssetPathTable() { AssetPaths = new List<SerializedAssetPathTableEntry>() };
 			foreach ( DictionaryEntry kv in m_assetPathTable )
 			{
-				table.AssetPaths.Add( new SerializedAssetPathTableEntry() { name = kv.Key.ToString(), path = kv.Value.ToString() } );
+				AssetTableKey key = (AssetTableKey)kv.Key;
+				table.AssetPaths.Add( new SerializedAssetPathTableEntry() { name = key.name, path = kv.Value.ToString(), type = key.type.AssemblyQualifiedName } );
 			}
 			string serializedAssetTable = JsonUtility.ToJson( table, true );
 			writePath = Path.Combine( Application.dataPath, writePath );
@@ -177,12 +203,13 @@ namespace Utilities
 			SerializedAssetPathTable assetTable = JsonUtility.FromJson<SerializedAssetPathTable>( file.text );
 			foreach ( SerializedAssetPathTableEntry entry in assetTable.AssetPaths )
 			{
-				if ( m_assetPathTable.Contains( entry.name ) )
+				AssetTableKey key = new AssetTableKey( entry.name, System.Type.GetType( entry.type ) );
+				if ( m_assetPathTable.Contains( key ) )
 				{
 					Debug.LogWarningFormat( "Found duplicate asset entry when loading from asset path table: '{0}'", entry.name );
 					continue;
 				}
-				m_assetPathTable.Add( entry.name, entry.path );
+				m_assetPathTable.Add( key, entry.path );
 			}
 		}
 
@@ -197,6 +224,12 @@ namespace Utilities
 
 			finalPath.TrimEnd( SEPARATOR );
 			return finalPath;
+		}
+
+		private static System.Type GetTypeFromExt( string ext )
+		{
+			if ( !m_extToTypeTable.Contains( ext ) ) return typeof( object );
+			return (System.Type)m_extToTypeTable[ ext ];
 		}
 
 #if UNITY_EDITOR
@@ -236,26 +269,36 @@ namespace Utilities
 			m_loadedAssetCache.Add( key, value );
 		}
 
-		public static AudioClip GetSFX( string assetName )
+		public static T GetAsset<T>( string assetName ) where T : UnityEngine.Object
 		{
-			AssetCacheValue cachedAsset = GetCachedAsset( assetName, typeof( AudioClip ) );
+			AssetCacheValue cachedAsset = GetCachedAsset( assetName, typeof( T ) );
 			if ( cachedAsset.IsValid() )
 			{
-				return (AudioClip)cachedAsset.asset;
+				return (T)cachedAsset.asset;
 			}
 
-			string finalAssetPath = (string)m_assetPathTable[ assetName ];
-			AudioClip asset = Resources.Load<AudioClip>( finalAssetPath );
+			string finalAssetPath = (string)m_assetPathTable[ new AssetTableKey( assetName, typeof( T ) ) ];
+			T asset = Resources.Load<T>( finalAssetPath );
 			if ( asset == null )
 			{
-				Debug.LogWarningFormat( "SFX asset {0} not found! Is the name correct?", assetName );
+				Debug.LogWarningFormat( "{0} asset {1} not found! Is the name correct?", typeof( T ).Name, assetName );
 			}
 			else
 			{
-				CacheAsset( assetName, finalAssetPath, typeof( AudioClip ), asset );
+				CacheAsset( assetName, finalAssetPath, typeof( T ), asset );
 			}
 
 			return asset;
+		}
+
+		public static AudioClip GetSFX( string assetName )
+		{
+			return GetAsset<AudioClip>( assetName );
+		}
+
+		public static TextAsset GetSubtitle( string assetName )
+		{
+			return GetAsset<TextAsset>( assetName );
 		}
 	}
 }

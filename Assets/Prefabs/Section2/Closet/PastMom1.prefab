@@ -9269,7 +9269,7 @@ MonoBehaviour:
   acceptItem: 1
   deleteItem: 1
   itemName: Debris
-  firstInteractEvent: 
+  firstInteractEvent: NeedBroom
   myType: 0
   highlightOnLook: 1
   highlightChildObjects: 0
@@ -12043,7 +12043,7 @@ MonoBehaviour:
   acceptItem: 1
   deleteItem: 1
   itemName: Clothing Rack
-  firstInteractEvent: 
+  firstInteractEvent: NeedScissors
   myType: 0
   highlightOnLook: 1
   highlightChildObjects: 0

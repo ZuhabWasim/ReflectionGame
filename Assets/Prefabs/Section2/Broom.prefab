@@ -81,7 +81,7 @@ MonoBehaviour:
   nonUseableVoiceLine: {fileID: 0}
   useVoiceLine: {fileID: 0}
   img: {fileID: 2800000, guid: a3f98c127b0a4b14bbe68748f47a2786, type: 3}
-  onPickupEvent: 
+  onPickupEvent: NeedBroom
 --- !u!1 &1464289884774440537
 GameObject:
   m_ObjectHideFlags: 0

@@ -29,11 +29,12 @@ public class MirrorB : MirrorInteractable
             // If the box is still blocking Mirror B, don't let the player teleport just yet.
             if ( isBoxBlockingMirror() )
             {
-                AudioPlayer.Play( Globals.VoiceLines.Section2.ANOTHER_BOX_BLOCKING, Globals.Tags.DIALOGUE_SOURCE );
+                AudioPlayer.Play( Globals.VoiceLines.Section2.ANOTHER_BOX_BLOCKING_MY_WAY, Globals.Tags.DIALOGUE_SOURCE );
+                AudioPlayer.Play( Globals.VoiceLines.Section2.CAN_I_MOVE_THIS, Globals.Tags.DIALOGUE_SOURCE , false);
             }
             else
             {
-                AudioPlayer.Play( Globals.VoiceLines.Section2.NO_MORE_OBSTRUCTIONS, Globals.Tags.DIALOGUE_SOURCE );
+                AudioPlayer.Play( Globals.VoiceLines.Section2.I_CAN_MOVE_THROUGH_IT_NOW, Globals.Tags.DIALOGUE_SOURCE );
                 teleportable = true;
             }
         }
@@ -45,7 +46,7 @@ public class MirrorB : MirrorInteractable
             pastMover.TriggerMotion();
             presMover.TriggerMotion();
             
-            AudioPlayer.Play( Globals.AudioFiles.Section2.MOVING_MIRROR, Globals.Tags.DIALOGUE_SOURCE, false); // Not working so use MainSource
+            AudioPlayer.Play( Globals.VoiceLines.Section2.IS_IT_MOVING_IN_PRESENT, Globals.Tags.DIALOGUE_SOURCE);
             
             EventManager.Fire(Globals.Events.MOVE_MIRROR_B);
             
