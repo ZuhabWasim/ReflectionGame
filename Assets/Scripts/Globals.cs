@@ -34,7 +34,7 @@ public class Globals
 		// Teleporting variables
 		GlobalState.AddVar<bool>( Globals.Vars.TELEPORTING, false );
 		GlobalState.AddVar<bool>( Globals.Vars.CAN_TELEPORT, false );
-		
+
 		Time.timeScale = 1f;
 		Debug.Log( "Loaded global state vars" );
 	}
@@ -270,42 +270,42 @@ public class Globals
 
 		// Objectives
 		public static string OBJECTIVE_TURN_ON_POWER = "Turn on the lights";
-			public static string SUB_OBJ_INVESTIGATE_ROOM = "Search the room for clues";
-			//public static string SUB_OBJ_INVESTIGATE_BOX = "Investigate the fusebox";
-			public static string SUB_OBJ_FIND_BOX_CODE = "Find the code and enter it at the fusebox";
-			//public static string SUB_OBJ_FIND_HANDKERCHIEF = "Find something to clean the vanity mirror";
-			public static string SUB_OBJ_FIND_CLEAN_MIRROR = "Clean the vanity mirror";
+		public static string SUB_OBJ_INVESTIGATE_ROOM = "Search the room for clues";
+		//public static string SUB_OBJ_INVESTIGATE_BOX = "Investigate the fusebox";
+		public static string SUB_OBJ_FIND_BOX_CODE = "Find the code and enter it at the fusebox";
+		//public static string SUB_OBJ_FIND_HANDKERCHIEF = "Find something to clean the vanity mirror";
+		public static string SUB_OBJ_FIND_CLEAN_MIRROR = "Clean the vanity mirror";
 
 		public static string OBJECTIVE_EXPLORE = "Explore the bedroom";
-			public static string SUB_OBJ_MUSIC_KEY1 = "Use music box key on music box above the fireplace";
-			public static string SUB_OBJ_CHECK_MIRROR = "Investigate the fireplace mirror";
+		public static string SUB_OBJ_MUSIC_KEY1 = "Use music box key on music box above the fireplace";
+		public static string SUB_OBJ_CHECK_MIRROR = "Investigate the fireplace mirror";
 
 		public static string OBJECTIVE_FIND_TWO_KEYS = "Find 2 more music box keys";
-			public static string SUB_OBJ_INVESTIGATE_MOM_CLOSET = "Search Mom's closet in the past";
-			public static string SUB_OBJ_INVESTIGATE_DAD_CLOSET = "Search Dad's closet in the past";
+		public static string SUB_OBJ_INVESTIGATE_MOM_CLOSET = "Search Mom's closet in the past";
+		public static string SUB_OBJ_INVESTIGATE_DAD_CLOSET = "Search Dad's closet in the past";
 
 		public static string OBJECTIVE_FIND_MOMS_KEY = "Find Mom's music box key";
-			public static string SUB_OBJ_FIND_SCISSORS = "Use scissors to cut the dresses";
-			public static string SUB_OBJ_FIND_BROOM = "Use a broom to clear the debris";
-			public static string SUB_OBJ_GET_TO_SECOND = "Find a way to get to the second half of the closet";
-			public static string SUB_OBJ_MOM_USE_WHEEL = "Find and use a wheel to repair the dress form";
-			public static string SUB_OBJ_USE_SAFE = "Find and enter the code for the safe";
-			
+		public static string SUB_OBJ_FIND_SCISSORS = "Use scissors to cut the dresses";
+		public static string SUB_OBJ_FIND_BROOM = "Use a broom to clear the debris";
+		public static string SUB_OBJ_GET_TO_SECOND = "Find a way to get to the second half of the closet";
+		public static string SUB_OBJ_MOM_USE_WHEEL = "Find and use a wheel to repair the dress form";
+		public static string SUB_OBJ_USE_SAFE = "Find and enter the code for the safe";
+
 		public static string OBJECTIVE_LEAVE_MOM = "Leave Mom's closet";
 
 		public static string OBJECTIVE_FIND_ONE_KEY = "Find the final music box key";
 
 		public static string OBJECTIVE_FIND_DADS_KEY = "Find Dad's music box key";
-			public static string SUB_OBJ_BRUSH = "Apply paint to a paint brush";
-			public static string SUB_OBJ_PAINT = "Paint the blank canvas";
-			public static string SUB_OBJ_FIND_BOOK = "Find the missing book";
-			public static string SUB_OBJ_FIND_STEP = "Find a way to reach the bookshelf";
-			public static string SUB_OBJ_FIND_BOOK_CODE = "Find the correct order of the books on the shelf";
-			public static string SUB_OBJ_EXPLORE2 = "Explore the secret room";
-			public static string SUB_OBJ_BRUSH2 = "Apply white paint to the second paint brush";
-			public static string SUB_OBJ_TURN_ON_PROJECTOR = "Turn on the light projector";
-			public static string SUB_OBJ_SOLVE_PUZZLE = "Direct the light through each filter with the paint brushes";
-			public static string SUB_OBJ_USE_SAFE2 = "Enter the code for the safe";
+		public static string SUB_OBJ_BRUSH = "Apply paint to a paint brush";
+		public static string SUB_OBJ_PAINT = "Paint the blank canvas";
+		public static string SUB_OBJ_FIND_BOOK = "Find the missing book";
+		public static string SUB_OBJ_FIND_STEP = "Find a way to reach the bookshelf";
+		public static string SUB_OBJ_FIND_BOOK_CODE = "Find the correct order of the books on the shelf";
+		public static string SUB_OBJ_EXPLORE2 = "Explore the secret room";
+		public static string SUB_OBJ_BRUSH2 = "Apply white paint to the second paint brush";
+		public static string SUB_OBJ_TURN_ON_PROJECTOR = "Turn on the light projector";
+		public static string SUB_OBJ_SOLVE_PUZZLE = "Direct the light through each filter with the paint brushes";
+		public static string SUB_OBJ_USE_SAFE2 = "Enter the code for the safe";
 
 		public static string OBJECTIVE_LEAVE_DAD = "Leave Dad's closet";
 
@@ -413,7 +413,7 @@ public class Globals
 			public static string I_M_TOO_SMALL = "1.043.i_m_too_small";
 			public static string MOTHERS_NAGGING = "1.048.can_hear_mother_s_nagging";
 			public static string FATHERS_VOICE = "1.049.haven_t_heard_father_s_voice_in_so_long";
-			
+
 			public static string WOAH_WHAT_JUST_HAPPENED_TO_THE_MIRROR = "extra.1.054.woah_what_just_happened_to_the_mirror";
 			public static string HM_THAT_DOESN_T_SEEM_RIGHT = "extra.1.055.hm_that_doesn_t_seem_right";
 			public static string AM_I_IN_THE_PAST = "extra.1.056.am_i_in_the_past";
@@ -479,7 +479,7 @@ public class Globals
 			public static string FINALLY_I_CAN_LEAVE = "2.134.finally_i_can_leave";
 			public static string CHANGES_IN_PAST_AFFECT_PRESENT = "2.144.changes_in_past_affect_present";
 			public static string IS_IT_MOVING_IN_PRESENT = "2.145.is_it_moving_in_present";
-			
+
 			public static string DEBRIS_TOUGHER_TIME = "extra.2.147.debris_tougher_time";
 			public static string ANOTHER_BOX_BLOCKING_MY_WAY = "extra.2.148.another_box_blocking_my_way";
 			public static string BUNCH_OF_BOXES_BLOCKING_THE_WAY = "extra.2.149.bunch_of_boxes_blocking_the_way";
@@ -572,7 +572,7 @@ public class Globals
 			public static string IT_S_EMPTY = "3.187.it_s_empty";
 			public static string SHOULDN_T_LET_LIGHT_IN = "3.188.shouldn_t_let_light_in";
 			public static string STUCK_NEED_TOOK_TO_UNSEAL = "3.189.stuck_need_took_to_unseal";
-			
+
 			public static string NOTHING_HAPPENED = "extra.3.191.nothing_happened";
 			public static string LETS_STAND_ON_THIS = "extra.3.194.lets_stand_on_this";
 			//public static string BOOKSHELF_SEEMS_OFF = "extra.3.195.bookshelf_seems_off";

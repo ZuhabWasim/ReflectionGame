@@ -51,6 +51,9 @@ public class PlayerController : MonoBehaviour
 	private PauseMenu pauseMenu;
 	private JournalDisplay journalDisplay;
 	private AudioSource m_footstepSource;
+	private AudioClip m_defaultFootstepSound;
+
+	private ZoneManager m_zoneManager;
 
 	//public float pickupDistance = 2.0f;
 	public float dropDistance = 1.25f;
@@ -75,6 +78,8 @@ public class PlayerController : MonoBehaviour
 		pauseMenu = GameObject.Find( Globals.Misc.UI_Canvas ).GetComponent<PauseMenu>();
 		journalDisplay = GameObject.Find( Globals.Misc.UI_Canvas ).GetComponent<JournalDisplay>();
 		m_footstepSource = GameObject.Find( FOOTSTEP_AUDIO_SOURCE_NAME ).GetComponent<AudioSource>();
+		m_defaultFootstepSound = m_footstepSource.clip;
+		m_zoneManager = GameObject.FindObjectOfType<ZoneManager>();
 
 		RegisterEventListeners();
 #if !TEST_LEVEL
@@ -201,7 +206,7 @@ public class PlayerController : MonoBehaviour
 
 	public bool IsGrounded()
 	{
-		float distToGround = 1;//m_collider.bounds.extents.y;
+		float distToGround = 1;
 
 		// Determines whether a vector from the player's center pointing down is barely touching the floor.
 		return Physics.Raycast( transform.position + new Vector3( 0, distToGround, 0 ),
@@ -250,7 +255,7 @@ public class PlayerController : MonoBehaviour
 
 	void HandleJournalKey()
 	{
-		if ( !pauseMenu.IsPaused() && !journalDisplay.IsOpened())
+		if ( !pauseMenu.IsPaused() && !journalDisplay.IsOpened() )
 		{
 			journalDisplay.OpenJournal();
 		}
@@ -276,6 +281,11 @@ public class PlayerController : MonoBehaviour
 		Vector3 velocity = transform.TransformDirection( input ) * speed;
 
 		bool gr = IsGrounded();
+		AudioClip footstepSound = m_zoneManager.GetCurrentFootstepSound();
+		if ( footstepSound is null )
+		{
+			footstepSound = m_defaultFootstepSound;
+		}
 
 		// Only do foot steps if the player is grounded.
 		if ( gr )
@@ -330,18 +340,18 @@ public class PlayerController : MonoBehaviour
 
 	void HandleUseItemPress()
 	{
-		if (targetObject.WillAcceptItem() && targetObject.GetItemType() == InteractableAbstract.ItemType.PICKUP)
+		if ( targetObject.WillAcceptItem() && targetObject.GetItemType() == InteractableAbstract.ItemType.PICKUP )
 		{
 			targetObject.ActivateItem();
 			PickupItem item = (PickupItem)targetObject;
-			ItemPickupResult res = Inventory.GetInstance().PickupItem(ref item);
-			if (res != ItemPickupResult.SUCCESS)
+			ItemPickupResult res = Inventory.GetInstance().PickupItem( ref item );
+			if ( res != ItemPickupResult.SUCCESS )
 			{
-				Debug.Log("Inventory failed to store item");
+				Debug.Log( "Inventory failed to store item" );
 			}
 			else
 			{
-				targetObject.gameObject.SetActive(false);
+				targetObject.gameObject.SetActive( false );
 			}
 		}
 
@@ -361,11 +371,11 @@ public class PlayerController : MonoBehaviour
 		// Check if the player is picking up an item, don't place a bucket down if so, it's annoying
 		PickupItem pickupItemScript = targetObject as PickupItem;
 		if ( pickupItemScript ) return;
-		
+
 		PickupItem inventoryItem = m_inventory.GetSelectedPickupItem();
 		// To make this better, we can give PickUpItem a boolean for 'canDrop', everything aside from the bucket would be false
 		if ( !inventoryItem || inventoryItem.itemName != Globals.Misc.EMPTY_BUCKET ) return;
-		
+
 		/*// Spawn the bucket right below the player, prop the player on top of the bucket, if they fall, they can climb back up.
 		this.transform.position = this.transform.position + new Vector3(0, EmptyBucket.BUCKET_HEIGHT + 0.2f, 0);
 		inventoryItem.OnDrop(new Vector3( this.transform.position.x , EmptyBucket.BUCKET_HEIGHT / 2 + 0.1f, this.transform.position.z ) );*/
@@ -375,7 +385,7 @@ public class PlayerController : MonoBehaviour
 
 	void HandleOpenInventory()
 	{
-		if ( !pauseMenu.IsPaused() && !journalDisplay.IsOpened())
+		if ( !pauseMenu.IsPaused() && !journalDisplay.IsOpened() )
 		{
 			m_inventory.openInventory();
 			inventoryOpened = true;
