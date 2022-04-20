@@ -121,6 +121,7 @@ public class Globals
 		public static string DEACTIVATE_DAD_CLOSET = "DeactivateDadCloset";
 		public static string ACTIVATE_MAIN_ROOM = "ActivateMainRoom";
 		public static string DEACTIVATE_MAIN_ROOM = "DeactivateMainRoom";
+		public static string SKIP_SUBTITLE = "SkipSubtitle";
 		public static string GAME_RESTART = "GAME_RESTART";
 
 		// Section 1
@@ -296,7 +297,8 @@ public class Globals
 		public static string OBJECTIVE_FIND_ONE_KEY = "Find the final music box key";
 
 		public static string OBJECTIVE_FIND_DADS_KEY = "Find Dad's music box key";
-		public static string SUB_OBJ_BRUSH = "Apply paint to a paint brush";
+
+	  public static string SUB_OBJ_BRUSH = "Apply paint to a paint brush";
 		public static string SUB_OBJ_PAINT = "Paint the blank canvas";
 		public static string SUB_OBJ_FIND_BOOK = "Find the missing book";
 		public static string SUB_OBJ_FIND_STEP = "Find a way to reach the bookshelf";
@@ -304,7 +306,7 @@ public class Globals
 		public static string SUB_OBJ_EXPLORE2 = "Explore the secret room";
 		public static string SUB_OBJ_BRUSH2 = "Apply white paint to the second paint brush";
 		public static string SUB_OBJ_TURN_ON_PROJECTOR = "Turn on the light projector";
-		public static string SUB_OBJ_SOLVE_PUZZLE = "Direct the light through each filter with the paint brushes";
+		public static string SUB_OBJ_SOLVE_PUZZLE = "Direct light through all filters to present photo with brushes";
 		public static string SUB_OBJ_USE_SAFE2 = "Enter the code for the safe";
 
 		public static string OBJECTIVE_LEAVE_DAD = "Leave Dad's closet";
@@ -483,6 +485,7 @@ public class Globals
 			public static string DEBRIS_TOUGHER_TIME = "extra.2.147.debris_tougher_time";
 			public static string ANOTHER_BOX_BLOCKING_MY_WAY = "extra.2.148.another_box_blocking_my_way";
 			public static string BUNCH_OF_BOXES_BLOCKING_THE_WAY = "extra.2.149.bunch_of_boxes_blocking_the_way";
+			public static string SAFE_LOOKS_UNUSED = "extra.2.149.safe_looks_unused";
 			//public static string I_THINK_I_CAN_LEAVE_THE_CLOSET_NOW = "extra.2.150.i_think_i_can_leave_the_closet_now";
 			public static string LET_S_CLEAN_THIS_UP_MOTHER_ALWAYS_HATED_MESSES = "extra.2.151.let_s_clean_this_up_mother_always_hated_messes";
 			public static string MIRROR_SEEMS_CLOUDY = "extra.2.152.mirror_seems_cloudy";
@@ -574,6 +577,7 @@ public class Globals
 			public static string STUCK_NEED_TOOK_TO_UNSEAL = "3.189.stuck_need_took_to_unseal";
 
 			public static string NOTHING_HAPPENED = "extra.3.191.nothing_happened";
+			public static string CANVASES_BLOCKING_DOOR = "extra.3.193.canvases_blocking_door";
 			public static string LETS_STAND_ON_THIS = "extra.3.194.lets_stand_on_this";
 			//public static string BOOKSHELF_SEEMS_OFF = "extra.3.195.bookshelf_seems_off";
 			public static string MEMENTO = "extra.3.198.memento.wav";
@@ -593,13 +597,12 @@ public class Globals
 
 		public class Section4
 		{
-			public static string THATS_ONE = "thats_one";
-
 			public static string ALL_THREE_KEYS = "4.004.all_three_keys";
 			public static string HAVE_MY_KEY_NOW = "extra.4.035.have_my_key_now";
 			public static string FOUND_MOTHERS_KEY_LOOK_FOR_FATHERS = "extra.4.037.found_mothers_key_look_for_fathers";
 			public static string WAIT_FOR_ALL_THREE_KEYS = "extra.4.038.wait_for_all_three_keys";
 			public static string OBTAINED_FATHERS_KEY_MOTHER_KEY_LEFT = "extra.4.039.obtained_fathers_key_mother_key_left";
+			public static string THATS_ONE = "extra.4.040.thats_one";
 			public static string THATS_TWO = "extra.4.041.thats_two";
 			public static string THATS_THREE = "extra.4.042.thats_three";
 			public static string IT_OPENED = "extra.4.044.it_opened";

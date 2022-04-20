@@ -199,6 +199,8 @@ public abstract class InteractableAbstract : MonoBehaviour
 			if ( useVoiceLine != null )
 			{
 				AudioPlayer.Play( useVoiceLine, Globals.Tags.DIALOGUE_SOURCE );
+				// Where we'll put the use item sound effect.
+				AudioPlayer.Play( Globals.AudioFiles.General.OBJECT_OBTAINED, Globals.Tags.MAIN_SOURCE);
 			}
 			if ( deleteItem )
 			{
