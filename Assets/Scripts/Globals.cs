@@ -352,6 +352,23 @@ public class Globals
 			public static string NON_INTERACTABLE = "non_interactable";
 			public static string OPEN_DRAWER = "open_drawer";
 			public static string CLOSE_DRAWER = "close_drawer";
+			
+			public static string USED_ITEM_CORRECTLY_REFLECTION_ONESHOT = "sfx_used_item_correctly_reflection_oneshot";
+			
+			public static string ACHIEVEMENT_REFLECTION_ONESHOT = "sfx_achievement_reflection_oneshot";
+			public static string CLICK_INVENTORY_SELECT = "sfx_click_inventory_select";
+			public static string DOOR_OPEN = "sfx_door_open";
+			public static string DOOR_SHUT = "sfx_door_shut";
+			public static string DOOR_UNLOCK = "sfx_door_unlock";
+			public static string LOCKED_DOOR_JIGGLE = "sfx_locked_door_jiggle";
+			
+			public static string MILLIE_FOOTSTEP_CARPET = "sfx_millie_footstep_carpet";
+			public static string MILLIE_PAST_FOOTSTEPS_2 = "sfx_millie_past_footsteps_2";
+			public static string MILLIE_PAST_FOOTSTEPS_WOOD_1 = "sfx_millie_past_footsteps_wood_1";
+			public static string MILLIE_PRESENT_WOOD_FOOTSTEPS_1 = "sfx_millie_present_wood_footsteps_1";
+			public static string MILLIE_PRESENT_WOOD_FOOTSTEPS_2 = "sfx_millie_present_wood_footsteps_2";
+			
+			public static string SAFE_UNLOCKOPEN_SEQUENCE = "sfx_safe_unlockopen_sequence";
 		}
 
 		public class Section1
@@ -372,12 +389,29 @@ public class Globals
 			public static string CARDBOARD_SLIDE = "sfx_cardboard_box_slide";
 
 		}
-	}
 
-	public class SoundEffects
-	{
-
+		public class Section3
+		{
+			public static string BOOKSHELF_SEQUENCE = "sfx_bookshelf_sequence";
+			public static string CROWBAR_SEQUENCE = "sfx_crowbar_sequence";
+			public static string DIP_BRUSH_ONESHOT = "sfx_dip_brush_oneshot";
+			public static string DROP_PAINT_CAN_REFLECTION_ONESHOT = "sfx_drop_paint_can_reflection_oneshot";
+			public static string GET_LIGHT_FILTERS_CORRECT_REFLECTION_ONESHOT = "sfx_get_light_filters_correct_reflection_oneshot";
+			public static string PAINT_CAN_SPILL_REFLECTION_ONESHOT = "sfx_paint_can_spill_reflection_oneshot";
+			public static string PAINT_ON_CANVAS_ONESHOT = "sfx_paint_on_canvas_oneshot";
+			public static string PLACE_LIGHT_BULB_REFLECTION_ONESHOT = "sfx_place_light_bulb_reflection_oneshot";
+		}
+		
+		public class Section4
+		{
+			public static string MUSIC_BOX_USE_KEY_1 = "sfx_music_box_use_key_1";
+			public static string MUSIC_BOX_USE_KEY_2 = "sfx_music_box_use_key_2";
+			public static string MUSIC_BOX_USE_KEY_3 = "sfx_music_box_use_key_3";
+			public static string MUSIC_BOX_OPEN = "sfx_music_box_open";
+			public static string MUSIC_BOX_CLICK = "sfx_music_box_click";
+		}
 	}
+	
 	public class VoiceLines
 	{
 		public class General
