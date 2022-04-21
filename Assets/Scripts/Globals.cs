@@ -469,6 +469,7 @@ public class Globals
 		{
 			public static string EXPENSIVE_GOWNS = "2.003.woah_expensive_gowns";
 			public static string AM_I_LOCKED_IN = "2.004.am_i_locked_in";
+			public static string AM_I_LOCKED_IN_SHORT = "2.004.am_i_locked_in_short";
 			public static string TOO_HEAVY_EASY = "2.005.gowns_too_heavy_to_move";
 			public static string SEWING_TOOLS_KEPT_HIGH_UP = "2.010.sewing_tools_kept_high_up";
 			public static string THESE_LOOK_SHARP_ENOUGH = "2.014.these_look_sharp_enough";
@@ -544,6 +545,7 @@ public class Globals
 		{
 			public static string FRESH_COAT_OF_PAINT = "3.003.fresh_coat_of_paint";
 			public static string AM_I_LOCKED_IN = "3.004.am_i_locked_in";
+			public static string AM_I_LOCKED_IN_SHORT = "3.004.am_i_locked_in_short";
 			public static string BLANK_CANVAS_RARE_SIGHT = "3.008.blank_canvas_rare_sight";
 			public static string FIND_SOME_PAINT = "3.008.find_some_paint";
 			public static string COVER_PAINTS_DRY_OUT = "3.012.cover_paints_dry_out";
