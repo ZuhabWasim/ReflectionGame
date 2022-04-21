@@ -1081,7 +1081,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1241040825}
         m_TargetAssemblyTypeName: StartMenu, Assembly-CSharp
-        m_MethodName: onClickQuit
+        m_MethodName: onClickCredits
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1483,6 +1483,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   img: {fileID: 597752441}
   defFadeTime: 1.5
+  fadeToMainAfterTime: 0
 --- !u!1 &2047114699
 GameObject:
   m_ObjectHideFlags: 0
