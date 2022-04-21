@@ -185,6 +185,7 @@ public class MusicBox : InteractableAbstract
 
 		// Stop all audio sources, preferably gradually.
 		AudioPlayer.StopCurrentClip(Globals.Tags.AMBIENCE_SOURCE);
+		AudioPlayer.StopCurrentClip(PRESENT_FIREPLACE_SOURCE);
 		
 		// Stop the player movement
 		PlayerController player = GameObject.FindGameObjectWithTag(Globals.Tags.PLAYER).GetComponent<PlayerController>();
