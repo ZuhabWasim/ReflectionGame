@@ -33,6 +33,10 @@ public class PauseMenu : MonoBehaviour
 		subtitleOn = !subtitleOn;
 		SubtitleDisplay.showSubs = subtitleOn;
 	}
+	public void SlideMouseSensitivity(float newValue)
+	{
+		//TODO: update mouse sensitivity
+	}
 	public void PauseGame()
 	{
 		isPaused = true;
