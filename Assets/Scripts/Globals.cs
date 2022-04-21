@@ -194,6 +194,8 @@ public class Globals
 		public static string NEED_DAD_SAFE_CODE = "NeedDadSafeCode";
 		public static string EXIT_DAD = "ExitedDadCloset";
 
+		public static string CHEAT_SUCCESS = "CheatCodeSuccess";
+
 	}
 
 	public class Tags
@@ -246,6 +248,8 @@ public class Globals
 		public static float DEFAULT_PROXIMITY_TRIGGER_DIST = 3.5f;
 
 		public static float STEM_VOLUME = 0.2f;
+
+		public static string CHEAT_CODE = "1883";
 	}
 
 	public class UIStrings
@@ -674,6 +678,11 @@ public enum Keybinds
 	INVENTORY_KEY = KeyCode.LeftShift,
 	ESCAPE_KEY = KeyCode.Escape,
 	TAB_KEY = KeyCode.Tab,
+
+	// Cheat keys
+	CHEAT_KEY_1 = KeyCode.Alpha1,
+	CHEAT_KEY_8 = KeyCode.Alpha8,
+	CHEAT_KEY_3 = KeyCode.Alpha3,
 
 	// This is for debug only, should be removed in release
 	DEBUG_TRIGGER = KeyCode.Alpha0

@@ -122,6 +122,12 @@ public class PlayerController : MonoBehaviour
 		EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.ESCAPE_KEY ), HandleEscape );
 		EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.TAB_KEY ), HandleJournalKey );
 
+		// for cheat code
+		EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.CHEAT_KEY_1 ), () => { InputManager.HandleCheatInput( "1" ); } );
+		EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.CHEAT_KEY_8 ), () => { InputManager.HandleCheatInput( "8" ); } );
+		EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.CHEAT_KEY_3 ), () => { InputManager.HandleCheatInput( "3" ); } );
+		EventManager.Sub( Globals.Events.CHEAT_SUCCESS, () => { GameObject.FindObjectOfType<MusicBox>().OpenMusicBox(); } );
+
 		// keyup events
 		EventManager.Sub( InputManager.GetKeyUpEventName( Keybinds.INVENTORY_KEY ), HandleCloseInventory );
 

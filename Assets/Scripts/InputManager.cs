@@ -28,13 +28,54 @@ struct RegisteredKeybind
 	}
 }
 
+struct CheatCodeDetector
+{
+	private string userInput;
+	private string cheatCode;
+	private bool detected;
+
+	public CheatCodeDetector( string cheatCode )
+	{
+		this.userInput = string.Empty;
+		this.cheatCode = cheatCode;
+		this.detected = false;
+	}
+
+	public void ProcessInput( string key )
+	{
+		if ( detected )
+		{
+			return;
+		}
+		this.userInput += key;
+		if ( this.userInput[ this.userInput.Length - 1 ] != this.cheatCode[ this.userInput.Length - 1 ] )
+		{
+			this.userInput = string.Empty;
+		}
+		else if ( this.userInput.Equals( this.cheatCode ) )
+		{
+			detected = true;
+			Debug.Log( "Cheat success" );
+			EventManager.Fire( Globals.Events.CHEAT_SUCCESS );
+		}
+	}
+
+	public void Reset()
+	{
+		this.detected = false;
+		this.userInput = string.Empty;
+	}
+}
+
 public class InputManager : MonoBehaviour
 {
 	private static Hashtable m_registeredKeybinds = new Hashtable();
+	private static CheatCodeDetector m_keysCheatCodeDetector = new CheatCodeDetector( Globals.Misc.CHEAT_CODE );
 
 	void Awake()
 	{
 		RegisterKeybinds();
+		m_keysCheatCodeDetector.Reset();
 	}
 
 	void RegisterKeybinds()
@@ -58,8 +99,14 @@ public class InputManager : MonoBehaviour
 		return ( (RegisteredKeybind)m_registeredKeybinds[ key ] ).keyupEvent;
 	}
 
+	public static void HandleCheatInput( string inputKey )
+	{
+		m_keysCheatCodeDetector.ProcessInput( inputKey );
+	}
+
 	void Update()
 	{
+
 		foreach ( DictionaryEntry entry in m_registeredKeybinds )
 		{
 			RegisteredKeybind keybind = (RegisteredKeybind)entry.Value;
