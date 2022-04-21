@@ -103,6 +103,13 @@ public class AudioPlayer
 		}
 	}
 
+	public static void SetSourceVolume( string targetSource , float volume)
+	{
+		Assert.IsTrue( m_audioPlayers.ContainsKey( targetSource ) );
+		RegisteredAudioPlayer player = (RegisteredAudioPlayer)m_audioPlayers[ targetSource ];
+		player.src.volume = volume;
+	}
+	
 	static void ForcePlay( RegisteredAudioPlayer player, AudioClip clip )
 	{
 		player.src.clip = clip;

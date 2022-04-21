@@ -148,6 +148,7 @@ public class Globals
 		public static string READ_MOM_NOTE = "ReadMomNote";
 		public static string BLOCKING_SECRET_LACIS = "BlockingSecretLacis";
 		public static string UNBLOCKING_SECRET_LACIS = "UnblockingSecretLacis";
+		public static string EPIPHANY_MOM = "EpiphanyMom";
 
 		// Section 3
 		public static string LOCK_DAD_DOOR = "LockDadDoor";
@@ -212,6 +213,10 @@ public class Globals
 		public static string PRESENT_MOM_DOOR = "PresentMomDoor";
 		public static string PRESENT_DAD_DOOR = "PresentDadDoor";
 		public static string PRESENT_DAD_SHELF = "PresentDadShelf";
+		
+		public static string MILLIE_STEM = "MillieStem";
+		public static string MOM_STEM = "MomStem";
+		public static string DAD_STEM = "DadStem";
 	}
 
 	public class Misc
@@ -238,6 +243,8 @@ public class Globals
 		public static string IS_INTERACTING = "IsInteracting";
 		public static float MAX_INTERACT_DISTANCE = 3.5f;
 		public static float DEFAULT_PROXIMITY_TRIGGER_DIST = 3.5f;
+
+		public static float STEM_VOLUME = 0.2f;
 	}
 
 	public class UIStrings
@@ -341,7 +348,10 @@ public class Globals
 
 		public class Music
 		{
-			// Music goes here
+			public static string MILLIE_STEM = "mus_millie_stem";
+			public static string MOM_STEM = "mus_mom_stem";
+			public static string DAD_STEM = "muse_dad_stem";
+			public static string MUSIC_BOX_MELODY = "mus_music_box_melody";
 		}
 
 		public class General

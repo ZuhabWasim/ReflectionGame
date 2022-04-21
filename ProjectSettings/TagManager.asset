@@ -22,6 +22,9 @@ TagManager:
   - PresentDadShelf
   - PastFireplaceMirror
   - ColourFilter
+  - MillieStem
+  - MomStem
+  - DadStem
   layers:
   - Default
   - TransparentFX

@@ -22,6 +22,8 @@ public class MusicBox : InteractableAbstract
 	private int keys = 0;
 
 	private bool millieKeyInteracted;
+	private bool epiphanyMom;
+	private bool epiphanyDad;
 
 	public MirrorInteractable pastFireplaceMirror;
 	public MirrorInteractable presentFireplaceMirror;
@@ -46,6 +48,8 @@ public class MusicBox : InteractableAbstract
 		EventManager.Sub( Globals.Events.HAS_MOM_KEY, OnHavingMomKey );
 		EventManager.Sub( Globals.Events.HAS_DAD_KEY, OnHavingDadKey );
 		EventManager.Sub( Globals.Events.FIRST_TELEPORT, OnFirstTeleport );
+		EventManager.Sub( Globals.Events.EPIPHANY_MOM, () => { epiphanyMom = true; } );
+		EventManager.Sub( Globals.Events.LOCK_PAST_DAD_SHELF, () => { epiphanyDad = true; ChangeStems(); } );
 		
 		// AudioPlayer.RegisterAudioPlayer(MUSICBOX_AUDIO_SOURCE, GetComponent<AudioSource>());
 
@@ -56,6 +60,8 @@ public class MusicBox : InteractableAbstract
 		hasDadKey = false;
 
 		millieKeyInteracted = false;
+		epiphanyMom = false;
+		epiphanyDad = false;
 
 		pastDadIIW = pastDadDoor.GetComponent<InterpolateInteractableWrapper>();
 		presentDadIIW = presentDadDoor.GetComponent<InterpolateInteractableWrapper>();
@@ -191,6 +197,32 @@ public class MusicBox : InteractableAbstract
 		GameObject.Find(Globals.Misc.UI_Canvas).GetComponent<FadeToBlack>().StartFadeOut(PlayFinalCutscene);
 	}
 
+	public void ChangeStems()
+	{
+		// If it's the present, mute all the sources.
+		bool isPresent = GlobalState.GetVar<bool>(Globals.Vars.IS_PRESENT_WORLD);
+		if ( isPresent )
+		{
+			AudioPlayer.SetSourceVolume(Globals.Tags.MILLIE_STEM, 0f);
+			AudioPlayer.SetSourceVolume(Globals.Tags.MOM_STEM, 0f);
+			AudioPlayer.SetSourceVolume(Globals.Tags.DAD_STEM, 0f);
+			return;
+		}
+		
+		// If it's the past, enable the stems based on how far the player has progressed.
+		AudioPlayer.SetSourceVolume(Globals.Tags.MILLIE_STEM, Globals.Misc.STEM_VOLUME);
+
+		if ( epiphanyMom )
+		{
+			AudioPlayer.SetSourceVolume(Globals.Tags.MOM_STEM, Globals.Misc.STEM_VOLUME);
+		}
+
+		if ( epiphanyDad )
+		{
+			AudioPlayer.SetSourceVolume(Globals.Tags.DAD_STEM, Globals.Misc.STEM_VOLUME);
+		}
+	}
+	
 	void PlayFinalCutscene()
     {
 		//TODO right now this just takes the player back to the main menu
