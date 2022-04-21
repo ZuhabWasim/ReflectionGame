@@ -26,10 +26,23 @@ public class MusicBox : InteractableAbstract
 	public MirrorInteractable pastFireplaceMirror;
 	public MirrorInteractable presentFireplaceMirror;
 	
+	// Can't be bothered to do this correctly, today's the last day.
+	public GameObject pastDadDoor;
+	public GameObject presentDadDoor;
+	public GameObject pastMomDoor;
+	public GameObject presentMomDoor;
+
+	private InterpolateInteractableWrapper pastDadIIW;
+	private InterpolateInteractableWrapper presentDadIIW;
+	private InterpolateInteractableWrapper pastMomIIW;
+	private InterpolateInteractableWrapper presentMomIIW;
+	
 	protected override void OnStart()
 	{
 		EventManager.Sub( Globals.Events.LIGHTS_TURN_ON, OnLightsTurningOn );
 		EventManager.Sub( Globals.Events.HAS_MILLIE_KEY, OnHavingMillieKey );
+		EventManager.Sub( Globals.Events.LOCK_MOM_DOOR, OnLockingMomDoor );
+		EventManager.Sub( Globals.Events.LOCK_DAD_DOOR, OnLockingDadDoor );
 		EventManager.Sub( Globals.Events.HAS_MOM_KEY, OnHavingMomKey );
 		EventManager.Sub( Globals.Events.HAS_DAD_KEY, OnHavingDadKey );
 		EventManager.Sub( Globals.Events.FIRST_TELEPORT, OnFirstTeleport );
@@ -43,6 +56,11 @@ public class MusicBox : InteractableAbstract
 		hasDadKey = false;
 
 		millieKeyInteracted = false;
+
+		pastDadIIW = pastDadDoor.GetComponent<InterpolateInteractableWrapper>();
+		presentDadIIW = presentDadDoor.GetComponent<InterpolateInteractableWrapper>();
+		pastMomIIW = pastMomDoor.GetComponent<InterpolateInteractableWrapper>();
+		presentMomIIW = presentMomDoor.GetComponent<InterpolateInteractableWrapper>();
 	}
 
 	protected override void OnUserInteract()
@@ -183,7 +201,36 @@ public class MusicBox : InteractableAbstract
 	void OnLightsTurningOn()
 	{
 		pointLight.SetActive(true);
+		
+		// Update Voice lines for Present Doors
+		AudioClip doorLockedLine= Utilities.AssetLoader.GetSFX( Globals.VoiceLines.Section1.LOCKED_FROM_THE_INSIDE );
+		presentMomIIW.nonInteractableVoiceLine = doorLockedLine;
+		presentDadIIW.nonInteractableVoiceLine = doorLockedLine;
+
+		// Set all of the doors to have locked sound feedback.
+		AudioClip doorLockedSound = Utilities.AssetLoader.GetSFX( Globals.AudioFiles.General.LOCKED_DOOR_JIGGLE );
+		pastDadIIW.nonInteractableSound = doorLockedSound;
+		presentDadIIW.nonInteractableSound = doorLockedSound;
+		presentMomIIW.nonInteractableSound = doorLockedSound;
+		pastMomIIW.nonInteractableSound = doorLockedSound;
 	}
+
+	void OnLockingMomDoor()
+	{
+		// Change the locked voice line to the short one.
+		AudioClip doorLockedSoundShort = Utilities.AssetLoader.GetSFX( Globals.VoiceLines.Section2.AM_I_LOCKED_IN_SHORT );
+		presentMomIIW.nonInteractableVoiceLine = doorLockedSoundShort;
+		AudioPlayer.Play(Globals.AudioFiles.General.DOOR_SHUT, pastMomIIW.audioSourceName);
+	}
+	
+	void OnLockingDadDoor()
+	{		
+		// Change the locked voice line to the short one.
+		AudioClip doorLockedSoundShort = Utilities.AssetLoader.GetSFX( Globals.VoiceLines.Section3.AM_I_LOCKED_IN_SHORT );
+		presentDadIIW.nonInteractableVoiceLine = doorLockedSoundShort;
+		AudioPlayer.Play(Globals.AudioFiles.General.DOOR_SHUT, pastDadIIW.audioSourceName);
+	}
+	
 	void OnHavingMillieKey()
 	{
 		if (hasMillieKey) return;
