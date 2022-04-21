@@ -13,6 +13,15 @@ public class EmptyBucket : PickupItem
 	public override void OnUserInteractUnfiltered()
 	{
 		base.OnUserInteract();
+		// Stop playing the line if the player already heard it twice
+		if (repeated)
+		{
+			voiceLine = null;
+		}
+		else
+		{
+			repeated = true;
+		}
 	}
 
 	private void SetDropTransform()
@@ -42,16 +51,8 @@ public class EmptyBucket : PickupItem
 		// Drop the item with this specific drop position.
 		base.OnDrop( newDropPosition, isLocal );
 		this.GetComponent<Rigidbody>().useGravity = true;
-		
-		// Stop playing the line if the player already heard it twice
-		if (repeated)
-		{
-			voiceLine = null;
-		}
-		else
-		{
-			repeated = true;
-		}
+
+		AudioPlayer.Play(Globals.AudioFiles.Section3.DROP_PAINT_CAN_REFLECTION_ONESHOT, Globals.Tags.MAIN_SOURCE);
 	}
 	
 	public static bool IsOnBucket()

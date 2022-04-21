@@ -114,6 +114,7 @@ public class Inventory
 			inventoryDisplay.hideItemName();
 			inventoryDisplay.hideHoldingItem();
 		}
+		AudioPlayer.Play(Globals.AudioFiles.General.CLICK_INVENTORY_SELECT, Globals.Tags.MAIN_SOURCE);
 	}
 	public int GetCursor()
 	{
