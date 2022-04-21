@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/NewMainColour.unity
     guid: 112757fb955d6e14f9c4716b2ff349c7
+  - enabled: 1
+    path: Assets/Scenes/Ending.unity
+    guid: b74a6f32acf26084d8b006ebe85b547f
   m_configObjects: {}
