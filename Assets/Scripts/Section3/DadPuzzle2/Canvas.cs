@@ -146,6 +146,7 @@ public class Canvas : InteractableAbstract
 			EventManager.Fire( Globals.Events.CANVAS_STATE_CHANGE, this.gameObject );
 		}
 		// Play painting sound
+		AudioPlayer.Play(Globals.AudioFiles.Section3.PAINT_ON_CANVAS_ONESHOT, Globals.Tags.MAIN_SOURCE);
 	}
 
 	private void UpdateMirror( CanvasState newState )

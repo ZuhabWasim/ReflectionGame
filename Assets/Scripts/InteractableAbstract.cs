@@ -65,8 +65,10 @@ public abstract class InteractableAbstract : MonoBehaviour
 	[Header( "Audio" )]
 	public AudioClip voiceLine;
 	public AudioClip nonInteractableVoiceLine;
+	public AudioClip nonInteractableSound;
 	public AudioClip nonUseableVoiceLine;
 	public AudioClip useVoiceLine;
+	public AudioClip useSound;
 
 
 	public void Start()
@@ -169,6 +171,10 @@ public abstract class InteractableAbstract : MonoBehaviour
 			{
 				AudioPlayer.Play( nonInteractableVoiceLine, Globals.Tags.DIALOGUE_SOURCE );
 			}
+			if ( nonInteractableSound != null )
+			{
+				AudioPlayer.Play( nonInteractableSound, Globals.Tags.MAIN_SOURCE );
+			}
 			return;
 		}
 
@@ -199,8 +205,10 @@ public abstract class InteractableAbstract : MonoBehaviour
 			if ( useVoiceLine != null )
 			{
 				AudioPlayer.Play( useVoiceLine, Globals.Tags.DIALOGUE_SOURCE );
-				// Where we'll put the use item sound effect.
-				AudioPlayer.Play( Globals.AudioFiles.General.OBJECT_OBTAINED, Globals.Tags.MAIN_SOURCE);
+			}
+			if (useSound != null)
+			{
+				AudioPlayer.Play( useSound, Globals.Tags.MAIN_SOURCE);
 			}
 			if ( deleteItem )
 			{

@@ -58,7 +58,8 @@ public class PresentPainting : InteractableAbstract
         int filtersLit = getFilterLights();
         if (filtersLit == FILTER_COUNT)
         {
-            AudioPlayer.Play(Globals.VoiceLines.Section3.THAT_WORKED, Globals.Tags.DIALOGUE_SOURCE, false);
+            AudioPlayer.Play(Globals.VoiceLines.Section3.THAT_WORKED, Globals.Tags.DIALOGUE_SOURCE);
+            AudioPlayer.Play(Globals.AudioFiles.Section3.GET_LIGHT_FILTERS_CORRECT_REFLECTION_ONESHOT, Globals.Tags.MAIN_SOURCE, false);
         }
     }
     
