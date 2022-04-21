@@ -86,7 +86,7 @@ public class BookShelfPuzzle : MonoBehaviour
 		Debug.Log( "Bookshelf puzzle solved" );
 
 		EventManager.Fire( Globals.Events.DAD_PUZZLE_1_BOOKSHELF_SOLVED );
-
+		AudioPlayer.Play( Globals.AudioFiles.Section3.BOOKSHELF_SEQUENCE, Globals.Tags.MAIN_SOURCE );
 		// Disables the pick up for all of these objects via disabling their box colliders.
 		foreach ( BookSlot slot in m_bookslots )
 		{

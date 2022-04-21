@@ -125,7 +125,7 @@ public class MusicBox : InteractableAbstract
 		}
 		else
 		{
-			AudioPlayer.Play(Globals.VoiceLines.General.CANT_USE_ITEM, Globals.Tags.DIALOGUE_SOURCE);
+			AudioPlayer.Play( Globals.VoiceLines.General.CANT_USE_ITEM, Globals.Tags.DIALOGUE_SOURCE );
 			AudioPlayer.Play( Globals.AudioFiles.General.NON_INTERACTABLE, Globals.Tags.MAIN_SOURCE );
 			return;
 		}
@@ -133,13 +133,16 @@ public class MusicBox : InteractableAbstract
 		// If we got here, the player used a key.
 		if (keys == 2)
 		{
-			AudioPlayer.Play(Globals.VoiceLines.Section4.THATS_ONE, Globals.Tags.DIALOGUE_SOURCE);
+			AudioPlayer.Play( Globals.VoiceLines.Section4.THATS_ONE, Globals.Tags.DIALOGUE_SOURCE );
+			AudioPlayer.Play( Globals.AudioFiles.Section4.MUSIC_BOX_USE_KEY_1, Globals.Tags.MAIN_SOURCE );
 		} else if (keys == 1)
 		{
-			AudioPlayer.Play(Globals.VoiceLines.Section4.THATS_TWO, Globals.Tags.DIALOGUE_SOURCE);
+			AudioPlayer.Play( Globals.VoiceLines.Section4.THATS_TWO, Globals.Tags.DIALOGUE_SOURCE );
+			AudioPlayer.Play( Globals.AudioFiles.Section4.MUSIC_BOX_USE_KEY_2, Globals.Tags.MAIN_SOURCE );
 		} else if (keys == 0)
 		{
-			AudioPlayer.Play(Globals.VoiceLines.Section4.THATS_THREE, Globals.Tags.DIALOGUE_SOURCE);
+			AudioPlayer.Play( Globals.VoiceLines.Section4.THATS_THREE, Globals.Tags.DIALOGUE_SOURCE );
+			AudioPlayer.Play( Globals.AudioFiles.Section4.MUSIC_BOX_USE_KEY_3, Globals.Tags.MAIN_SOURCE );
 			OpenMusicBox();
 		}
 		
@@ -151,13 +154,15 @@ public class MusicBox : InteractableAbstract
 		AudioPlayer.Play(Globals.VoiceLines.Section4.IT_OPENED, Globals.Tags.DIALOGUE_SOURCE, false);
 
 		// Stop all audio sources, preferably gradually.
-		AudioPlayer.StopCurrentClip(Globals.Tags.MAIN_SOURCE);
 		AudioPlayer.StopCurrentClip(Globals.Tags.AMBIENCE_SOURCE);
 		
 		// Stop the player movement
 		PlayerController player = GameObject.FindGameObjectWithTag(Globals.Tags.PLAYER).GetComponent<PlayerController>();
 		player.speed = 0f;
 		player.sensitivity = 0f;
+		
+		// Play the box opening sound.
+		AudioPlayer.Play(Globals.AudioFiles.Section4.MUSIC_BOX_CLICK, Globals.Tags.MAIN_SOURCE, false);
 		
 		// Open music box slowly but not enough to see the inside.
 		InterpolateTransform it = lid.GetComponent<InterpolateTransform>();
@@ -181,25 +186,32 @@ public class MusicBox : InteractableAbstract
 	}
 	void OnHavingMillieKey()
 	{
-		if ( !hasMillieKey ) keys += 1;
+		if (hasMillieKey) return;
+		
+		keys += 1;
 		hasMillieKey = true;
 		Debug.Log("Keys = " + keys);
-		proximityTrigger.enabled = true;
 	}
 
 	void OnHavingMomKey()
 	{
-		if ( !hasMomKey ) keys += 1;
+		if (hasMomKey) return;
+		
+		keys += 1;
 		hasMomKey = true;
 		Debug.Log("Keys = " + keys);
+		AudioPlayer.Play(Globals.AudioFiles.General.ACHIEVEMENT_REFLECTION_ONESHOT, Globals.Tags.MAIN_SOURCE, false);
 		DisableFireplaceMirrorTeleport();
 	}
 
 	void OnHavingDadKey()
 	{
-		if ( !hasDadKey ) keys += 1;
+		if (hasDadKey) return;
+		
+		keys += 1;
 		hasDadKey = true;
 		Debug.Log("Keys = " + keys);
+		AudioPlayer.Play(Globals.AudioFiles.General.ACHIEVEMENT_REFLECTION_ONESHOT, Globals.Tags.MAIN_SOURCE, false);
 		DisableFireplaceMirrorTeleport();
 	}
 
