@@ -24,12 +24,6 @@ public class TippingBucket : InterpolateInteractableWrapper
             Vector3 playerPosition = GameObject.FindGameObjectWithTag(Globals.Tags.PLAYER).transform.position;
             float distance = Vector3.Distance(playerPosition, this.transform.position);
             Vector3 direction = (this.transform.position - playerPosition).normalized;
-            /*
-            Debug.Log("playerPosition: " + playerPosition + 
-                      ",      distance: " + distance + 
-                      ",      direction: " + direction + 
-                      ",      angle: " + Vector3.Angle(direction, Vector3.down) + " " + (distance <= SMALL_BUCKET_DISTANCE) + " " + (Vector3.Angle(direction, Vector3.down) <= SMALL_BUCKET_ANGLE));
-                      */
 
             if (distance <= SMALL_BUCKET_DISTANCE && Vector3.Angle(direction, Vector3.down) <= SMALL_BUCKET_ANGLE)
             {
@@ -56,6 +50,8 @@ public class TippingBucket : InterpolateInteractableWrapper
         booksOnBustCase.GetComponent<InspectableObject>().interactable = false;
         
         AudioPlayer.Play(tippingVoiceLine, Globals.Tags.DIALOGUE_SOURCE);
+        AudioPlayer.Play(Globals.AudioFiles.Section3.PAINT_CAN_SPILL_REFLECTION_ONESHOT, Globals.Tags.MAIN_SOURCE);
+        
         // Fire event to enable ground mirror.
     }
 }
