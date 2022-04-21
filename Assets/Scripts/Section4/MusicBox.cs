@@ -8,6 +8,7 @@ public class MusicBox : InteractableAbstract
 {
 
 	private const string MUSICBOX_AUDIO_SOURCE = "MusicBoxAudioSource";
+	private const string PRESENT_FIREPLACE_SOURCE = "PresentFireplaceSource";
 	public bool discoveredBox;
 
 	public ProximityTrigger proximityTrigger;
@@ -51,7 +52,7 @@ public class MusicBox : InteractableAbstract
 		EventManager.Sub( Globals.Events.EPIPHANY_MOM, () => { epiphanyMom = true; } );
 		EventManager.Sub( Globals.Events.LOCK_PAST_DAD_SHELF, () => { epiphanyDad = true; ChangeStems(); } );
 		
-		// AudioPlayer.RegisterAudioPlayer(MUSICBOX_AUDIO_SOURCE, GetComponent<AudioSource>());
+		AudioPlayer.RegisterAudioPlayer(PRESENT_FIREPLACE_SOURCE, presentFireplaceMirror.GetComponent<AudioSource>());
 
 		discoveredBox = false;
 
@@ -123,6 +124,10 @@ public class MusicBox : InteractableAbstract
 				AudioPlayer.Play(Globals.VoiceLines.Section1.WOAH_WHAT_JUST_HAPPENED_TO_THE_MIRROR, Globals.Tags.DIALOGUE_SOURCE, false);
 				EventManager.Fire( Globals.Events.MILLIE_KEY_INTERACT );
 				millieKeyInteracted = true;
+				
+				// Start playing Millie's stem faintly in the fireplace mirror.
+				AudioPlayer.Play(Globals.AudioFiles.Music.MILLIE_STEM, PRESENT_FIREPLACE_SOURCE);
+				
 				Debug.Log( "Millie Key Interact" );
 				return;
 			}
@@ -279,7 +284,9 @@ public class MusicBox : InteractableAbstract
 		keys += 1;
 		hasMomKey = true;
 		Debug.Log("Keys = " + keys);
-		AudioPlayer.Play(Globals.AudioFiles.General.ACHIEVEMENT_REFLECTION_ONESHOT, Globals.Tags.MAIN_SOURCE, false);
+		AudioPlayer.Play(Globals.AudioFiles.General.ACHIEVEMENT_REFLECTION_ONESHOT, Globals.Tags.MAIN_SOURCE, false);			
+		// Playing Millie's stem faintly in the fireplace mirror.
+		AudioPlayer.Play(Globals.AudioFiles.Music.MILLIE_STEM, PRESENT_FIREPLACE_SOURCE);
 		DisableFireplaceMirrorTeleport();
 	}
 
@@ -291,6 +298,8 @@ public class MusicBox : InteractableAbstract
 		hasDadKey = true;
 		Debug.Log("Keys = " + keys);
 		AudioPlayer.Play(Globals.AudioFiles.General.ACHIEVEMENT_REFLECTION_ONESHOT, Globals.Tags.MAIN_SOURCE, false);
+		// Playing Millie's stem faintly in the fireplace mirror.
+		AudioPlayer.Play(Globals.AudioFiles.Music.MILLIE_STEM, PRESENT_FIREPLACE_SOURCE);
 		DisableFireplaceMirrorTeleport();
 	}
 
