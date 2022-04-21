@@ -88,18 +88,18 @@ public class PlayerController : MonoBehaviour
 		AudioPlayer.Play( Globals.AudioFiles.Section1.MAIN_DOOR, Globals.Tags.MAIN_SOURCE );
 		AudioPlayer.Play( Globals.VoiceLines.Section1.DARK_IN_HERE, Globals.Tags.DIALOGUE_SOURCE );
 		AudioPlayer.Play( Globals.AudioFiles.Ambience.PRESENT_AMBIENCE, Globals.Tags.AMBIENCE_SOURCE );
-		
+
 		// Play the stems all at once to keep them synced
 		AudioPlayer.Play( Globals.AudioFiles.Music.MILLIE_STEM, Globals.Tags.MILLIE_STEM );
 		AudioPlayer.Play( Globals.AudioFiles.Music.MOM_STEM, Globals.Tags.MOM_STEM );
 		AudioPlayer.Play( Globals.AudioFiles.Music.DAD_STEM, Globals.Tags.DAD_STEM );
-		
+
 		// Initially keep them mute.
-		AudioPlayer.SetSourceVolume(Globals.Tags.MILLIE_STEM, 0f);
-		AudioPlayer.SetSourceVolume(Globals.Tags.MOM_STEM, 0f);
-		AudioPlayer.SetSourceVolume(Globals.Tags.DAD_STEM, 0f);
-		
-		
+		AudioPlayer.SetSourceVolume( Globals.Tags.MILLIE_STEM, 0f );
+		AudioPlayer.SetSourceVolume( Globals.Tags.MOM_STEM, 0f );
+		AudioPlayer.SetSourceVolume( Globals.Tags.DAD_STEM, 0f );
+
+
 #endif // if TEST_LEVEL
 		StartCoroutines();
 	}
@@ -122,6 +122,12 @@ public class PlayerController : MonoBehaviour
 		EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.ESCAPE_KEY ), HandleEscape );
 		EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.TAB_KEY ), HandleJournalKey );
 
+		// for cheat code
+		EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.CHEAT_KEY_1 ), () => { InputManager.HandleCheatInput( "1" ); } );
+		EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.CHEAT_KEY_8 ), () => { InputManager.HandleCheatInput( "8" ); } );
+		EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.CHEAT_KEY_3 ), () => { InputManager.HandleCheatInput( "3" ); } );
+		EventManager.Sub( Globals.Events.CHEAT_SUCCESS, () => { GameObject.FindObjectOfType<MusicBox>().OpenMusicBox(); } );
+
 		// keyup events
 		EventManager.Sub( InputManager.GetKeyUpEventName( Keybinds.INVENTORY_KEY ), HandleCloseInventory );
 
@@ -136,7 +142,7 @@ public class PlayerController : MonoBehaviour
 		AudioPlayer.RegisterAudioPlayer( Globals.Tags.DIALOGUE_SOURCE, GameObject.FindGameObjectWithTag( Globals.Tags.DIALOGUE_SOURCE ).GetComponent<AudioSource>() );
 		AudioPlayer.RegisterAudioPlayer( Globals.Tags.AMBIENCE_SOURCE, GameObject.FindGameObjectWithTag( Globals.Tags.AMBIENCE_SOURCE ).GetComponent<AudioSource>() );
 		AudioPlayer.RegisterAudioPlayer( Globals.Tags.MUSIC_SOURCE, GameObject.FindGameObjectWithTag( Globals.Tags.MUSIC_SOURCE ).GetComponent<AudioSource>() );
-		
+
 		AudioPlayer.RegisterAudioPlayer( Globals.Tags.MILLIE_STEM, GameObject.FindGameObjectWithTag( Globals.Tags.MILLIE_STEM ).GetComponent<AudioSource>() );
 		AudioPlayer.RegisterAudioPlayer( Globals.Tags.MOM_STEM, GameObject.FindGameObjectWithTag( Globals.Tags.MOM_STEM ).GetComponent<AudioSource>() );
 		AudioPlayer.RegisterAudioPlayer( Globals.Tags.DAD_STEM, GameObject.FindGameObjectWithTag( Globals.Tags.DAD_STEM ).GetComponent<AudioSource>() );
@@ -524,13 +530,19 @@ public class PlayerController : MonoBehaviour
 		{
 			AudioPlayer.Play( Globals.AudioFiles.Ambience.PAST_AMBIENCE, Globals.Tags.AMBIENCE_SOURCE );
 		}
-		
+
 		// Change the state of the music box, note this is a way of getting a unique & possibly inactive game object.
 		MusicBox musicBox;
 		MusicBox[] musicBoxes = Resources.FindObjectsOfTypeAll<MusicBox>();
-		if (musicBoxes.Length > 0) {
-			musicBox = musicBoxes[0];
+		if ( musicBoxes.Length > 0 )
+		{
+			musicBox = musicBoxes[ 0 ];
 			musicBox.ChangeStems();
 		}
+	}
+
+	public void SetSensitivity( float newSens )
+	{
+		this.sensitivity = newSens;
 	}
 }

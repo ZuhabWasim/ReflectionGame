@@ -12,12 +12,14 @@ public class PauseMenu : MonoBehaviour
 	private bool objectiveOn;
 	private bool subtitleOn;
 	public GameObject objectives;
+	private PlayerController m_playerController;
 	void Start()
 	{
 		pauseMenu.SetActive( false );
 		isPaused = false;
 		objectiveOn = false;
 		subtitleOn = true;
+		m_playerController = GameObject.FindObjectOfType<PlayerController>();
 	}
 	public bool IsPaused()
 	{
@@ -32,6 +34,10 @@ public class PauseMenu : MonoBehaviour
 	{
 		subtitleOn = !subtitleOn;
 		SubtitleDisplay.showSubs = subtitleOn;
+	}
+	public void SlideMouseSensitivity( float newValue )
+	{
+		m_playerController.SetSensitivity( newValue );
 	}
 	public void PauseGame()
 	{
