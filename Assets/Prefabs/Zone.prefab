@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 401308210700057426}
   - component: {fileID: 401308210700057427}
   - component: {fileID: 401308210700057425}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Zone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
