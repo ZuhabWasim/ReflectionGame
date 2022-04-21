@@ -126,7 +126,7 @@ public class PlayerController : MonoBehaviour
 		EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.CHEAT_KEY_1 ), () => { InputManager.HandleCheatInput( "1" ); } );
 		EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.CHEAT_KEY_8 ), () => { InputManager.HandleCheatInput( "8" ); } );
 		EventManager.Sub( InputManager.GetKeyDownEventName( Keybinds.CHEAT_KEY_3 ), () => { InputManager.HandleCheatInput( "3" ); } );
-		EventManager.Sub( Globals.Events.CHEAT_SUCCESS, () => { GameObject.FindObjectOfType<MusicBox>().OpenMusicBox(); } );
+		EventManager.Sub( Globals.Events.CHEAT_SUCCESS, () => { GetMusicBox().OpenMusicBox(); } );
 
 		// keyup events
 		EventManager.Sub( InputManager.GetKeyUpEventName( Keybinds.INVENTORY_KEY ), HandleCloseInventory );
@@ -539,6 +539,18 @@ public class PlayerController : MonoBehaviour
 			musicBox = musicBoxes[ 0 ];
 			musicBox.ChangeStems();
 		}
+	}
+
+	MusicBox GetMusicBox()
+	{
+		// Change the state of the music box, note this is a way of getting a unique & possibly inactive game object.
+		MusicBox musicBox = null;
+		MusicBox[] musicBoxes = Resources.FindObjectsOfTypeAll<MusicBox>();
+		if ( musicBoxes.Length > 0 )
+		{
+			musicBox = musicBoxes[ 0 ];
+		}
+		return musicBox;
 	}
 
 	public void SetSensitivity( float newSens )
