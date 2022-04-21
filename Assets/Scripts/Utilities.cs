@@ -300,5 +300,10 @@ namespace Utilities
 		{
 			return GetAsset<TextAsset>( assetName );
 		}
+
+		public static bool DoesAssetExist<T>( string assetName ) where T : UnityEngine.Object
+		{
+			return m_assetPathTable.Contains( new AssetTableKey( assetName, typeof( T ) ) );
+		}
 	}
 }

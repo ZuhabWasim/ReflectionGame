@@ -13,6 +13,8 @@ public class MusicBox : InteractableAbstract
 
 	public ProximityTrigger proximityTrigger;
 	public GameObject pointLight;
+	public GameObject lid;
+	
 	public AudioClip noReflectAudio;
 	
 	private bool hasMillieKey;
@@ -149,9 +151,6 @@ public class MusicBox : InteractableAbstract
 		Debug.Log("Opening Music Box");
 		AudioPlayer.Play(Globals.VoiceLines.Section4.IT_OPENED, Globals.Tags.DIALOGUE_SOURCE, false);
 
-		InterpolateTransform it = GetComponentInChildren<InterpolateTransform>();
-		it.TriggerMotion();
-		
 		// Stop all audio sources, preferably gradually.
 		AudioPlayer.StopCurrentClip(Globals.Tags.MAIN_SOURCE);
 		AudioPlayer.StopCurrentClip(Globals.Tags.AMBIENCE_SOURCE);
@@ -161,6 +160,10 @@ public class MusicBox : InteractableAbstract
 		player.speed = 0f;
 		player.sensitivity = 0f;
 		
+		// Open music box slowly but not enough to see the inside.
+		InterpolateTransform it = lid.GetComponent<InterpolateTransform>();
+		it.TriggerMotion();
+
 		// Fade out at the speed it takes for the last two dialogue lines to play
 		GameObject.Find(Globals.Misc.UI_Canvas).GetComponent<FadeToBlack>().defFadeTime = 5;
 		GameObject.Find(Globals.Misc.UI_Canvas).GetComponent<FadeToBlack>().StartFadeOut(PlayFinalCutscene);
