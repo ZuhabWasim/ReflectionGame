@@ -1019,7 +1019,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7985c8d82c96afd4ba506bc1b6273cfd, type: 2}
+  - {fileID: 2100000, guid: 4fc807ba03e4c9e418a04447e1b4d43f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2484,7 +2484,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7985c8d82c96afd4ba506bc1b6273cfd, type: 2}
+  - {fileID: 2100000, guid: 4fc807ba03e4c9e418a04447e1b4d43f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2591,8 +2591,10 @@ MonoBehaviour:
   thisIsAMirror: 0
   voiceLine: {fileID: 0}
   nonInteractableVoiceLine: {fileID: 0}
+  nonInteractableSound: {fileID: 0}
   nonUseableVoiceLine: {fileID: 0}
   useVoiceLine: {fileID: 0}
+  useSound: {fileID: 0}
   bma: {fileID: 8130695718870015470}
   correspondingBlock: {fileID: 0}
 --- !u!65 &6208848156698202016
@@ -3285,7 +3287,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7985c8d82c96afd4ba506bc1b6273cfd, type: 2}
+  - {fileID: 2100000, guid: 4fc807ba03e4c9e418a04447e1b4d43f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5506,7 +5508,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5516ffee518a61c45b9a33cd5b9d6c09, type: 2}
+  - {fileID: 2100000, guid: e556278393e99254a90a3f57a26787e0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7479,8 +7481,10 @@ MonoBehaviour:
   thisIsAMirror: 0
   voiceLine: {fileID: 0}
   nonInteractableVoiceLine: {fileID: 0}
+  nonInteractableSound: {fileID: 0}
   nonUseableVoiceLine: {fileID: 0}
   useVoiceLine: {fileID: 0}
+  useSound: {fileID: 0}
   bma: {fileID: 4768157690519674229}
   correspondingBlock: {fileID: 0}
 --- !u!65 &7972370404394580272
@@ -12115,8 +12119,10 @@ MonoBehaviour:
   thisIsAMirror: 0
   voiceLine: {fileID: 8300000, guid: 64f1791a5819c554e8506c1fcfd911bc, type: 3}
   nonInteractableVoiceLine: {fileID: 8300000, guid: aa0efe5fa956107468fc04a6d0d09c3f, type: 3}
+  nonInteractableSound: {fileID: 0}
   nonUseableVoiceLine: {fileID: 0}
   useVoiceLine: {fileID: 0}
+  useSound: {fileID: 0}
   openSound: {fileID: 0}
   closeSound: {fileID: 0}
   audioSourceName: 
@@ -12303,8 +12309,10 @@ MonoBehaviour:
   thisIsAMirror: 0
   voiceLine: {fileID: 8300000, guid: 64f1791a5819c554e8506c1fcfd911bc, type: 3}
   nonInteractableVoiceLine: {fileID: 8300000, guid: aa0efe5fa956107468fc04a6d0d09c3f, type: 3}
+  nonInteractableSound: {fileID: 0}
   nonUseableVoiceLine: {fileID: 0}
   useVoiceLine: {fileID: 0}
+  useSound: {fileID: 0}
   openSound: {fileID: 0}
   closeSound: {fileID: 0}
   audioSourceName: 
@@ -13511,8 +13519,10 @@ MonoBehaviour:
   thisIsAMirror: 0
   voiceLine: {fileID: 0}
   nonInteractableVoiceLine: {fileID: 0}
+  nonInteractableSound: {fileID: 0}
   nonUseableVoiceLine: {fileID: 0}
   useVoiceLine: {fileID: 0}
+  useSound: {fileID: 0}
 --- !u!1001 &2548258816219000282
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14742,8 +14752,10 @@ MonoBehaviour:
   thisIsAMirror: 0
   voiceLine: {fileID: 0}
   nonInteractableVoiceLine: {fileID: 8300000, guid: 56fec2afa3da0b54b915562f97df9676, type: 3}
+  nonInteractableSound: {fileID: 0}
   nonUseableVoiceLine: {fileID: 0}
   useVoiceLine: {fileID: 0}
+  useSound: {fileID: 0}
   openSound: {fileID: 0}
   closeSound: {fileID: 0}
   audioSourceName: 
